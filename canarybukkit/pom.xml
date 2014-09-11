@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>lexteam.minecraft</groupId>
+  <artifactId>canarybukkit</artifactId>
+  <version>1.0.0.1</version>
+  <name>CanaryMod-BukkitAPI</name>
+  <description>Allows CanaryMod, to use Bukkit Plugins by giving access to the BukkitAPI.</description>
+  <inceptionYear>2014</inceptionYear>
+  <organization>
+  	<name>Lexteam</name>
+  	<url>https://github.com/Lexteam</url>
+  </organization>
+  <url>https://github.com/LexMinecraft/CanaryMod-BukkitAPI</url>
+  <issueManagement>
+  	<system>GitHub</system>
+  	<url>https://github.com/LexMinecraft/CanaryMod-BukkitAPI/issues</url>
+  </issueManagement>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <repositories>
+    <repository>
+      <id>vi-repo</id>
+      <name>Visual Illusions Repository</name>
+      <url>http://repo.visualillusionsent.net/repository/public</url>
+    </repository>
+    <repository>
+      <id>bukkit-repo</id>
+      <url>http://repo.bukkit.org/content/groups/public</url>
+    </repository>
+  </repositories>
+  <dependencies>
+    <dependency>
+        <groupId>net.canarymod</groupId>
+        <artifactId>CanaryLib</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.bukkit</groupId>
+      <artifactId>bukkit</artifactId>
+      <version>1.6.4-R2.0</version>
+      <type>jar</type>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>

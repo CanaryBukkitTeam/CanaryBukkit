@@ -1,1 +1,6 @@
 .metadata/
+canarybukkit/.settings/
+canarybukkit/target/
+canarybukkit/.classpath
+canarybukkit/.gitignore
+canarybukkit/.project
