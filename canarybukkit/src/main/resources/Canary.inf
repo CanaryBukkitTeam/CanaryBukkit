@@ -1,0 +1,5 @@
+;http://sv.slyip.net
+name=CanaryBukkit
+main-class=lexteam.minecraft.canarybukkit.CanaryBukkit
+author=malgm
+version=1.0.0.1
