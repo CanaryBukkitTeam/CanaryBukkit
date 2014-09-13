@@ -1,9 +1,0 @@
-[submodule "CanaryMod"]
-	path = CanaryMod
-	url = https://github.com/CanaryModTeam/CanaryMod.git
-[submodule "BukkitAPI"]
-	path = BukkitAPI
-	url = https://github.com/Bukkit/Bukkit.git
-[submodule "CanaryLib"]
-	path = CanaryLib
-	url = https://github.com/CanaryModTeam/CanaryLib.git
