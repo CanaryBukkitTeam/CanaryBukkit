@@ -3,6 +3,7 @@ package lexteam.minecraft.canarybukkit.implementation;
 import com.avaje.ebean.config.ServerConfig;
 
 import net.canarymod.Canary;
+import net.canarymod.config.Configuration;
 import net.canarymod.logger.Logman;
 import net.visualillusionsent.minecraft.plugin.canary.WrappedLogger;
 
@@ -61,11 +62,11 @@ public class CanaryServer implements Server {
 	}
 
 	public int getMaxPlayers() {
-		return server.getMaxPlayers() ;
+		return Configuration.getServerConfig().getMaxPlayers();
 	}
 
 	public int getPort() {
-		return 0;
+		return Configuration.getServerConfig().getPort();
 	}
 
 	public int getViewDistance() {
@@ -73,11 +74,11 @@ public class CanaryServer implements Server {
 	}
 
 	public String getIp() {
-		return server.getHostname();
+		return Configuration.getServerConfig().getBindIp();
 	}
 
 	public String getServerName() {
-		return server.getName();
+		return "Placeholder name";
 	}
 
 	public String getServerId() {
@@ -101,7 +102,7 @@ public class CanaryServer implements Server {
 	}
 
 	public boolean hasWhitelist() {
-		return false;
+		return Configuration.getServerConfig().isWhitelistEnabled();
 	}
 
 	public void setWhitelist(boolean value) {
@@ -167,7 +168,7 @@ public class CanaryServer implements Server {
 	}
 
 	public PluginManager getPluginManager() {
-		throw new NotImplementedException();
+		return pluginManager;
 	}
 
 	public BukkitScheduler getScheduler() {
@@ -283,7 +284,7 @@ public class CanaryServer implements Server {
 	}
 
 	public void shutdown() {
-		throw new NotImplementedException();
+		server.consoleCommand("stop");
 	}
 
 	public int broadcast(String message, String permission) {
@@ -394,7 +395,7 @@ public class CanaryServer implements Server {
 	}
 
 	public String getMotd() {
-		return Canary.motd().toString();
+		return Configuration.getServerConfig().getMotd();
 	}
 
 	public String getShutdownMessage() {
