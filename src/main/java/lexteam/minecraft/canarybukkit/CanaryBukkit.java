@@ -1,20 +1,21 @@
 package lexteam.minecraft.canarybukkit;
 
+import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
+
 import org.bukkit.Bukkit;
 
+import net.canarymod.Canary;
 import net.canarymod.plugin.Plugin;
 
 public class CanaryBukkit extends Plugin {
 
 	@Override
 	public boolean enable() {
-		getLogman().info("This server is running " + Bukkit.getName() + " version " + Bukkit.getVersion() + " (Implementing API version " + Bukkit.getBukkitVersion() + ")");
-		return false;
+		Bukkit.setServer(new CanaryServer(Canary.getServer(), getLogman()));
+		return true;
 	}
 
 	@Override
-	public void disable() {
-		
-	}
+	public void disable() { }
 
 }
