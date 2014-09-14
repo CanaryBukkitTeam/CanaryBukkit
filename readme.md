@@ -5,7 +5,7 @@ BukkitAPI for CanaryMod
 Allows CanaryMod, to use Bukkit Plugins by giving access to the BukkitAPI.
 
 ## License
-I have chosen the Apache License v2 for this project.
+I have chosen the MIT license for this project.
 
 ### Links
 [CanaryMod](https://github.com/CanaryModTeam/CanaryMod)

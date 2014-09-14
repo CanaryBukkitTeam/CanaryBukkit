@@ -78,7 +78,7 @@ public class CanaryServer implements Server {
 	}
 
 	public String getServerName() {
-		return "Placeholder name";
+		return "CanaryMod Server";
 	}
 
 	public String getServerId() {
@@ -114,7 +114,7 @@ public class CanaryServer implements Server {
 	}
 
 	public void reloadWhitelist() {
-		throw new NotImplementedException();
+		server.restart(true); //TODO: See if I can improve.
 	}
 
 	public int broadcastMessage(String message) {
