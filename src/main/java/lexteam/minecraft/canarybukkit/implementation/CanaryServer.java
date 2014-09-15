@@ -11,6 +11,7 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 import net.canarymod.Canary;
+import net.canarymod.api.entity.living.humanoid.CanaryPlayer;
 import net.canarymod.config.Configuration;
 import net.canarymod.logger.Logman;
 import net.visualillusionsent.minecraft.plugin.canary.WrappedLogger;
@@ -70,7 +71,7 @@ public class CanaryServer implements Server {
 	}
 
 	public String getVersion() {
-		return "1.0.0.1 (Bukkit: " + Bukkit.getBukkitVersion() + ")";
+		return Canary.getImplementationVersion() + " (Bukkit: 1.7.2-R0.3)";
 	}
 
 	public String getBukkitVersion() {
@@ -90,7 +91,7 @@ public class CanaryServer implements Server {
 	}
 
 	public int getViewDistance() {
-		return 0;
+		return Configuration.getServerConfig().getViewDistance();
 	}
 
 	public String getIp() {
@@ -221,7 +222,7 @@ public class CanaryServer implements Server {
 		return false;
 	}
 
-	public CanaryWorld getWorld(String name) {
+	public World getWorld(String name) {
 		return new CanaryWorld(server.getWorld(name));
 	}
 
@@ -238,7 +239,7 @@ public class CanaryServer implements Server {
 	}
 
 	public void reload() {
-		throw new NotImplementedException();
+		server.restart(true);
 	}
 
 	public Logger getLogger() {
@@ -340,7 +341,7 @@ public class CanaryServer implements Server {
 		throw new NotImplementedException();
 	}
 
-	public void banIP(String address) {
+	public void banIP(String address) { 
 		throw new NotImplementedException();
 	}
 
