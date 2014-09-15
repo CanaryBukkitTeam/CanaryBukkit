@@ -29,12 +29,10 @@ public class CanaryPluginLoader implements PluginLoader {
 	}
 
 	public void enablePlugin(Plugin plugin) {
-		plugin.onEnable();
 		throw new NotImplementedException();
 	}
 
 	public void disablePlugin(Plugin plugin) {
-		plugin.onDisable();
 		throw new NotImplementedException();
 	}
 

@@ -1,29 +1,44 @@
 package lexteam.minecraft.canarybukkit;
 
+import java.io.File;
+
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
-import lexteam.minecraft.canarybukkit.implementation.plugin.CanaryPluginLoader;
-import lexteam.minecraft.canarybukkit.testplugin.TestPlugin;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Server;
+import org.bukkit.plugin.PluginLoader;
 
 import net.canarymod.Canary;
 import net.canarymod.plugin.Plugin;
 
 public class CanaryBukkit extends Plugin {
+	
+	private Server server;
+	private PluginLoader loader;
 
 	@Override
 	public boolean enable() {
-		Bukkit.setServer(new CanaryServer(Canary.getServer(), getLogman()));
-		CanaryPluginLoader pluginLoader = new CanaryPluginLoader();
-		try {
-			pluginLoader.enablePlugin(new TestPlugin());
-		} catch(Exception e){
-			e.printStackTrace();
+		server = new CanaryServer(Canary.getServer(), getLogman());
+		Bukkit.setServer(server);
+		
+		File bukkitDir = new File(".", "bukkit" + File.separator + "plugins");
+		if(!bukkitDir.exists()) {
+			bukkitDir.mkdirs();
+		}
+		
+		server.getPluginManager().loadPlugins(bukkitDir);
+		for(org.bukkit.plugin.Plugin p : server.getPluginManager().getPlugins()) {
+			loader.enablePlugin(p);
+			getLogman().info("[" + p.getName() + "] has been loaded.");
 		}
 		return true;
 	}
 
 	@Override
-	public void disable() { }
+	public void disable() {
+		for(org.bukkit.plugin.Plugin p : server.getPluginManager().getPlugins()) {
+			loader.disablePlugin(p);
+		}
+	}
 
 }

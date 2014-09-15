@@ -1,6 +1,14 @@
 package lexteam.minecraft.canarybukkit.implementation;
 
-import com.avaje.ebean.config.ServerConfig;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import java.util.logging.Logger;
 
 import net.canarymod.Canary;
 import net.canarymod.config.Configuration;
@@ -9,13 +17,28 @@ import net.visualillusionsent.minecraft.plugin.canary.WrappedLogger;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.Validate;
-import org.bukkit.*;
+import org.bukkit.BanList;
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.OfflinePlayer;
+import org.bukkit.Server;
+import org.bukkit.UnsafeValues;
 import org.bukkit.Warning.WarningState;
-import org.bukkit.command.*;
+import org.bukkit.World;
+import org.bukkit.WorldCreator;
+import org.bukkit.command.CommandException;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.command.PluginCommand;
+import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.help.HelpMap;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemFactory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Recipe;
 import org.bukkit.map.MapView;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.plugin.Plugin;
@@ -28,10 +51,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.util.*;
-import java.util.logging.Logger;
+import com.avaje.ebean.config.ServerConfig;
 
 public class CanaryServer implements Server {
 
@@ -50,7 +70,7 @@ public class CanaryServer implements Server {
 	}
 
 	public String getVersion() {
-		return server.getCanaryModVersion();
+		return "1.0.0.1 (Bukkit: " + Bukkit.getBukkitVersion() + ")";
 	}
 
 	public String getBukkitVersion() {
@@ -78,7 +98,7 @@ public class CanaryServer implements Server {
 	}
 
 	public String getServerName() {
-		return "CanaryMod Server";
+		return "Just a CanaryMod Server";
 	}
 
 	public String getServerId() {
@@ -110,11 +130,17 @@ public class CanaryServer implements Server {
 	}
 
 	public Set<OfflinePlayer> getWhitelistedPlayers() {
+		/*Set<OfflinePlayer> players = null;
+		for(String name : Canary.whitelist().getWhitelisted()) {
+			OfflinePlayer player = new CanaryOfflinePlayer(Canary.getServer().getOfflinePlayer(name));
+			players.add(player);
+		}
+		return players;*/
 		throw new NotImplementedException();
 	}
 
 	public void reloadWhitelist() {
-		server.restart(true); //TODO: See if I can improve.
+		Canary.whitelist().reload();
 	}
 
 	public int broadcastMessage(String message) {
@@ -122,11 +148,11 @@ public class CanaryServer implements Server {
 	}
 
 	public String getUpdateFolder() {
-		throw new NotImplementedException();
+		return new File(".", "bukkit" + File.separator + "plugins").toString();
 	}
 
 	public File getUpdateFolderFile() {
-		throw new NotImplementedException();
+		return new File(".", "bukkit" + File.separator + "plugins");
 	}
 
 	public long getConnectionThrottle() {
@@ -195,8 +221,8 @@ public class CanaryServer implements Server {
 		return false;
 	}
 
-	public World getWorld(String name) {
-		throw new NotImplementedException();
+	public CanaryWorld getWorld(String name) {
+		return new CanaryWorld(server.getWorld(name));
 	}
 
 	public World getWorld(UUID uid) {
@@ -268,7 +294,7 @@ public class CanaryServer implements Server {
 	}
 
 	public boolean getOnlineMode() {
-		return false;
+		return Configuration.getServerConfig().isOnlineMode();
 	}
 
 	public boolean getAllowFlight() {
