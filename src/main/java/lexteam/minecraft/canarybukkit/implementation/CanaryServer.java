@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Logger;
 
+import lexteam.minecraft.canarybukkit.data.Constants;
 import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.CanaryPlayer;
 import net.canarymod.config.Configuration;
@@ -149,11 +150,11 @@ public class CanaryServer implements Server {
 	}
 
 	public String getUpdateFolder() {
-		return new File(".", "bukkit" + File.separator + "plugins").toString();
+		return Constants.bukkitDir.toString();
 	}
 
 	public File getUpdateFolderFile() {
-		return new File(".", "bukkit" + File.separator + "plugins");
+		return Constants.bukkitDir;
 	}
 
 	public long getConnectionThrottle() {

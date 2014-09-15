@@ -1,7 +1,6 @@
 package lexteam.minecraft.canarybukkit;
 
-import java.io.File;
-
+import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
 
 import org.bukkit.Bukkit;
@@ -21,16 +20,18 @@ public class CanaryBukkit extends Plugin {
 		server = new CanaryServer(Canary.getServer(), getLogman());
 		Bukkit.setServer(server);
 		
-		File bukkitDir = new File(".", "bukkit" + File.separator + "plugins");
-		if(!bukkitDir.exists()) {
-			bukkitDir.mkdirs();
+		if(!Constants.bukkitDir.exists()) {
+			Constants.bukkitDir.mkdirs();
 		}
 		
-		server.getPluginManager().loadPlugins(bukkitDir);
+		server.getPluginManager().loadPlugins(Constants.bukkitDir);
 		for(org.bukkit.plugin.Plugin p : server.getPluginManager().getPlugins()) {
 			loader.enablePlugin(p);
 			getLogman().info("[" + p.getName() + "] has been loaded.");
 		}
+		
+		// Enable Listener
+		Canary.hooks().registerListener(new CanaryListener(), this);
 		return true;
 	}
 
