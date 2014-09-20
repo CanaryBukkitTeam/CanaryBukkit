@@ -2,7 +2,7 @@
   	<modelVersion>4.0.0</modelVersion>
   	<groupId>lexteam.minecraft</groupId>
   	<artifactId>canarybukkit</artifactId>
-  	<version>1.0.0.1</version>
+  	<version>1.0.0</version>
   	<name>CanaryMod-BukkitAPI</name>
   	<description>Allows CanaryMod, to use Bukkit Plugins by giving access to the BukkitAPI.</description>
   	<inceptionYear>2014</inceptionYear>

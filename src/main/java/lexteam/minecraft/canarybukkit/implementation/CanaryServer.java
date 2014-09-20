@@ -26,13 +26,13 @@ package lexteam.minecraft.canarybukkit.implementation;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import lexteam.minecraft.canarybukkit.data.Constants;
@@ -67,16 +67,17 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.map.MapView;
 import org.bukkit.permissions.Permissible;
+import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.SimplePluginManager;
+import org.bukkit.plugin.java.JavaPluginLoader;
 import org.bukkit.plugin.messaging.Messenger;
 import org.bukkit.plugin.messaging.StandardMessenger;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
-
 import com.avaje.ebean.config.ServerConfig;
 
 public class CanaryServer implements Server {
@@ -90,14 +91,65 @@ public class CanaryServer implements Server {
 		this.logman = logman;
 		this.pluginManager = new SimplePluginManager(this, new SimpleCommandMap(this));
 	}
+	
+	public void loadPlugins() {
+        pluginManager.registerInterface(JavaPluginLoader.class);
+
+        File pluginFolder = new File(Constants.bukkitDir, "plugins");
+        if (pluginFolder.exists()) {
+            Plugin[] plugins = pluginManager.loadPlugins(pluginFolder);
+            for (Plugin plugin : plugins) {
+                try {
+                    String message = String.format("Loading %s", plugin.getDescription().getFullName());
+                    plugin.getLogger().info(message);
+                    plugin.onLoad();
+                } catch (Throwable ex) {
+                    logman.warn(ex.getMessage() + " initializing " + plugin.getDescription().getFullName() + " (Is it up to date?)", ex);
+                }
+            }
+        } else {
+            pluginFolder.mkdirs();
+        }
+    }
+	
+	private void loadPlugin(Plugin plugin) {
+        try {
+            pluginManager.enablePlugin(plugin);
+
+            List<Permission> perms = plugin.getDescription().getPermissions();
+            for (Permission perm : perms) {
+                try {
+                    pluginManager.addPermission(perm);
+                } catch (IllegalArgumentException ex) {
+                    getLogger().log(Level.WARNING, "Plugin " + plugin.getDescription().getFullName() + " tried to register permission '" + perm.getName() + "' but it's already registered", ex);
+                }
+            }
+        } catch (Throwable ex) {
+        	logman.warn(ex.getMessage() + " loading " + plugin.getDescription().getFullName() + " (Is it up to date?)", ex);
+        }
+    }
+	
+	public void enablePlugins() {
+		Plugin[] plugins = pluginManager.getPlugins();
+        for (Plugin plugin : plugins) {
+            if ((!plugin.isEnabled())) {
+                loadPlugin(plugin);
+                logman.info("Loaded " + plugin.getName() + ".");
+            }
+        }
+    }
+
+    public void disablePlugins() {
+        pluginManager.disablePlugins();
+    }
 
 	public String getName() {
-		return "CanaryMod";
+		return Canary.getImplementationTitle();
 	}
 
 	public String getVersion() {
-		return Canary.getImplementationVersion() + " (Bukkit: 1.7.2-R0.3)";
-	}
+        return "1.0.0" + " (MC: " + Canary.getImplementationVersion() + ")";
+    }
 
 	public String getBukkitVersion() {
 		return "CanaryBukkit-" + getVersion();
@@ -180,11 +232,11 @@ public class CanaryServer implements Server {
 	}
 
 	public String getUpdateFolder() {
-		return Constants.bukkitDir.toString();
+		return "update"; //TODO: Have a config, with stuff like this in.
 	}
 
 	public File getUpdateFolderFile() {
-		return Constants.bukkitDir;
+		return new File(Constants.bukkitDir, "plugins/update"); //TODO: Have a config, with stuff like this in.
 	}
 
 	public long getConnectionThrottle() {
@@ -416,19 +468,19 @@ public class CanaryServer implements Server {
 		throw new NotImplementedException();
 	}
 
-	public Inventory createInventory(InventoryHolder owner, InventoryType type) {
+	public Inventory createInventory(InventoryHolder owner, InventoryType type) { //TODO:
 		throw new NotImplementedException();
 	}
 
-	public Inventory createInventory(InventoryHolder owner, InventoryType type, String title) {
+	public Inventory createInventory(InventoryHolder owner, InventoryType type, String title) { //TODO:
 		throw new NotImplementedException();
 	}
 
-	public Inventory createInventory(InventoryHolder owner, int size) throws IllegalArgumentException {
+	public Inventory createInventory(InventoryHolder owner, int size) throws IllegalArgumentException { //TODO:
 		throw new NotImplementedException();
 	}
 
-	public Inventory createInventory(InventoryHolder owner, int size, String title) throws IllegalArgumentException {
+	public Inventory createInventory(InventoryHolder owner, int size, String title) throws IllegalArgumentException { //TODO:
 		throw new NotImplementedException();
 	}
 
