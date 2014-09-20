@@ -24,17 +24,26 @@
  */
 package lexteam.minecraft.canarybukkit;
 
+import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
+import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
+
 import org.bukkit.Bukkit;
 
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.player.BlockDestroyHook;
+import net.canarymod.hook.player.BlockPlaceHook;
 import net.canarymod.plugin.PluginListener;
 
 public class CanaryListener implements PluginListener {
 	
 	@HookHandler
     public void blockDestroy(BlockDestroyHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.block.BlockBreakEvent(null, null)); //TODO: Fill in
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.block.BlockBreakEvent(new CanaryBlock(hook.getBlock()), new CanaryPlayer(hook.getPlayer())));
+	}
+	
+	@HookHandler
+	public void blockPlace(BlockPlaceHook hook) {
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.block.BlockBreakEvent(new CanaryBlock(hook.getBlockPlaced()), new CanaryPlayer(hook.getPlayer())));
 	}
 
 }
