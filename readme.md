@@ -4,11 +4,13 @@ CanaryMod-BukkitAPI
 ### What is it?
 Allows plugins created for the Bukkit API platform to be used on the CanaryMod server platform.
 
-## License
+### License
 I have chosen the MIT license for this project.
 
 ### Links
 [CanaryMod](https://github.com/CanaryModTeam/CanaryMod)
+
+[CanaryLib](https://github.com/CanaryModTeam/CanaryLib)
 
 [Bukkit](https://github.com/Bukkit/Bukkit)
 

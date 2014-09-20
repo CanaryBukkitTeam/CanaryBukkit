@@ -30,12 +30,6 @@
     	</repository>
   	</repositories>
   	<dependencies>
-  		<dependency>
-        	<groupId>net.canarymod</groupId>
-        	<artifactId>CanaryMod</artifactId>
-        	<version>1.7.10-1.1.0-SNAPSHOT</version>
-        	<scope>runtime</scope>
-    	</dependency>
     	<dependency>
         	<groupId>net.canarymod</groupId>
         	<artifactId>CanaryLib</artifactId>
