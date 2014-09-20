@@ -43,7 +43,7 @@ public class CanaryListener implements PluginListener {
 	
 	@HookHandler
 	public void blockPlace(BlockPlaceHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.block.BlockBreakEvent(new CanaryBlock(hook.getBlockPlaced()), new CanaryPlayer(hook.getPlayer())));
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.block.BlockPlaceEvent(new CanaryBlock(hook.getBlockPlaced()), null, new CanaryBlock(hook.getBlockClicked()), null, new CanaryPlayer(hook.getPlayer()), hook.isCanceled())); //TODO: Fill in and check some of the arguments.
 	}
 
 }

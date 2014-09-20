@@ -26,6 +26,7 @@ package lexteam.minecraft.canarybukkit;
 
 import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
+import lexteam.minecraft.canarybukkit.implementation.plugin.CanaryPluginLoader;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -42,6 +43,7 @@ public class CanaryBukkit extends Plugin {
 	@Override
 	public boolean enable() {
 		server = new CanaryServer(Canary.getServer(), getLogman());
+		loader = new CanaryPluginLoader();
 		Bukkit.setServer(server);
 		
 		if(!Constants.bukkitDir.exists()) {

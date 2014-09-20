@@ -42,6 +42,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
+
 public class CanaryWorld implements World {
 	private net.canarymod.api.world.World world;
 
@@ -50,7 +52,7 @@ public class CanaryWorld implements World {
 	}
 
 	public Block getBlockAt(int x, int y, int z) {
-		throw new NotImplementedException();
+		return new CanaryBlock(world.getBlockAt(x, y, z));
 	}
 
 	public Block getBlockAt(Location location) {
@@ -58,11 +60,11 @@ public class CanaryWorld implements World {
 	}
 
 	public int getBlockTypeIdAt(int x, int y, int z) {
-		throw new NotImplementedException();
+		return world.getBlockAt(x, y, z).getTypeId();
 	}
 
 	public int getBlockTypeIdAt(Location location) {
-		throw new NotImplementedException();
+		return getBlockTypeIdAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
 	}
 
 	public int getHighestBlockYAt(int x, int z) {
@@ -82,7 +84,7 @@ public class CanaryWorld implements World {
 	}
 
 	public Chunk getChunkAt(int x, int z) {
-		throw new NotImplementedException();
+		return new CanaryChunk(world.getChunk(x, z));
 	}
 
 	public Chunk getChunkAt(Location location) {
@@ -94,7 +96,7 @@ public class CanaryWorld implements World {
 	}
 
 	public boolean isChunkLoaded(Chunk chunk) {
-		throw new NotImplementedException();
+		return chunk.isLoaded();
 	}
 
 	public Chunk[] getLoadedChunks() {
@@ -102,11 +104,11 @@ public class CanaryWorld implements World {
 	}
 
 	public void loadChunk(Chunk chunk) {
-		throw new NotImplementedException();
+		chunk.load();
 	}
 
 	public boolean isChunkLoaded(int x, int z) {
-		throw new NotImplementedException();
+		return getChunkAt(x, z).isLoaded();
 	}
 
 	public boolean isChunkInUse(int x, int z) {
@@ -114,23 +116,23 @@ public class CanaryWorld implements World {
 	}
 
 	public void loadChunk(int x, int z) {
-		throw new NotImplementedException();
+		getChunkAt(x, z).load();
 	}
 
 	public boolean loadChunk(int x, int z, boolean generate) {
-		throw new NotImplementedException();
+		return getChunkAt(x, z).load(generate);
 	}
 
 	public boolean unloadChunk(Chunk chunk) {
-		throw new NotImplementedException();
+		return chunk.unload();
 	}
 
 	public boolean unloadChunk(int x, int z) {
-		throw new NotImplementedException();
+		return getChunkAt(x, z).unload();
 	}
 
 	public boolean unloadChunk(int x, int z, boolean save) {
-		throw new NotImplementedException();
+		return getChunkAt(x, z).unload(save);
 	}
 
 	public boolean unloadChunk(int x, int z, boolean save, boolean safe) {

@@ -26,6 +26,7 @@ package lexteam.minecraft.canarybukkit.implementation;
 
 import java.util.Map;
 
+import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 import net.canarymod.Canary;
 
 import org.bukkit.Location;
@@ -41,11 +42,11 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
 	}
 
 	public boolean isOp() {
-		return false; //offlinePlayer.isAdmin()
+		return Canary.ops().isOpped(offlinePlayer.getName());
 	}
 
 	public void setOp(boolean op) {
-		
+		Canary.ops().addPlayer(offlinePlayer.getName());
 	}
 
 	public Map<String, Object> serialize() {
@@ -69,7 +70,7 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
 	}
 
 	public Player getPlayer() {
-		return null;
+		return new CanaryPlayer(Canary.getServer().getPlayer(offlinePlayer.getName()));
 	}
 
 	public boolean hasPlayedBefore() {
@@ -85,7 +86,7 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
 	}
 
 	public boolean isWhitelisted() {
-		return false;
+		return Canary.whitelist().isWhitelisted(offlinePlayer.getName());
 	}
 
 	public void setBanned(boolean banned) {
