@@ -37,7 +37,6 @@ import java.util.logging.Logger;
 
 import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
-import lexteam.minecraft.canarybukkit.implementation.plugin.CanaryPlugin;
 import net.canarymod.Canary;
 import net.canarymod.config.Configuration;
 import net.canarymod.logger.Logman;
@@ -98,10 +97,7 @@ public class CanaryServer implements Server {
 		
 		File pluginFolder = Constants.pluginsDir;
 		if (pluginFolder.exists()) {
-			ArrayList<CanaryPlugin> plugins = new ArrayList<CanaryPlugin>();
-			for(Plugin p : pluginManager.loadPlugins(pluginFolder)) {
-				plugins.add(new CanaryPlugin(p));
-			}
+			ArrayList<Plugin> plugins = new ArrayList<Plugin>();
 			for (Plugin plugin : plugins) {
 				try {
 					String message = String.format("Loading %s", plugin.getDescription().getFullName());

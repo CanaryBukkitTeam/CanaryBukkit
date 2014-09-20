@@ -1,8 +1,8 @@
-CanaryMod-BukkitAPI
+CanaryBukkit
 =======================
 
 ### What is it?
-Allows plugins created for the Bukkit API platform to be used on the CanaryMod server platform.
+CanaryBukkit allows plugins created for the Bukkit API platform to be used on the CanaryMod server platform.
 
 ### License
 I have chosen the MIT license for this project.

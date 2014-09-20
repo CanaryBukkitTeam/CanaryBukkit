@@ -41,6 +41,8 @@ import org.bukkit.plugin.Plugin;
 import java.util.Collection;
 import java.util.List;
 
+import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
+
 public class CanaryBlock implements Block {
 	private net.canarymod.api.world.blocks.Block block;
 
@@ -85,7 +87,7 @@ public class CanaryBlock implements Block {
 	}
 
 	public World getWorld() {
-		throw new NotImplementedException();
+		return new CanaryWorld(block.getWorld());
 	}
 
 	public int getX() {
@@ -105,7 +107,7 @@ public class CanaryBlock implements Block {
 	}
 
 	public Location getLocation(Location loc) {
-		throw new NotImplementedException();
+		return new Location(new CanaryWorld(block.getWorld()), block.getX(), block.getY(), block.getZ());
 	}
 
 	public Chunk getChunk() {
