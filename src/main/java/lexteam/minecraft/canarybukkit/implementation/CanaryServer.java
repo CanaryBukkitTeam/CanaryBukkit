@@ -134,7 +134,6 @@ public class CanaryServer implements Server {
         for (Plugin plugin : plugins) {
             if ((!plugin.isEnabled())) {
                 loadPlugin(plugin);
-                logman.info("Loaded " + plugin.getName() + ".");
             }
         }
     }

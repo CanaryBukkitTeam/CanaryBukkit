@@ -32,9 +32,21 @@ import org.bukkit.Bukkit;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.player.BlockDestroyHook;
 import net.canarymod.hook.player.BlockPlaceHook;
+import net.canarymod.hook.player.ConnectionHook;
+import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.plugin.PluginListener;
 
 public class CanaryListener implements PluginListener {
+	
+	@HookHandler
+	public void onPlayerJoin(ConnectionHook hook) {
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.player.PlayerJoinEvent(new CanaryPlayer(hook.getPlayer()), hook.getMessage()));
+	}
+	
+	@HookHandler
+	public void onPlayerDeath(PlayerDeathHook hook) {
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.entity.PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, 0, hook.getDeathMessage())); //TODO: Fill in
+	}
 	
 	@HookHandler
     public void blockDestroy(BlockDestroyHook hook) {

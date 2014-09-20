@@ -41,6 +41,8 @@ import org.bukkit.util.Vector;
 import java.util.List;
 import java.util.UUID;
 
+import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
+
 public class CanaryEntity implements Entity {
 	
 	private net.canarymod.api.entity.Entity entity;
@@ -70,7 +72,7 @@ public class CanaryEntity implements Entity {
 	}
 
 	public World getWorld() {
-		throw new NotImplementedException();
+		return new CanaryWorld(entity.getWorld());
 	}
 
 	public boolean teleport(Location location) {
@@ -110,7 +112,7 @@ public class CanaryEntity implements Entity {
 	}
 
 	public void remove() {
-		throw new NotImplementedException();
+		entity.destroy();
 	}
 
 	public boolean isDead() {
