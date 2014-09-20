@@ -24,6 +24,8 @@
  */
 package lexteam.minecraft.canarybukkit;
 
+import lexteam.minecraft.canarybukkit.implementation.CanaryChunk;
+import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 
@@ -33,13 +35,23 @@ import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.player.BlockDestroyHook;
 import net.canarymod.hook.player.BlockPlaceHook;
 import net.canarymod.hook.player.ConnectionHook;
+import net.canarymod.hook.player.DisconnectionHook;
 import net.canarymod.hook.player.PlayerDeathHook;
+import net.canarymod.hook.system.LoadWorldHook;
+import net.canarymod.hook.system.UnloadWorldHook;
+import net.canarymod.hook.world.ChunkLoadedHook;
+import net.canarymod.hook.world.ChunkUnloadHook;
 import net.canarymod.plugin.PluginListener;
 
 public class CanaryListener implements PluginListener {
 	@HookHandler
 	public void onPlayerJoin(ConnectionHook hook) {
 		Bukkit.getPluginManager().callEvent(new org.bukkit.event.player.PlayerJoinEvent(new CanaryPlayer(hook.getPlayer()), hook.getMessage()));
+	}
+	
+	@HookHandler
+	public void onPlayerQuit(DisconnectionHook hook) {
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.player.PlayerQuitEvent(new CanaryPlayer(hook.getPlayer()), hook.getLeaveMessage()));
 	}
 	
 	@HookHandler
@@ -55,5 +67,25 @@ public class CanaryListener implements PluginListener {
 	@HookHandler
 	public void blockPlace(BlockPlaceHook hook) {
 		Bukkit.getPluginManager().callEvent(new org.bukkit.event.block.BlockPlaceEvent(new CanaryBlock(hook.getBlockPlaced()), null, new CanaryBlock(hook.getBlockClicked()), null, new CanaryPlayer(hook.getPlayer()), hook.isCanceled())); //TODO: Fill in and check some of the arguments.
+	}
+	
+	@HookHandler
+	public void onChunkLoad(ChunkLoadedHook hook) {
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.ChunkLoadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld())), false)); //TODO: See if I can check to see if the chunk is new.
+	}
+	
+	@HookHandler
+	public void onChunkUnload(ChunkUnloadHook hook) {
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld()))));
+	}
+	
+	@HookHandler
+	public void onWorldLoad(LoadWorldHook hook) {
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.WorldLoadEvent(new CanaryWorld(hook.getWorld())));
+	}
+
+	@HookHandler
+	public void onWorldUnload(UnloadWorldHook hook) {
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.WorldUnloadEvent(new CanaryWorld(hook.getWorld())));
 	}
 }

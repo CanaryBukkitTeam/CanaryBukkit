@@ -151,8 +151,8 @@ public class CanaryServer implements Server {
 	}
 
 	public String getVersion() {
-        return "1.0.0" + " (MC: " + Canary.getImplementationVersion() + ")";
-    }
+		return "1.0.0" + " (MC: " + Canary.getImplementationVersion() + ")";
+	}
 
 	public String getBukkitVersion() {
 		return "CanaryBukkit-" + getVersion();
