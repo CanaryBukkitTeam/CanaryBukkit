@@ -104,7 +104,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
 	}
 
 	public void chat(String msg) {
-		throw new NotImplementedException();
+		entity.chat(msg);
 	}
 
 	public boolean performCommand(String command) {
@@ -112,11 +112,11 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
 	}
 
 	public boolean isSneaking() {
-		return false;
+		return entity.isSneaking();
 	}
 
 	public void setSneaking(boolean sneak) {
-		throw new NotImplementedException();
+		entity.setSneaking(sneak);
 	}
 
 	public boolean isSprinting() {
@@ -316,7 +316,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
 	}
 
 	public float getExp() {
-		return 0;
+		return entity.getExperience();
 	}
 
 	public void setExp(float exp) {
@@ -364,7 +364,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
 	}
 
 	public boolean isOnline() {
-		return false;
+		return entity.isOnline();
 	}
 
 	public boolean isBanned() {
@@ -384,7 +384,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
 	}
 
 	public Player getPlayer() {
-		throw new NotImplementedException();
+		return this;
 	}
 
 	public long getFirstPlayed() {
@@ -488,11 +488,13 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
 	}
 
 	public void sendMessage(String message) {
-		throw new NotImplementedException();
+		entity.message(message);
 	}
 
 	public void sendMessage(String[] messages) {
-		throw new NotImplementedException();
+		for(String msg : messages) {
+			entity.message(msg);
+		}
 	}
 
 	public Map<String, Object> serialize() {
