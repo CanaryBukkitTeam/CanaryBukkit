@@ -42,7 +42,6 @@ import java.util.Collection;
 import java.util.List;
 
 public class CanaryBlock implements Block {
-
 	private net.canarymod.api.world.blocks.Block block;
 
 	public CanaryBlock(net.canarymod.api.world.blocks.Block block) {
@@ -228,5 +227,4 @@ public class CanaryBlock implements Block {
 	public void removeMetadata(String metadataKey, Plugin owningPlugin) {
 		throw new NotImplementedException();
 	}
-
 }

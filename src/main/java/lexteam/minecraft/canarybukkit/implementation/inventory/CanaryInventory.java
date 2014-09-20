@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class CanaryInventory implements Inventory {
-	
 	private net.canarymod.api.inventory.Inventory inv;
 
 	public CanaryInventory(net.canarymod.api.inventory.Inventory inv) {

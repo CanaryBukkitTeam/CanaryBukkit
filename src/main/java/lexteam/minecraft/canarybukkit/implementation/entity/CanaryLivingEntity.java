@@ -40,7 +40,6 @@ import java.util.HashSet;
 import java.util.List;
 
 public class CanaryLivingEntity extends CanaryEntity implements LivingEntity {
-
 	private LivingBase entity;
 
 	public CanaryLivingEntity(net.canarymod.api.entity.living.LivingBase entity) {

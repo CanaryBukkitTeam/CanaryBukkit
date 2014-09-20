@@ -26,17 +26,18 @@ package lexteam.minecraft.canarybukkit.implementation;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
+import lexteam.minecraft.canarybukkit.implementation.plugin.CanaryPlugin;
 import net.canarymod.Canary;
 import net.canarymod.config.Configuration;
 import net.canarymod.logger.Logman;
@@ -78,10 +79,10 @@ import org.bukkit.plugin.messaging.StandardMessenger;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
+
 import com.avaje.ebean.config.ServerConfig;
 
 public class CanaryServer implements Server {
-
 	private net.canarymod.api.Server server;
 	private PluginManager pluginManager;
 	private Logman logman;
@@ -93,54 +94,57 @@ public class CanaryServer implements Server {
 	}
 	
 	public void loadPlugins() {
-        pluginManager.registerInterface(JavaPluginLoader.class);
-
-        File pluginFolder = new File(Constants.bukkitDir, "plugins");
-        if (pluginFolder.exists()) {
-            Plugin[] plugins = pluginManager.loadPlugins(pluginFolder);
-            for (Plugin plugin : plugins) {
-                try {
-                    String message = String.format("Loading %s", plugin.getDescription().getFullName());
-                    plugin.getLogger().info(message);
-                    plugin.onLoad();
-                } catch (Throwable ex) {
-                    logman.warn(ex.getMessage() + " initializing " + plugin.getDescription().getFullName() + " (Is it up to date?)", ex);
-                }
-            }
-        } else {
-            pluginFolder.mkdirs();
-        }
-    }
+		pluginManager.registerInterface(JavaPluginLoader.class);
+		
+		File pluginFolder = Constants.pluginsDir;
+		if (pluginFolder.exists()) {
+			ArrayList<CanaryPlugin> plugins = new ArrayList<CanaryPlugin>();
+			for(Plugin p : pluginManager.loadPlugins(pluginFolder)) {
+				plugins.add(new CanaryPlugin(p));
+			}
+			for (Plugin plugin : plugins) {
+				try {
+					String message = String.format("Loading %s", plugin.getDescription().getFullName());
+					plugin.getLogger().info(message);
+					plugin.onLoad();
+				} catch (Throwable ex) {
+					logman.warn(ex.getMessage() + " initializing " + plugin.getDescription().getFullName() + " (Is it up to date?)", ex);
+				}
+			}
+		} else {
+			pluginFolder.mkdirs(); // It should be created used as a precaution.
+		}
+	}
 	
 	private void loadPlugin(Plugin plugin) {
-        try {
-            pluginManager.enablePlugin(plugin);
-
-            List<Permission> perms = plugin.getDescription().getPermissions();
-            for (Permission perm : perms) {
-                try {
-                    pluginManager.addPermission(perm);
-                } catch (IllegalArgumentException ex) {
-                    getLogger().log(Level.WARNING, "Plugin " + plugin.getDescription().getFullName() + " tried to register permission '" + perm.getName() + "' but it's already registered", ex);
-                }
-            }
-        } catch (Throwable ex) {
-        	logman.warn(ex.getMessage() + " loading " + plugin.getDescription().getFullName() + " (Is it up to date?)", ex);
-        }
-    }
+		try {
+			pluginManager.enablePlugin(plugin);
+			
+			List<Permission> perms = plugin.getDescription().getPermissions();
+			for (Permission perm : perms) {
+				try {
+					pluginManager.addPermission(perm);
+				} catch (IllegalArgumentException ex) {
+					logman.warn("Plugin " + plugin.getDescription().getFullName() + " tried to register permission '" + perm.getName() + "' but it's already registered", ex);
+				}
+			}
+		} catch (Throwable ex) {
+			logman.warn(ex.getMessage() + " loading " + plugin.getDescription().getFullName() + " (Is it up to date?)", ex);
+		}
+	}
 	
 	public void enablePlugins() {
 		Plugin[] plugins = pluginManager.getPlugins();
-        for (Plugin plugin : plugins) {
-            if ((!plugin.isEnabled())) {
-                loadPlugin(plugin);
-            }
-        }
-    }
+		for (Plugin plugin : plugins) {
+			if ((!plugin.isEnabled())) {
+				loadPlugin(plugin);
+			}
+		}
+	}
 
-    public void disablePlugins() {
-        pluginManager.disablePlugins();
-    }
+	public void disablePlugins() {
+		pluginManager.disablePlugins();
+	}
 
 	public String getName() {
 		return Canary.getImplementationTitle();

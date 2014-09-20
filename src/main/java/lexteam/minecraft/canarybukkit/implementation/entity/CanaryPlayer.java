@@ -40,7 +40,6 @@ import java.util.Set;
 import java.util.UUID;
 
 public class CanaryPlayer extends CanaryHumanEntity implements Player {
-
 	private net.canarymod.api.entity.living.humanoid.Player entity;
 
 	public CanaryPlayer(net.canarymod.api.entity.living.humanoid.Player entity) {

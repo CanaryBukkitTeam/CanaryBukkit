@@ -32,7 +32,6 @@ import net.canarymod.Canary;
 import net.canarymod.plugin.Plugin;
 
 public class CanaryBukkit extends Plugin {
-	
 	private CanaryServer server;
 
 	@Override
@@ -40,21 +39,21 @@ public class CanaryBukkit extends Plugin {
 		server = new CanaryServer(Canary.getServer(), getLogman());
 		Bukkit.setServer(server);
 		
-		if(!Constants.bukkitDir.exists()) {
-			Constants.bukkitDir.mkdirs();
-		}
+		// Enable Listener
+		Canary.hooks().registerListener(new CanaryListener(), this);
 		
+		if(!Constants.bukkitDir.exists()) {
+			Constants.pluginsDir.mkdirs();
+		}
 		server.loadPlugins();
 		server.enablePlugins();
 		
-		// Enable Listener
-		Canary.hooks().registerListener(new CanaryListener(), this);
 		return true;
 	}
 
 	@Override
 	public void disable() {
 		server.disablePlugins();
+		server = null;
 	}
-
 }

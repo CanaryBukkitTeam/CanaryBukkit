@@ -37,7 +37,6 @@ import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.plugin.PluginListener;
 
 public class CanaryListener implements PluginListener {
-	
 	@HookHandler
 	public void onPlayerJoin(ConnectionHook hook) {
 		Bukkit.getPluginManager().callEvent(new org.bukkit.event.player.PlayerJoinEvent(new CanaryPlayer(hook.getPlayer()), hook.getMessage()));
@@ -57,5 +56,4 @@ public class CanaryListener implements PluginListener {
 	public void blockPlace(BlockPlaceHook hook) {
 		Bukkit.getPluginManager().callEvent(new org.bukkit.event.block.BlockPlaceEvent(new CanaryBlock(hook.getBlockPlaced()), null, new CanaryBlock(hook.getBlockClicked()), null, new CanaryPlayer(hook.getPlayer()), hook.isCanceled())); //TODO: Fill in and check some of the arguments.
 	}
-
 }

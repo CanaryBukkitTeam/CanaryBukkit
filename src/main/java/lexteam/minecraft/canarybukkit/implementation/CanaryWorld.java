@@ -84,7 +84,7 @@ public class CanaryWorld implements World {
 	}
 
 	public Chunk getChunkAt(int x, int z) {
-		return new CanaryChunk(world.getChunk(x, z));
+		return new CanaryChunk(world.getChunk(x, z), this);
 	}
 
 	public Chunk getChunkAt(Location location) {

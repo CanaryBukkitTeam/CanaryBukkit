@@ -44,7 +44,6 @@ import java.util.UUID;
 import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 
 public class CanaryEntity implements Entity {
-	
 	private net.canarymod.api.entity.Entity entity;
 
 	public CanaryEntity(net.canarymod.api.entity.Entity entity) {

@@ -42,7 +42,6 @@ import org.bukkit.plugin.Plugin;
 import java.util.Set;
 
 public class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity {
-
 	private Human entity;
 
 	public CanaryHumanEntity(net.canarymod.api.entity.living.humanoid.Human entity) {

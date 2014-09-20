@@ -34,7 +34,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 public class CanaryOfflinePlayer implements OfflinePlayer {
-
 	private net.canarymod.api.OfflinePlayer offlinePlayer;
 	
 	public CanaryOfflinePlayer(net.canarymod.api.OfflinePlayer offlinePlayer) {
@@ -99,5 +98,4 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
 		else
 			Canary.whitelist().removePlayer(getName());
 	}
-
 }

@@ -33,11 +33,12 @@ import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 
 public class CanaryChunk implements Chunk {
-
 	private net.canarymod.api.world.Chunk chunk;
+	private CanaryWorld world;
 
-	public CanaryChunk(net.canarymod.api.world.Chunk chunk) {
+	public CanaryChunk(net.canarymod.api.world.Chunk chunk, CanaryWorld world) {
 		this.chunk = chunk;
+		this.world = world;
 	}
 
 	public int getX() {
@@ -49,11 +50,11 @@ public class CanaryChunk implements Chunk {
 	}
 
 	public World getWorld() {
-		throw new NotImplementedException();
+		return world;
 	}
 
 	public Block getBlock(int x, int y, int z) {
-		throw new NotImplementedException();
+		return world.getBlockAt(x, y, z);
 	}
 
 	public ChunkSnapshot getChunkSnapshot() {
