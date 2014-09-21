@@ -26,6 +26,7 @@ package lexteam.minecraft.canarybukkit.implementation;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -37,7 +38,6 @@ import java.util.logging.Logger;
 import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 import net.canarymod.Canary;
-import net.canarymod.commandsys.Command;
 import net.canarymod.config.Configuration;
 import net.canarymod.logger.Logman;
 import net.visualillusionsent.minecraft.plugin.canary.WrappedLogger;
@@ -57,6 +57,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.SimpleCommandMap;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.help.HelpMap;
@@ -85,12 +86,27 @@ public class CanaryServer implements Server {
 	private net.canarymod.api.Server server;
 	private PluginManager pluginManager;
 	private Logman logman;
+	private YamlConfiguration config;
+	private File configFile = new File(Constants.configDir, "config.yml");
 
 	public CanaryServer(net.canarymod.api.Server server, Logman logman) {
 		this.server = server;
 		this.logman = logman;
 		this.pluginManager = new SimplePluginManager(this, new SimpleCommandMap(this));
+		
+		config = YamlConfiguration.loadConfiguration(configFile);
+		config.options().copyDefaults(true);
+		config.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader().getResourceAsStream("config/config.yml")));
+		saveConfig();
 	}
+	
+	private void saveConfig() {
+        try {
+            config.save(configFile);
+        } catch (IOException ex) {
+        	logman.warn("Could not save " + configFile, ex);
+        }
+    }
 	
 	public void loadPlugins() {
 		pluginManager.registerInterface(JavaPluginLoader.class);
@@ -226,11 +242,11 @@ public class CanaryServer implements Server {
 	}
 
 	public String getUpdateFolder() {
-		return "update"; //TODO: Have a config, with stuff like this in.
+		return this.config.getString("settings.update-folder", "update");
 	}
 
 	public File getUpdateFolderFile() {
-		return new File(Constants.pluginsDir, "update"); //TODO: Have a config, with stuff like this in.
+		return new File(Constants.pluginsDir, this.config.getString("settings.update-folder", "update"));
 	}
 
 	public long getConnectionThrottle() {

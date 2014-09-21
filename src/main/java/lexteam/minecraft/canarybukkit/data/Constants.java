@@ -29,4 +29,5 @@ import java.io.File;
 public class Constants {
 	public static final File bukkitDir = new File(".", "bukkit");
 	public static final File pluginsDir = new File(bukkitDir, "plugins");
+	public static final File configDir = new File(bukkitDir, "config");
 }

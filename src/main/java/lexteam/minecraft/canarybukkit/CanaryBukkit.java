@@ -46,6 +46,7 @@ public class CanaryBukkit extends Plugin {
 		
 		if(!Constants.bukkitDir.exists()) {
 			Constants.pluginsDir.mkdirs();
+			Constants.configDir.mkdirs();
 		}
 		server.loadPlugins();
 		server.enablePlugins();
