@@ -108,7 +108,7 @@ public class CanaryServer implements Server {
 				}
 			}
 		} else {
-			pluginFolder.mkdirs(); // It should be created used as a precaution.
+			pluginFolder.mkdirs(); // It should be created, used as a precaution.
 		}
 	}
 	
@@ -235,7 +235,7 @@ public class CanaryServer implements Server {
 	}
 
 	public File getUpdateFolderFile() {
-		return new File(Constants.bukkitDir, "plugins/update"); //TODO: Have a config, with stuff like this in.
+		return new File(Constants.pluginsDir, "update"); //TODO: Have a config, with stuff like this in.
 	}
 
 	public long getConnectionThrottle() {
