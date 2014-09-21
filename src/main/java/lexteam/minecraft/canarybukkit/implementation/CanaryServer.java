@@ -88,6 +88,7 @@ public class CanaryServer implements Server {
 	private Logman logman;
 	private YamlConfiguration config;
 	private File configFile = new File(Constants.configDir, "config.yml");
+	private final String canaryBukkitVersion = "1.0.0";
 
 	public CanaryServer(net.canarymod.api.Server server, Logman logman) {
 		this.server = server;
@@ -158,11 +159,11 @@ public class CanaryServer implements Server {
 	}
 
 	public String getVersion() {
-		return "1.0.0" + " (MC: " + Canary.getImplementationVersion() + ")";
+		return Canary.getImplementationVersion();
 	}
 
 	public String getBukkitVersion() {
-		return "CanaryBukkit-" + getVersion();
+		return "CanaryBukkit-" + canaryBukkitVersion;
 	}
 
 	public Player[] getOnlinePlayers() {

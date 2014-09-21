@@ -92,6 +92,11 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
+							<artifactSet>
+								<includes>
+									<include>org.bukkit:bukkit</include>
+								</includes>
+							</artifactSet>
 							<finalName>CanaryBukkit-${project.version}</finalName>
 						</configuration>
 					</execution>

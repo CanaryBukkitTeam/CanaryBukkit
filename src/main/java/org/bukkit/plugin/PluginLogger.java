@@ -35,7 +35,7 @@ public class PluginLogger extends WrappedLogger {
 	}
 	
 	@Override
-    public void log(LogRecord logRecord) {
-        log(logRecord.getLevel(), logRecord.getMessage());
-    }
+	public void log(LogRecord logRecord) {
+		log(logRecord.getLevel(), logRecord.getMessage());
+	}
 }
