@@ -37,6 +37,7 @@ import java.util.logging.Logger;
 import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 import net.canarymod.Canary;
+import net.canarymod.commandsys.Command;
 import net.canarymod.config.Configuration;
 import net.canarymod.logger.Logman;
 import net.visualillusionsent.minecraft.plugin.canary.WrappedLogger;

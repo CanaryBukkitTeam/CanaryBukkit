@@ -37,6 +37,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -100,7 +101,11 @@ public class CanaryWorld implements World {
 	}
 
 	public Chunk[] getLoadedChunks() {
-		throw new NotImplementedException();
+		List<Chunk> chunks = new ArrayList<Chunk>();
+		for(net.canarymod.api.world.Chunk chunk : world.getLoadedChunks()) {
+			chunks.add(new CanaryChunk(chunk, this));
+		}
+		return chunks.toArray(new Chunk[chunks.size()]);
 	}
 
 	public void loadChunk(Chunk chunk) {
