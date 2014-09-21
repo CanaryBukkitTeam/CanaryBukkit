@@ -101,7 +101,7 @@ public class CanaryServer implements Server {
 			for (Plugin plugin : plugins) {
 				try {
 					String message = String.format("Loading %s", plugin.getDescription().getFullName());
-					plugin.getLogger().info(message);
+					logman.info(message);
 					plugin.onLoad();
 				} catch (Throwable ex) {
 					logman.warn(ex.getMessage() + " initializing " + plugin.getDescription().getFullName() + " (Is it up to date?)", ex);
