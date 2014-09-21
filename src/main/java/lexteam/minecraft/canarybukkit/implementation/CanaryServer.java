@@ -95,20 +95,15 @@ public class CanaryServer implements Server {
 	public void loadPlugins() {
 		pluginManager.registerInterface(JavaPluginLoader.class);
 		
-		File pluginFolder = Constants.pluginsDir;
-		if (pluginFolder.exists()) {
-			ArrayList<Plugin> plugins = new ArrayList<Plugin>();
-			for (Plugin plugin : plugins) {
-				try {
-					String message = String.format("Loading %s", plugin.getDescription().getFullName());
-					logman.info(message);
-					plugin.onLoad();
-				} catch (Throwable ex) {
-					logman.warn(ex.getMessage() + " initializing " + plugin.getDescription().getFullName() + " (Is it up to date?)", ex);
-				}
+		Plugin[] plugins = pluginManager.loadPlugins(Constants.pluginsDir);
+		for (Plugin plugin : plugins) {
+			try {
+				String message = String.format("Loading %s", plugin.getDescription().getFullName());
+				logman.info(message);
+				plugin.onLoad();
+			} catch (Throwable ex) {
+				logman.warn(ex.getMessage() + " initializing " + plugin.getDescription().getFullName() + " (Is it up to date?)", ex);
 			}
-		} else {
-			pluginFolder.mkdirs(); // It should be created, used as a precaution.
 		}
 	}
 	

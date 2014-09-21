@@ -36,10 +36,10 @@ public class CanaryBukkit extends Plugin {
 
 	@Override
 	public boolean enable() {
-		if(Bukkit.getServer() != null) {
+		if(Bukkit.getServer() == null) {
 			server = new CanaryServer(Canary.getServer(), getLogman());
+			Bukkit.setServer(server);
 		}
-		Bukkit.setServer(server);
 		
 		// Enable Listener
 		Canary.hooks().registerListener(new CanaryListener(), this);
