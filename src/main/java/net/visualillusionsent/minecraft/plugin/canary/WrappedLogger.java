@@ -1,7 +1,7 @@
 /*
  * This file is part of VIMCPlugin.
  *
- * Copyright © 2013-2014 Visual Illusions Entertainment
+ * Copyright ï¿½ 2013-2014 Visual Illusions Entertainment
  *
  * VIMCPlugin is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  *
  * @author Jason (darkdiplomat)
  */
-public final class WrappedLogger extends Logger {
+public class WrappedLogger extends Logger {
     private final Logman logman;
 
     public WrappedLogger(Logman logman) {

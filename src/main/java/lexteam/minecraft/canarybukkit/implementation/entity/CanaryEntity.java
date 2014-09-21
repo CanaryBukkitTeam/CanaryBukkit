@@ -51,7 +51,7 @@ public class CanaryEntity implements Entity {
 	}
 
 	public Location getLocation() {
-		throw new NotImplementedException();
+		return new Location(new CanaryWorld(entity.getWorld()), entity.getX(), entity.getY(), entity.getZ());
 	}
 
 	public Location getLocation(Location loc) {
@@ -75,7 +75,12 @@ public class CanaryEntity implements Entity {
 	}
 
 	public boolean teleport(Location location) {
-		return false;
+		entity.teleportTo(location.getX(), location.getY(), location.getZ());
+		if(entity.getX() == location.getX() && entity.getY() == location.getY() && entity.getZ() == location.getZ()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public boolean teleport(Location location, PlayerTeleportEvent.TeleportCause cause) {
