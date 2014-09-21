@@ -100,7 +100,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
 	}
 
 	public void kickPlayer(String message) {
-		throw new NotImplementedException();
+		entity.kick(message);
 	}
 
 	public void chat(String msg) {

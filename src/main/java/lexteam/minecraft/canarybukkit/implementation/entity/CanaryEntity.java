@@ -51,11 +51,21 @@ public class CanaryEntity implements Entity {
 	}
 
 	public Location getLocation() {
-		return new Location(new CanaryWorld(entity.getWorld()), entity.getX(), entity.getY(), entity.getZ());
+		Location loc = new Location(new CanaryWorld(entity.getWorld()), entity.getX(), entity.getY(), entity.getZ());
+		loc.setPitch(entity.getPitch());
+		return loc;
 	}
 
 	public Location getLocation(Location loc) {
-		throw new NotImplementedException();
+		if (loc != null) {
+            loc.setWorld(getWorld());
+            loc.setX(entity.getX());
+            loc.setY(entity.getY());
+            loc.setZ(entity.getZ());
+            loc.setPitch(entity.getPitch());
+        }
+
+        return loc;
 	}
 
 	public void setVelocity(Vector velocity) {
@@ -83,16 +93,16 @@ public class CanaryEntity implements Entity {
 		}
 	}
 
-	public boolean teleport(Location location, PlayerTeleportEvent.TeleportCause cause) {
-		return false;
+	public boolean teleport(Location location, PlayerTeleportEvent.TeleportCause cause) { //TODO: Investigate TeleportCause
+		return teleport(location);
 	}
 
 	public boolean teleport(Entity destination) {
-		return false;
+		return teleport(destination.getLocation());
 	}
 
-	public boolean teleport(Entity destination, PlayerTeleportEvent.TeleportCause cause) {
-		return false;
+	public boolean teleport(Entity destination, PlayerTeleportEvent.TeleportCause cause) { //TODO: Investigate TeleportCause
+		return teleport(destination.getLocation());
 	}
 
 	public List<Entity> getNearbyEntities(double x, double y, double z) {

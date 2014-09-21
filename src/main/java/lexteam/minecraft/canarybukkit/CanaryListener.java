@@ -56,7 +56,7 @@ public class CanaryListener implements PluginListener {
 	
 	@HookHandler
 	public void onPlayerDeath(PlayerDeathHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.entity.PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, 0, hook.getDeathMessage())); //TODO: Fill in
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.entity.PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, 0, hook.getDeathMessage1().getFullText())); //TODO: Fill in and check.
 	}
 	
 	@HookHandler
@@ -71,7 +71,7 @@ public class CanaryListener implements PluginListener {
 	
 	@HookHandler
 	public void onChunkLoad(ChunkLoadedHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.ChunkLoadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld())), false)); //TODO: See if I can check to see if the chunk is new.
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.ChunkLoadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld())), hook.isNew()));
 	}
 	
 	@HookHandler

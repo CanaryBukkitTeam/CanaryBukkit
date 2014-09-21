@@ -67,7 +67,7 @@ public class CanaryBlock implements Block {
 	}
 
 	public Material getType() {
-		throw new NotImplementedException();
+		return Material.getMaterial(getTypeId());
 	}
 
 	public int getTypeId() {
@@ -179,11 +179,11 @@ public class CanaryBlock implements Block {
 	}
 
 	public boolean isEmpty() {
-		throw new NotImplementedException();
+		return block.isAir();
 	}
 
 	public boolean isLiquid() {
-		throw new NotImplementedException();
+		return (getType() == Material.WATER) || (getType() == Material.STATIONARY_WATER) || (getType() == Material.LAVA) || (getType() == Material.STATIONARY_LAVA);
 	}
 
 	public double getTemperature() {
