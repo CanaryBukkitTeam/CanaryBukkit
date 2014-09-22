@@ -188,7 +188,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
 	}
 
 	public void updateInventory() {
-		throw new NotImplementedException();
+		entity.getInventory().update();
 	}
 
 	public void awardAchievement(Achievement achievement) {

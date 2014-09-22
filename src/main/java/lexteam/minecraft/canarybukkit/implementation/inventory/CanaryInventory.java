@@ -84,27 +84,27 @@ public class CanaryInventory implements Inventory {
 	}
 
 	public boolean contains(int materialId) {
-		return false;
+		return inv.hasItem(materialId);
 	}
 
 	public boolean contains(Material material) throws IllegalArgumentException {
-		return false;
+		return inv.hasItem(material.getId());
 	}
 
 	public boolean contains(ItemStack item) {
-		return false;
+		return inv.hasItem(item.getTypeId());
 	}
 
 	public boolean contains(int materialId, int amount) {
-		return false;
+		return inv.hasItemStack(materialId, amount);
 	}
 
 	public boolean contains(Material material, int amount) throws IllegalArgumentException {
-		return false;
+		return inv.hasItemStack(material.getId(), amount);
 	}
 
 	public boolean contains(ItemStack item, int amount) {
-		return false;
+		return inv.hasItemStack(item.getTypeId(), amount);
 	}
 
 	public boolean containsAtLeast(ItemStack item, int amount) {
@@ -140,15 +140,15 @@ public class CanaryInventory implements Inventory {
 	}
 
 	public void remove(int materialId) {
-		throw new NotImplementedException();
+		inv.removeItem(materialId);
 	}
 
 	public void remove(Material material) throws IllegalArgumentException {
-		throw new NotImplementedException();
+		inv.removeItem(material.getId());
 	}
 
 	public void remove(ItemStack item) {
-		throw new NotImplementedException();
+		inv.removeItem(item.getTypeId());
 	}
 
 	public void clear(int index) {
@@ -156,7 +156,7 @@ public class CanaryInventory implements Inventory {
 	}
 
 	public void clear() {
-		throw new NotImplementedException();
+		inv.clearInventory();
 	}
 
 	public List<HumanEntity> getViewers() {
@@ -168,7 +168,7 @@ public class CanaryInventory implements Inventory {
 	}
 
 	public InventoryType getType() {
-		throw new NotImplementedException();
+		return InventoryType.valueOf(inv.getInventoryType().name());
 	}
 
 	public InventoryHolder getHolder() {
