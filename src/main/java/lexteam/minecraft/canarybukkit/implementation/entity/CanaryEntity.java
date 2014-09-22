@@ -58,22 +58,23 @@ public class CanaryEntity implements Entity {
 
 	public Location getLocation(Location loc) {
 		if (loc != null) {
-            loc.setWorld(getWorld());
-            loc.setX(entity.getX());
-            loc.setY(entity.getY());
-            loc.setZ(entity.getZ());
-            loc.setPitch(entity.getPitch());
-        }
-
-        return loc;
+			loc.setWorld(getWorld());
+			loc.setX(entity.getX());
+			loc.setY(entity.getY());
+			loc.setZ(entity.getZ());
+			loc.setPitch(entity.getPitch());
+		}
+		return loc;
 	}
 
 	public void setVelocity(Vector velocity) {
-		throw new NotImplementedException();
+		entity.setMotionX(velocity.getX());
+		entity.setMotionY(velocity.getY());
+		entity.setMotionZ(velocity.getZ());
 	}
 
 	public Vector getVelocity() {
-		throw new NotImplementedException();
+		return new Vector(entity.getMotionX(), entity.getMotionY(), entity.getMotionZ());
 	}
 
 	public boolean isOnGround() {

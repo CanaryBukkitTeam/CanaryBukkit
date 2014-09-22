@@ -24,6 +24,8 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.block;
 
+import net.canarymod.api.world.BiomeType;
+
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -103,11 +105,17 @@ public class CanaryBlock implements Block {
 	}
 
 	public Location getLocation() {
-		throw new NotImplementedException();
+		return new Location(new CanaryWorld(block.getWorld()), block.getX(), block.getY(), block.getZ());
 	}
 
 	public Location getLocation(Location loc) {
-		return new Location(new CanaryWorld(block.getWorld()), block.getX(), block.getY(), block.getZ());
+		if (loc != null) {
+			loc.setWorld(getWorld());
+            loc.setX(getX());
+            loc.setY(getY());
+            loc.setZ(getX());
+		}
+		return loc;
 	}
 
 	public Chunk getChunk() {
@@ -147,11 +155,11 @@ public class CanaryBlock implements Block {
 	}
 
 	public Biome getBiome() {
-		throw new NotImplementedException();
+		return Biome.valueOf(block.getWorld().getBiome(block.getX(), block.getZ()).getBiomeType().name()); // Check it works
 	}
 
 	public void setBiome(Biome bio) {
-		throw new NotImplementedException();
+		block.getWorld().setBiome(block.getX(), block.getZ(), BiomeType.valueOf(bio.name()));
 	}
 
 	public boolean isBlockPowered() {

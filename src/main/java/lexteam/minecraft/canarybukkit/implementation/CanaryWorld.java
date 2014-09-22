@@ -77,11 +77,11 @@ public class CanaryWorld implements World {
 	}
 
 	public Block getHighestBlockAt(int x, int z) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //world.getHighestBlockAt(x, z)
 	}
 
 	public Block getHighestBlockAt(Location location) {
-		throw new NotImplementedException();
+		throw new NotImplementedException(); //world.getHighestBlockAt(location.getBlockX(), location.getBlockZ())
 	}
 
 	public Chunk getChunkAt(int x, int z) {
@@ -233,7 +233,7 @@ public class CanaryWorld implements World {
 	}
 
 	public Location getSpawnLocation() {
-		throw new NotImplementedException();
+		return new CanaryLocation(world.getSpawnLocation(), new CanaryWorld(world));
 	}
 
 	public boolean setSpawnLocation(int x, int y, int z) {

@@ -1,0 +1,5 @@
+# The command aliases file.
+command-block-overrides: []
+aliases:
+	icanhasversion:
+    	- "version"

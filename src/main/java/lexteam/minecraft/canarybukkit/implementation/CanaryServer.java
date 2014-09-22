@@ -99,15 +99,15 @@ public class CanaryServer implements Server {
 		config = YamlConfiguration.loadConfiguration(configFile);
 		config.options().copyDefaults(true);
 		config.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader().getResourceAsStream("config/config.yml")));
-		saveConfig(config);
+		saveConfigFile(config);
 		
 		commandsConfig = YamlConfiguration.loadConfiguration(commandConfigFile);
 		commandsConfig.options().copyDefaults(true);
-		commandsConfig.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader().getResourceAsStream("configurations/commands.yml")));
-		saveConfig(commandsConfig);
+		commandsConfig.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader().getResourceAsStream("config/commands.yml")));
+		saveConfigFile(commandsConfig);
 	}
 	
-	private void saveConfig(YamlConfiguration config) {
+	private void saveConfigFile(YamlConfiguration config) {
         try {
             config.save(configFile);
         } catch (IOException ex) {
