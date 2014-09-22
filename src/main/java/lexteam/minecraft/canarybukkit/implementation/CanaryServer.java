@@ -86,8 +86,9 @@ public class CanaryServer implements Server {
 	private net.canarymod.api.Server server;
 	private PluginManager pluginManager;
 	private Logman logman;
-	private YamlConfiguration config;
+	private YamlConfiguration config, commandsConfig;
 	private File configFile = new File(Constants.configDir, "config.yml");
+	private File commandConfigFile = new File(Constants.configDir, "commands.yml");
 	private final String canaryBukkitVersion = "1.0.0";
 
 	public CanaryServer(net.canarymod.api.Server server, Logman logman) {
@@ -98,10 +99,15 @@ public class CanaryServer implements Server {
 		config = YamlConfiguration.loadConfiguration(configFile);
 		config.options().copyDefaults(true);
 		config.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader().getResourceAsStream("config/config.yml")));
-		saveConfig();
+		saveConfig(config);
+		
+		commandsConfig = YamlConfiguration.loadConfiguration(commandConfigFile);
+		commandsConfig.options().copyDefaults(true);
+		commandsConfig.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader().getResourceAsStream("configurations/commands.yml")));
+		saveConfig(commandsConfig);
 	}
 	
-	private void saveConfig() {
+	private void saveConfig(YamlConfiguration config) {
         try {
             config.save(configFile);
         } catch (IOException ex) {
@@ -431,7 +437,7 @@ public class CanaryServer implements Server {
 		throw new NotImplementedException();
 	}
 
-	public Set<String> getIPBans() {
+	public Set<String> getIPBans() { //TODO:
 		throw new NotImplementedException();
 	}
 
