@@ -25,23 +25,28 @@
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.entity.Creeper;
-import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Egg;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.projectiles.ProjectileSource;
 
-public class CanaryCreeper extends CanaryMonster implements Creeper {
-	public CanaryCreeper(net.canarymod.api.entity.living.LivingBase entity) {
+public class CanaryEgg extends AbstractProjectile implements Egg {
+	public CanaryEgg(net.canarymod.api.entity.Entity entity) {
 		super(entity);
 	}
 
-	public boolean isPowered() {
+	public LivingEntity _INVALID_getShooter() {
 		throw new NotImplementedException();
 	}
 
-	public void setPowered(boolean value) {
+	public ProjectileSource getShooter() {
 		throw new NotImplementedException();
 	}
-	
-	public EntityType getType() {
-		return EntityType.CREEPER;
+
+	public void _INVALID_setShooter(LivingEntity shooter) {
+		throw new NotImplementedException();
+	}
+
+	public void setShooter(ProjectileSource source) {
+		throw new NotImplementedException();
 	}
 }

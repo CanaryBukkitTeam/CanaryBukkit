@@ -24,24 +24,10 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.entity.Creeper;
-import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Flying;
 
-public class CanaryCreeper extends CanaryMonster implements Creeper {
-	public CanaryCreeper(net.canarymod.api.entity.living.LivingBase entity) {
+public class CanaryFlying extends CanaryLivingEntity implements Flying {
+	public CanaryFlying(net.canarymod.api.entity.living.LivingBase entity) {
 		super(entity);
-	}
-
-	public boolean isPowered() {
-		throw new NotImplementedException();
-	}
-
-	public void setPowered(boolean value) {
-		throw new NotImplementedException();
-	}
-	
-	public EntityType getType() {
-		return EntityType.CREEPER;
 	}
 }

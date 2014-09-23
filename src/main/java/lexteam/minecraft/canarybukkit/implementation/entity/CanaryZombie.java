@@ -25,23 +25,31 @@
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Zombie;
 import org.bukkit.entity.EntityType;
 
-public class CanaryCreeper extends CanaryMonster implements Creeper {
-	public CanaryCreeper(net.canarymod.api.entity.living.LivingBase entity) {
+public class CanaryZombie extends CanaryAgeable implements Zombie {
+	public CanaryZombie(net.canarymod.api.entity.living.LivingBase entity) {
 		super(entity);
 	}
-
-	public boolean isPowered() {
+	
+	public boolean isBaby() {
 		throw new NotImplementedException();
 	}
 
-	public void setPowered(boolean value) {
+	public void setBaby(boolean flag) {
+		throw new NotImplementedException();
+	}
+
+	public boolean isVillager() {
+		throw new NotImplementedException();
+	}
+
+	public void setVillager(boolean flag) {
 		throw new NotImplementedException();
 	}
 	
 	public EntityType getType() {
-		return EntityType.CREEPER;
+		return EntityType.ZOMBIE;
 	}
 }

@@ -25,23 +25,24 @@
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Enderman;
 import org.bukkit.entity.EntityType;
+import org.bukkit.material.MaterialData;
 
-public class CanaryCreeper extends CanaryMonster implements Creeper {
-	public CanaryCreeper(net.canarymod.api.entity.living.LivingBase entity) {
+public class CanaryEnderman extends CanaryMonster implements Enderman {
+	public CanaryEnderman(net.canarymod.api.entity.living.LivingBase entity) {
 		super(entity);
 	}
-
-	public boolean isPowered() {
+	
+	public MaterialData getCarriedMaterial() {
 		throw new NotImplementedException();
 	}
 
-	public void setPowered(boolean value) {
+	public void setCarriedMaterial(MaterialData material) {
 		throw new NotImplementedException();
 	}
 	
 	public EntityType getType() {
-		return EntityType.CREEPER;
+		return EntityType.ENDERMAN;
 	}
 }
