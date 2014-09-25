@@ -78,7 +78,7 @@ public class CanaryEntity implements Entity {
 	}
 
 	public boolean isOnGround() {
-		return false;
+		return entity.isOnGround();
 	}
 
 	public World getWorld() {
@@ -135,7 +135,7 @@ public class CanaryEntity implements Entity {
 	}
 
 	public boolean isValid() {
-		return false;
+		return !entity.isDead();
 	}
 
 	public Server getServer() {
@@ -143,7 +143,7 @@ public class CanaryEntity implements Entity {
 	}
 
 	public Entity getPassenger() {
-		throw new NotImplementedException();
+		return new CanaryEntity(entity.getRider());
 	}
 
 	public boolean setPassenger(Entity passenger) {
@@ -195,7 +195,7 @@ public class CanaryEntity implements Entity {
 	}
 
 	public boolean isInsideVehicle() {
-		return false;
+		return entity.isRiding();
 	}
 
 	public boolean leaveVehicle() {
@@ -203,7 +203,7 @@ public class CanaryEntity implements Entity {
 	}
 
 	public Entity getVehicle() {
-		throw new NotImplementedException();
+		return new CanaryEntity(entity.getRiding());
 	}
 
 	public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
