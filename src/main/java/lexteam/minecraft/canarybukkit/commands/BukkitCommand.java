@@ -22,16 +22,59 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit.implementation;
+package lexteam.minecraft.canarybukkit.commands;
 
-import org.bukkit.Location;
+import java.lang.annotation.Annotation;
+import net.canarymod.commandsys.Command;
 
-public class CanaryLocation extends Location {
-	public CanaryLocation(net.canarymod.api.world.position.Position position, CanaryWorld world) {
-		super(world, position.getX(), position.getY(), position.getZ());
+public class BukkitCommand implements Command {
+	private org.bukkit.command.Command command;
+
+	public BukkitCommand(org.bukkit.command.Command command) {
+		this.command = command;
 	}
-	public CanaryLocation(net.canarymod.api.world.position.Location loc, CanaryWorld world) {
-		super(world, loc.getX(), loc.getY(), loc.getZ());
-		setPitch(loc.getPitch());
+	
+	public Class<? extends Annotation> annotationType() {
+		return null;
+	}
+
+	public String[] aliases() {
+		return command.getAliases().toArray(new String[]{}); //TODO: Check
+	}
+
+	public String[] permissions() {
+		return null;
+	}
+
+	public String description() {
+		return command.getDescription();
+	}
+
+	public String toolTip() {
+		return command.getLabel();
+	}
+
+	public String parent() {
+		return null;
+	}
+
+	public String helpLookup() {
+		return null;
+	}
+
+	public String[] searchTerms() {
+		return null;
+	}
+
+	public int min() {
+		return 0;
+	}
+
+	public int max() {
+		return 0;
+	}
+
+	public int version() {
+		return 0;
 	}
 }

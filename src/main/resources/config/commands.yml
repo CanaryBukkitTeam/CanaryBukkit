@@ -2,4 +2,4 @@
 command-block-overrides: []
 aliases:
 	icanhasversion:
-    	- "version"
+		- "version"

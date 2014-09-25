@@ -25,8 +25,10 @@
 package lexteam.minecraft.canarybukkit;
 
 import lexteam.minecraft.canarybukkit.implementation.CanaryChunk;
+import lexteam.minecraft.canarybukkit.implementation.CanaryLocation;
 import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
+import lexteam.minecraft.canarybukkit.implementation.entity.CanaryLightningStrike;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 
 import org.bukkit.Bukkit;
@@ -37,10 +39,12 @@ import net.canarymod.hook.player.BlockPlaceHook;
 import net.canarymod.hook.player.ConnectionHook;
 import net.canarymod.hook.player.DisconnectionHook;
 import net.canarymod.hook.player.PlayerDeathHook;
+import net.canarymod.hook.player.TeleportHook;
 import net.canarymod.hook.system.LoadWorldHook;
 import net.canarymod.hook.system.UnloadWorldHook;
 import net.canarymod.hook.world.ChunkLoadedHook;
 import net.canarymod.hook.world.ChunkUnloadHook;
+import net.canarymod.hook.world.LightningStrikeHook;
 import net.canarymod.plugin.PluginListener;
 
 public class CanaryListener implements PluginListener {
@@ -87,5 +91,15 @@ public class CanaryListener implements PluginListener {
 	@HookHandler
 	public void onWorldUnload(UnloadWorldHook hook) {
 		Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.WorldUnloadEvent(new CanaryWorld(hook.getWorld())));
+	}
+	
+	@HookHandler
+	public void onTeleportation(TeleportHook hook) {
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.player.PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()), null, new CanaryLocation(hook.getDestination(), new CanaryWorld(hook.getDestination().getWorld())))); //TODO: Fill in second argument.
+	}
+	
+	@HookHandler
+	public void onLightningStrike(LightningStrikeHook hook) {
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.weather.LightningStrikeEvent(new CanaryWorld(hook.getLightningBolt().getWorld()), new CanaryLightningStrike(hook.getLightningBolt())));
 	}
 }

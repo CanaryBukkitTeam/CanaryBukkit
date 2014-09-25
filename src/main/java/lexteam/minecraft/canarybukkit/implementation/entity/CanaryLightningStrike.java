@@ -22,16 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit.implementation;
+package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.bukkit.Location;
+import org.bukkit.entity.LightningStrike;
 
-public class CanaryLocation extends Location {
-	public CanaryLocation(net.canarymod.api.world.position.Position position, CanaryWorld world) {
-		super(world, position.getX(), position.getY(), position.getZ());
+public class CanaryLightningStrike extends CanaryEntity implements LightningStrike {
+	public CanaryLightningStrike(net.canarymod.api.entity.effect.LightningBolt entity) {
+		super(entity);
 	}
-	public CanaryLocation(net.canarymod.api.world.position.Location loc, CanaryWorld world) {
-		super(world, loc.getX(), loc.getY(), loc.getZ());
-		setPitch(loc.getPitch());
+
+	public boolean isEffect() {
+		return false;
 	}
 }

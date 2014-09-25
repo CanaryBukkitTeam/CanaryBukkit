@@ -1,4 +1,4 @@
 # This is the main configuration file for CanaryBukkit.
 settings:
-    update-folder: update
-    permissions-file: permissions.yml
+	update-folder: update
+	permissions-file: permissions.yml
