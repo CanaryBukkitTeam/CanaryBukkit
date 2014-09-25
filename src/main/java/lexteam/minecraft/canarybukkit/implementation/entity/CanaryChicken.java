@@ -28,7 +28,7 @@ import org.bukkit.entity.Chicken;
 import org.bukkit.entity.EntityType;
 
 public class CanaryChicken extends CanaryAgeable implements Chicken {
-	public CanaryChicken(net.canarymod.api.entity.living.LivingBase entity) {
+	public CanaryChicken(net.canarymod.api.entity.living.animal.Chicken entity) {
 		super(entity);
 	}
 	

@@ -29,7 +29,7 @@ import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
 
 public class CanaryCreeper extends CanaryMonster implements Creeper {
-	public CanaryCreeper(net.canarymod.api.entity.living.LivingBase entity) {
+	public CanaryCreeper(net.canarymod.api.entity.living.monster.Creeper entity) {
 		super(entity);
 	}
 

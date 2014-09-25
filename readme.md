@@ -1,4 +1,4 @@
-CanaryBukkit
+[WIP] CanaryBukkit
 =======================
 
 ### What is it?

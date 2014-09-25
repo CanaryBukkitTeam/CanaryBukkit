@@ -30,24 +30,27 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.projectiles.ProjectileSource;
 
 public class CanaryArrow extends AbstractProjectile implements Arrow {
-	public CanaryArrow(net.canarymod.api.entity.Entity entity) {
-		super(entity);
+	private net.canarymod.api.entity.Arrow arrow;
+
+	public CanaryArrow(net.canarymod.api.entity.Arrow arrow) {
+		super(arrow);
+		this.arrow = arrow;
 	}
 
 	public int getKnockbackStrength() {
-		return 0;
+		return arrow.getKnockbackStrength();
 	}
 
 	public void setKnockbackStrength(int knockbackStrength) {
-		throw new NotImplementedException();
+		arrow.setKnockbackStrenth(knockbackStrength);
 	}
 
 	public boolean isCritical() {
-		return false;
+		return arrow.isCritical();
 	}
 
 	public void setCritical(boolean critical) {
-		throw new NotImplementedException();
+		arrow.setIsCritical(critical);
 	}
 
 	public LivingEntity _INVALID_getShooter() {

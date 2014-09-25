@@ -24,21 +24,23 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Pig;
 import org.bukkit.entity.EntityType;
 
 public class CanaryPig extends CanaryAnimals implements Pig {
-	public CanaryPig(net.canarymod.api.entity.living.LivingBase entity) {
+	private net.canarymod.api.entity.living.animal.Pig entity;
+
+	public CanaryPig(net.canarymod.api.entity.living.animal.Pig entity) {
 		super(entity);
+		this.entity = entity;
 	}
 	
 	public boolean hasSaddle() {
-		throw new NotImplementedException();
+		return entity.isSaddled();
 	}
 
 	public void setSaddle(boolean saddled) {
-		throw new NotImplementedException();
+		entity.setSaddled(saddled);
 	}
 	
 	public EntityType getType() {

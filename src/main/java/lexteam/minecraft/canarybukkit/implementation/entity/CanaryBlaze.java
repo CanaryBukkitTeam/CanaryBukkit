@@ -28,7 +28,7 @@ import org.bukkit.entity.Blaze;
 import org.bukkit.entity.EntityType;
 
 public class CanaryBlaze extends CanaryMonster implements Blaze {
-	public CanaryBlaze(net.canarymod.api.entity.living.LivingBase entity) {
+	public CanaryBlaze(net.canarymod.api.entity.living.monster.Blaze entity) {
 		super(entity);
 	}
 	
