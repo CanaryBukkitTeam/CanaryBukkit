@@ -22,18 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit.data;
+package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import java.io.File;
+import java.util.Set;
 
-import net.canarymod.Canary;
+import org.apache.commons.lang.NotImplementedException;
+import org.bukkit.entity.ComplexEntityPart;
+import org.bukkit.entity.EnderDragon;
+import org.bukkit.entity.EntityType;
 
-public class Constants {
-	// Canary
-	public static final File canaryDir = Canary.getWorkingDirectory();
-	public static final File worldsDir = new File(canaryDir, "worlds"); // Check to see if user modifiable.
-	// CanaryBukkit
-	public static final File bukkitDir = new File(canaryDir, "bukkit");
-	public static final File pluginsDir = new File(bukkitDir, "plugins");
-	public static final File configDir = new File(bukkitDir, "config");
+public class CanaryEnderDragon extends CanaryMonster implements EnderDragon {
+	public CanaryEnderDragon(net.canarymod.api.entity.living.LivingBase entity) {
+		super(entity);
+	}
+
+	public Set<ComplexEntityPart> getParts() {
+		throw new NotImplementedException();
+	}
+	
+	public EntityType getType() {
+		return EntityType.ENDER_DRAGON;
+	}
 }
