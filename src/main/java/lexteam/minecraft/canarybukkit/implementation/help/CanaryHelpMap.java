@@ -22,38 +22,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit;
+package lexteam.minecraft.canarybukkit.implementation.help;
 
-import lexteam.minecraft.canarybukkit.data.Constants;
+import java.util.Collection;
+import java.util.List;
+
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
 
-import org.bukkit.Bukkit;
-import net.canarymod.Canary;
-import net.canarymod.plugin.Plugin;
+import org.bukkit.help.HelpMap;
+import org.bukkit.help.HelpTopic;
+import org.bukkit.help.HelpTopicFactory;
 
-public class CanaryBukkit extends Plugin {
+public class CanaryHelpMap implements HelpMap {
 	private CanaryServer server;
 
-	@Override
-	public boolean enable() {
-		if(Bukkit.getServer() == null) {
-			server = new CanaryServer(Canary.getServer(), getLogman());
-			Bukkit.setServer(server);
-		}
-		// Enable Listener
-		Canary.hooks().registerListener(new CanaryListener(), this);
-		
-		if(!Constants.bukkitDir.exists()) {
-			Constants.pluginsDir.mkdirs();
-			Constants.configDir.mkdirs();
-		}
-		server.init();
-		
-		return true;
+	public CanaryHelpMap(CanaryServer server) {
+		this.server = server;
+	}
+	
+	public HelpTopic getHelpTopic(String topicName) {
+		return null;
 	}
 
-	@Override
-	public void disable() {
-		server.disablePlugins();
+	public Collection<HelpTopic> getHelpTopics() {
+		return null;
+	}
+
+	public void addTopic(HelpTopic topic) {
+		
+	}
+
+	public void clear() {
+		
+	}
+
+	public void registerHelpTopicFactory(Class<?> commandClass, HelpTopicFactory<?> factory) {
+		
+	}
+
+	public List<String> getIgnoredPlugins() {
+		return null;
 	}
 }

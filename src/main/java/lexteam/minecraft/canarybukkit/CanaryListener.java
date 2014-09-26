@@ -60,7 +60,7 @@ public class CanaryListener implements PluginListener {
 	
 	@HookHandler
 	public void onPlayerDeath(PlayerDeathHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.entity.PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, 0, hook.getDeathMessage1().getFullText())); //TODO: Fill in and check.
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.entity.PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, hook.getPlayer().getExperience(), hook.getDeathMessage1().getFullText())); //TODO: Fill in and check.
 	}
 	
 	@HookHandler
@@ -95,7 +95,7 @@ public class CanaryListener implements PluginListener {
 	
 	@HookHandler
 	public void onTeleportation(TeleportHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.player.PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()), null, new CanaryLocation(hook.getDestination(), new CanaryWorld(hook.getDestination().getWorld())))); //TODO: Fill in second argument.
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.player.PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()), new CanaryLocation(hook.getPlayer().getLocation(), new CanaryWorld(hook.getDestination().getWorld())), new CanaryLocation(hook.getDestination(), new CanaryWorld(hook.getDestination().getWorld()))));
 	}
 	
 	@HookHandler

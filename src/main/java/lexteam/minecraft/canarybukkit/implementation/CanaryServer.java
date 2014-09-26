@@ -37,6 +37,7 @@ import java.util.logging.Logger;
 
 import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
+import lexteam.minecraft.canarybukkit.implementation.help.CanaryHelpMap;
 import net.canarymod.Canary;
 import net.canarymod.config.Configuration;
 import net.canarymod.logger.Logman;
@@ -57,6 +58,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.SimpleCommandMap;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
@@ -69,7 +71,9 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.map.MapView;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginLoadOrder;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.SimplePluginManager;
@@ -79,22 +83,27 @@ import org.bukkit.plugin.messaging.StandardMessenger;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
+import org.bukkit.util.permissions.DefaultPermissions;
 
 import com.avaje.ebean.config.ServerConfig;
 
 public class CanaryServer implements Server {
 	private net.canarymod.api.Server server;
 	private PluginManager pluginManager;
+	private final SimpleCommandMap commandMap;
+	private final CanaryHelpMap helpMap = new CanaryHelpMap(this);
 	private Logman logman;
 	private YamlConfiguration config, commandsConfig;
 	private File configFile = new File(Constants.configDir, "config.yml");
 	private File commandConfigFile = new File(Constants.configDir, "commands.yml");
+	private File permissionsFile;
 	private final String canaryBukkitVersion = "1.0.0";
 
 	public CanaryServer(net.canarymod.api.Server server, Logman logman) {
 		this.server = server;
 		this.logman = logman;
-		this.pluginManager = new SimplePluginManager(this, new SimpleCommandMap(this));
+		this.commandMap = new SimpleCommandMap(this);
+		this.pluginManager = new SimplePluginManager(this, commandMap);
 		
 		config = YamlConfiguration.loadConfiguration(configFile);
 		config.options().copyDefaults(true);
@@ -105,6 +114,18 @@ public class CanaryServer implements Server {
 		commandsConfig.options().copyDefaults(true);
 		commandsConfig.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader().getResourceAsStream("config/commands.yml")));
 		saveConfigFile(commandsConfig);
+		
+		permissionsFile = new File(Constants.configDir, config.getString("permissions-file"));
+	}
+	
+	public void init() {
+		// Start loading plugins
+		loadPlugins();
+		enablePlugins(PluginLoadOrder.STARTUP);
+		
+		// Finish loading plugins
+		enablePlugins(PluginLoadOrder.POSTWORLD);
+		commandMap.registerServerAliases();
 	}
 	
 	private void saveConfigFile(YamlConfiguration config) {
@@ -147,11 +168,32 @@ public class CanaryServer implements Server {
 		}
 	}
 	
-	public void enablePlugins() {
+	public void enablePlugins(PluginLoadOrder type) {
+		if (type == PluginLoadOrder.STARTUP) {
+			helpMap.clear();
+		}
+		
 		Plugin[] plugins = pluginManager.getPlugins();
 		for (Plugin plugin : plugins) {
 			if ((!plugin.isEnabled())) {
 				loadPlugin(plugin);
+			}
+		}
+		
+		if (type == PluginLoadOrder.POSTWORLD) {
+			commandMap.setFallbackCommands();
+			commandMap.registerServerAliases();
+			DefaultPermissions.registerCorePermissions();
+			
+			// load permissions.yml
+			ConfigurationSection permConfig = YamlConfiguration.loadConfiguration(permissionsFile);
+			List<Permission> perms = Permission.loadPermissions(permConfig.getValues(false), "Permission node '%s' in permissions config is invalid", PermissionDefault.OP);
+			for (Permission perm : perms) {
+				try {
+					pluginManager.addPermission(perm);
+				} catch (IllegalArgumentException ex) {
+					logman.warn("Permission config tried to register '" + perm.getName() + "' but it's already registered", ex);
+				}
 			}
 		}
 	}
