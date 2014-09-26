@@ -311,7 +311,7 @@ public class CanaryServer implements Server {
 	}
 
 	public Player getPlayer(String name) {
-		throw new NotImplementedException();
+		return new CanaryPlayer(server.getPlayer(name));
 	}
 
 	public Player getPlayerExact(String name) {
@@ -333,7 +333,7 @@ public class CanaryServer implements Server {
 	}
 
 	public Player getPlayer(UUID id) {
-		throw new NotImplementedException();
+		return new CanaryPlayer(server.getPlayerFromUUID(id));
 	}
 
 	public PluginManager getPluginManager() {
@@ -516,7 +516,7 @@ public class CanaryServer implements Server {
 	}
 
 	public File getWorldContainer() {
-		throw new NotImplementedException();
+		return Constants.worldsDir; // Check to see compatinilty with BUkkit.
 	}
 
 	public Messenger getMessenger() {
@@ -524,7 +524,7 @@ public class CanaryServer implements Server {
 	}
 
 	public HelpMap getHelpMap() {
-		throw new NotImplementedException();
+		return helpMap;
 	}
 
 	public Inventory createInventory(InventoryHolder owner, InventoryType type) { //TODO:

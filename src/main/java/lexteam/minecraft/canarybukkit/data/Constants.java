@@ -27,7 +27,11 @@ package lexteam.minecraft.canarybukkit.data;
 import java.io.File;
 
 public class Constants {
-	public static final File bukkitDir = new File(".", "bukkit");
+	// Canary
+	public static final File canaryDir = new File("."); // This returns working directory, see if I can improve.
+	public static final File worldsDir = new File(canaryDir, "worlds"); // Check to see if user modifiable.
+	// CanaryBukkit
+	public static final File bukkitDir = new File(canaryDir, "bukkit");
 	public static final File pluginsDir = new File(bukkitDir, "plugins");
 	public static final File configDir = new File(bukkitDir, "config");
 }
