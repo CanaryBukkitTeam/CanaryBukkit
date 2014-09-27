@@ -1,6 +1,11 @@
-.metadata/
-.settings/
-target/
-.classpath
-.gitignore
-.project
+# Ignore everything
+/*
+/*/
+
+# Except These
+!/LICENSE.txt
+!/README.md
+!/header.txt
+!/.gitignore
+!/pom.xml
+!/src/

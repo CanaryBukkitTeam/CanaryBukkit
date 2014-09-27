@@ -14,6 +14,9 @@ I have chosen the MIT license for this project.
 
 [Bukkit](https://github.com/Bukkit/Bukkit)
 
+### CanaryBukkit API
+To allow Canary plugins to communicate to Bukkit plugins, I created an API for Canary plugins to use, it is currently very limited but I will add more as time passes.
+
 ### Collaborators
 The following teams of LexMinecraft have access to edit this repository: application-dev, mod-team and CanaryBukkit-devteam.
 

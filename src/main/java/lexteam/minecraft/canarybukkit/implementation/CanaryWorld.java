@@ -329,7 +329,7 @@ public class CanaryWorld implements World {
 	}
 
 	public void save() {
-		throw new NotImplementedException();
+		world.save();
 	}
 
 	public List<BlockPopulator> getPopulators() {
@@ -397,7 +397,7 @@ public class CanaryWorld implements World {
 	}
 
 	public int getMaxHeight() {
-		throw new NotImplementedException();
+		return world.getHeight();
 	}
 
 	public int getSeaLevel() {

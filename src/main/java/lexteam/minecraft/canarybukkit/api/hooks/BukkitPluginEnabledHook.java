@@ -24,6 +24,7 @@
  */
 package lexteam.minecraft.canarybukkit.api.hooks;
 
+import org.bukkit.Server;
 import org.bukkit.plugin.Plugin;
 
 import net.canarymod.hook.Hook;
@@ -32,7 +33,7 @@ public class BukkitPluginEnabledHook extends Hook {
 	private Plugin plugin;
 
 	/**
-	 * Create a new BukkitPluginEnableHook
+	 * Create a new BukkitPluginEnabledHook
 	 * @param plugin the plugin that was enabled
 	 */
 	public BukkitPluginEnabledHook(Plugin plugin) {
@@ -47,8 +48,16 @@ public class BukkitPluginEnabledHook extends Hook {
 		return plugin;
 	}
 	
+	/**
+	 * Gets the {@link Server} that the plugin is running on
+	 * @return server
+	 */
+	public Server getServer() {
+		return plugin.getServer();
+	}
+	
 	@Override
-    public String toString() {
-        return String.format("%s[Plugin=%s]", getHookName(), plugin);
-    }
+	public String toString() {
+		return String.format("%s[Plugin=%s]", getHookName(), plugin);
+	}
 }

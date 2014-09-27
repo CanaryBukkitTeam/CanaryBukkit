@@ -31,7 +31,7 @@ import net.canarymod.Canary;
 public class Constants {
 	// Canary
 	public static final File canaryDir = Canary.getWorkingDirectory();
-	public static final File worldsDir = new File(canaryDir, "worlds"); // Check to see if user modifiable.
+	public static final File worldsDir = new File(canaryDir, "worlds");
 	// CanaryBukkit
 	public static final File bukkitDir = new File(canaryDir, "bukkit");
 	public static final File pluginsDir = new File(bukkitDir, "plugins");

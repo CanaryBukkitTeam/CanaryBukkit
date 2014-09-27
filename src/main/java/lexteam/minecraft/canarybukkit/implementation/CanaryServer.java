@@ -27,6 +27,7 @@ package lexteam.minecraft.canarybukkit.implementation;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -358,7 +359,12 @@ public class CanaryServer implements Server {
 	}
 
 	public List<World> getWorlds() {
-		throw new NotImplementedException();
+		List<World> worlds = new ArrayList<World>();
+		for(net.canarymod.api.world.World world : Canary.getServer().getWorldManager().getAllWorlds()) {
+			World bWorld = new CanaryWorld(world);
+			worlds.add(bWorld);
+		}
+		return worlds;
 	}
 
 	public World createWorld(WorldCreator creator) {
