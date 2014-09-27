@@ -22,39 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit;
+package lexteam.minecraft.canarybukkit.api.hooks;
 
-import lexteam.minecraft.canarybukkit.data.Constants;
-import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
+import org.bukkit.plugin.Plugin;
 
-import org.bukkit.Bukkit;
+import net.canarymod.hook.Hook;
 
-import net.canarymod.Canary;
-import net.canarymod.plugin.Plugin;
+public class BukkitPluginDisabledHook extends Hook {
+	private Plugin plugin;
 
-public class CanaryBukkit extends Plugin {
-	private CanaryServer server;
-
-	@Override
-	public boolean enable() {
-		if(Bukkit.getServer() == null) {
-			server = new CanaryServer(Canary.getServer(), getLogman());
-			Bukkit.setServer(server);
-		}
-		// Enable Listener
-		Canary.hooks().registerListener(new CanaryListener(), this);
-		
-		if(!Constants.bukkitDir.exists()) {
-			Constants.pluginsDir.mkdirs();
-			Constants.configDir.mkdirs();
-		}
-		server.init();
-		
-		return true;
+	/**
+	 * Create a new BukkitPluginDisableHook
+	 * @param plugin the plugin that was disabled
+	 */
+	public BukkitPluginDisabledHook(Plugin plugin) {
+		this.plugin = plugin;
 	}
-
-	@Override
-	public void disable() {
-		server.disablePlugins();
+	
+	/**
+	 * Gets the {@link Plugin} that was disabled
+	 * @return plugin
+	 */
+	public Plugin getPlugin() {
+		return plugin;
 	}
+	
+	@Override
+    public String toString() {
+        return String.format("%s[Plugin=%s]", getHookName(), plugin);
+    }
 }
