@@ -22,48 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit;
+package lexteam.minecraft.canarybukkit.api.hooks.plugin;
 
-import lexteam.minecraft.canarybukkit.data.Constants;
-import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
+import org.bukkit.Server;
+import org.bukkit.plugin.Plugin;
 
-import org.bukkit.Bukkit;
+import net.canarymod.hook.Hook;
 
-import net.canarymod.Canary;
-import net.canarymod.plugin.Plugin;
+class BukkitPluginHook extends Hook {
+	private Plugin plugin;
 
-public final class CanaryBukkit extends Plugin {
-	private CanaryServer server;
-	private static CanaryBukkit instance;
-	
-	@Override
-	public boolean enable() {
-		if(CanaryBukkit.instance == null) {
-			CanaryBukkit.instance = this;
-		}
-		
-		if(Bukkit.getServer() == null) {
-			server = new CanaryServer(Canary.getServer(), getLogman());
-			Bukkit.setServer(server);
-		}
-		// Enable Listener
-		Canary.hooks().registerListener(new CanaryListener(), this);
-		
-		if(!Constants.bukkitDir.exists()) {
-			Constants.pluginsDir.mkdirs();
-			Constants.configDir.mkdirs();
-		}
-		server.init();
-		
-		return true;
-	}
-
-	@Override
-	public void disable() {
-		server.disablePlugins();
+	/**
+	 * Create a new BukkitPluginHook
+	 * @param plugin 
+	 */
+	public BukkitPluginHook(Plugin plugin) {
+		this.plugin = plugin;
 	}
 	
-	public static CanaryBukkit getInstance() {
-		return instance;
+	/**
+	 * Gets the {@link Plugin} that was enabled
+	 * @return plugin
+	 */
+	public Plugin getPlugin() {
+		return plugin;
+	}
+	
+	/**
+	 * Gets the {@link Server} that the plugin is running on
+	 * @return server
+	 */
+	public Server getServer() {
+		return plugin.getServer();
 	}
 }

@@ -22,42 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit.api.hooks;
+package lexteam.minecraft.canarybukkit.api.hooks.plugin;
 
-import org.bukkit.Server;
 import org.bukkit.plugin.Plugin;
 
-import net.canarymod.hook.Hook;
-
-public class BukkitPluginDisabledHook extends Hook {
+public class BukkitPluginEnableHook extends BukkitPluginHook {
 	private Plugin plugin;
 
 	/**
-	 * Create a new BukkitPluginDisabledHook
-	 * @param plugin the plugin that was disabled
+	 * Create a new BukkitPluginEnableHook
+	 * @param plugin the plugin that was enabled
 	 */
-	public BukkitPluginDisabledHook(Plugin plugin) {
+	public BukkitPluginEnableHook(Plugin plugin) {
+		super(plugin);
 		this.plugin = plugin;
-	}
-	
-	/**
-	 * Gets the {@link Plugin} that was disabled
-	 * @return plugin
-	 */
-	public Plugin getPlugin() {
-		return plugin;
-	}
-	
-	/**
-	 * Gets the {@link Server} that the plugin was running on
-	 * @return server
-	 */
-	public Server getServer() {
-		return plugin.getServer();
 	}
 	
 	@Override
 	public String toString() {
-		return String.format("%s[Plugin=%s]", getHookName(), plugin);
+		return String.format("%s[Plugin=%s,Server=%s]", getHookName(), plugin, plugin.getServer());
 	}
 }
