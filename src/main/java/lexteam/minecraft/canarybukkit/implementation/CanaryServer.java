@@ -49,6 +49,7 @@ import net.visualillusionsent.minecraft.plugin.canary.WrappedLogger;
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.Validate;
 import org.bukkit.BanList;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
@@ -215,13 +216,21 @@ public class CanaryServer implements Server {
 	public String getName() {
 		return Canary.getImplementationTitle();
 	}
+	
+	public String getImplementationName() {
+		return "CanaryBukkit";
+	}
 
 	public String getVersion() {
 		return Canary.getImplementationVersion();
 	}
+	
+	public String getImplementationVersion() {
+		return canaryBukkitVersion;
+	}
 
 	public String getBukkitVersion() {
-		return "CanaryBukkit-" + canaryBukkitVersion;
+		return Bukkit.getName() + "-" + Bukkit.getVersion();
 	}
 
 	public Player[] getOnlinePlayers() {
