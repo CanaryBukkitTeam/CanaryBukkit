@@ -22,29 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit.api.hooks.plugin;
+package lexteam.minecraft.canarybukkit.api.hooks;
 
-import lexteam.minecraft.canarybukkit.api.hooks.BukkitHook;
+import org.bukkit.Server;
+import net.canarymod.hook.Hook;
 
-import org.bukkit.plugin.Plugin;
-
-public class BukkitPluginHook extends BukkitHook {
-	private Plugin plugin;
-
+public class BukkitHook extends Hook {
+	private Server server;
+	
 	/**
-	 * Create a new BukkitPluginHook
-	 * @param plugin 
+	 * Create a new BukkitHook
+	 * @param server
 	 */
-	public BukkitPluginHook(Plugin plugin) {
-		super(plugin.getServer());
-		this.plugin = plugin;
+	public BukkitHook(Server server) {
+		this.server = server;
 	}
 	
 	/**
-	 * Gets the {@link Plugin} that was enabled
-	 * @return plugin
+	 * Gets the {@link Server} that is currently running
+	 * @return server
 	 */
-	public Plugin getPlugin() {
-		return plugin;
+	public Server getServer() {
+		return server;
 	}
 }

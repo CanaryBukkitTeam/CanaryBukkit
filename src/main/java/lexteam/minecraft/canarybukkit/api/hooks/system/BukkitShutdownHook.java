@@ -22,12 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit.api;
+package lexteam.minecraft.canarybukkit.api.hooks.system;
 
-import lexteam.minecraft.canarybukkit.CanaryBukkit;
+import org.bukkit.Server;
 
-public class BukkitCanary {
-	public boolean isEnabled() {
-		return !CanaryBukkit.getInstance().isDisabled();
+import lexteam.minecraft.canarybukkit.api.hooks.BukkitHook;
+
+public class BukkitShutdownHook extends BukkitHook {
+	/**
+	 * Create a new BukkitShutdownHook
+	 * @param server
+	 */
+	public BukkitShutdownHook(Server server) {
+		super(server);
 	}
 }

@@ -22,29 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit.api.hooks.plugin;
+package lexteam.minecraft.canarybukkit;
 
-import lexteam.minecraft.canarybukkit.api.hooks.BukkitHook;
+import org.bukkit.Bukkit;
 
-import org.bukkit.plugin.Plugin;
+import net.canarymod.chat.MessageReceiver;
+import net.canarymod.commandsys.Command;
+import net.canarymod.commandsys.CommandListener;
 
-public class BukkitPluginHook extends BukkitHook {
-	private Plugin plugin;
-
-	/**
-	 * Create a new BukkitPluginHook
-	 * @param plugin 
-	 */
-	public BukkitPluginHook(Plugin plugin) {
-		super(plugin.getServer());
-		this.plugin = plugin;
+public class CanaryCommands implements CommandListener {
+	@Command(aliases = {"bdisable"},
+			description = "disable Bukkit plugin",
+			permissions = {"bukkit.disableplugin"},
+			toolTip = "/bdisable <plugin>")
+	public void bdisableCommand(MessageReceiver caller, String[] parameters) {
+		Bukkit.getServer().getPluginManager().disablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0]));
+		caller.message("Disabled plugin.");
 	}
 	
-	/**
-	 * Gets the {@link Plugin} that was enabled
-	 * @return plugin
-	 */
-	public Plugin getPlugin() {
-		return plugin;
+	@Command(aliases = {"benable"},
+			description = "enable Bukkit plugin",
+			permissions = {"bukkit.enableplugin"},
+			toolTip = "/benable <plugin>")
+	public void benableCommand(MessageReceiver caller, String[] parameters) {
+		Bukkit.getServer().getPluginManager().enablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0]));
+		caller.message("Enabled plugin.");
 	}
 }

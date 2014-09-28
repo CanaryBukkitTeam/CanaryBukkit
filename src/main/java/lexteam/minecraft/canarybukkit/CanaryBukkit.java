@@ -24,12 +24,15 @@
  */
 package lexteam.minecraft.canarybukkit;
 
+import lexteam.minecraft.canarybukkit.api.hooks.system.BukkitShutdownHook;
+import lexteam.minecraft.canarybukkit.api.hooks.system.BukkitStartupHook;
 import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
 
 import org.bukkit.Bukkit;
 
 import net.canarymod.Canary;
+import net.canarymod.commandsys.CommandDependencyException;
 import net.canarymod.plugin.Plugin;
 
 public final class CanaryBukkit extends Plugin {
@@ -49,18 +52,27 @@ public final class CanaryBukkit extends Plugin {
 		// Enable Listener
 		Canary.hooks().registerListener(new CanaryListener(), this);
 		
+		// Enable Commands
+		try {
+			Canary.commands().registerCommands(new CanaryCommands(), this, false);
+		} catch (CommandDependencyException e) {
+			e.printStackTrace();
+		}
+		
 		if(!Constants.bukkitDir.exists()) {
 			Constants.pluginsDir.mkdirs();
 			Constants.configDir.mkdirs();
 		}
 		server.init();
 		
+		Canary.hooks().callHook(new BukkitStartupHook(server));
 		return true;
 	}
 
 	@Override
 	public void disable() {
 		server.disablePlugins();
+		Canary.hooks().callHook(new BukkitShutdownHook(server));
 	}
 	
 	public static CanaryBukkit getInstance() {
