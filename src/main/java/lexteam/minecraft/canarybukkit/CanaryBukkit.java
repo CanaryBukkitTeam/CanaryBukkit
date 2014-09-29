@@ -24,8 +24,6 @@
  */
 package lexteam.minecraft.canarybukkit;
 
-import lexteam.minecraft.canarybukkit.api.hooks.system.BukkitShutdownHook;
-import lexteam.minecraft.canarybukkit.api.hooks.system.BukkitStartupHook;
 import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
 
@@ -65,14 +63,12 @@ public final class CanaryBukkit extends Plugin {
 		}
 		server.init();
 		
-		Canary.hooks().callHook(new BukkitStartupHook(server));
 		return true;
 	}
 
 	@Override
 	public void disable() {
 		server.disablePlugins();
-		Canary.hooks().callHook(new BukkitShutdownHook(server));
 	}
 	
 	public static CanaryBukkit getInstance() {

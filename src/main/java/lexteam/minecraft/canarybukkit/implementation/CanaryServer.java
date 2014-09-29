@@ -36,8 +36,6 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-import lexteam.minecraft.canarybukkit.api.hooks.plugin.BukkitPluginDisableHook;
-import lexteam.minecraft.canarybukkit.api.hooks.plugin.BukkitPluginEnableHook;
 import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 import lexteam.minecraft.canarybukkit.implementation.help.CanaryHelpMap;
@@ -181,7 +179,6 @@ public class CanaryServer implements Server {
 		for (Plugin plugin : plugins) {
 			if ((!plugin.isEnabled())) {
 				loadPlugin(plugin);
-				Canary.hooks().callHook(new BukkitPluginEnableHook(plugin));
 			}
 		}
 		
@@ -205,12 +202,6 @@ public class CanaryServer implements Server {
 
 	public void disablePlugins() {
 		pluginManager.disablePlugins();
-		Plugin[] plugins = pluginManager.getPlugins(); // Are the plugins still in the list?
-		for (Plugin plugin : plugins) {
-			if ((!plugin.isEnabled())) {
-				Canary.hooks().callHook(new BukkitPluginDisableHook(plugin));
-			}
-		}
 	}
 
 	public String getName() {

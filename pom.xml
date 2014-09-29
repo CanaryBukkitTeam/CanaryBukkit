@@ -29,22 +29,10 @@
 		<repository>
 			<id>vi-repo</id>
 			<url>http://repo.visualillusionsent.net/repository/public</url>
-			<releases>
-				<updatePolicy>always</updatePolicy>
-			</releases>
-			<snapshots>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
 		</repository>
 		<repository>
 			<id>bukkit-repo</id>
 			<url>http://repo.bukkit.org/content/groups/public</url>
-			<releases>
-				<updatePolicy>always</updatePolicy>
-			</releases>
-			<snapshots>
-				<updatePolicy>always</updatePolicy>
-			</snapshots>
 		</repository>
 	</repositories>
   	
@@ -53,12 +41,12 @@
 			<groupId>net.canarymod</groupId>
 			<artifactId>CanaryLib</artifactId>
 			<version>[1.0-RC-4-SNAPSHOT,)</version> <!-- Always at latest dev build -->
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.7.2-R0.3</version> <!-- Will use Glowkit when I updtae for 1.8 -->
+			<version>1.7.2-R0.3</version> <!-- Will use Glowkit when I update for 1.8 -->
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
@@ -104,11 +92,6 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
-							<artifactSet>
-								<includes>
-									<include>org.bukkit:bukkit</include>
-								</includes>
-							</artifactSet>
 							<finalName>CanaryBukkit-${project.version}</finalName>
 						</configuration>
 					</execution>
