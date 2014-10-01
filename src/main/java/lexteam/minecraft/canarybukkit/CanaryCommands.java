@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryMod-BukkitAPI, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -34,7 +34,8 @@ public class CanaryCommands implements CommandListener {
 	@Command(aliases = {"bdisable"},
 			description = "disable Bukkit plugin",
 			permissions = {"bukkit.disableplugin"},
-			toolTip = "/bdisable <plugin>")
+			toolTip = "/bdisable <plugin>",
+			version = 2)
 	public void bdisableCommand(MessageReceiver caller, String[] parameters) {
 		Bukkit.getServer().getPluginManager().disablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0]));
 		caller.message("Disabled plugin.");
@@ -43,7 +44,8 @@ public class CanaryCommands implements CommandListener {
 	@Command(aliases = {"benable"},
 			description = "enable Bukkit plugin",
 			permissions = {"bukkit.enableplugin"},
-			toolTip = "/benable <plugin>")
+			toolTip = "/benable <plugin>",
+			version = 2)
 	public void benableCommand(MessageReceiver caller, String[] parameters) {
 		Bukkit.getServer().getPluginManager().enablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0]));
 		caller.message("Enabled plugin.");

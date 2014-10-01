@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryMod-BukkitAPI, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -42,7 +42,6 @@ public final class CanaryBukkit extends Plugin {
 		if(CanaryBukkit.instance == null) {
 			CanaryBukkit.instance = this;
 		}
-		
 		if(Bukkit.getServer() == null) {
 			server = new CanaryServer(Canary.getServer(), getLogman());
 			Bukkit.setServer(server);
@@ -57,6 +56,7 @@ public final class CanaryBukkit extends Plugin {
 			e.printStackTrace();
 		}
 		
+		// Check is the directories exist
 		if(!Constants.bukkitDir.exists()) {
 			Constants.pluginsDir.mkdirs();
 			Constants.configDir.mkdirs();

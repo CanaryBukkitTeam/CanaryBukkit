@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryMod-BukkitAPI, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -99,7 +99,6 @@ public class CanaryServer implements Server {
 	private File configFile = new File(Constants.configDir, "config.yml");
 	private File commandConfigFile = new File(Constants.configDir, "commands.yml");
 	private File permissionsFile;
-	private final String canaryBukkitVersion = "1.0.0";
 
 	public CanaryServer(net.canarymod.api.Server server, Logman logman) {
 		this.server = server;
@@ -217,7 +216,7 @@ public class CanaryServer implements Server {
 	}
 	
 	public String getImplementationVersion() {
-		return canaryBukkitVersion;
+		return Constants.canaryBukkitVersion;
 	}
 
 	public String getBukkitVersion() {
@@ -232,6 +231,10 @@ public class CanaryServer implements Server {
 			i++;
 		}
 		return players;
+	}
+	
+	public OfflinePlayer[] getOfflinePlayers() {
+		throw new NotImplementedException();
 	}
 
 	public int getMaxPlayers() {
@@ -639,9 +642,5 @@ public class CanaryServer implements Server {
 		}
 
 		return result;
-	}
-
-	public OfflinePlayer[] getOfflinePlayers() {
-		return null;
 	}
 }

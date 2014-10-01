@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryMod-BukkitAPI, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -23,6 +23,8 @@
  * THE SOFTWARE.
  */
 package lexteam.minecraft.canarybukkit.implementation;
+
+import net.canarymod.config.Configuration;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.*;
@@ -141,11 +143,11 @@ public class CanaryWorld implements World {
 	}
 
 	public boolean unloadChunk(int x, int z, boolean save, boolean safe) {
-		throw new NotImplementedException();
+		return getChunkAt(x, z).unload(save, safe);
 	}
 
 	public boolean unloadChunkRequest(int x, int z) {
-		throw new NotImplementedException();
+		return unloadChunk(x, z);
 	}
 
 	public boolean unloadChunkRequest(int x, int z, boolean safe) {
@@ -157,7 +159,8 @@ public class CanaryWorld implements World {
 	}
 
 	public boolean refreshChunk(int x, int z) {
-		throw new NotImplementedException();
+		getChunkAt(x, z).unload(true);
+		return getChunkAt(x, z).load(true);
 	}
 
 	public Item dropItem(Location location, ItemStack item) {
@@ -237,11 +240,12 @@ public class CanaryWorld implements World {
 	}
 
 	public boolean setSpawnLocation(int x, int y, int z) {
-		throw new NotImplementedException();
+		world.setSpawnLocation(new net.canarymod.api.world.position.Location(x, y, z));
+		return (world.getSpawnLocation() == new net.canarymod.api.world.position.Location(x, y, z));
 	}
 
 	public long getTime() {
-		throw new NotImplementedException();
+		return world.getTotalTime();
 	}
 
 	public void setTime(long time) {
@@ -313,7 +317,7 @@ public class CanaryWorld implements World {
 	}
 
 	public long getSeed() {
-		throw new NotImplementedException();
+		return Long.parseLong(Configuration.getWorldConfig(getName()).getWorldSeed());
 	}
 
 	public boolean getPVP() {

@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryMod-BukkitAPI, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -24,22 +24,24 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.EntityType;
 import org.bukkit.material.MaterialData;
 
 public class CanaryEnderman extends CanaryMonster implements Enderman {
-	public CanaryEnderman(net.canarymod.api.entity.living.LivingBase entity) {
+	private net.canarymod.api.entity.living.monster.Enderman entity;
+
+	public CanaryEnderman(net.canarymod.api.entity.living.monster.Enderman entity) {
 		super(entity);
+		this.entity = entity;
 	}
 	
 	public MaterialData getCarriedMaterial() {
-		throw new NotImplementedException();
+		return new MaterialData(entity.getCarriedBlockID());
 	}
 
 	public void setCarriedMaterial(MaterialData material) {
-		throw new NotImplementedException();
+		entity.setCarriedBlockID((short) material.getItemTypeId()); //TODO: Check
 	}
 	
 	public EntityType getType() {

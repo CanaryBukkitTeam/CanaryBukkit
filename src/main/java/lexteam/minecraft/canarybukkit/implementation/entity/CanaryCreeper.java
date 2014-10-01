@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryMod-BukkitAPI, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -24,21 +24,23 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
 
 public class CanaryCreeper extends CanaryMonster implements Creeper {
+	private net.canarymod.api.entity.living.monster.Creeper entity;
+
 	public CanaryCreeper(net.canarymod.api.entity.living.monster.Creeper entity) {
 		super(entity);
+		this.entity = entity;
 	}
 
 	public boolean isPowered() {
-		throw new NotImplementedException();
+		return entity.isCharged();
 	}
 
 	public void setPowered(boolean value) {
-		throw new NotImplementedException();
+		entity.setCharged(value);
 	}
 	
 	public EntityType getType() {
