@@ -56,7 +56,7 @@ public final class CanaryBukkit extends Plugin {
 			e.printStackTrace();
 		}
 		
-		// Check is the directories exist
+		// Check if the directories exist
 		if(!Constants.bukkitDir.exists()) {
 			Constants.pluginsDir.mkdirs();
 			Constants.configDir.mkdirs();

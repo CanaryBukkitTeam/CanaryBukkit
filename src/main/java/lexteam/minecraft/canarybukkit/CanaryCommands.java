@@ -25,6 +25,7 @@
 package lexteam.minecraft.canarybukkit;
 
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 
 import net.canarymod.chat.MessageReceiver;
 import net.canarymod.commandsys.Command;
@@ -47,7 +48,19 @@ public class CanaryCommands implements CommandListener {
 			toolTip = "/benable <plugin>",
 			version = 2)
 	public void benableCommand(MessageReceiver caller, String[] parameters) {
-		Bukkit.getServer().getPluginManager().enablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0]));
+		Bukkit.getServer().getPluginManager().enablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0])); //TODO: Check if works
 		caller.message("Enabled plugin.");
+	}
+	
+	@Command(aliases = {"bplugins"},
+			description = "list Bukkit plugins",
+			permissions = {"bukkit.listplugins"},
+			toolTip = "/bplugins",
+			version = 2)
+	public void bpluginsCommand(MessageReceiver caller, String[] parameters) {
+		caller.message("Bukkit plugins:");
+		for(Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
+			caller.message(plugin.getName());
+		}
 	}
 }
