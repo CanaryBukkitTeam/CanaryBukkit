@@ -35,13 +35,9 @@ import net.canarymod.plugin.Plugin;
 
 public final class CanaryBukkit extends Plugin {
 	private CanaryServer server;
-	private static CanaryBukkit instance;
 	
 	@Override
 	public boolean enable() {
-		if(CanaryBukkit.instance == null) {
-			CanaryBukkit.instance = this;
-		}
 		if(Bukkit.getServer() == null) {
 			server = new CanaryServer(Canary.getServer(), getLogman());
 			Bukkit.setServer(server);
@@ -61,7 +57,7 @@ public final class CanaryBukkit extends Plugin {
 			Constants.pluginsDir.mkdirs();
 			Constants.configDir.mkdirs();
 		}
-		server.init();
+		server.start();
 		
 		return true;
 	}
@@ -69,9 +65,5 @@ public final class CanaryBukkit extends Plugin {
 	@Override
 	public void disable() {
 		server.disablePlugins();
-	}
-	
-	public static CanaryBukkit getInstance() {
-		return instance;
 	}
 }

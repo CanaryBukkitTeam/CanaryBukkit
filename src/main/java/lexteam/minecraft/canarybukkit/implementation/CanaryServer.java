@@ -119,7 +119,7 @@ public class CanaryServer implements Server {
 		permissionsFile = new File(Constants.configDir, config.getString("permissions-file"));
 	}
 	
-	public void init() {
+	public void start() {
 		// Start loading plugins
 		loadPlugins();
 		enablePlugins(PluginLoadOrder.STARTUP);
@@ -254,7 +254,7 @@ public class CanaryServer implements Server {
 	}
 
 	public String getServerName() {
-		return "Just your everyday CanaryMod server.";
+		return server.getName();
 	}
 
 	public String getServerId() {
@@ -262,19 +262,19 @@ public class CanaryServer implements Server {
 	}
 
 	public String getWorldType() {
-		throw new NotImplementedException();
+		return server.getDefaultWorld().getType().getName();
 	}
 
 	public boolean getGenerateStructures() {
-		return false;
+		return Configuration.getWorldConfig(server.getDefaultWorldName()).generatesStructures();
 	}
 
 	public boolean getAllowEnd() {
-		return false;
+		return Configuration.getWorldConfig(server.getDefaultWorldName()).isEndAllowed();
 	}
 
 	public boolean getAllowNether() {
-		return false;
+		return Configuration.getWorldConfig(server.getDefaultWorldName()).isNetherAllowed();
 	}
 
 	public boolean hasWhitelist() {
@@ -337,8 +337,7 @@ public class CanaryServer implements Server {
 				return player;
 			}
 		}
-
-		throw new NotImplementedException();
+		return null;
 	}
 
 	public List<Player> matchPlayer(String name) {
@@ -447,7 +446,7 @@ public class CanaryServer implements Server {
 	}
 
 	public int getSpawnRadius() {
-		return 0;
+		return Configuration.getWorldConfig(server.getDefaultWorldName()).getSpawnProtectionSize();
 	}
 
 	public void setSpawnRadius(int value) {
@@ -471,7 +470,7 @@ public class CanaryServer implements Server {
 	}
 
 	public void shutdown() {
-		server.consoleCommand("stop");
+		server.initiateShutdown("Shutdown by Bukkit!");
 	}
 
 	public int broadcast(String message, String permission) {
