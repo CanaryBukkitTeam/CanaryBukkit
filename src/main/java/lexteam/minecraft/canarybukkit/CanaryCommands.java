@@ -50,10 +50,8 @@ public class CanaryCommands implements CommandListener {
              version = 2)
     public void benableCommand(MessageReceiver caller, String[] parameters) {
         Bukkit.getServer().getPluginManager()
-                .enablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0])); // TODO:
-                                                                                               // Check
-                                                                                               // if
-                                                                                               // works
+                .enablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0]));
+        // TODO: Check if works
         caller.message("Enabled plugin.");
     }
 

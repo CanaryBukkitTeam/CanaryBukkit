@@ -41,8 +41,8 @@ public class CanaryEnderman extends CanaryMonster implements Enderman {
     }
 
     public void setCarriedMaterial(MaterialData material) {
-        entity.setCarriedBlockID((short) material.getItemTypeId()); // TODO:
-                                                                    // Check
+        entity.setCarriedBlockID((short) material.getItemTypeId());
+        //TODO: Check
     }
 
     public EntityType getType() {

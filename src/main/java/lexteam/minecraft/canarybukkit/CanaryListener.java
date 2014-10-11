@@ -68,11 +68,8 @@ public class CanaryListener implements PluginListener {
     public void onPlayerDeath(PlayerDeathHook hook) {
         Bukkit.getPluginManager().callEvent(
                 new org.bukkit.event.entity.PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, hook
-                        .getPlayer().getExperience(), hook.getDeathMessage1().getFullText())); // TODO:
-                                                                                               // Fill
-                                                                                               // in
-                                                                                               // and
-                                                                                               // check.
+                        .getPlayer().getExperience(), hook.getDeathMessage1().getFullText()));
+        // TODO: Fill in and check.
     }
 
     @HookHandler
@@ -87,9 +84,8 @@ public class CanaryListener implements PluginListener {
         Bukkit.getPluginManager().callEvent(
                 new org.bukkit.event.block.BlockPlaceEvent(new CanaryBlock(hook.getBlockPlaced()), null,
                         new CanaryBlock(hook.getBlockClicked()), null, new CanaryPlayer(hook.getPlayer()),
-                        hook.isCanceled())); // TODO: Fill in and
-                                             // check some of the
-                                             // arguments.
+                        hook.isCanceled()));
+        // TODO: Fill in and check some of the arguments.
     }
 
     @HookHandler
