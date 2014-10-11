@@ -39,6 +39,7 @@ import java.util.logging.Logger;
 import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 import lexteam.minecraft.canarybukkit.implementation.help.CanaryHelpMap;
+import lexteam.minecraft.canarybukkit.implementation.util.CanaryCachedServerIcon;
 import net.canarymod.Canary;
 import net.canarymod.config.Configuration;
 import net.canarymod.logger.Logman;
@@ -496,7 +497,7 @@ public class CanaryServer implements Server {
 		throw new NotImplementedException();
 	}
 
-	public Set<String> getIPBans() { //TODO:
+	public Set<String> getIPBans() {
 		throw new NotImplementedException();
 	}
 
@@ -520,7 +521,7 @@ public class CanaryServer implements Server {
 		throw new NotImplementedException();
 	}
 
-	public GameMode getDefaultGameMode() { //TODO: 
+	public GameMode getDefaultGameMode() {
 		throw new NotImplementedException();
 	}
 
@@ -533,7 +534,7 @@ public class CanaryServer implements Server {
 	}
 
 	public File getWorldContainer() {
-		return Constants.worldsDir; // Check to see compatibility with Bukkit.
+		return Constants.worldsDir; //TODO: Check to see compatibility with Bukkit.
 	}
 
 	public Messenger getMessenger() {
@@ -544,19 +545,19 @@ public class CanaryServer implements Server {
 		return helpMap;
 	}
 
-	public Inventory createInventory(InventoryHolder owner, InventoryType type) { //TODO:
+	public Inventory createInventory(InventoryHolder owner, InventoryType type) {
 		throw new NotImplementedException();
 	}
 
-	public Inventory createInventory(InventoryHolder owner, InventoryType type, String title) { //TODO:
+	public Inventory createInventory(InventoryHolder owner, InventoryType type, String title) {
 		throw new NotImplementedException();
 	}
 
-	public Inventory createInventory(InventoryHolder owner, int size) throws IllegalArgumentException { //TODO:
+	public Inventory createInventory(InventoryHolder owner, int size) throws IllegalArgumentException {
 		throw new NotImplementedException();
 	}
 
-	public Inventory createInventory(InventoryHolder owner, int size, String title) throws IllegalArgumentException { //TODO:
+	public Inventory createInventory(InventoryHolder owner, int size, String title) throws IllegalArgumentException {
 		throw new NotImplementedException();
 	}
 
@@ -601,7 +602,7 @@ public class CanaryServer implements Server {
 	}
 
 	public CachedServerIcon getServerIcon() {
-		throw new NotImplementedException();
+		return new CanaryCachedServerIcon();
 	}
 
 	public CachedServerIcon loadServerIcon(File file) throws IllegalArgumentException, Exception {

@@ -22,36 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit.implementation.entity;
+package lexteam.minecraft.canarybukkit.implementation.util;
 
-import org.bukkit.entity.Zombie;
-import org.bukkit.entity.EntityType;
+import org.bukkit.util.CachedServerIcon;
 
-public class CanaryZombie extends CanaryAgeable implements Zombie {
-	private net.canarymod.api.entity.living.monster.Zombie entity;
+public class CanaryCachedServerIcon implements CachedServerIcon {
 
-	public CanaryZombie(net.canarymod.api.entity.living.monster.Zombie entity) {
-		super(entity);
-		this.entity = entity;
-	}
-	
-	public boolean isBaby() {
-		return entity.isChild();
-	}
-
-	public void setBaby(boolean flag) {
-		entity.setChild(flag);
-	}
-
-	public boolean isVillager() {
-		return entity.isVillager();
-	}
-
-	public void setVillager(boolean flag) {
-		entity.setVillager(flag);
-	}
-	
-	public EntityType getType() {
-		return EntityType.ZOMBIE;
-	}
 }

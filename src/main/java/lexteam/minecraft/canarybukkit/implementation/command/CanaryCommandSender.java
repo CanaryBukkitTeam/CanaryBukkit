@@ -22,36 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit.implementation.entity;
+package lexteam.minecraft.canarybukkit.implementation.command;
 
-import org.bukkit.entity.Zombie;
-import org.bukkit.entity.EntityType;
+import lexteam.minecraft.canarybukkit.implementation.permissions.CanaryPermissible;
+import net.canarymod.chat.MessageReceiver;
 
-public class CanaryZombie extends CanaryAgeable implements Zombie {
-	private net.canarymod.api.entity.living.monster.Zombie entity;
+import org.apache.commons.lang.NotImplementedException;
+import org.bukkit.Server;
+import org.bukkit.command.CommandSender;
 
-	public CanaryZombie(net.canarymod.api.entity.living.monster.Zombie entity) {
-		super(entity);
-		this.entity = entity;
+public class CanaryCommandSender extends CanaryPermissible implements CommandSender {
+	private MessageReceiver sender;
+
+	public CanaryCommandSender(MessageReceiver sender) {
+		this.sender = sender;
 	}
 	
-	public boolean isBaby() {
-		return entity.isChild();
+	public void sendMessage(String message) {
+		sender.message(message);
 	}
 
-	public void setBaby(boolean flag) {
-		entity.setChild(flag);
+	public void sendMessage(String[] messages) {
+		for(String msg : messages) {
+			sender.message(msg);
+		}
 	}
 
-	public boolean isVillager() {
-		return entity.isVillager();
+	public Server getServer() {
+		throw new NotImplementedException();
 	}
 
-	public void setVillager(boolean flag) {
-		entity.setVillager(flag);
-	}
-	
-	public EntityType getType() {
-		return EntityType.ZOMBIE;
+	public String getName() {
+		return sender.getName();
 	}
 }

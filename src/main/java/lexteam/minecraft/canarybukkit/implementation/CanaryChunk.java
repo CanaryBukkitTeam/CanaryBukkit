@@ -82,7 +82,8 @@ public class CanaryChunk implements Chunk {
 	}
 
 	public boolean load() {
-		return false;
+		world.loadChunk(new CanaryChunk(chunk, world));
+		return chunk.isLoaded();
 	}
 
 	public boolean unload(boolean save, boolean safe) {
@@ -94,6 +95,7 @@ public class CanaryChunk implements Chunk {
 	}
 
 	public boolean unload() {
-		return false;
+		world.unloadChunk(new CanaryChunk(chunk, world));
+		return !chunk.isLoaded();
 	}
 }

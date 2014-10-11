@@ -28,12 +28,14 @@ import lexteam.minecraft.canarybukkit.implementation.CanaryChunk;
 import lexteam.minecraft.canarybukkit.implementation.CanaryLocation;
 import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
+import lexteam.minecraft.canarybukkit.implementation.command.CanaryCommandSender;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryLightningStrike;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 
 import org.bukkit.Bukkit;
 
 import net.canarymod.hook.HookHandler;
+import net.canarymod.hook.command.ConsoleCommandHook;
 import net.canarymod.hook.player.BlockDestroyHook;
 import net.canarymod.hook.player.BlockPlaceHook;
 import net.canarymod.hook.player.ConnectionHook;
@@ -101,5 +103,10 @@ public class CanaryListener implements PluginListener {
 	@HookHandler
 	public void onLightningStrike(LightningStrikeHook hook) {
 		Bukkit.getPluginManager().callEvent(new org.bukkit.event.weather.LightningStrikeEvent(new CanaryWorld(hook.getLightningBolt().getWorld()), new CanaryLightningStrike(hook.getLightningBolt())));
+	}
+	
+	@HookHandler
+	public void onConsoleCommand(ConsoleCommandHook hook) {
+		Bukkit.getPluginManager().callEvent(new org.bukkit.event.server.ServerCommandEvent(new CanaryCommandSender(hook.getCaller()), hook.getCommand()[0]));
 	}
 }
