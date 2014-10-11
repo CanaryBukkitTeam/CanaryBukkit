@@ -27,11 +27,12 @@ package lexteam.minecraft.canarybukkit.implementation;
 import org.bukkit.Location;
 
 public class CanaryLocation extends Location {
-	public CanaryLocation(net.canarymod.api.world.position.Position position, CanaryWorld world) {
-		super(world, position.getX(), position.getY(), position.getZ());
-	}
-	public CanaryLocation(net.canarymod.api.world.position.Location loc, CanaryWorld world) {
-		super(world, loc.getX(), loc.getY(), loc.getZ());
-		setPitch(loc.getPitch());
-	}
+    public CanaryLocation(net.canarymod.api.world.position.Position position, CanaryWorld world) {
+        super(world, position.getX(), position.getY(), position.getZ());
+    }
+
+    public CanaryLocation(net.canarymod.api.world.position.Location loc, CanaryWorld world) {
+        super(world, loc.getX(), loc.getY(), loc.getZ());
+        setPitch(loc.getPitch());
+    }
 }

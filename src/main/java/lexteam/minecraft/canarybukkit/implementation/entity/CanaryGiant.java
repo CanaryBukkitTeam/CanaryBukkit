@@ -28,11 +28,11 @@ import org.bukkit.entity.Giant;
 import org.bukkit.entity.EntityType;
 
 public class CanaryGiant extends CanaryMonster implements Giant {
-	public CanaryGiant(net.canarymod.api.entity.living.LivingBase entity) {
-		super(entity);
-	}
-	
-	public EntityType getType() {
-		return EntityType.GIANT;
-	}
+    public CanaryGiant(net.canarymod.api.entity.living.LivingBase entity) {
+        super(entity);
+    }
+
+    public EntityType getType() {
+        return EntityType.GIANT;
+    }
 }

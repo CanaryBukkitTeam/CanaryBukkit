@@ -30,52 +30,52 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.projectiles.ProjectileSource;
 
 public class CanaryArrow extends AbstractProjectile implements Arrow {
-	private net.canarymod.api.entity.Arrow arrow;
+    private net.canarymod.api.entity.Arrow arrow;
 
-	public CanaryArrow(net.canarymod.api.entity.Arrow arrow) {
-		super(arrow);
-		this.arrow = arrow;
-	}
+    public CanaryArrow(net.canarymod.api.entity.Arrow arrow) {
+        super(arrow);
+        this.arrow = arrow;
+    }
 
-	public int getKnockbackStrength() {
-		return arrow.getKnockbackStrength();
-	}
+    public int getKnockbackStrength() {
+        return arrow.getKnockbackStrength();
+    }
 
-	public void setKnockbackStrength(int knockbackStrength) {
-		arrow.setKnockbackStrenth(knockbackStrength);
-	}
+    public void setKnockbackStrength(int knockbackStrength) {
+        arrow.setKnockbackStrenth(knockbackStrength);
+    }
 
-	public boolean isCritical() {
-		return arrow.isCritical();
-	}
+    public boolean isCritical() {
+        return arrow.isCritical();
+    }
 
-	public void setCritical(boolean critical) {
-		arrow.setIsCritical(critical);
-	}
+    public void setCritical(boolean critical) {
+        arrow.setIsCritical(critical);
+    }
 
-	public LivingEntity _INVALID_getShooter() {
-		throw new NotImplementedException();
-	}
+    public LivingEntity _INVALID_getShooter() {
+        throw new NotImplementedException();
+    }
 
-	public ProjectileSource getShooter() {
-		throw new NotImplementedException();
-	}
+    public ProjectileSource getShooter() {
+        throw new NotImplementedException();
+    }
 
-	public void _INVALID_setShooter(LivingEntity shooter) {
-		throw new NotImplementedException();
-	}
+    public void _INVALID_setShooter(LivingEntity shooter) {
+        throw new NotImplementedException();
+    }
 
-	public void setShooter(ProjectileSource source) {
-		throw new NotImplementedException();
-	}
+    public void setShooter(ProjectileSource source) {
+        throw new NotImplementedException();
+    }
 
-	@Override
-	public boolean doesBounce() {
-		return false;
-	}
+    @Override
+    public boolean doesBounce() {
+        return false;
+    }
 
-	@Override
-	public void setBounce(boolean doesBounce) {
-		throw new NotImplementedException();
-	}
+    @Override
+    public void setBounce(boolean doesBounce) {
+        throw new NotImplementedException();
+    }
 }

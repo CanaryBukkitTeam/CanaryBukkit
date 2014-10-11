@@ -42,142 +42,142 @@ import org.bukkit.plugin.Plugin;
 import java.util.Set;
 
 public class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity {
-	private Human entity;
+    private Human entity;
 
-	public CanaryHumanEntity(net.canarymod.api.entity.living.humanoid.Human entity) {
-		super(entity);
-		this.entity = entity;
-	}
+    public CanaryHumanEntity(net.canarymod.api.entity.living.humanoid.Human entity) {
+        super(entity);
+        this.entity = entity;
+    }
 
-	public String getName() {
-		return entity.getName();
-	}
+    public String getName() {
+        return entity.getName();
+    }
 
-	public PlayerInventory getInventory() {
-		throw new NotImplementedException();
-	}
+    public PlayerInventory getInventory() {
+        throw new NotImplementedException();
+    }
 
-	public Inventory getEnderChest() {
-		throw new NotImplementedException();
-	}
+    public Inventory getEnderChest() {
+        throw new NotImplementedException();
+    }
 
-	public boolean setWindowProperty(InventoryView.Property prop, int value) {
-		return false;
-	}
+    public boolean setWindowProperty(InventoryView.Property prop, int value) {
+        return false;
+    }
 
-	public InventoryView getOpenInventory() {
-		throw new NotImplementedException();
-	}
+    public InventoryView getOpenInventory() {
+        throw new NotImplementedException();
+    }
 
-	public InventoryView openInventory(Inventory inventory) {
-		throw new NotImplementedException();
-	}
+    public InventoryView openInventory(Inventory inventory) {
+        throw new NotImplementedException();
+    }
 
-	public InventoryView openWorkbench(Location location, boolean force) {
-		throw new NotImplementedException();
-	}
+    public InventoryView openWorkbench(Location location, boolean force) {
+        throw new NotImplementedException();
+    }
 
-	public InventoryView openEnchanting(Location location, boolean force) {
-		throw new NotImplementedException();
-	}
+    public InventoryView openEnchanting(Location location, boolean force) {
+        throw new NotImplementedException();
+    }
 
-	public void openInventory(InventoryView inventory) {
-		throw new NotImplementedException();
-	}
+    public void openInventory(InventoryView inventory) {
+        throw new NotImplementedException();
+    }
 
-	public void closeInventory() {
-		throw new NotImplementedException();
-	}
+    public void closeInventory() {
+        throw new NotImplementedException();
+    }
 
-	public ItemStack getItemInHand() {
-		throw new NotImplementedException();
-	}
+    public ItemStack getItemInHand() {
+        throw new NotImplementedException();
+    }
 
-	public void setItemInHand(ItemStack item) {
-		throw new NotImplementedException();
-	}
+    public void setItemInHand(ItemStack item) {
+        throw new NotImplementedException();
+    }
 
-	public ItemStack getItemOnCursor() {
-		throw new NotImplementedException();
-	}
+    public ItemStack getItemOnCursor() {
+        throw new NotImplementedException();
+    }
 
-	public void setItemOnCursor(ItemStack item) {
-		throw new NotImplementedException();
-	}
+    public void setItemOnCursor(ItemStack item) {
+        throw new NotImplementedException();
+    }
 
-	public boolean isSleeping() {
-		return false;
-	}
+    public boolean isSleeping() {
+        return false;
+    }
 
-	public int getSleepTicks() {
-		return 0;
-	}
+    public int getSleepTicks() {
+        return 0;
+    }
 
-	public GameMode getGameMode() {
-		throw new NotImplementedException();
-	}
+    public GameMode getGameMode() {
+        throw new NotImplementedException();
+    }
 
-	public void setGameMode(GameMode mode) {
-		throw new NotImplementedException();
-	}
+    public void setGameMode(GameMode mode) {
+        throw new NotImplementedException();
+    }
 
-	public boolean isBlocking() {
-		return false;
-	}
+    public boolean isBlocking() {
+        return false;
+    }
 
-	public int getExpToLevel() {
-		return 0;
-	}
+    public int getExpToLevel() {
+        return 0;
+    }
 
-	public boolean isPermissionSet(String name) {
-		return false;
-	}
+    public boolean isPermissionSet(String name) {
+        return false;
+    }
 
-	public boolean isPermissionSet(Permission perm) {
-		return false;
-	}
+    public boolean isPermissionSet(Permission perm) {
+        return false;
+    }
 
-	public boolean hasPermission(String name) {
-		return false;
-	}
+    public boolean hasPermission(String name) {
+        return false;
+    }
 
-	public boolean hasPermission(Permission perm) {
-		return false;
-	}
+    public boolean hasPermission(Permission perm) {
+        return false;
+    }
 
-	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
-		throw new NotImplementedException();
-	}
+    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
+        throw new NotImplementedException();
+    }
 
-	public PermissionAttachment addAttachment(Plugin plugin) {
-		throw new NotImplementedException();
-	}
+    public PermissionAttachment addAttachment(Plugin plugin) {
+        throw new NotImplementedException();
+    }
 
-	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
-		throw new NotImplementedException();
-	}
+    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
+        throw new NotImplementedException();
+    }
 
-	public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
-		throw new NotImplementedException();
-	}
+    public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
+        throw new NotImplementedException();
+    }
 
-	public void removeAttachment(PermissionAttachment attachment) {
-		throw new NotImplementedException();
-	}
+    public void removeAttachment(PermissionAttachment attachment) {
+        throw new NotImplementedException();
+    }
 
-	public void recalculatePermissions() {
-		throw new NotImplementedException();
-	}
+    public void recalculatePermissions() {
+        throw new NotImplementedException();
+    }
 
-	public Set<PermissionAttachmentInfo> getEffectivePermissions() {
-		throw new NotImplementedException();
-	}
+    public Set<PermissionAttachmentInfo> getEffectivePermissions() {
+        throw new NotImplementedException();
+    }
 
-	public boolean isOp() {
-		return false;
-	}
+    public boolean isOp() {
+        return false;
+    }
 
-	public void setOp(boolean value) {
-		throw new NotImplementedException();
-	}
+    public void setOp(boolean value) {
+        throw new NotImplementedException();
+    }
 }

@@ -28,11 +28,11 @@ import org.bukkit.entity.Cow;
 import org.bukkit.entity.EntityType;
 
 public class CanaryCow extends CanaryAnimals implements Cow {
-	public CanaryCow(net.canarymod.api.entity.living.animal.Cow entity) {
-		super(entity);
-	}
-	
-	public EntityType getType() {
-		return EntityType.COW;
-	}
+    public CanaryCow(net.canarymod.api.entity.living.animal.Cow entity) {
+        super(entity);
+    }
+
+    public EntityType getType() {
+        return EntityType.COW;
+    }
 }

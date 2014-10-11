@@ -28,30 +28,30 @@ import org.bukkit.entity.Zombie;
 import org.bukkit.entity.EntityType;
 
 public class CanaryZombie extends CanaryAgeable implements Zombie {
-	private net.canarymod.api.entity.living.monster.Zombie entity;
+    private net.canarymod.api.entity.living.monster.Zombie entity;
 
-	public CanaryZombie(net.canarymod.api.entity.living.monster.Zombie entity) {
-		super(entity);
-		this.entity = entity;
-	}
-	
-	public boolean isBaby() {
-		return entity.isChild();
-	}
+    public CanaryZombie(net.canarymod.api.entity.living.monster.Zombie entity) {
+        super(entity);
+        this.entity = entity;
+    }
 
-	public void setBaby(boolean flag) {
-		entity.setChild(flag);
-	}
+    public boolean isBaby() {
+        return entity.isChild();
+    }
 
-	public boolean isVillager() {
-		return entity.isVillager();
-	}
+    public void setBaby(boolean flag) {
+        entity.setChild(flag);
+    }
 
-	public void setVillager(boolean flag) {
-		entity.setVillager(flag);
-	}
-	
-	public EntityType getType() {
-		return EntityType.ZOMBIE;
-	}
+    public boolean isVillager() {
+        return entity.isVillager();
+    }
+
+    public void setVillager(boolean flag) {
+        entity.setVillager(flag);
+    }
+
+    public EntityType getType() {
+        return EntityType.ZOMBIE;
+    }
 }

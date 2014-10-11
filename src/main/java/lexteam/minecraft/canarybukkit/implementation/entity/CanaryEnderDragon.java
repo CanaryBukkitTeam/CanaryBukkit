@@ -32,15 +32,15 @@ import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.EntityType;
 
 public class CanaryEnderDragon extends CanaryMonster implements EnderDragon {
-	public CanaryEnderDragon(net.canarymod.api.entity.living.LivingBase entity) {
-		super(entity);
-	}
+    public CanaryEnderDragon(net.canarymod.api.entity.living.LivingBase entity) {
+        super(entity);
+    }
 
-	public Set<ComplexEntityPart> getParts() {
-		throw new NotImplementedException();
-	}
-	
-	public EntityType getType() {
-		return EntityType.ENDER_DRAGON;
-	}
+    public Set<ComplexEntityPart> getParts() {
+        throw new NotImplementedException();
+    }
+
+    public EntityType getType() {
+        return EntityType.ENDER_DRAGON;
+    }
 }

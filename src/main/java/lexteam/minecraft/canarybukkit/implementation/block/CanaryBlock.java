@@ -46,195 +46,198 @@ import java.util.List;
 import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 
 public class CanaryBlock implements Block {
-	private net.canarymod.api.world.blocks.Block block;
+    private net.canarymod.api.world.blocks.Block block;
 
-	public CanaryBlock(net.canarymod.api.world.blocks.Block block) {
-		this.block = block;
-	}
+    public CanaryBlock(net.canarymod.api.world.blocks.Block block) {
+        this.block = block;
+    }
 
-	public byte getData() {
-		throw new NotImplementedException();
-	}
+    public byte getData() {
+        throw new NotImplementedException();
+    }
 
-	public Block getRelative(int modX, int modY, int modZ) {
-		throw new NotImplementedException();
-	}
+    public Block getRelative(int modX, int modY, int modZ) {
+        throw new NotImplementedException();
+    }
 
-	public Block getRelative(BlockFace face) {
-		throw new NotImplementedException();
-	}
+    public Block getRelative(BlockFace face) {
+        throw new NotImplementedException();
+    }
 
-	public Block getRelative(BlockFace face, int distance) {
-		throw new NotImplementedException();
-	}
+    public Block getRelative(BlockFace face, int distance) {
+        throw new NotImplementedException();
+    }
 
-	public Material getType() {
-		return Material.getMaterial(getTypeId());
-	}
+    public Material getType() {
+        return Material.getMaterial(getTypeId());
+    }
 
-	public int getTypeId() {
-		return block.getTypeId();
-	}
+    public int getTypeId() {
+        return block.getTypeId();
+    }
 
-	public byte getLightLevel() {
-		throw new NotImplementedException();
-	}
+    public byte getLightLevel() {
+        throw new NotImplementedException();
+    }
 
-	public byte getLightFromSky() {
-		throw new NotImplementedException();
-	}
+    public byte getLightFromSky() {
+        throw new NotImplementedException();
+    }
 
-	public byte getLightFromBlocks() {
-		throw new NotImplementedException();
-	}
+    public byte getLightFromBlocks() {
+        throw new NotImplementedException();
+    }
 
-	public World getWorld() {
-		return new CanaryWorld(block.getWorld());
-	}
+    public World getWorld() {
+        return new CanaryWorld(block.getWorld());
+    }
 
-	public int getX() {
-		return block.getX();
-	}
+    public int getX() {
+        return block.getX();
+    }
 
-	public int getY() {
-		return block.getY();
-	}
+    public int getY() {
+        return block.getY();
+    }
 
-	public int getZ() {
-		return block.getZ();
-	}
+    public int getZ() {
+        return block.getZ();
+    }
 
-	public Location getLocation() {
-		return new Location(new CanaryWorld(block.getWorld()), block.getX(), block.getY(), block.getZ());
-	}
+    public Location getLocation() {
+        return new Location(new CanaryWorld(block.getWorld()), block.getX(), block.getY(), block.getZ());
+    }
 
-	public Location getLocation(Location loc) {
-		if (loc != null) {
-			loc.setWorld(getWorld());
+    public Location getLocation(Location loc) {
+        if (loc != null) {
+            loc.setWorld(getWorld());
             loc.setX(getX());
             loc.setY(getY());
             loc.setZ(getX());
-		}
-		return loc;
-	}
+        }
+        return loc;
+    }
 
-	public Chunk getChunk() {
-		throw new NotImplementedException();
-	}
+    public Chunk getChunk() {
+        throw new NotImplementedException();
+    }
 
-	public void setData(byte data) {
-		throw new NotImplementedException();
-	}
+    public void setData(byte data) {
+        throw new NotImplementedException();
+    }
 
-	public void setData(byte data, boolean applyPhysics) {
-		throw new NotImplementedException();
-	}
+    public void setData(byte data, boolean applyPhysics) {
+        throw new NotImplementedException();
+    }
 
-	public void setType(Material type) {
-		throw new NotImplementedException();
-	}
+    public void setType(Material type) {
+        throw new NotImplementedException();
+    }
 
-	public boolean setTypeId(int type) {
-		throw new NotImplementedException();
-	}
+    public boolean setTypeId(int type) {
+        throw new NotImplementedException();
+    }
 
-	public boolean setTypeId(int type, boolean applyPhysics) {
-		throw new NotImplementedException();
-	}
+    public boolean setTypeId(int type, boolean applyPhysics) {
+        throw new NotImplementedException();
+    }
 
-	public boolean setTypeIdAndData(int type, byte data, boolean applyPhysics) {
-		throw new NotImplementedException();
-	}
+    public boolean setTypeIdAndData(int type, byte data, boolean applyPhysics) {
+        throw new NotImplementedException();
+    }
 
-	public BlockFace getFace(Block block) {
-		throw new NotImplementedException();
-	}
+    public BlockFace getFace(Block block) {
+        throw new NotImplementedException();
+    }
 
-	public BlockState getState() {
-		throw new NotImplementedException();
-	}
+    public BlockState getState() {
+        throw new NotImplementedException();
+    }
 
-	public Biome getBiome() {
-		return Biome.valueOf(block.getWorld().getBiome(block.getX(), block.getZ()).getBiomeType().name()); // Check it works
-	}
+    public Biome getBiome() {
+        return Biome.valueOf(block.getWorld().getBiome(block.getX(), block.getZ()).getBiomeType().name()); // Check
+                                                                                                           // it
+                                                                                                           // works
+    }
 
-	public void setBiome(Biome bio) {
-		block.getWorld().setBiome(block.getX(), block.getZ(), BiomeType.valueOf(bio.name()));
-	}
+    public void setBiome(Biome bio) {
+        block.getWorld().setBiome(block.getX(), block.getZ(), BiomeType.valueOf(bio.name()));
+    }
 
-	public boolean isBlockPowered() {
-		throw new NotImplementedException();
-	}
+    public boolean isBlockPowered() {
+        throw new NotImplementedException();
+    }
 
-	public boolean isBlockIndirectlyPowered() {
-		throw new NotImplementedException();
-	}
+    public boolean isBlockIndirectlyPowered() {
+        throw new NotImplementedException();
+    }
 
-	public boolean isBlockFacePowered(BlockFace face) {
-		throw new NotImplementedException();
-	}
+    public boolean isBlockFacePowered(BlockFace face) {
+        throw new NotImplementedException();
+    }
 
-	public boolean isBlockFaceIndirectlyPowered(BlockFace face) {
-		throw new NotImplementedException();
-	}
+    public boolean isBlockFaceIndirectlyPowered(BlockFace face) {
+        throw new NotImplementedException();
+    }
 
-	public int getBlockPower(BlockFace face) {
-		throw new NotImplementedException();
-	}
+    public int getBlockPower(BlockFace face) {
+        throw new NotImplementedException();
+    }
 
-	public int getBlockPower() {
-		throw new NotImplementedException();
-	}
+    public int getBlockPower() {
+        throw new NotImplementedException();
+    }
 
-	public boolean isEmpty() {
-		return block.isAir();
-	}
+    public boolean isEmpty() {
+        return block.isAir();
+    }
 
-	public boolean isLiquid() {
-		return (getType() == Material.WATER) || (getType() == Material.STATIONARY_WATER) || (getType() == Material.LAVA) || (getType() == Material.STATIONARY_LAVA);
-	}
+    public boolean isLiquid() {
+        return (getType() == Material.WATER) || (getType() == Material.STATIONARY_WATER)
+                || (getType() == Material.LAVA) || (getType() == Material.STATIONARY_LAVA);
+    }
 
-	public double getTemperature() {
-		throw new NotImplementedException();
-	}
+    public double getTemperature() {
+        throw new NotImplementedException();
+    }
 
-	public double getHumidity() {
-		throw new NotImplementedException();
-	}
+    public double getHumidity() {
+        throw new NotImplementedException();
+    }
 
-	public PistonMoveReaction getPistonMoveReaction() {
-		throw new NotImplementedException();
-	}
+    public PistonMoveReaction getPistonMoveReaction() {
+        throw new NotImplementedException();
+    }
 
-	public boolean breakNaturally() {
-		throw new NotImplementedException();
-	}
+    public boolean breakNaturally() {
+        throw new NotImplementedException();
+    }
 
-	public boolean breakNaturally(ItemStack tool) {
-		throw new NotImplementedException();
-	}
+    public boolean breakNaturally(ItemStack tool) {
+        throw new NotImplementedException();
+    }
 
-	public Collection<ItemStack> getDrops() {
-		throw new NotImplementedException();
-	}
+    public Collection<ItemStack> getDrops() {
+        throw new NotImplementedException();
+    }
 
-	public Collection<ItemStack> getDrops(ItemStack tool) {
-		throw new NotImplementedException();
-	}
+    public Collection<ItemStack> getDrops(ItemStack tool) {
+        throw new NotImplementedException();
+    }
 
-	public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
-		throw new NotImplementedException();
-	}
+    public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
+        throw new NotImplementedException();
+    }
 
-	public List<MetadataValue> getMetadata(String metadataKey) {
-		throw new NotImplementedException();
-	}
+    public List<MetadataValue> getMetadata(String metadataKey) {
+        throw new NotImplementedException();
+    }
 
-	public boolean hasMetadata(String metadataKey) {
-		throw new NotImplementedException();
-	}
+    public boolean hasMetadata(String metadataKey) {
+        throw new NotImplementedException();
+    }
 
-	public void removeMetadata(String metadataKey, Plugin owningPlugin) {
-		throw new NotImplementedException();
-	}
+    public void removeMetadata(String metadataKey, Plugin owningPlugin) {
+        throw new NotImplementedException();
+    }
 }

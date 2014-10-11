@@ -28,11 +28,11 @@ import org.bukkit.entity.Spider;
 import org.bukkit.entity.EntityType;
 
 public class CanarySpider extends CanaryAgeable implements Spider {
-	public CanarySpider(net.canarymod.api.entity.living.LivingBase entity) {
-		super(entity);
-	}
-	
-	public EntityType getType() {
-		return EntityType.SPIDER;
-	}
+    public CanarySpider(net.canarymod.api.entity.living.LivingBase entity) {
+        super(entity);
+    }
+
+    public EntityType getType() {
+        return EntityType.SPIDER;
+    }
 }

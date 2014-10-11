@@ -28,47 +28,47 @@ import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Ageable;
 
 public class CanaryAgeable extends CanaryCreature implements Ageable {
-	public CanaryAgeable(net.canarymod.api.entity.living.LivingBase entity) {
-		super(entity);
-	}
+    public CanaryAgeable(net.canarymod.api.entity.living.LivingBase entity) {
+        super(entity);
+    }
 
-	public int getAge() {
-		return 0;
-	}
+    public int getAge() {
+        return 0;
+    }
 
-	public void setAge(int age) {
-		throw new NotImplementedException();
-	}
+    public void setAge(int age) {
+        throw new NotImplementedException();
+    }
 
-	public void setAgeLock(boolean lock) {
-		throw new NotImplementedException();
-	}
+    public void setAgeLock(boolean lock) {
+        throw new NotImplementedException();
+    }
 
-	public boolean getAgeLock() {
-		return false;
-	}
+    public boolean getAgeLock() {
+        return false;
+    }
 
-	public void setBaby() {
-		if (isAdult()) {
-			setAge(-24000);
-		}
-	}
+    public void setBaby() {
+        if (isAdult()) {
+            setAge(-24000);
+        }
+    }
 
-	public void setAdult() {
-		if (!isAdult()) {
-			setAge(0);
-		}
-	}
+    public void setAdult() {
+        if (!isAdult()) {
+            setAge(0);
+        }
+    }
 
-	public boolean isAdult() {
-		return getAge() >= 0;
-	}
+    public boolean isAdult() {
+        return getAge() >= 0;
+    }
 
-	public boolean canBreed() {
-		return getAge() == 0;
-	}
+    public boolean canBreed() {
+        return getAge() == 0;
+    }
 
-	public void setBreed(boolean breed) {
-		throw new NotImplementedException();
-	}
+    public void setBreed(boolean breed) {
+        throw new NotImplementedException();
+    }
 }

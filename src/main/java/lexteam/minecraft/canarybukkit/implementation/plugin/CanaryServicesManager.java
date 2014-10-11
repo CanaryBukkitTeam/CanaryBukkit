@@ -34,43 +34,43 @@ import java.util.Collection;
 import java.util.List;
 
 public class CanaryServicesManager implements ServicesManager {
-	public <T> void register(Class<T> service, T provider, Plugin plugin, ServicePriority priority) {
-		throw new NotImplementedException();
-	}
+    public <T> void register(Class<T> service, T provider, Plugin plugin, ServicePriority priority) {
+        throw new NotImplementedException();
+    }
 
-	public void unregisterAll(Plugin plugin) {
-		throw new NotImplementedException();
-	}
+    public void unregisterAll(Plugin plugin) {
+        throw new NotImplementedException();
+    }
 
-	public void unregister(Class<?> service, Object provider) {
-		throw new NotImplementedException();
-	}
+    public void unregister(Class<?> service, Object provider) {
+        throw new NotImplementedException();
+    }
 
-	public void unregister(Object provider) {
-		throw new NotImplementedException();
-	}
+    public void unregister(Object provider) {
+        throw new NotImplementedException();
+    }
 
-	public <T> T load(Class<T> service) {
-		throw new NotImplementedException();
-	}
+    public <T> T load(Class<T> service) {
+        throw new NotImplementedException();
+    }
 
-	public <T> RegisteredServiceProvider<T> getRegistration(Class<T> service) {
-		throw new NotImplementedException();
-	}
+    public <T> RegisteredServiceProvider<T> getRegistration(Class<T> service) {
+        throw new NotImplementedException();
+    }
 
-	public List<RegisteredServiceProvider<?>> getRegistrations(Plugin plugin) {
-		throw new NotImplementedException();
-	}
+    public List<RegisteredServiceProvider<?>> getRegistrations(Plugin plugin) {
+        throw new NotImplementedException();
+    }
 
-	public <T> Collection<RegisteredServiceProvider<T>> getRegistrations(Class<T> service) {
-		throw new NotImplementedException();
-	}
+    public <T> Collection<RegisteredServiceProvider<T>> getRegistrations(Class<T> service) {
+        throw new NotImplementedException();
+    }
 
-	public Collection<Class<?>> getKnownServices() {
-		throw new NotImplementedException();
-	}
+    public Collection<Class<?>> getKnownServices() {
+        throw new NotImplementedException();
+    }
 
-	public <T> boolean isProvidedFor(Class<T> service) {
-		return false;
-	}
+    public <T> boolean isProvidedFor(Class<T> service) {
+        return false;
+    }
 }

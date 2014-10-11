@@ -32,35 +32,40 @@ import net.canarymod.commandsys.Command;
 import net.canarymod.commandsys.CommandListener;
 
 public class CanaryCommands implements CommandListener {
-	@Command(aliases = {"bdisable"},
-			description = "disable Bukkit plugin",
-			permissions = {"bukkit.disableplugin"},
-			toolTip = "/bdisable <plugin>",
-			version = 2)
-	public void bdisableCommand(MessageReceiver caller, String[] parameters) {
-		Bukkit.getServer().getPluginManager().disablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0]));
-		caller.message("Disabled plugin.");
-	}
-	
-	@Command(aliases = {"benable"},
-			description = "enable Bukkit plugin",
-			permissions = {"bukkit.enableplugin"},
-			toolTip = "/benable <plugin>",
-			version = 2)
-	public void benableCommand(MessageReceiver caller, String[] parameters) {
-		Bukkit.getServer().getPluginManager().enablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0])); //TODO: Check if works
-		caller.message("Enabled plugin.");
-	}
-	
-	@Command(aliases = {"bplugins"},
-			description = "list Bukkit plugins",
-			permissions = {"bukkit.listplugins"},
-			toolTip = "/bplugins",
-			version = 2)
-	public void bpluginsCommand(MessageReceiver caller, String[] parameters) {
-		caller.message("Bukkit plugins:");
-		for(Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
-			caller.message(plugin.getName());
-		}
-	}
+    @Command(aliases = { "bdisable" },
+             description = "disable Bukkit plugin",
+             permissions = { "bukkit.disableplugin" },
+             toolTip = "/bdisable <plugin>",
+             version = 2)
+    public void bdisableCommand(MessageReceiver caller, String[] parameters) {
+        Bukkit.getServer().getPluginManager()
+                .disablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0]));
+        caller.message("Disabled plugin.");
+    }
+
+    @Command(aliases = { "benable" },
+             description = "enable Bukkit plugin",
+             permissions = { "bukkit.enableplugin" },
+             toolTip = "/benable <plugin>",
+             version = 2)
+    public void benableCommand(MessageReceiver caller, String[] parameters) {
+        Bukkit.getServer().getPluginManager()
+                .enablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0])); // TODO:
+                                                                                               // Check
+                                                                                               // if
+                                                                                               // works
+        caller.message("Enabled plugin.");
+    }
+
+    @Command(aliases = { "bplugins" },
+             description = "list Bukkit plugins",
+             permissions = { "bukkit.listplugins" },
+             toolTip = "/bplugins",
+             version = 2)
+    public void bpluginsCommand(MessageReceiver caller, String[] parameters) {
+        caller.message("Bukkit plugins:");
+        for (Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
+            caller.message(plugin.getName());
+        }
+    }
 }

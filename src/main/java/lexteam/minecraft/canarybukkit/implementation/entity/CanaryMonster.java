@@ -27,7 +27,7 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.Monster;
 
 public class CanaryMonster extends CanaryCreature implements Monster {
-	public CanaryMonster(net.canarymod.api.entity.living.LivingBase entity) {
-		super(entity);
-	}
+    public CanaryMonster(net.canarymod.api.entity.living.LivingBase entity) {
+        super(entity);
+    }
 }

@@ -50,63 +50,94 @@ import net.canarymod.hook.world.LightningStrikeHook;
 import net.canarymod.plugin.PluginListener;
 
 public class CanaryListener implements PluginListener {
-	@HookHandler
-	public void onPlayerJoin(ConnectionHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.player.PlayerJoinEvent(new CanaryPlayer(hook.getPlayer()), hook.getMessage()));
-	}
-	
-	@HookHandler
-	public void onPlayerQuit(DisconnectionHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.player.PlayerQuitEvent(new CanaryPlayer(hook.getPlayer()), hook.getLeaveMessage()));
-	}
-	
-	@HookHandler
-	public void onPlayerDeath(PlayerDeathHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.entity.PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, hook.getPlayer().getExperience(), hook.getDeathMessage1().getFullText())); //TODO: Fill in and check.
-	}
-	
-	@HookHandler
-    public void blockDestroy(BlockDestroyHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.block.BlockBreakEvent(new CanaryBlock(hook.getBlock()), new CanaryPlayer(hook.getPlayer())));
-	}
-	
-	@HookHandler
-	public void blockPlace(BlockPlaceHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.block.BlockPlaceEvent(new CanaryBlock(hook.getBlockPlaced()), null, new CanaryBlock(hook.getBlockClicked()), null, new CanaryPlayer(hook.getPlayer()), hook.isCanceled())); //TODO: Fill in and check some of the arguments.
-	}
-	
-	@HookHandler
-	public void onChunkLoad(ChunkLoadedHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.ChunkLoadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld())), hook.isNew()));
-	}
-	
-	@HookHandler
-	public void onChunkUnload(ChunkUnloadHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld()))));
-	}
-	
-	@HookHandler
-	public void onWorldLoad(LoadWorldHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.WorldLoadEvent(new CanaryWorld(hook.getWorld())));
-	}
+    @HookHandler
+    public void onPlayerJoin(ConnectionHook hook) {
+        Bukkit.getPluginManager().callEvent(
+                new org.bukkit.event.player.PlayerJoinEvent(new CanaryPlayer(hook.getPlayer()), hook
+                        .getMessage()));
+    }
 
-	@HookHandler
-	public void onWorldUnload(UnloadWorldHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.world.WorldUnloadEvent(new CanaryWorld(hook.getWorld())));
-	}
-	
-	@HookHandler
-	public void onTeleportation(TeleportHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.player.PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()), new CanaryLocation(hook.getPlayer().getLocation(), new CanaryWorld(hook.getDestination().getWorld())), new CanaryLocation(hook.getDestination(), new CanaryWorld(hook.getDestination().getWorld()))));
-	}
-	
-	@HookHandler
-	public void onLightningStrike(LightningStrikeHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.weather.LightningStrikeEvent(new CanaryWorld(hook.getLightningBolt().getWorld()), new CanaryLightningStrike(hook.getLightningBolt())));
-	}
-	
-	@HookHandler
-	public void onConsoleCommand(ConsoleCommandHook hook) {
-		Bukkit.getPluginManager().callEvent(new org.bukkit.event.server.ServerCommandEvent(new CanaryCommandSender(hook.getCaller()), hook.getCommand()[0]));
-	}
+    @HookHandler
+    public void onPlayerQuit(DisconnectionHook hook) {
+        Bukkit.getPluginManager().callEvent(
+                new org.bukkit.event.player.PlayerQuitEvent(new CanaryPlayer(hook.getPlayer()), hook
+                        .getLeaveMessage()));
+    }
+
+    @HookHandler
+    public void onPlayerDeath(PlayerDeathHook hook) {
+        Bukkit.getPluginManager().callEvent(
+                new org.bukkit.event.entity.PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, hook
+                        .getPlayer().getExperience(), hook.getDeathMessage1().getFullText())); // TODO:
+                                                                                               // Fill
+                                                                                               // in
+                                                                                               // and
+                                                                                               // check.
+    }
+
+    @HookHandler
+    public void blockDestroy(BlockDestroyHook hook) {
+        Bukkit.getPluginManager().callEvent(
+                new org.bukkit.event.block.BlockBreakEvent(new CanaryBlock(hook.getBlock()),
+                        new CanaryPlayer(hook.getPlayer())));
+    }
+
+    @HookHandler
+    public void blockPlace(BlockPlaceHook hook) {
+        Bukkit.getPluginManager().callEvent(
+                new org.bukkit.event.block.BlockPlaceEvent(new CanaryBlock(hook.getBlockPlaced()), null,
+                        new CanaryBlock(hook.getBlockClicked()), null, new CanaryPlayer(hook.getPlayer()),
+                        hook.isCanceled())); // TODO: Fill in and
+                                             // check some of the
+                                             // arguments.
+    }
+
+    @HookHandler
+    public void onChunkLoad(ChunkLoadedHook hook) {
+        Bukkit.getPluginManager().callEvent(
+                new org.bukkit.event.world.ChunkLoadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(
+                        hook.getWorld())), hook.isNew()));
+    }
+
+    @HookHandler
+    public void onChunkUnload(ChunkUnloadHook hook) {
+        Bukkit.getPluginManager().callEvent(
+                new org.bukkit.event.world.ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(
+                        hook.getWorld()))));
+    }
+
+    @HookHandler
+    public void onWorldLoad(LoadWorldHook hook) {
+        Bukkit.getPluginManager().callEvent(
+                new org.bukkit.event.world.WorldLoadEvent(new CanaryWorld(hook.getWorld())));
+    }
+
+    @HookHandler
+    public void onWorldUnload(UnloadWorldHook hook) {
+        Bukkit.getPluginManager().callEvent(
+                new org.bukkit.event.world.WorldUnloadEvent(new CanaryWorld(hook.getWorld())));
+    }
+
+    @HookHandler
+    public void onTeleportation(TeleportHook hook) {
+        Bukkit.getPluginManager().callEvent(
+                new org.bukkit.event.player.PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()),
+                        new CanaryLocation(hook.getPlayer().getLocation(), new CanaryWorld(hook
+                                .getDestination().getWorld())), new CanaryLocation(hook.getDestination(),
+                                new CanaryWorld(hook.getDestination().getWorld()))));
+    }
+
+    @HookHandler
+    public void onLightningStrike(LightningStrikeHook hook) {
+        Bukkit.getPluginManager().callEvent(
+                new org.bukkit.event.weather.LightningStrikeEvent(new CanaryWorld(hook.getLightningBolt()
+                        .getWorld()), new CanaryLightningStrike(hook.getLightningBolt())));
+    }
+
+    @HookHandler
+    public void onConsoleCommand(ConsoleCommandHook hook) {
+        Bukkit.getPluginManager().callEvent(
+                new org.bukkit.event.server.ServerCommandEvent(new CanaryCommandSender(hook.getCaller()),
+                        hook.getCommand()[0]));
+    }
 }

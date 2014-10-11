@@ -28,11 +28,11 @@ import org.bukkit.entity.Bat;
 import org.bukkit.entity.EntityType;
 
 public class CanaryBat extends CanaryMonster implements Bat {
-	public CanaryBat(net.canarymod.api.entity.living.animal.Bat entity) {
-		super(entity);
-	}
-	
-	public EntityType getType() {
-		return EntityType.BAT;
-	}
+    public CanaryBat(net.canarymod.api.entity.living.animal.Bat entity) {
+        super(entity);
+    }
+
+    public EntityType getType() {
+        return EntityType.BAT;
+    }
 }

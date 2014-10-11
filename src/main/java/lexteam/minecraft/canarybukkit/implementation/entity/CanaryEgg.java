@@ -30,23 +30,23 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.projectiles.ProjectileSource;
 
 public class CanaryEgg extends AbstractProjectile implements Egg {
-	public CanaryEgg(net.canarymod.api.entity.Entity entity) {
-		super(entity);
-	}
+    public CanaryEgg(net.canarymod.api.entity.Entity entity) {
+        super(entity);
+    }
 
-	public LivingEntity _INVALID_getShooter() {
-		throw new NotImplementedException();
-	}
+    public LivingEntity _INVALID_getShooter() {
+        throw new NotImplementedException();
+    }
 
-	public ProjectileSource getShooter() {
-		throw new NotImplementedException();
-	}
+    public ProjectileSource getShooter() {
+        throw new NotImplementedException();
+    }
 
-	public void _INVALID_setShooter(LivingEntity shooter) {
-		throw new NotImplementedException();
-	}
+    public void _INVALID_setShooter(LivingEntity shooter) {
+        throw new NotImplementedException();
+    }
 
-	public void setShooter(ProjectileSource source) {
-		throw new NotImplementedException();
-	}
+    public void setShooter(ProjectileSource source) {
+        throw new NotImplementedException();
+    }
 }

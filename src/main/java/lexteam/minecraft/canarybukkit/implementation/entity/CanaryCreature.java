@@ -29,15 +29,23 @@ import org.bukkit.entity.Creature;
 import org.bukkit.entity.LivingEntity;
 
 public class CanaryCreature extends CanaryLivingEntity implements Creature {
-	public CanaryCreature(net.canarymod.api.entity.living.LivingBase entity) { // See if there is a better class than LivingBase
-		super(entity);
-	}
+    public CanaryCreature(net.canarymod.api.entity.living.LivingBase entity) { // See
+                                                                               // if
+                                                                               // there
+                                                                               // is
+                                                                               // a
+                                                                               // better
+                                                                               // class
+                                                                               // than
+                                                                               // LivingBase
+        super(entity);
+    }
 
-	public void setTarget(LivingEntity target) {
-		throw new NotImplementedException();
-	}
+    public void setTarget(LivingEntity target) {
+        throw new NotImplementedException();
+    }
 
-	public LivingEntity getTarget() {
-		throw new NotImplementedException();
-	}
+    public LivingEntity getTarget() {
+        throw new NotImplementedException();
+    }
 }

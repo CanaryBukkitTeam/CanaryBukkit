@@ -35,55 +35,55 @@ import java.util.Set;
 
 public class CanaryPermissible implements Permissible {
 
-	public boolean isOp() {
-		throw new NotImplementedException();
-	}
+    public boolean isOp() {
+        throw new NotImplementedException();
+    }
 
-	public void setOp(boolean value) {
-		throw new NotImplementedException();
-	}
+    public void setOp(boolean value) {
+        throw new NotImplementedException();
+    }
 
-	public boolean isPermissionSet(String name) {
-		throw new NotImplementedException();
-	}
+    public boolean isPermissionSet(String name) {
+        throw new NotImplementedException();
+    }
 
-	public boolean isPermissionSet(Permission perm) {
-		throw new NotImplementedException();
-	}
+    public boolean isPermissionSet(Permission perm) {
+        throw new NotImplementedException();
+    }
 
-	public boolean hasPermission(String name) {
-		throw new NotImplementedException();
-	}
+    public boolean hasPermission(String name) {
+        throw new NotImplementedException();
+    }
 
-	public boolean hasPermission(Permission perm) {
-		throw new NotImplementedException();
-	}
+    public boolean hasPermission(Permission perm) {
+        throw new NotImplementedException();
+    }
 
-	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
-		throw new NotImplementedException();
-	}
+    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
+        throw new NotImplementedException();
+    }
 
-	public PermissionAttachment addAttachment(Plugin plugin) {
-		throw new NotImplementedException();
-	}
+    public PermissionAttachment addAttachment(Plugin plugin) {
+        throw new NotImplementedException();
+    }
 
-	public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
-		throw new NotImplementedException();
-	}
+    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
+        throw new NotImplementedException();
+    }
 
-	public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
-		throw new NotImplementedException();
-	}
+    public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
+        throw new NotImplementedException();
+    }
 
-	public void removeAttachment(PermissionAttachment attachment) {
-		throw new NotImplementedException();
-	}
+    public void removeAttachment(PermissionAttachment attachment) {
+        throw new NotImplementedException();
+    }
 
-	public void recalculatePermissions() {
-		throw new NotImplementedException();
-	}
+    public void recalculatePermissions() {
+        throw new NotImplementedException();
+    }
 
-	public Set<PermissionAttachmentInfo> getEffectivePermissions() {
-		throw new NotImplementedException();
-	}
+    public Set<PermissionAttachmentInfo> getEffectivePermissions() {
+        throw new NotImplementedException();
+    }
 }

@@ -27,7 +27,7 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.Animals;
 
 public class CanaryAnimals extends CanaryAgeable implements Animals {
-	public CanaryAnimals(net.canarymod.api.entity.living.LivingBase entity) {
-		super(entity);
-	}
+    public CanaryAnimals(net.canarymod.api.entity.living.LivingBase entity) {
+        super(entity);
+    }
 }

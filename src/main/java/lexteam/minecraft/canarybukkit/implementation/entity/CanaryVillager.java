@@ -29,19 +29,19 @@ import org.bukkit.entity.Villager;
 import org.bukkit.entity.EntityType;
 
 public class CanaryVillager extends CanaryAgeable implements Villager {
-	public CanaryVillager(net.canarymod.api.entity.living.LivingBase entity) {
-		super(entity);
-	}
-	
-	public Profession getProfession() {
-		throw new NotImplementedException();
-	}
+    public CanaryVillager(net.canarymod.api.entity.living.LivingBase entity) {
+        super(entity);
+    }
 
-	public void setProfession(Profession profession) {
-		throw new NotImplementedException();
-	}
-	
-	public EntityType getType() {
-		return EntityType.ENDERMAN;
-	}
+    public Profession getProfession() {
+        throw new NotImplementedException();
+    }
+
+    public void setProfession(Profession profession) {
+        throw new NotImplementedException();
+    }
+
+    public EntityType getType() {
+        return EntityType.ENDERMAN;
+    }
 }

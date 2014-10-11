@@ -27,14 +27,14 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.Projectile;
 
 public abstract class AbstractProjectile extends CanaryEntity implements Projectile {
-	private boolean doesBounce;
-	
-	public AbstractProjectile(net.canarymod.api.entity.Entity entity) {
-		super(entity);
-		doesBounce = false;
-	}
-	
-	public boolean doesBounce() {
+    private boolean doesBounce;
+
+    public AbstractProjectile(net.canarymod.api.entity.Entity entity) {
+        super(entity);
+        doesBounce = false;
+    }
+
+    public boolean doesBounce() {
         return doesBounce;
     }
 

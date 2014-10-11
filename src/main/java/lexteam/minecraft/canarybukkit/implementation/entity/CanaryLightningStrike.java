@@ -27,11 +27,11 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.LightningStrike;
 
 public class CanaryLightningStrike extends CanaryEntity implements LightningStrike {
-	public CanaryLightningStrike(net.canarymod.api.entity.effect.LightningBolt entity) {
-		super(entity);
-	}
+    public CanaryLightningStrike(net.canarymod.api.entity.effect.LightningBolt entity) {
+        super(entity);
+    }
 
-	public boolean isEffect() {
-		return false;
-	}
+    public boolean isEffect() {
+        return false;
+    }
 }

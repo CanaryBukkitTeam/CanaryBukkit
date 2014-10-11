@@ -29,13 +29,13 @@ import java.io.File;
 import net.canarymod.Canary;
 
 public class Constants {
-	// General data
-	public static final String canaryBukkitVersion = "0.1";
-	// Canary
-	public static final File canaryDir = Canary.getWorkingDirectory();
-	public static final File worldsDir = new File(canaryDir, "worlds");
-	// CanaryBukkit
-	public static final File bukkitDir = new File(canaryDir, "bukkit");
-	public static final File pluginsDir = new File(bukkitDir, "plugins");
-	public static final File configDir = new File(bukkitDir, "config");
+    // General data
+    public static final String canaryBukkitVersion = "0.1";
+    // Canary
+    public static final File canaryDir = Canary.getWorkingDirectory();
+    public static final File worldsDir = new File(canaryDir, "worlds");
+    // CanaryBukkit
+    public static final File bukkitDir = new File(canaryDir, "bukkit");
+    public static final File pluginsDir = new File(bukkitDir, "plugins");
+    public static final File configDir = new File(bukkitDir, "config");
 }

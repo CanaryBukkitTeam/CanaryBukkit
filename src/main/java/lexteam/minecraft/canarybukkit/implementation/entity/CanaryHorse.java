@@ -31,90 +31,90 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.HorseInventory;
 
 public class CanaryHorse extends CanaryAnimals implements Horse {
-	private net.canarymod.api.entity.living.animal.Horse horse;
+    private net.canarymod.api.entity.living.animal.Horse horse;
 
-	public CanaryHorse(net.canarymod.api.entity.living.animal.Horse entity) {
-		super(entity);
-		this.horse = entity;
-	}
+    public CanaryHorse(net.canarymod.api.entity.living.animal.Horse entity) {
+        super(entity);
+        this.horse = entity;
+    }
 
-	public boolean isTamed() {
-		return horse.isTamed();
-	}
+    public boolean isTamed() {
+        return horse.isTamed();
+    }
 
-	public void setTamed(boolean tame) {
-		horse.setTamed(tame);
-	}
+    public void setTamed(boolean tame) {
+        horse.setTamed(tame);
+    }
 
-	public AnimalTamer getOwner() {
-		throw new NotImplementedException();
-	}
+    public AnimalTamer getOwner() {
+        throw new NotImplementedException();
+    }
 
-	public void setOwner(AnimalTamer tamer) {
-		throw new NotImplementedException();
-	}
+    public void setOwner(AnimalTamer tamer) {
+        throw new NotImplementedException();
+    }
 
-	public Variant getVariant() {
-		throw new NotImplementedException();
-	}
+    public Variant getVariant() {
+        throw new NotImplementedException();
+    }
 
-	public void setVariant(Variant variant) {
-		throw new NotImplementedException();
-	}
+    public void setVariant(Variant variant) {
+        throw new NotImplementedException();
+    }
 
-	public Color getColor() {
-		throw new NotImplementedException();
-	}
+    public Color getColor() {
+        throw new NotImplementedException();
+    }
 
-	public void setColor(Color color) {
-		throw new NotImplementedException();
-	}
+    public void setColor(Color color) {
+        throw new NotImplementedException();
+    }
 
-	public Style getStyle() {
-		throw new NotImplementedException();
-	}
+    public Style getStyle() {
+        throw new NotImplementedException();
+    }
 
-	public void setStyle(Style style) {
-		throw new NotImplementedException();
-	}
+    public void setStyle(Style style) {
+        throw new NotImplementedException();
+    }
 
-	public boolean isCarryingChest() {
-		return horse.isChested();
-	}
+    public boolean isCarryingChest() {
+        return horse.isChested();
+    }
 
-	public void setCarryingChest(boolean chest) {
-		throw new NotImplementedException();
-	}
+    public void setCarryingChest(boolean chest) {
+        throw new NotImplementedException();
+    }
 
-	public int getDomestication() {
-		return 0;
-	}
+    public int getDomestication() {
+        return 0;
+    }
 
-	public void setDomestication(int level) {
-		throw new NotImplementedException();
-	}
+    public void setDomestication(int level) {
+        throw new NotImplementedException();
+    }
 
-	public int getMaxDomestication() {
-		return 0;
-	}
+    public int getMaxDomestication() {
+        return 0;
+    }
 
-	public void setMaxDomestication(int level) {
-		throw new NotImplementedException();
-	}
+    public void setMaxDomestication(int level) {
+        throw new NotImplementedException();
+    }
 
-	public double getJumpStrength() {
-		return 0;
-	}
+    public double getJumpStrength() {
+        return 0;
+    }
 
-	public void setJumpStrength(double strength) {
-		throw new NotImplementedException();
-	}
+    public void setJumpStrength(double strength) {
+        throw new NotImplementedException();
+    }
 
-	public HorseInventory getInventory() {
-		throw new NotImplementedException();
-	}
-	
-	public EntityType getType() {
-		return EntityType.COW;
-	}
+    public HorseInventory getInventory() {
+        throw new NotImplementedException();
+    }
+
+    public EntityType getType() {
+        return EntityType.COW;
+    }
 }

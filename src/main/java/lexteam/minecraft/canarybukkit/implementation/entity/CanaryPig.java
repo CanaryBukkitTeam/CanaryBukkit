@@ -28,22 +28,22 @@ import org.bukkit.entity.Pig;
 import org.bukkit.entity.EntityType;
 
 public class CanaryPig extends CanaryAnimals implements Pig {
-	private net.canarymod.api.entity.living.animal.Pig entity;
+    private net.canarymod.api.entity.living.animal.Pig entity;
 
-	public CanaryPig(net.canarymod.api.entity.living.animal.Pig entity) {
-		super(entity);
-		this.entity = entity;
-	}
-	
-	public boolean hasSaddle() {
-		return entity.isSaddled();
-	}
+    public CanaryPig(net.canarymod.api.entity.living.animal.Pig entity) {
+        super(entity);
+        this.entity = entity;
+    }
 
-	public void setSaddle(boolean saddled) {
-		entity.setSaddled(saddled);
-	}
-	
-	public EntityType getType() {
-		return EntityType.PIG;
-	}
+    public boolean hasSaddle() {
+        return entity.isSaddled();
+    }
+
+    public void setSaddle(boolean saddled) {
+        entity.setSaddled(saddled);
+    }
+
+    public EntityType getType() {
+        return EntityType.PIG;
+    }
 }

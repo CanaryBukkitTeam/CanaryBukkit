@@ -34,36 +34,36 @@ import net.canarymod.commandsys.CommandDependencyException;
 import net.canarymod.plugin.Plugin;
 
 public final class CanaryBukkit extends Plugin {
-	private CanaryServer server;
-	
-	@Override
-	public boolean enable() {
-		if(Bukkit.getServer() == null) {
-			server = new CanaryServer(Canary.getServer(), getLogman());
-			Bukkit.setServer(server);
-		}
-		// Enable Listener
-		Canary.hooks().registerListener(new CanaryListener(), this);
-		
-		// Enable Commands
-		try {
-			Canary.commands().registerCommands(new CanaryCommands(), this, false);
-		} catch (CommandDependencyException e) {
-			e.printStackTrace();
-		}
-		
-		// Check if the directories exist
-		if(!Constants.bukkitDir.exists()) {
-			Constants.pluginsDir.mkdirs();
-			Constants.configDir.mkdirs();
-		}
-		server.start();
-		
-		return true;
-	}
+    private CanaryServer server;
 
-	@Override
-	public void disable() {
-		server.disablePlugins();
-	}
+    @Override
+    public boolean enable() {
+        if (Bukkit.getServer() == null) {
+            server = new CanaryServer(Canary.getServer(), getLogman());
+            Bukkit.setServer(server);
+        }
+        // Enable Listener
+        Canary.hooks().registerListener(new CanaryListener(), this);
+
+        // Enable Commands
+        try {
+            Canary.commands().registerCommands(new CanaryCommands(), this, false);
+        } catch (CommandDependencyException e) {
+            e.printStackTrace();
+        }
+
+        // Check if the directories exist
+        if (!Constants.bukkitDir.exists()) {
+            Constants.pluginsDir.mkdirs();
+            Constants.configDir.mkdirs();
+        }
+        server.start();
+
+        return true;
+    }
+
+    @Override
+    public void disable() {
+        server.disablePlugins();
+    }
 }

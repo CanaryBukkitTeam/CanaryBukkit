@@ -32,27 +32,27 @@ import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
 
 public class CanaryCommandSender extends CanaryPermissible implements CommandSender {
-	private MessageReceiver sender;
+    private MessageReceiver sender;
 
-	public CanaryCommandSender(MessageReceiver sender) {
-		this.sender = sender;
-	}
-	
-	public void sendMessage(String message) {
-		sender.message(message);
-	}
+    public CanaryCommandSender(MessageReceiver sender) {
+        this.sender = sender;
+    }
 
-	public void sendMessage(String[] messages) {
-		for(String msg : messages) {
-			sender.message(msg);
-		}
-	}
+    public void sendMessage(String message) {
+        sender.message(message);
+    }
 
-	public Server getServer() {
-		throw new NotImplementedException();
-	}
+    public void sendMessage(String[] messages) {
+        for (String msg : messages) {
+            sender.message(msg);
+        }
+    }
 
-	public String getName() {
-		return sender.getName();
-	}
+    public Server getServer() {
+        throw new NotImplementedException();
+    }
+
+    public String getName() {
+        return sender.getName();
+    }
 }
