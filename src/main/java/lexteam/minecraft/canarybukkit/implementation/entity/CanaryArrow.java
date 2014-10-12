@@ -68,14 +68,4 @@ public class CanaryArrow extends AbstractProjectile implements Arrow {
     public void setShooter(ProjectileSource source) {
         throw new NotImplementedException();
     }
-
-    @Override
-    public boolean doesBounce() {
-        return false;
-    }
-
-    @Override
-    public void setBounce(boolean doesBounce) {
-        throw new NotImplementedException();
-    }
 }

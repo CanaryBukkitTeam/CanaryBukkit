@@ -26,23 +26,22 @@ package lexteam.minecraft.canarybukkit;
 
 import lexteam.minecraft.canarybukkit.implementation.CanaryChunk;
 import lexteam.minecraft.canarybukkit.implementation.CanaryLocation;
+import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
 import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
-import lexteam.minecraft.canarybukkit.implementation.command.CanaryCommandSender;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryLightningStrike;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
-
-import org.bukkit.Bukkit;
-
 import net.canarymod.hook.HookHandler;
-import net.canarymod.hook.command.ConsoleCommandHook;
 import net.canarymod.hook.player.BlockDestroyHook;
 import net.canarymod.hook.player.BlockPlaceHook;
+import net.canarymod.hook.player.ChatHook;
 import net.canarymod.hook.player.ConnectionHook;
 import net.canarymod.hook.player.DisconnectionHook;
+import net.canarymod.hook.player.EnchantHook;
 import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.hook.player.TeleportHook;
 import net.canarymod.hook.system.LoadWorldHook;
+import net.canarymod.hook.system.ServerListPingHook;
 import net.canarymod.hook.system.UnloadWorldHook;
 import net.canarymod.hook.world.ChunkLoadedHook;
 import net.canarymod.hook.world.ChunkUnloadHook;
@@ -50,23 +49,29 @@ import net.canarymod.hook.world.LightningStrikeHook;
 import net.canarymod.plugin.PluginListener;
 
 public class CanaryListener implements PluginListener {
+    private CanaryServer server;
+
+    public CanaryListener(CanaryServer server) {
+        this.server = server;
+    }
+
     @HookHandler
     public void onPlayerJoin(ConnectionHook hook) {
-        Bukkit.getPluginManager().callEvent(
+        server.getPluginManager().callEvent(
                 new org.bukkit.event.player.PlayerJoinEvent(new CanaryPlayer(hook.getPlayer()), hook
                         .getMessage()));
     }
 
     @HookHandler
     public void onPlayerQuit(DisconnectionHook hook) {
-        Bukkit.getPluginManager().callEvent(
+        server.getPluginManager().callEvent(
                 new org.bukkit.event.player.PlayerQuitEvent(new CanaryPlayer(hook.getPlayer()), hook
                         .getLeaveMessage()));
     }
 
     @HookHandler
     public void onPlayerDeath(PlayerDeathHook hook) {
-        Bukkit.getPluginManager().callEvent(
+        server.getPluginManager().callEvent(
                 new org.bukkit.event.entity.PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, hook
                         .getPlayer().getExperience(), hook.getDeathMessage1().getFullText()));
         // TODO: Fill in and check.
@@ -74,14 +79,14 @@ public class CanaryListener implements PluginListener {
 
     @HookHandler
     public void blockDestroy(BlockDestroyHook hook) {
-        Bukkit.getPluginManager().callEvent(
+        server.getPluginManager().callEvent(
                 new org.bukkit.event.block.BlockBreakEvent(new CanaryBlock(hook.getBlock()),
                         new CanaryPlayer(hook.getPlayer())));
     }
 
     @HookHandler
     public void blockPlace(BlockPlaceHook hook) {
-        Bukkit.getPluginManager().callEvent(
+        server.getPluginManager().callEvent(
                 new org.bukkit.event.block.BlockPlaceEvent(new CanaryBlock(hook.getBlockPlaced()), null,
                         new CanaryBlock(hook.getBlockClicked()), null, new CanaryPlayer(hook.getPlayer()),
                         hook.isCanceled()));
@@ -90,33 +95,33 @@ public class CanaryListener implements PluginListener {
 
     @HookHandler
     public void onChunkLoad(ChunkLoadedHook hook) {
-        Bukkit.getPluginManager().callEvent(
+        server.getPluginManager().callEvent(
                 new org.bukkit.event.world.ChunkLoadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(
                         hook.getWorld())), hook.isNew()));
     }
 
     @HookHandler
     public void onChunkUnload(ChunkUnloadHook hook) {
-        Bukkit.getPluginManager().callEvent(
+        server.getPluginManager().callEvent(
                 new org.bukkit.event.world.ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(
                         hook.getWorld()))));
     }
 
     @HookHandler
     public void onWorldLoad(LoadWorldHook hook) {
-        Bukkit.getPluginManager().callEvent(
+        server.getPluginManager().callEvent(
                 new org.bukkit.event.world.WorldLoadEvent(new CanaryWorld(hook.getWorld())));
     }
 
     @HookHandler
     public void onWorldUnload(UnloadWorldHook hook) {
-        Bukkit.getPluginManager().callEvent(
+        server.getPluginManager().callEvent(
                 new org.bukkit.event.world.WorldUnloadEvent(new CanaryWorld(hook.getWorld())));
     }
 
     @HookHandler
     public void onTeleportation(TeleportHook hook) {
-        Bukkit.getPluginManager().callEvent(
+        server.getPluginManager().callEvent(
                 new org.bukkit.event.player.PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()),
                         new CanaryLocation(hook.getPlayer().getLocation(), new CanaryWorld(hook
                                 .getDestination().getWorld())), new CanaryLocation(hook.getDestination(),
@@ -125,15 +130,32 @@ public class CanaryListener implements PluginListener {
 
     @HookHandler
     public void onLightningStrike(LightningStrikeHook hook) {
-        Bukkit.getPluginManager().callEvent(
+        server.getPluginManager().callEvent(
                 new org.bukkit.event.weather.LightningStrikeEvent(new CanaryWorld(hook.getLightningBolt()
                         .getWorld()), new CanaryLightningStrike(hook.getLightningBolt())));
     }
 
     @HookHandler
-    public void onConsoleCommand(ConsoleCommandHook hook) {
-        Bukkit.getPluginManager().callEvent(
-                new org.bukkit.event.server.ServerCommandEvent(new CanaryCommandSender(hook.getCaller()),
-                        hook.getCommand()[0]));
+    public void onServerListPing(ServerListPingHook hook) {
+        server.getPluginManager().callEvent(
+                new org.bukkit.event.server.ServerListPingEvent(hook.getRequesterAddress(), hook.getMotd(),
+                        hook.getCurrentPlayers(), hook.getMaxPlayers()));
+    }
+
+    @SuppressWarnings("deprecation")
+    @HookHandler
+    public void onPlayerChat(ChatHook hook) {
+        server.getPluginManager().callEvent(
+                new org.bukkit.event.player.PlayerChatEvent(new CanaryPlayer(hook.getPlayer()), hook
+                        .getMessage()));
+        // TODO: Update to newer version
+    }
+
+    @HookHandler
+    public void onEnchant(EnchantHook hook) {
+        server.getPluginManager().callEvent(
+                new org.bukkit.event.enchantment.EnchantItemEvent(new CanaryPlayer(hook.getPlayer()), null,
+                        new CanaryBlock(hook.getEnchantmentTable().getBlock()), null, 0, null, 0));
+        // TODO: Fill in.
     }
 }

@@ -93,9 +93,8 @@ public class CanaryEntity implements Entity {
         }
     }
 
-    public boolean teleport(Location location, PlayerTeleportEvent.TeleportCause cause) { // TODO:
-                                                                                          // Investigate
-                                                                                          // TeleportCause
+    public boolean teleport(Location location, PlayerTeleportEvent.TeleportCause cause) {
+        // TODO: Investigate TeleportCause
         return teleport(location);
     }
 
@@ -103,9 +102,8 @@ public class CanaryEntity implements Entity {
         return teleport(destination.getLocation());
     }
 
-    public boolean teleport(Entity destination, PlayerTeleportEvent.TeleportCause cause) { // TODO:
-                                                                                           // Investigate
-                                                                                           // TeleportCause
+    public boolean teleport(Entity destination, PlayerTeleportEvent.TeleportCause cause) {
+        // TODO: Investigate TeleportCause
         return teleport(destination.getLocation());
     }
 

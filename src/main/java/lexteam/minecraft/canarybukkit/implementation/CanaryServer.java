@@ -56,6 +56,7 @@ import org.bukkit.UnsafeValues;
 import org.bukkit.Warning.WarningState;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
+import org.bukkit.command.Command;
 import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -80,6 +81,7 @@ import org.bukkit.plugin.PluginLoadOrder;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.SimplePluginManager;
+import org.bukkit.plugin.SimpleServicesManager;
 import org.bukkit.plugin.java.JavaPluginLoader;
 import org.bukkit.plugin.messaging.Messenger;
 import org.bukkit.plugin.messaging.StandardMessenger;
@@ -95,6 +97,8 @@ public class CanaryServer implements Server {
     private PluginManager pluginManager;
     private final SimpleCommandMap commandMap;
     private final CanaryHelpMap helpMap = new CanaryHelpMap(this);
+    private final StandardMessenger messenger = new StandardMessenger();
+    private final ServicesManager servicesManager = new SimpleServicesManager();
     private Logman logman;
     private YamlConfiguration config, commandsConfig;
     private File configFile = new File(Constants.configDir, "config.yml");
@@ -183,7 +187,7 @@ public class CanaryServer implements Server {
 
         Plugin[] plugins = pluginManager.getPlugins();
         for (Plugin plugin : plugins) {
-            if ((!plugin.isEnabled())) {
+            if (!plugin.isEnabled()) {
                 loadPlugin(plugin);
             }
         }
@@ -366,7 +370,7 @@ public class CanaryServer implements Server {
     }
 
     public ServicesManager getServicesManager() {
-        throw new NotImplementedException();
+        return servicesManager;
     }
 
     public List<World> getWorlds() {
@@ -415,7 +419,13 @@ public class CanaryServer implements Server {
     }
 
     public PluginCommand getPluginCommand(String name) {
-        throw new NotImplementedException();
+        Command command = commandMap.getCommand(name);
+
+        if (command instanceof PluginCommand) {
+            return (PluginCommand) command;
+        } else {
+            return null;
+        }
     }
 
     public void savePlayers() {
@@ -542,12 +552,11 @@ public class CanaryServer implements Server {
     }
 
     public File getWorldContainer() {
-        return Constants.worldsDir; // TODO: Check to see compatibility with
-                                    // Bukkit.
+        return Constants.worldsDir;
     }
 
     public Messenger getMessenger() {
-        throw new NotImplementedException();
+        return messenger;
     }
 
     public HelpMap getHelpMap() {

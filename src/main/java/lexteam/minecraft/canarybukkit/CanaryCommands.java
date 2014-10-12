@@ -24,7 +24,8 @@
  */
 package lexteam.minecraft.canarybukkit;
 
-import org.bukkit.Bukkit;
+import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
+
 import org.bukkit.plugin.Plugin;
 
 import net.canarymod.chat.MessageReceiver;
@@ -32,14 +33,19 @@ import net.canarymod.commandsys.Command;
 import net.canarymod.commandsys.CommandListener;
 
 public class CanaryCommands implements CommandListener {
+    private CanaryServer server;
+
+    public CanaryCommands(CanaryServer server) {
+        this.server = server;
+    }
+
     @Command(aliases = { "bdisable" },
              description = "disable Bukkit plugin",
              permissions = { "bukkit.disableplugin" },
              toolTip = "/bdisable <plugin>",
              version = 2)
     public void bdisableCommand(MessageReceiver caller, String[] parameters) {
-        Bukkit.getServer().getPluginManager()
-                .disablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0]));
+        server.getPluginManager().disablePlugin(server.getPluginManager().getPlugin(parameters[0]));
         caller.message("Disabled plugin.");
     }
 
@@ -49,8 +55,7 @@ public class CanaryCommands implements CommandListener {
              toolTip = "/benable <plugin>",
              version = 2)
     public void benableCommand(MessageReceiver caller, String[] parameters) {
-        Bukkit.getServer().getPluginManager()
-                .enablePlugin(Bukkit.getServer().getPluginManager().getPlugin(parameters[0]));
+        server.getPluginManager().enablePlugin(server.getPluginManager().getPlugin(parameters[0]));
         // TODO: Check if works
         caller.message("Enabled plugin.");
     }
@@ -62,7 +67,7 @@ public class CanaryCommands implements CommandListener {
              version = 2)
     public void bpluginsCommand(MessageReceiver caller, String[] parameters) {
         caller.message("Bukkit plugins:");
-        for (Plugin plugin : Bukkit.getServer().getPluginManager().getPlugins()) {
+        for (Plugin plugin : server.getPluginManager().getPlugins()) {
             caller.message(plugin.getName());
         }
     }

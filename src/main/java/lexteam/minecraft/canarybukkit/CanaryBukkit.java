@@ -43,11 +43,11 @@ public final class CanaryBukkit extends Plugin {
             Bukkit.setServer(server);
         }
         // Enable Listener
-        Canary.hooks().registerListener(new CanaryListener(), this);
+        Canary.hooks().registerListener(new CanaryListener(server), this);
 
         // Enable Commands
         try {
-            Canary.commands().registerCommands(new CanaryCommands(), this, false);
+            Canary.commands().registerCommands(new CanaryCommands(server), this, false);
         } catch (CommandDependencyException e) {
             e.printStackTrace();
         }
