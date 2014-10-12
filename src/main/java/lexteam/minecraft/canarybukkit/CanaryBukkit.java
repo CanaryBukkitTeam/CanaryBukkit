@@ -25,6 +25,9 @@
 package lexteam.minecraft.canarybukkit;
 
 import lexteam.minecraft.canarybukkit.data.Constants;
+import lexteam.minecraft.canarybukkit.events.CanaryPlayerListener;
+import lexteam.minecraft.canarybukkit.events.CanaryServerListener;
+import lexteam.minecraft.canarybukkit.events.CanaryWorldListener;
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
 
 import org.bukkit.Bukkit;
@@ -43,7 +46,9 @@ public final class CanaryBukkit extends Plugin {
             Bukkit.setServer(server);
         }
         // Enable Listener
-        Canary.hooks().registerListener(new CanaryListener(server), this);
+        Canary.hooks().registerListener(new CanaryPlayerListener(server), this);
+        Canary.hooks().registerListener(new CanaryWorldListener(server), this);
+        Canary.hooks().registerListener(new CanaryServerListener(server), this);
 
         // Enable Commands
         try {
