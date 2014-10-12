@@ -48,7 +48,6 @@ import net.visualillusionsent.minecraft.plugin.canary.WrappedLogger;
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.Validate;
 import org.bukkit.BanList;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
@@ -57,7 +56,6 @@ import org.bukkit.Warning.WarningState;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.PluginCommand;
@@ -94,34 +92,25 @@ import com.avaje.ebean.config.ServerConfig;
 
 public class CanaryServer implements Server {
     private net.canarymod.api.Server server;
-    private PluginManager pluginManager;
-    private final SimpleCommandMap commandMap;
+    private final SimpleCommandMap commandMap = new SimpleCommandMap(this);
+    private PluginManager pluginManager = new SimplePluginManager(this, commandMap);
     private final CanaryHelpMap helpMap = new CanaryHelpMap(this);
     private final StandardMessenger messenger = new StandardMessenger();
     private final ServicesManager servicesManager = new SimpleServicesManager();
     private Logman logman;
-    private YamlConfiguration config, commandsConfig;
+    private YamlConfiguration config;
     private File configFile = new File(Constants.configDir, "config.yml");
-    private File commandConfigFile = new File(Constants.configDir, "commands.yml");
     private File permissionsFile;
 
     public CanaryServer(net.canarymod.api.Server server, Logman logman) {
         this.server = server;
         this.logman = logman;
-        this.commandMap = new SimpleCommandMap(this);
-        this.pluginManager = new SimplePluginManager(this, commandMap);
 
         config = YamlConfiguration.loadConfiguration(configFile);
         config.options().copyDefaults(true);
         config.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader()
                 .getResourceAsStream("config/config.yml")));
         saveConfigFile(config);
-
-        commandsConfig = YamlConfiguration.loadConfiguration(commandConfigFile);
-        commandsConfig.options().copyDefaults(true);
-        commandsConfig.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader()
-                .getResourceAsStream("config/commands.yml")));
-        saveConfigFile(commandsConfig);
 
         permissionsFile = new File(Constants.configDir, config.getString("permissions-file"));
     }
@@ -185,9 +174,8 @@ public class CanaryServer implements Server {
             helpMap.clear();
         }
 
-        Plugin[] plugins = pluginManager.getPlugins();
-        for (Plugin plugin : plugins) {
-            if (!plugin.isEnabled()) {
+        for (Plugin plugin : pluginManager.getPlugins()) {
+            if ((!plugin.isEnabled()) && (plugin.getDescription().getLoad() == type)) {
                 loadPlugin(plugin);
             }
         }
@@ -233,7 +221,7 @@ public class CanaryServer implements Server {
     }
 
     public String getBukkitVersion() {
-        return Bukkit.getName() + "-" + Bukkit.getVersion();
+        return getName() + "-" + getVersion();
     }
 
     public Player[] getOnlinePlayers() {
@@ -411,6 +399,9 @@ public class CanaryServer implements Server {
     }
 
     public void reload() {
+        config = YamlConfiguration.loadConfiguration(this.configFile);
+        //TODO: More reload stuff.
+        
         server.restart(true);
     }
 
@@ -432,7 +423,20 @@ public class CanaryServer implements Server {
         throw new NotImplementedException();
     }
 
-    public boolean dispatchCommand(CommandSender sender, String commandLine) throws CommandException {
+    public boolean dispatchCommand(CommandSender sender, String commandLine) {
+        Validate.notNull(sender, "Sender cannot be null");
+        Validate.notNull(commandLine, "CommandLine cannot be null");
+
+        if (commandMap.dispatch(sender, commandLine)) {
+            return true;
+        }
+
+        if (sender instanceof Player) {
+            sender.sendMessage("Unknown command, type \"/help\" for help.");
+        } else {
+            sender.sendMessage("Unknown command, type \"help\" for help.");
+        }
+
         return false;
     }
 
@@ -489,7 +493,7 @@ public class CanaryServer implements Server {
     }
 
     public void shutdown() {
-        server.initiateShutdown("Shutdown by Bukkit!");
+        server.initiateShutdown(config.getString("shutdown-message"));
     }
 
     public int broadcast(String message, String permission) {

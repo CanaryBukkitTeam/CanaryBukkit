@@ -2,3 +2,4 @@
 settings:
 	update-folder: update
 	permissions-file: permissions.yml
+	shutdown-message: Server shutdown.
