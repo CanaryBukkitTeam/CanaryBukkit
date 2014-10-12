@@ -1,5 +1,4 @@
 # This is the main configuration file for CanaryBukkit.
 settings:
-	update-folder: update
-	permissions-file: permissions.yml
-	shutdown-message: Server shutdown.
+  update-folder: update
+  shutdown-message: Server shutdown.

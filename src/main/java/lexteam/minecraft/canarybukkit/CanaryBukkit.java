@@ -43,7 +43,6 @@ public final class CanaryBukkit extends Plugin {
     public boolean enable() {
         if (Bukkit.getServer() == null) {
             server = new CanaryServer(Canary.getServer(), getLogman());
-            Bukkit.setServer(server);
         }
         // Enable Listener
         Canary.hooks().registerListener(new CanaryPlayerListener(server), this);

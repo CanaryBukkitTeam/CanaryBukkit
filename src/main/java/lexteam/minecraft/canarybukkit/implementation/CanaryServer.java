@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -48,10 +49,10 @@ import net.visualillusionsent.minecraft.plugin.canary.WrappedLogger;
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.Validate;
 import org.bukkit.BanList;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Server;
-import org.bukkit.UnsafeValues;
 import org.bukkit.Warning.WarningState;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -100,19 +101,18 @@ public class CanaryServer implements Server {
     private Logman logman;
     private YamlConfiguration config;
     private File configFile = new File(Constants.configDir, "config.yml");
-    private File permissionsFile;
 
     public CanaryServer(net.canarymod.api.Server server, Logman logman) {
         this.server = server;
         this.logman = logman;
+
+        Bukkit.setServer(this);
 
         config = YamlConfiguration.loadConfiguration(configFile);
         config.options().copyDefaults(true);
         config.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader()
                 .getResourceAsStream("config/config.yml")));
         saveConfigFile(config);
-
-        permissionsFile = new File(Constants.configDir, config.getString("permissions-file"));
     }
 
     public void start() {
@@ -178,15 +178,14 @@ public class CanaryServer implements Server {
             if ((!plugin.isEnabled()) && (plugin.getDescription().getLoad() == type)) {
                 loadPlugin(plugin);
             }
-        }
 
         if (type == PluginLoadOrder.POSTWORLD) {
             commandMap.setFallbackCommands();
             commandMap.registerServerAliases();
             DefaultPermissions.registerCorePermissions();
 
-            // load permissions.yml
-            ConfigurationSection permConfig = YamlConfiguration.loadConfiguration(permissionsFile);
+            /*// load permissions.yml
+            ConfigurationSection permConfig = YamlConfiguration.loadConfiguration(Canary.permissionManager().g);
             List<Permission> perms = Permission.loadPermissions(permConfig.getValues(false),
                     "Permission node '%s' in permissions config is invalid", PermissionDefault.OP);
             for (Permission perm : perms) {
@@ -196,7 +195,7 @@ public class CanaryServer implements Server {
                     logman.warn("Permission config tried to register '" + perm.getName()
                             + "' but it's already registered", ex);
                 }
-            }
+            }*/
         }
     }
 
@@ -283,7 +282,7 @@ public class CanaryServer implements Server {
     }
 
     public void setWhitelist(boolean value) {
-        throw new NotImplementedException();
+        Configuration.getServerConfig().getFile().setBoolean("whitelist-enabled", value);
     }
 
     public Set<OfflinePlayer> getWhitelistedPlayers() {
@@ -325,14 +324,10 @@ public class CanaryServer implements Server {
     }
 
     public Player getPlayer(String name) {
-        return new CanaryPlayer(server.getPlayer(name));
-    }
-
-    public Player getPlayerExact(String name) {
+        // TODO: Look at difference between getPlayerExact and getPlayer.
         Validate.notNull(name, "Name cannot be null");
 
         String lname = name.toLowerCase();
-
         for (Player player : getOnlinePlayers()) {
             if (player.getName().equalsIgnoreCase(lname)) {
                 return player;
@@ -341,12 +336,44 @@ public class CanaryServer implements Server {
         return null;
     }
 
-    public List<Player> matchPlayer(String name) {
-        throw new NotImplementedException();
+    public Player getPlayerExact(String name) {
+        Validate.notNull(name, "Name cannot be null");
+
+        String lname = name.toLowerCase();
+        for (Player player : getOnlinePlayers()) {
+            if (player.getName().equalsIgnoreCase(lname)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    public List<Player> matchPlayer(String partialName) {
+        Validate.notNull(partialName, "PartialName cannot be null");
+
+        List<Player> matchedPlayers = new ArrayList<Player>();
+        for (Player player : this.getOnlinePlayers()) {
+            String playerName = player.getName();
+
+            if (partialName.equalsIgnoreCase(playerName)) {
+                // Exact match
+                matchedPlayers.clear();
+                matchedPlayers.add(player);
+            } else if (playerName.toLowerCase().contains(partialName.toLowerCase())) {
+                // Partial match
+                matchedPlayers.add(player);
+            }
+        }
+        return matchedPlayers;
     }
 
     public Player getPlayer(UUID id) {
-        return new CanaryPlayer(server.getPlayerFromUUID(id));
+        for (Player player : getOnlinePlayers()) {
+            if (player.getUniqueId().equals(id)) {
+                return player;
+            }
+        }
+        return null;
     }
 
     public PluginManager getPluginManager() {
@@ -400,8 +427,8 @@ public class CanaryServer implements Server {
 
     public void reload() {
         config = YamlConfiguration.loadConfiguration(this.configFile);
-        //TODO: More reload stuff.
-        
+        // TODO: More reload stuff.
+
         server.restart(true);
     }
 
@@ -465,7 +492,8 @@ public class CanaryServer implements Server {
     }
 
     public Map<String, String[]> getCommandAliases() {
-        throw new NotImplementedException();
+        Map<String, String[]> result = new LinkedHashMap<String, String[]>();
+        return result;
     }
 
     public int getSpawnRadius() {
@@ -609,7 +637,7 @@ public class CanaryServer implements Server {
     }
 
     public String getShutdownMessage() {
-        throw new NotImplementedException();
+        return config.getString("shutdown-message");
     }
 
     public WarningState getWarningState() {
@@ -645,8 +673,8 @@ public class CanaryServer implements Server {
     }
 
     @Deprecated
-    public UnsafeValues getUnsafe() {
-        throw new NotImplementedException();
+    public CanaryUnsafeValues getUnsafe() {
+        return new CanaryUnsafeValues();
     }
 
     public void sendPluginMessage(Plugin source, String channel, byte[] message) {
@@ -663,7 +691,6 @@ public class CanaryServer implements Server {
         for (Player player : getOnlinePlayers()) {
             result.addAll(player.getListeningPluginChannels());
         }
-
         return result;
     }
 }

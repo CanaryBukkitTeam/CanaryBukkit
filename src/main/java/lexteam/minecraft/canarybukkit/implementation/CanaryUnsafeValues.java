@@ -22,37 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit.events;
+package lexteam.minecraft.canarybukkit.implementation;
 
-import org.bukkit.event.server.ServerListPingEvent;
+import java.util.List;
 
-import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
-import lexteam.minecraft.canarybukkit.implementation.command.CanaryCommandSender;
-import net.canarymod.hook.HookHandler;
-import net.canarymod.hook.command.ConsoleCommandHook;
-import net.canarymod.hook.system.ServerListPingHook;
-import net.canarymod.plugin.PluginListener;
+import org.apache.commons.lang.NotImplementedException;
+import org.bukkit.Achievement;
+import org.bukkit.Material;
+import org.bukkit.Statistic;
+import org.bukkit.UnsafeValues;
+import org.bukkit.inventory.ItemStack;
 
-public class CanaryServerListener implements PluginListener {
-    private CanaryServer server;
-
-    public CanaryServerListener(CanaryServer server) {
-        this.server = server;
+@SuppressWarnings("deprecation")
+public class CanaryUnsafeValues implements UnsafeValues {
+    public Achievement getAchievementFromInternalName(String name) {
+        throw new NotImplementedException();
     }
 
-    @HookHandler
-    public void onServerListPing(ServerListPingHook hook) {
-        server.getPluginManager().callEvent(
-                new ServerListPingEvent(hook.getRequesterAddress(), hook.getMotd(), hook.getCurrentPlayers(),
-                        hook.getMaxPlayers()));
+    public Material getMaterialFromInternalName(String name) {
+        throw new NotImplementedException();
     }
 
-    @HookHandler
-    public void onCommand(ConsoleCommandHook hook) {
-        String commandLine = "";
-        for (String s : hook.getCommand()) {
-            commandLine += s + " ";
-        }
-        server.dispatchCommand(new CanaryCommandSender(hook.getCaller()), commandLine);
+    public Statistic getStatisticFromInternalName(String name) {
+        throw new NotImplementedException();
+    }
+
+    public ItemStack modifyItemStack(ItemStack stack, String arguments) {
+        throw new NotImplementedException();
+    }
+
+    public List<String> tabCompleteInternalMaterialName(String token, List<String> completions) {
+        throw new NotImplementedException();
+    }
+
+    public List<String> tabCompleteInternalStatisticOrAchievementName(String token, List<String> completions) {
+        throw new NotImplementedException();
     }
 }

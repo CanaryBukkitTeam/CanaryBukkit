@@ -35,8 +35,10 @@ import lexteam.minecraft.canarybukkit.implementation.CanaryLocation;
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
 import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
+import lexteam.minecraft.canarybukkit.implementation.command.CanaryCommandSender;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 import net.canarymod.hook.HookHandler;
+import net.canarymod.hook.command.PlayerCommandHook;
 import net.canarymod.hook.player.ChatHook;
 import net.canarymod.hook.player.ConnectionHook;
 import net.canarymod.hook.player.DisconnectionHook;
@@ -95,5 +97,14 @@ public class CanaryPlayerListener implements PluginListener {
                 new EnchantItemEvent(new CanaryPlayer(hook.getPlayer()), null, new CanaryBlock(hook
                         .getEnchantmentTable().getBlock()), null, 0, null, 0));
         // TODO: Fill in.
+    }
+
+    @HookHandler
+    public void onCommand(PlayerCommandHook hook) {
+        String commandLine = "";
+        for (String s : hook.getCommand()) {
+            commandLine += s + " ";
+        }
+        server.dispatchCommand(new CanaryCommandSender(hook.getPlayer()), commandLine);
     }
 }
