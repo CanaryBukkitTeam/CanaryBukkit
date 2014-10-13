@@ -61,7 +61,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.command.SimpleCommandMap;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
@@ -74,7 +73,6 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.map.MapView;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.permissions.Permission;
-import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginLoadOrder;
 import org.bukkit.plugin.PluginManager;
@@ -178,24 +176,12 @@ public class CanaryServer implements Server {
             if ((!plugin.isEnabled()) && (plugin.getDescription().getLoad() == type)) {
                 loadPlugin(plugin);
             }
-
+        }
+        
         if (type == PluginLoadOrder.POSTWORLD) {
             commandMap.setFallbackCommands();
             commandMap.registerServerAliases();
             DefaultPermissions.registerCorePermissions();
-
-            /*// load permissions.yml
-            ConfigurationSection permConfig = YamlConfiguration.loadConfiguration(Canary.permissionManager().g);
-            List<Permission> perms = Permission.loadPermissions(permConfig.getValues(false),
-                    "Permission node '%s' in permissions config is invalid", PermissionDefault.OP);
-            for (Permission perm : perms) {
-                try {
-                    pluginManager.addPermission(perm);
-                } catch (IllegalArgumentException ex) {
-                    logman.warn("Permission config tried to register '" + perm.getName()
-                            + "' but it's already registered", ex);
-                }
-            }*/
         }
     }
 
@@ -457,13 +443,6 @@ public class CanaryServer implements Server {
         if (commandMap.dispatch(sender, commandLine)) {
             return true;
         }
-
-        if (sender instanceof Player) {
-            sender.sendMessage("Unknown command, type \"/help\" for help.");
-        } else {
-            sender.sendMessage("Unknown command, type \"help\" for help.");
-        }
-
         return false;
     }
 
