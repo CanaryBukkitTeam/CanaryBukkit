@@ -53,6 +53,8 @@ public class CanaryServerListener implements PluginListener {
         for (String s : hook.getCommand()) {
             commandLine += s + " ";
         }
-        server.dispatchCommand(new CanaryCommandSender(hook.getCaller()), commandLine);
+        if (server.dispatchCommand(new CanaryCommandSender(hook.getCaller()), commandLine)) {
+            hook.setCanceled();
+        }
     }
 }

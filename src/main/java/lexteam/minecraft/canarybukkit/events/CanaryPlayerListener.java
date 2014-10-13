@@ -105,6 +105,8 @@ public class CanaryPlayerListener implements PluginListener {
         for (String s : hook.getCommand()) {
             commandLine += s + " ";
         }
-        server.dispatchCommand(new CanaryCommandSender(hook.getPlayer()), commandLine);
+        if (server.dispatchCommand(new CanaryCommandSender(hook.getPlayer()), commandLine)) {
+            hook.setCanceled();
+        }
     }
 }

@@ -44,9 +44,11 @@ public class CanaryCommands implements CommandListener {
              permissions = { "bukkit.disableplugin" },
              toolTip = "/bdisable <plugin>",
              version = 2)
-    public void bdisableCommand(MessageReceiver caller, String[] parameters) {
-        server.getPluginManager().disablePlugin(server.getPluginManager().getPlugin(parameters[0]));
-        caller.message("Disabled plugin.");
+    public void bdisableCommand(MessageReceiver caller, String[] args) {
+        if (!args[0].equals(null)) {
+            server.getPluginManager().disablePlugin(server.getPluginManager().getPlugin(args[0]));
+            caller.message("Disabled " + args[0] + ".");
+        }
     }
 
     @Command(aliases = { "benable" },
@@ -54,10 +56,12 @@ public class CanaryCommands implements CommandListener {
              permissions = { "bukkit.enableplugin" },
              toolTip = "/benable <plugin>",
              version = 2)
-    public void benableCommand(MessageReceiver caller, String[] parameters) {
-        server.getPluginManager().enablePlugin(server.getPluginManager().getPlugin(parameters[0]));
-        // TODO: Check if works
-        caller.message("Enabled plugin.");
+    public void benableCommand(MessageReceiver caller, String[] args) {
+        if (!args[0].equals(null)) {
+            server.getPluginManager().enablePlugin(server.getPluginManager().getPlugin(args[0]));
+            // TODO: Check if works
+            caller.message("Enabled " + args[0] + ".");
+        }
     }
 
     @Command(aliases = { "bplugins" },
@@ -65,7 +69,7 @@ public class CanaryCommands implements CommandListener {
              permissions = { "bukkit.listplugins" },
              toolTip = "/bplugins",
              version = 2)
-    public void bpluginsCommand(MessageReceiver caller, String[] parameters) {
+    public void bpluginsCommand(MessageReceiver caller, String[] args) {
         caller.message("Bukkit plugins:");
         for (Plugin plugin : server.getPluginManager().getPlugins()) {
             caller.message(plugin.getName());

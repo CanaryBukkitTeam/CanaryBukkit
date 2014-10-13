@@ -177,7 +177,7 @@ public class CanaryServer implements Server {
                 loadPlugin(plugin);
             }
         }
-        
+
         if (type == PluginLoadOrder.POSTWORLD) {
             commandMap.setFallbackCommands();
             commandMap.registerServerAliases();
