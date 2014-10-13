@@ -1,15 +1,13 @@
-[WIP] CanaryBukkit
+CanaryBukkit
 =======================
 
 ### What is it?
-CanaryBukkit allows plugins created for the Bukkit API platform to be used on the CanaryMod server platform.
+CanaryBukkit allows plugins created for the Bukkit API platform to be used on a CanaryLib implementation.
 
 ### License
 I have chosen the MIT license for this project.
 
 ### Links
-[CanaryMod](https://github.com/CanaryModTeam/CanaryMod)
-
 [CanaryLib](https://github.com/CanaryModTeam/CanaryLib)
 
 [Bukkit](https://github.com/Bukkit/Bukkit)
@@ -17,5 +15,5 @@ I have chosen the MIT license for this project.
 ### Collaborators
 The following teams of LexMinecraft have access to edit this repository: application-dev, mod-team and CanaryBukkit-devteam.
 
-### Things to Note
-Despite the fact, I am trying to make sure all plugins are compatible, I cannot assure any plugin you throw at it will work.
+### Plugin support
+I cannot assure any and all plugins will work, especially if has CraftBukkit as a dependency.
