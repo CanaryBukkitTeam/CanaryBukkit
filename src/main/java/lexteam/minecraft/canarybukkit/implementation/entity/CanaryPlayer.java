@@ -24,6 +24,8 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
+import net.canarymod.Canary;
+
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.*;
 import org.bukkit.conversations.Conversation;
@@ -108,7 +110,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     }
 
     public boolean performCommand(String command) {
-        return false;
+        return Bukkit.getServer().dispatchCommand(this, command);
     }
 
     public boolean isSneaking() {
@@ -314,11 +316,11 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     }
 
     public void giveExp(int amount) {
-        throw new NotImplementedException();
+        entity.addExperience(amount);
     }
 
     public void giveExpLevels(int amount) {
-        throw new NotImplementedException();
+        entity.addLevel(amount);
     }
 
     public float getExp() {
@@ -330,11 +332,11 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     }
 
     public int getLevel() {
-        return 0;
+        return entity.getLevel();
     }
 
     public void setLevel(int level) {
-        throw new NotImplementedException();
+        entity.setLevel(level);
     }
 
     public int getTotalExperience() {
@@ -382,11 +384,11 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     }
 
     public boolean isWhitelisted() {
-        return false;
+        return Canary.whitelist().isWhitelisted(getName());
     }
 
     public void setWhitelisted(boolean value) {
-        throw new NotImplementedException();
+        Canary.whitelist().addPlayer(getName());
     }
 
     public Player getPlayer() {
@@ -518,5 +520,10 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     @Override
     public UUID getUniqueId() {
         return entity.getUUID();
+    }
+    
+    @Override
+    public EntityType getType() {
+        return EntityType.PLAYER;
     }
 }

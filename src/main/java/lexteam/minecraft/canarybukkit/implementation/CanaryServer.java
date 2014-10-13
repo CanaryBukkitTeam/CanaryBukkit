@@ -210,7 +210,7 @@ public class CanaryServer implements Server {
     }
 
     public Player[] getOnlinePlayers() {
-        CanaryPlayer[] players = new CanaryPlayer[] {};
+        CanaryPlayer[] players = new CanaryPlayer[server.getPlayerList().size()];
         int i = 0;
         for (net.canarymod.api.entity.living.humanoid.Player player : server.getPlayerList()) {
             players[i] = new CanaryPlayer(player);
@@ -439,7 +439,10 @@ public class CanaryServer implements Server {
     public boolean dispatchCommand(CommandSender sender, String commandLine) {
         Validate.notNull(sender, "Sender cannot be null");
         Validate.notNull(commandLine, "CommandLine cannot be null");
-
+        
+        if(commandLine.startsWith("/")) {
+            commandLine = commandLine.substring(1);
+        }
         if (commandMap.dispatch(sender, commandLine)) {
             return true;
         }
