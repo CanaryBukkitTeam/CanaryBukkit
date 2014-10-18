@@ -26,8 +26,8 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.AnimalTamer;
-import org.bukkit.entity.Horse;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Horse;
 import org.bukkit.inventory.HorseInventory;
 
 public class CanaryHorse extends CanaryAnimals implements Horse {
@@ -114,6 +114,7 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
         throw new NotImplementedException();
     }
 
+    @Override
     public EntityType getType() {
         return EntityType.HORSE;
     }

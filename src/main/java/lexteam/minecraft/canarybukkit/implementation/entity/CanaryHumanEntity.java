@@ -24,6 +24,8 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
+import java.util.Set;
+
 import net.canarymod.api.entity.living.humanoid.Human;
 
 import org.apache.commons.lang.NotImplementedException;
@@ -38,8 +40,6 @@ import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
-
-import java.util.Set;
 
 public class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity {
     private Human entity;

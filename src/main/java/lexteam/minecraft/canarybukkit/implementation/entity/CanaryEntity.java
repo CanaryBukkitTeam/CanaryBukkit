@@ -24,6 +24,12 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
+import java.util.List;
+import java.util.UUID;
+
+import lexteam.minecraft.canarybukkit.implementation.CanaryLocation;
+import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
+
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
@@ -37,12 +43,6 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
-
-import java.util.List;
-import java.util.UUID;
-
-import lexteam.minecraft.canarybukkit.implementation.CanaryLocation;
-import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 
 public class CanaryEntity implements Entity {
     private net.canarymod.api.entity.Entity entity;

@@ -51,6 +51,7 @@ public class CanaryPigZombie extends CanaryZombie implements PigZombie {
         return getAnger() > 0;
     }
 
+    @Override
     public EntityType getType() {
         return EntityType.PIG_ZOMBIE;
     }

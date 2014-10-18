@@ -32,6 +32,7 @@ public class CanarySilverfish extends CanaryMonster implements Silverfish {
         super(entity);
     }
 
+    @Override
     public EntityType getType() {
         return EntityType.SILVERFISH;
     }

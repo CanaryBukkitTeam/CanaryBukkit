@@ -32,6 +32,7 @@ public class CanaryMushroomCow extends CanaryCow implements MushroomCow {
         super(entity);
     }
 
+    @Override
     public EntityType getType() {
         return EntityType.MUSHROOM_COW;
     }

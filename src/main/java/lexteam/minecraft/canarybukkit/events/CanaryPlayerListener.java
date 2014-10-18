@@ -27,13 +27,6 @@ package lexteam.minecraft.canarybukkit.events;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.bukkit.event.enchantment.EnchantItemEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
-
 import lexteam.minecraft.canarybukkit.implementation.CanaryLocation;
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
 import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
@@ -50,6 +43,13 @@ import net.canarymod.hook.player.EnchantHook;
 import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.hook.player.TeleportHook;
 import net.canarymod.plugin.PluginListener;
+
+import org.bukkit.event.enchantment.EnchantItemEvent;
+import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class CanaryPlayerListener implements PluginListener {
     private CanaryServer server;

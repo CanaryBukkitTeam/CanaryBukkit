@@ -24,6 +24,11 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.block;
 
+import java.util.Collection;
+import java.util.List;
+
+import lexteam.minecraft.canarybukkit.implementation.CanaryChunk;
+import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 import net.canarymod.api.world.BiomeType;
 
 import org.apache.commons.lang.NotImplementedException;
@@ -39,12 +44,6 @@ import org.bukkit.block.PistonMoveReaction;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
-
-import java.util.Collection;
-import java.util.List;
-
-import lexteam.minecraft.canarybukkit.implementation.CanaryChunk;
-import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 
 public class CanaryBlock implements Block {
     private net.canarymod.api.world.blocks.Block block;

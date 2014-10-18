@@ -24,14 +24,6 @@
  */
 package lexteam.minecraft.canarybukkit.events;
 
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.weather.LightningStrikeEvent;
-import org.bukkit.event.world.ChunkLoadEvent;
-import org.bukkit.event.world.ChunkUnloadEvent;
-import org.bukkit.event.world.WorldLoadEvent;
-import org.bukkit.event.world.WorldUnloadEvent;
-
 import lexteam.minecraft.canarybukkit.implementation.CanaryChunk;
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
 import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
@@ -47,6 +39,14 @@ import net.canarymod.hook.world.ChunkLoadedHook;
 import net.canarymod.hook.world.ChunkUnloadHook;
 import net.canarymod.hook.world.LightningStrikeHook;
 import net.canarymod.plugin.PluginListener;
+
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.weather.LightningStrikeEvent;
+import org.bukkit.event.world.ChunkLoadEvent;
+import org.bukkit.event.world.ChunkUnloadEvent;
+import org.bukkit.event.world.WorldLoadEvent;
+import org.bukkit.event.world.WorldUnloadEvent;
 
 public class CanaryWorldListener implements PluginListener {
     private CanaryServer server;

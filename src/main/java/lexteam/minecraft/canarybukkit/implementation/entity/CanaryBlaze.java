@@ -32,6 +32,7 @@ public class CanaryBlaze extends CanaryMonster implements Blaze {
         super(entity);
     }
 
+    @Override
     public EntityType getType() {
         return EntityType.BLAZE;
     }

@@ -24,54 +24,27 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.entity.IronGolem;
 
-public class CanaryArrow extends AbstractProjectile implements Arrow {
-    private net.canarymod.api.entity.Arrow arrow;
+public class CanaryIronGolem extends CanaryCreature implements IronGolem {
+    private net.canarymod.api.entity.living.IronGolem entity;
 
-    public CanaryArrow(net.canarymod.api.entity.Arrow arrow) {
-        super(arrow);
-        this.arrow = arrow;
+    public CanaryIronGolem(net.canarymod.api.entity.living.IronGolem entity) {
+        super(entity);
+        this.entity = entity;
     }
 
-    public int getKnockbackStrength() {
-        return arrow.getKnockbackStrength();
+    public boolean isPlayerCreated() {
+        return entity.isPlayerCreated();
     }
 
-    public void setKnockbackStrength(int knockbackStrength) {
-        arrow.setKnockbackStrenth(knockbackStrength);
-    }
-
-    public boolean isCritical() {
-        return arrow.isCritical();
-    }
-
-    public void setCritical(boolean critical) {
-        arrow.setIsCritical(critical);
-    }
-
-    public LivingEntity _INVALID_getShooter() {
-        throw new NotImplementedException();
-    }
-
-    public ProjectileSource getShooter() {
-        throw new NotImplementedException();
-    }
-
-    public void _INVALID_setShooter(LivingEntity shooter) {
-        throw new NotImplementedException();
-    }
-
-    public void setShooter(ProjectileSource source) {
-        throw new NotImplementedException();
+    public void setPlayerCreated(boolean playerCreated) {
+        entity.setPlayerCreated(playerCreated);
     }
 
     @Override
     public EntityType getType() {
-        return EntityType.ARROW;
+        return EntityType.IRON_GOLEM;
     }
 }

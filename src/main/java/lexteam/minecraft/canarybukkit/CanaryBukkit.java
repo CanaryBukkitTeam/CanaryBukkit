@@ -29,12 +29,11 @@ import lexteam.minecraft.canarybukkit.events.CanaryPlayerListener;
 import lexteam.minecraft.canarybukkit.events.CanaryServerListener;
 import lexteam.minecraft.canarybukkit.events.CanaryWorldListener;
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
-
-import org.bukkit.Bukkit;
-
 import net.canarymod.Canary;
 import net.canarymod.commandsys.CommandDependencyException;
 import net.canarymod.plugin.Plugin;
+
+import org.bukkit.Bukkit;
 
 public final class CanaryBukkit extends Plugin {
     private CanaryServer server;

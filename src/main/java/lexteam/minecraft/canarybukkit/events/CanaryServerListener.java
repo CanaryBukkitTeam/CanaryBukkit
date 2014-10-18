@@ -24,14 +24,14 @@
  */
 package lexteam.minecraft.canarybukkit.events;
 
-import org.bukkit.event.server.ServerListPingEvent;
-
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
 import lexteam.minecraft.canarybukkit.implementation.command.CanaryCommandSender;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.command.ConsoleCommandHook;
 import net.canarymod.hook.system.ServerListPingHook;
 import net.canarymod.plugin.PluginListener;
+
+import org.bukkit.event.server.ServerListPingEvent;
 
 public class CanaryServerListener implements PluginListener {
     private CanaryServer server;

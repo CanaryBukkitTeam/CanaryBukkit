@@ -24,20 +24,31 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
+import net.canarymod.api.entity.living.LivingBase;
+
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Ageable;
 
 public class CanaryAgeable extends CanaryCreature implements Ageable {
+    private LivingBase entity;
+
     public CanaryAgeable(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);
+        this.entity = entity;
     }
 
     public int getAge() {
-        return 0;
+        if (entity instanceof net.canarymod.api.entity.living.Ageable) {
+            return ((net.canarymod.api.entity.living.Ageable) entity).getGrowingAge();
+        } else {
+            return 0;
+        }
     }
 
     public void setAge(int age) {
-        throw new NotImplementedException();
+        if (entity instanceof net.canarymod.api.entity.living.Ageable) {
+            ((net.canarymod.api.entity.living.Ageable) entity).setGrowingAge(age);
+        }
     }
 
     public void setAgeLock(boolean lock) {

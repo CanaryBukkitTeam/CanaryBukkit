@@ -24,10 +24,24 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
+import java.net.InetSocketAddress;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+
 import net.canarymod.Canary;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.*;
+import org.bukkit.Achievement;
+import org.bukkit.Bukkit;
+import org.bukkit.Effect;
+import org.bukkit.Instrument;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Note;
+import org.bukkit.Sound;
+import org.bukkit.Statistic;
+import org.bukkit.WeatherType;
 import org.bukkit.conversations.Conversation;
 import org.bukkit.conversations.ConversationAbandonedEvent;
 import org.bukkit.entity.EntityType;
@@ -35,11 +49,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.Scoreboard;
-
-import java.net.InetSocketAddress;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
 
 public class CanaryPlayer extends CanaryHumanEntity implements Player {
     private net.canarymod.api.entity.living.humanoid.Player entity;

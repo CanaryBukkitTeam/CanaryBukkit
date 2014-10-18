@@ -52,6 +52,7 @@ public class CanaryOcelot extends CanaryTameable implements Ocelot {
         entity.setSitting(sitting);
     }
 
+    @Override
     public EntityType getType() {
         return EntityType.OCELOT;
     }

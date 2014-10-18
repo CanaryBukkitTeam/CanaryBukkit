@@ -25,12 +25,11 @@
 package lexteam.minecraft.canarybukkit;
 
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
-
-import org.bukkit.plugin.Plugin;
-
 import net.canarymod.chat.MessageReceiver;
 import net.canarymod.commandsys.Command;
 import net.canarymod.commandsys.CommandListener;
+
+import org.bukkit.plugin.Plugin;
 
 public class CanaryCommands implements CommandListener {
     private CanaryServer server;

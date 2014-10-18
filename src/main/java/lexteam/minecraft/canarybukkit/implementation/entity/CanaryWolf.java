@@ -61,6 +61,7 @@ public class CanaryWolf extends CanaryTameable implements Wolf {
         throw new NotImplementedException();
     }
 
+    @Override
     public EntityType getType() {
         return EntityType.WOLF;
     }

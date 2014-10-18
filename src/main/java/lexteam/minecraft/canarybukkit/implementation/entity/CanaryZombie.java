@@ -24,8 +24,8 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.bukkit.entity.Zombie;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Zombie;
 
 public class CanaryZombie extends CanaryAgeable implements Zombie {
     private net.canarymod.api.entity.living.monster.Zombie entity;
@@ -51,6 +51,7 @@ public class CanaryZombie extends CanaryAgeable implements Zombie {
         entity.setVillager(flag);
     }
 
+    @Override
     public EntityType getType() {
         return EntityType.ZOMBIE;
     }

@@ -24,6 +24,8 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.command;
 
+import java.util.Set;
+
 import net.canarymod.Canary;
 import net.canarymod.chat.MessageReceiver;
 import net.canarymod.chat.ReceiverType;
@@ -35,8 +37,6 @@ import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
-
-import java.util.Set;
 
 public class CanaryCommandSender implements CommandSender {
     private MessageReceiver caller;

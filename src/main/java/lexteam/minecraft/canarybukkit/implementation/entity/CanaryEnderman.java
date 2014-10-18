@@ -45,6 +45,7 @@ public class CanaryEnderman extends CanaryMonster implements Enderman {
         // TODO: Check
     }
 
+    @Override
     public EntityType getType() {
         return EntityType.ENDERMAN;
     }

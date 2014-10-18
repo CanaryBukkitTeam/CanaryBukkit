@@ -24,8 +24,8 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.bukkit.entity.Pig;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Pig;
 
 public class CanaryPig extends CanaryAnimals implements Pig {
     private net.canarymod.api.entity.living.animal.Pig entity;
@@ -43,6 +43,7 @@ public class CanaryPig extends CanaryAnimals implements Pig {
         entity.setSaddled(saddled);
     }
 
+    @Override
     public EntityType getType() {
         return EntityType.PIG;
     }

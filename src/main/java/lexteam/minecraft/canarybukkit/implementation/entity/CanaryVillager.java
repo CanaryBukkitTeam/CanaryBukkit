@@ -24,8 +24,8 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.bukkit.entity.Villager;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Villager;
 
 public class CanaryVillager extends CanaryAgeable implements Villager {
     private net.canarymod.api.entity.living.humanoid.Villager entity;
@@ -73,6 +73,7 @@ public class CanaryVillager extends CanaryAgeable implements Villager {
         }
     }
 
+    @Override
     public EntityType getType() {
         return EntityType.VILLAGER;
     }

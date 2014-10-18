@@ -17,12 +17,13 @@
  */
 package net.visualillusionsent.minecraft.plugin.canary;
 
-import net.canarymod.logger.Logman;
-import org.apache.logging.log4j.Marker;
-import org.apache.logging.log4j.MarkerManager;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import net.canarymod.logger.Logman;
+
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
 
 /**
  * Cause Logman is a Log4J2 Logger....

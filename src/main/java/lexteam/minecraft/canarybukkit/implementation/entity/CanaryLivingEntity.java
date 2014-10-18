@@ -24,20 +24,26 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+
 import net.canarymod.api.entity.living.LivingBase;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Egg;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
+import org.bukkit.entity.Snowball;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
 
 public class CanaryLivingEntity extends CanaryEntity implements LivingEntity {
     private LivingBase entity;

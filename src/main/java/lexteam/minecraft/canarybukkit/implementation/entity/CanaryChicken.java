@@ -32,6 +32,7 @@ public class CanaryChicken extends CanaryAgeable implements Chicken {
         super(entity);
     }
 
+    @Override
     public EntityType getType() {
         return EntityType.CHICKEN;
     }

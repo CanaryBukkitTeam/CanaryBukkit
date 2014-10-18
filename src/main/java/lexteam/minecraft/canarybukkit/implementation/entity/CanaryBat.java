@@ -41,6 +41,7 @@ public class CanaryBat extends CanaryMonster implements Bat {
         throw new NotImplementedException();
     }
 
+    @Override
     public EntityType getType() {
         return EntityType.BAT;
     }
