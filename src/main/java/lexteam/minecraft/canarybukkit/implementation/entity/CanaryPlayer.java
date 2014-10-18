@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryLib plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -521,7 +521,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     public UUID getUniqueId() {
         return entity.getUUID();
     }
-    
+
     @Override
     public EntityType getType() {
         return EntityType.PLAYER;

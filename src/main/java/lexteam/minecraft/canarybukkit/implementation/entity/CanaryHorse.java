@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryLib plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -115,6 +115,6 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
     }
 
     public EntityType getType() {
-        return EntityType.COW;
+        return EntityType.HORSE;
     }
 }

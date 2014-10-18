@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryLib plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -28,7 +28,6 @@ import net.canarymod.Canary;
 import net.canarymod.chat.MessageReceiver;
 import net.canarymod.chat.ReceiverType;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
@@ -55,11 +54,12 @@ public class CanaryCommandSender implements CommandSender {
     }
 
     public boolean hasPermission(String name) {
-        return true;
+        return caller.hasPermission(name);
     }
 
     public boolean hasPermission(Permission perm) {
-        return true;
+        return caller.hasPermission(perm.getName());
+        // TODO: Check
     }
 
     public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {

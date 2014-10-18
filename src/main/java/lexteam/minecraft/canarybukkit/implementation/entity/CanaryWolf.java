@@ -24,10 +24,44 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.bukkit.entity.Animals;
+import org.apache.commons.lang.NotImplementedException;
+import org.bukkit.DyeColor;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Wolf;
 
-public class CanaryAnimals extends CanaryAgeable implements Animals {
-    public CanaryAnimals(net.canarymod.api.entity.living.LivingBase entity) {
+public class CanaryWolf extends CanaryTameable implements Wolf {
+    private net.canarymod.api.entity.living.animal.Wolf entity;
+
+    public CanaryWolf(net.canarymod.api.entity.living.animal.Wolf entity) {
         super(entity);
+        this.entity = entity;
+    }
+
+    public boolean isAngry() {
+        return entity.isAngry();
+    }
+
+    public void setAngry(boolean angry) {
+        entity.setAngry(angry);
+    }
+
+    public boolean isSitting() {
+        return entity.isSitting();
+    }
+
+    public void setSitting(boolean sitting) {
+        entity.setSitting(sitting);
+    }
+
+    public DyeColor getCollarColor() {
+        throw new NotImplementedException();
+    }
+
+    public void setCollarColor(DyeColor color) {
+        throw new NotImplementedException();
+    }
+
+    public EntityType getType() {
+        return EntityType.WOLF;
     }
 }

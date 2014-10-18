@@ -1,4 +1,4 @@
-name=CanaryBukkit
+name=${project.name}
 main-class=lexteam.minecraft.canarybukkit.CanaryBukkit
 author=Lexteam
-version=0.1
+version=${project.version}

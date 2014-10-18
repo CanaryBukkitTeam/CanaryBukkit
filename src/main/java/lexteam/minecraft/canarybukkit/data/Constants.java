@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryLib plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -29,8 +29,6 @@ import java.io.File;
 import net.canarymod.Canary;
 
 public class Constants {
-    // General data
-    public static final String canaryBukkitVersion = "0.1";
     // Canary
     public static final File canaryDir = Canary.getWorkingDirectory();
     public static final File worldsDir = new File(canaryDir, "worlds");
@@ -38,4 +36,5 @@ public class Constants {
     public static final File bukkitDir = new File(canaryDir, "bukkit");
     public static final File pluginsDir = new File(bukkitDir, "plugins");
     public static final File configDir = new File(bukkitDir, "config");
+    public static final File configFile = new File(configDir, "config.yml");
 }

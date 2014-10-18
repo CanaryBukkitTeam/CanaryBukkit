@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryLib plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -43,6 +43,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.Collection;
 import java.util.List;
 
+import lexteam.minecraft.canarybukkit.implementation.CanaryChunk;
 import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 
 public class CanaryBlock implements Block {
@@ -119,7 +120,7 @@ public class CanaryBlock implements Block {
     }
 
     public Chunk getChunk() {
-        throw new NotImplementedException();
+        return new CanaryChunk(block.getWorld().getChunk(getX(), getZ()), new CanaryWorld(block.getWorld()));
     }
 
     public void setData(byte data) {
@@ -155,13 +156,13 @@ public class CanaryBlock implements Block {
     }
 
     public Biome getBiome() {
-        return Biome.valueOf(block.getWorld().getBiome(block.getX(), block.getZ()).getBiomeType().name()); // Check
-                                                                                                           // it
-                                                                                                           // works
+        return Biome.valueOf(block.getWorld().getBiome(block.getX(), block.getZ()).getBiomeType().name());
+        // TODO: Check if that works
     }
 
     public void setBiome(Biome bio) {
         block.getWorld().setBiome(block.getX(), block.getZ(), BiomeType.valueOf(bio.name()));
+        // TODO: Check if that works
     }
 
     public boolean isBlockPowered() {

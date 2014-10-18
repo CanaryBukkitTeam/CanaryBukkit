@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryLib plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -42,7 +42,7 @@ public final class CanaryBukkit extends Plugin {
     @Override
     public boolean enable() {
         if (Bukkit.getServer() == null) {
-            server = new CanaryServer(Canary.getServer(), getLogman());
+            server = new CanaryServer(Canary.getServer(), getLogman(), getDescriptor().getVersion());
         }
         // Enable Listener
         Canary.hooks().registerListener(new CanaryPlayerListener(server), this);

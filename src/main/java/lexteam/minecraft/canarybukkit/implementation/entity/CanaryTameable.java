@@ -24,10 +24,32 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.bukkit.entity.Animals;
+import org.apache.commons.lang.NotImplementedException;
+import org.bukkit.entity.AnimalTamer;
+import org.bukkit.entity.Creature;
+import org.bukkit.entity.Tameable;
 
-public class CanaryAnimals extends CanaryAgeable implements Animals {
-    public CanaryAnimals(net.canarymod.api.entity.living.LivingBase entity) {
+public class CanaryTameable extends CanaryAnimals implements Tameable, Creature {
+    private net.canarymod.api.entity.living.animal.Tameable entity;
+
+    public CanaryTameable(net.canarymod.api.entity.living.animal.Tameable entity) {
         super(entity);
+        this.entity = entity;
+    }
+
+    public boolean isTamed() {
+        return entity.isTamed();
+    }
+
+    public void setTamed(boolean tame) {
+        entity.setTamed(tame);
+    }
+
+    public AnimalTamer getOwner() {
+        throw new NotImplementedException();
+    }
+
+    public void setOwner(AnimalTamer tamer) {
+        throw new NotImplementedException();
     }
 }

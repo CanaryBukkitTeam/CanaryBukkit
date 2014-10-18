@@ -24,10 +24,24 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.bukkit.entity.Animals;
+import org.apache.commons.lang.NotImplementedException;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Slime;
 
-public class CanaryAnimals extends CanaryAgeable implements Animals {
-    public CanaryAnimals(net.canarymod.api.entity.living.LivingBase entity) {
+public class CanarySlime extends CanaryLivingEntity implements Slime {
+    public CanarySlime(net.canarymod.api.entity.living.monster.Slime entity) {
         super(entity);
+    }
+
+    public int getSize() {
+        throw new NotImplementedException();
+    }
+
+    public void setSize(int size) {
+        throw new NotImplementedException();
+    }
+
+    public EntityType getType() {
+        return EntityType.SLIME;
     }
 }

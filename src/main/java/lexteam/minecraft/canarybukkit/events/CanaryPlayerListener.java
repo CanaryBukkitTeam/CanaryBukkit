@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryLib plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -24,9 +24,12 @@
  */
 package lexteam.minecraft.canarybukkit.events;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerChatEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -37,6 +40,7 @@ import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
 import lexteam.minecraft.canarybukkit.implementation.command.CanaryCommandSender;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
+import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.command.PlayerCommandHook;
 import net.canarymod.hook.player.ChatHook;
@@ -74,12 +78,16 @@ public class CanaryPlayerListener implements PluginListener {
         // TODO: Fill in and check.
     }
 
-    @SuppressWarnings("deprecation")
     @HookHandler
     public void onPlayerChat(ChatHook hook) {
+        Set<org.bukkit.entity.Player> recievers = new HashSet<org.bukkit.entity.Player>();
+        for (Player p : hook.getReceiverList()) {
+            recievers.add(new CanaryPlayer(p));
+        }
         server.getPluginManager().callEvent(
-                new PlayerChatEvent(new CanaryPlayer(hook.getPlayer()), hook.getMessage()));
-        // TODO: Update to newer version
+                new AsyncPlayerChatEvent(false, new CanaryPlayer(hook.getPlayer()), hook.getMessage(),
+                        recievers));
+        // TODO: Fill in
     }
 
     @HookHandler

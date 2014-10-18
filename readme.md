@@ -16,4 +16,4 @@ I have chosen the MIT license for this project.
 The following teams of LexMinecraft have access to edit this repository: application-dev, mod-team and CanaryBukkit-devteam.
 
 ### Plugin support
-I cannot assure any and all plugins will work, especially if has CraftBukkit as a dependency.
+I cannot assure any and all plugins will work, especially if it has CraftBukkit as a dependency.

@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryLib plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -24,24 +24,56 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.EntityType;
 
 public class CanaryVillager extends CanaryAgeable implements Villager {
-    public CanaryVillager(net.canarymod.api.entity.living.LivingBase entity) {
+    private net.canarymod.api.entity.living.humanoid.Villager entity;
+
+    public CanaryVillager(net.canarymod.api.entity.living.humanoid.Villager entity) {
         super(entity);
+        this.entity = entity;
     }
 
     public Profession getProfession() {
-        throw new NotImplementedException();
+        switch (entity.getProfession()) {
+            case BLACKSMITH:
+                return Profession.BLACKSMITH;
+            case BUTCHER:
+                return Profession.BUTCHER;
+            case FARMER:
+                return Profession.FARMER;
+            case LIBRARIAN:
+                return Profession.LIBRARIAN;
+            case PRIEST:
+                return Profession.PRIEST;
+            case VILLAGER:
+            default:
+                return Profession.FARMER;
+        }
     }
 
     public void setProfession(Profession profession) {
-        throw new NotImplementedException();
+        switch (profession) {
+            case BLACKSMITH:
+                entity.setProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession.BLACKSMITH);
+                break;
+            case BUTCHER:
+                entity.setProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession.BUTCHER);
+                break;
+            case FARMER:
+                entity.setProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession.FARMER);
+                break;
+            case LIBRARIAN:
+                entity.setProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession.LIBRARIAN);
+                break;
+            case PRIEST:
+                entity.setProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession.PRIEST);
+                break;
+        }
     }
 
     public EntityType getType() {
-        return EntityType.ENDERMAN;
+        return EntityType.VILLAGER;
     }
 }

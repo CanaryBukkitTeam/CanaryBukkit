@@ -24,10 +24,35 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.bukkit.entity.Animals;
+import org.apache.commons.lang.NotImplementedException;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Ocelot;
 
-public class CanaryAnimals extends CanaryAgeable implements Animals {
-    public CanaryAnimals(net.canarymod.api.entity.living.LivingBase entity) {
+public class CanaryOcelot extends CanaryTameable implements Ocelot {
+    private net.canarymod.api.entity.living.animal.Ocelot entity;
+
+    public CanaryOcelot(net.canarymod.api.entity.living.animal.Ocelot entity) {
         super(entity);
+        this.entity = entity;
+    }
+
+    public Type getCatType() {
+        throw new NotImplementedException();
+    }
+
+    public void setCatType(Type type) {
+        throw new NotImplementedException();
+    }
+
+    public boolean isSitting() {
+        return entity.isSitting();
+    }
+
+    public void setSitting(boolean sitting) {
+        entity.setSitting(sitting);
+    }
+
+    public EntityType getType() {
+        return EntityType.OCELOT;
     }
 }

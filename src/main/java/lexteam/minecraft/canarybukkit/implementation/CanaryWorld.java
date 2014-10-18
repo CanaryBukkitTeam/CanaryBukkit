@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryLib plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -49,9 +49,11 @@ import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
 
 public class CanaryWorld implements World {
     private net.canarymod.api.world.World world;
+    private Server server;
 
     public CanaryWorld(net.canarymod.api.world.World world) {
         this.world = world;
+        this.server = Bukkit.getServer();
     }
 
     public Block getBlockAt(int x, int y, int z) {
@@ -79,12 +81,13 @@ public class CanaryWorld implements World {
     }
 
     public Block getHighestBlockAt(int x, int z) {
-        throw new NotImplementedException(); // world.getHighestBlockAt(x, z)
+        throw new NotImplementedException();
+        // world.getHighestBlockAt(x, z)
     }
 
     public Block getHighestBlockAt(Location location) {
-        throw new NotImplementedException(); // world.getHighestBlockAt(location.getBlockX(),
-                                             // location.getBlockZ())
+        throw new NotImplementedException();
+        // world.getHighestBlockAt(location.getBlockX(),location.getBlockZ())
     }
 
     public Chunk getChunkAt(int x, int z) {
@@ -192,6 +195,7 @@ public class CanaryWorld implements World {
         throw new NotImplementedException();
     }
 
+    @SuppressWarnings("deprecation")
     public LivingEntity spawnCreature(Location loc, CreatureType type) {
         throw new NotImplementedException();
     }
@@ -237,7 +241,7 @@ public class CanaryWorld implements World {
     }
 
     public Location getSpawnLocation() {
-        return new CanaryLocation(world.getSpawnLocation(), new CanaryWorld(world));
+        return new CanaryLocation(world.getSpawnLocation(), this);
     }
 
     public boolean setSpawnLocation(int x, int y, int z) {
@@ -534,7 +538,7 @@ public class CanaryWorld implements World {
     }
 
     public void sendPluginMessage(Plugin source, String channel, byte[] message) {
-        throw new NotImplementedException();
+        server.sendPluginMessage(source, channel, message);
     }
 
     public Set<String> getListeningPluginChannels() {

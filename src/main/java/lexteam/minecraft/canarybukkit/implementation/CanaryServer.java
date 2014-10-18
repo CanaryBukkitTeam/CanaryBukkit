@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryLib plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -91,6 +91,7 @@ import com.avaje.ebean.config.ServerConfig;
 
 public class CanaryServer implements Server {
     private net.canarymod.api.Server server;
+    private String canaryBukkitVersion;
     private final SimpleCommandMap commandMap = new SimpleCommandMap(this);
     private PluginManager pluginManager = new SimplePluginManager(this, commandMap);
     private final CanaryHelpMap helpMap = new CanaryHelpMap(this);
@@ -98,19 +99,19 @@ public class CanaryServer implements Server {
     private final ServicesManager servicesManager = new SimpleServicesManager();
     private Logman logman;
     private YamlConfiguration config;
-    private File configFile = new File(Constants.configDir, "config.yml");
 
-    public CanaryServer(net.canarymod.api.Server server, Logman logman) {
+    public CanaryServer(net.canarymod.api.Server server, Logman logman, String canaryBukkitVersion) {
         this.server = server;
         this.logman = logman;
+        this.canaryBukkitVersion = canaryBukkitVersion;
 
         Bukkit.setServer(this);
 
-        config = YamlConfiguration.loadConfiguration(configFile);
+        config = YamlConfiguration.loadConfiguration(Constants.configFile);
         config.options().copyDefaults(true);
         config.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader()
                 .getResourceAsStream("config/config.yml")));
-        saveConfigFile(config);
+        saveConfigFile(config, Constants.configFile);
     }
 
     public void start() {
@@ -123,11 +124,11 @@ public class CanaryServer implements Server {
         commandMap.registerServerAliases();
     }
 
-    private void saveConfigFile(YamlConfiguration config) {
+    private void saveConfigFile(YamlConfiguration config, File file) {
         try {
-            config.save(configFile);
+            config.save(file);
         } catch (IOException ex) {
-            logman.warn("Could not save " + configFile, ex);
+            logman.warn("Could not save " + config, ex);
         }
     }
 
@@ -202,7 +203,7 @@ public class CanaryServer implements Server {
     }
 
     public String getImplementationVersion() {
-        return Constants.canaryBukkitVersion;
+        return canaryBukkitVersion;
     }
 
     public String getBukkitVersion() {
@@ -272,13 +273,11 @@ public class CanaryServer implements Server {
     }
 
     public Set<OfflinePlayer> getWhitelistedPlayers() {
-        /*
-         * Set<OfflinePlayer> players = null; for(String name :
-         * Canary.whitelist().getWhitelisted()) { OfflinePlayer player = new
-         * CanaryOfflinePlayer(Canary.getServer().getOfflinePlayer(name));
-         * players.add(player); } return players;
-         */
-        throw new NotImplementedException();
+        Set<OfflinePlayer> players = new HashSet<OfflinePlayer>();
+        for (String name : Canary.whitelist().getWhitelisted()) {
+            players.add(new CanaryOfflinePlayer(Canary.getServer().getOfflinePlayer(name)));
+        }
+        return players;
     }
 
     public void reloadWhitelist() {
@@ -412,7 +411,7 @@ public class CanaryServer implements Server {
     }
 
     public void reload() {
-        config = YamlConfiguration.loadConfiguration(this.configFile);
+        config = YamlConfiguration.loadConfiguration(Constants.configFile);
         // TODO: More reload stuff.
 
         server.restart(true);
@@ -439,8 +438,8 @@ public class CanaryServer implements Server {
     public boolean dispatchCommand(CommandSender sender, String commandLine) {
         Validate.notNull(sender, "Sender cannot be null");
         Validate.notNull(commandLine, "CommandLine cannot be null");
-        
-        if(commandLine.startsWith("/")) {
+
+        if (commandLine.startsWith("/")) {
             commandLine = commandLine.substring(1);
         }
         if (commandMap.dispatch(sender, commandLine)) {
@@ -517,7 +516,6 @@ public class CanaryServer implements Server {
                 count++;
             }
         }
-
         return count;
     }
 
@@ -550,7 +548,11 @@ public class CanaryServer implements Server {
     }
 
     public Set<OfflinePlayer> getOperators() {
-        throw new NotImplementedException();
+        Set<OfflinePlayer> players = new HashSet<OfflinePlayer>();
+        for (String name : Canary.ops().getOps()) {
+            players.add(new CanaryOfflinePlayer(Canary.getServer().getOfflinePlayer(name)));
+        }
+        return players;
     }
 
     public GameMode getDefaultGameMode() {

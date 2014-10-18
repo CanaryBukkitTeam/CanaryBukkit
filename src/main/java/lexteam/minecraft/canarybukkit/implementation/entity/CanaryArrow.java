@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryLib plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -26,6 +26,7 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Arrow;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.projectiles.ProjectileSource;
 
@@ -67,5 +68,9 @@ public class CanaryArrow extends AbstractProjectile implements Arrow {
 
     public void setShooter(ProjectileSource source) {
         throw new NotImplementedException();
+    }
+
+    public EntityType getType() {
+        return EntityType.ARROW;
     }
 }

@@ -1,5 +1,5 @@
 /**
- * This file is part of CanaryBukkit, a CanaryMod plugin, licensed under the MIT License (MIT).
+ * This file is part of CanaryBukkit, a CanaryLib plugin, licensed under the MIT License (MIT).
  *
  * Copyright (c) Lexteam <https://github.com/Lexteam>
  * Copyright (c) contributors
@@ -31,7 +31,7 @@ import org.bukkit.entity.LightningStrike;
 public class CanaryLightningStrike extends CanaryEntity implements LightningStrike {
     private LightningBolt entity;
 
-    public CanaryLightningStrike(net.canarymod.api.entity.effect.LightningBolt entity) {
+    public CanaryLightningStrike(LightningBolt entity) {
         super(entity);
         this.entity = entity;
     }

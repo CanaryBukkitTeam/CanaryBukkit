@@ -24,10 +24,34 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.bukkit.entity.Animals;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.PigZombie;
 
-public class CanaryAnimals extends CanaryAgeable implements Animals {
-    public CanaryAnimals(net.canarymod.api.entity.living.LivingBase entity) {
+public class CanaryPigZombie extends CanaryZombie implements PigZombie {
+    private net.canarymod.api.entity.living.monster.PigZombie entity;
+
+    public CanaryPigZombie(net.canarymod.api.entity.living.monster.PigZombie entity) {
         super(entity);
+        this.entity = entity;
+    }
+
+    public int getAnger() {
+        return entity.getAngerLevel();
+    }
+
+    public void setAnger(int level) {
+        entity.setAngerLevel(level);
+    }
+
+    public void setAngry(boolean angry) {
+        setAnger(angry ? 400 : 0);
+    }
+
+    public boolean isAngry() {
+        return getAnger() > 0;
+    }
+
+    public EntityType getType() {
+        return EntityType.PIG_ZOMBIE;
     }
 }

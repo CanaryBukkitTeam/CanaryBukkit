@@ -24,10 +24,15 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.bukkit.entity.Animals;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Witch;
 
-public class CanaryAnimals extends CanaryAgeable implements Animals {
-    public CanaryAnimals(net.canarymod.api.entity.living.LivingBase entity) {
+public class CanaryWitch extends CanaryMonster implements Witch {
+    public CanaryWitch(net.canarymod.api.entity.living.monster.Witch entity) {
         super(entity);
+    }
+
+    public EntityType getType() {
+        return EntityType.WITCH;
     }
 }
