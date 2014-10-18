@@ -24,12 +24,21 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.EntityType;
 
 public class CanaryBat extends CanaryMonster implements Bat {
     public CanaryBat(net.canarymod.api.entity.living.animal.Bat entity) {
         super(entity);
+    }
+    
+    public boolean isAwake() {
+        throw new NotImplementedException();
+    }
+
+    public void setAwake(boolean awake) {
+        throw new NotImplementedException();
     }
 
     public EntityType getType() {

@@ -25,10 +25,12 @@
 package lexteam.minecraft.canarybukkit.implementation;
 
 import java.util.Map;
+import java.util.UUID;
 
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 import net.canarymod.Canary;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
@@ -49,11 +51,11 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
     }
 
     public Map<String, Object> serialize() {
-        return null;
+        throw new NotImplementedException();
     }
 
     public Location getBedSpawnLocation() {
-        return null;
+        throw new NotImplementedException();
     }
 
     public long getFirstPlayed() {
@@ -97,5 +99,9 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
             Canary.whitelist().addPlayer(getName());
         else
             Canary.whitelist().removePlayer(getName());
+    }
+
+    public UUID getUniqueId() {
+        throw new NotImplementedException();
     }
 }

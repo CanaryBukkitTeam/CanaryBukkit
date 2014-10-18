@@ -46,7 +46,7 @@
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.7.2-R0.3</version> <!-- Will use Glowkit when I update for 1.8 -->
+			<version>1.7.9-R0.2</version> <!-- Will use Glowkit when I update for 1.8 -->
 			<scope>compile</scope>
 		</dependency>
 	</dependencies>
