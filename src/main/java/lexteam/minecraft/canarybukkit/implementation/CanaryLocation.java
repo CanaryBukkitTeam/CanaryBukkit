@@ -24,6 +24,8 @@
  */
 package lexteam.minecraft.canarybukkit.implementation;
 
+import net.canarymod.api.world.World;
+
 import org.bukkit.Location;
 
 public class CanaryLocation extends Location {
@@ -33,6 +35,15 @@ public class CanaryLocation extends Location {
 
     public CanaryLocation(net.canarymod.api.world.position.Location loc, CanaryWorld world) {
         super(world, loc.getX(), loc.getY(), loc.getZ());
+        setPitch(loc.getPitch());
+    }
+
+    public CanaryLocation(net.canarymod.api.world.position.Position position, World world) {
+        super(new CanaryWorld(world), position.getX(), position.getY(), position.getZ());
+    }
+
+    public CanaryLocation(net.canarymod.api.world.position.Location loc, World world) {
+        super(new CanaryWorld(world), loc.getX(), loc.getY(), loc.getZ());
         setPitch(loc.getPitch());
     }
 }

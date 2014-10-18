@@ -32,7 +32,7 @@ public class CanaryBat extends CanaryMonster implements Bat {
     public CanaryBat(net.canarymod.api.entity.living.animal.Bat entity) {
         super(entity);
     }
-    
+
     public boolean isAwake() {
         throw new NotImplementedException();
     }

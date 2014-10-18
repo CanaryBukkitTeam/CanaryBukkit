@@ -254,7 +254,7 @@ public class CanaryWorld implements World {
     }
 
     public void setTime(long time) {
-        throw new NotImplementedException();
+        world.setTime(time);
     }
 
     public long getFullTime() {

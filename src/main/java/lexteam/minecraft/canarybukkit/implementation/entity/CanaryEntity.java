@@ -52,15 +52,12 @@ public class CanaryEntity implements Entity {
     }
 
     public Location getLocation() {
-        Location loc = new Location(new CanaryWorld(entity.getWorld()), entity.getX(), entity.getY(),
-                entity.getZ());
-        loc.setPitch(entity.getPitch());
-        return loc;
+        return new CanaryLocation(entity.getLocation(), entity.getWorld());
     }
 
     public Location getLocation(Location loc) {
         if (loc != null) {
-            loc = new CanaryLocation(entity.getLocation(), new CanaryWorld(entity.getWorld()));
+            loc = new CanaryLocation(entity.getLocation(), entity.getWorld());
         }
         return loc;
     }

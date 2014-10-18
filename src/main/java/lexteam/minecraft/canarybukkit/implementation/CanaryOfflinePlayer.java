@@ -55,7 +55,8 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
     }
 
     public Location getBedSpawnLocation() {
-        throw new NotImplementedException();
+        return new CanaryLocation(offlinePlayer.getHome(), offlinePlayer.getWorld());
+        // TODO: Is home the same as the bed?
     }
 
     public long getFirstPlayed() {
@@ -102,6 +103,6 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
     }
 
     public UUID getUniqueId() {
-        throw new NotImplementedException();
+        return offlinePlayer.getUUID();
     }
 }
