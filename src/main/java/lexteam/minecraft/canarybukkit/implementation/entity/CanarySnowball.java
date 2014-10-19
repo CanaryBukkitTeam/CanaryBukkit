@@ -50,7 +50,7 @@ public class CanarySnowball extends CanaryAbstractProjectile implements Snowball
     public void setShooter(ProjectileSource source) {
         throw new NotImplementedException();
     }
-    
+
     @Override
     public EntityType getType() {
         return EntityType.SNOWBALL;

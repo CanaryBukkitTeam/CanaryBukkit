@@ -35,14 +35,18 @@ import net.canarymod.hook.player.BlockDestroyHook;
 import net.canarymod.hook.player.BlockPlaceHook;
 import net.canarymod.hook.system.LoadWorldHook;
 import net.canarymod.hook.system.UnloadWorldHook;
+import net.canarymod.hook.world.BlockGrowHook;
 import net.canarymod.hook.world.ChunkLoadedHook;
 import net.canarymod.hook.world.ChunkUnloadHook;
 import net.canarymod.hook.world.LightningStrikeHook;
+import net.canarymod.hook.world.WeatherChangeHook;
 import net.canarymod.plugin.PluginListener;
 
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockGrowEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.weather.LightningStrikeEvent;
+import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.event.world.WorldLoadEvent;
@@ -97,5 +101,17 @@ public class CanaryWorldListener implements PluginListener {
         server.getPluginManager().callEvent(
                 new LightningStrikeEvent(new CanaryWorld(hook.getLightningBolt().getWorld()),
                         new CanaryLightningStrike(hook.getLightningBolt())));
+    }
+
+    @HookHandler
+    public void onWeatherChange(WeatherChangeHook hook) {
+        server.getPluginManager().callEvent(
+                new WeatherChangeEvent(new CanaryWorld(hook.getWorld()), hook.turningOn()));
+    }
+
+    @HookHandler
+    public void onBlockGrowth(BlockGrowHook hook) {
+        server.getPluginManager().callEvent(new BlockGrowEvent(new CanaryBlock(hook.getOriginal()), null));
+        // TODO: Fill in second argument
     }
 }

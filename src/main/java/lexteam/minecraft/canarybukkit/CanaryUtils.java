@@ -22,18 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit.implementation.entity;
+package lexteam.minecraft.canarybukkit;
 
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Snowman;
+import net.canarymod.api.GameMode;
 
-public class CanarySnowman extends CanaryGolem implements Snowman {
-    public CanarySnowman(net.canarymod.api.entity.living.Snowman entity) {
-        super(entity);
-    }
-
-    @Override
-    public EntityType getType() {
-        return EntityType.SNOWMAN;
+/**
+ * For turning Bukkit objects into Canary objects
+ * 
+ * @author Jamie
+ */
+public class CanaryUtils {
+    public static GameMode toGamemode(org.bukkit.GameMode gm) {
+        switch (gm) {
+            case ADVENTURE:
+                return GameMode.ADVENTURE;
+            case CREATIVE:
+                return GameMode.CREATIVE;
+            case SURVIVAL:
+            default:
+                return GameMode.SURVIVAL;
+        }
     }
 }

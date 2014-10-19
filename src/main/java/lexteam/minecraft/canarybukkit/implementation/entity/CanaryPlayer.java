@@ -29,12 +29,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import lexteam.minecraft.canarybukkit.BukkitUtils;
+import lexteam.minecraft.canarybukkit.CanaryUtils;
 import net.canarymod.Canary;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Achievement;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
+import org.bukkit.GameMode;
 import org.bukkit.Instrument;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -519,11 +522,19 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     }
 
     public void sendPluginMessage(Plugin source, String channel, byte[] message) {
-        throw new NotImplementedException();
+        Bukkit.getServer().sendPluginMessage(source, channel, message);
     }
 
     public Set<String> getListeningPluginChannels() {
         throw new NotImplementedException();
+    }
+
+    public GameMode getGameMode() {
+        return BukkitUtils.toGamemode(entity.getMode());
+    }
+
+    public void setGameMode(GameMode mode) {
+        entity.setMode(CanaryUtils.toGamemode(mode));
     }
 
     @Override

@@ -50,7 +50,7 @@ public final class CanaryBukkit extends Plugin {
         // Create all the directories.
         Constants.pluginsDir.mkdirs();
         Constants.configDir.mkdirs();
-        
+
         // Start server
         server.start();
         return true;

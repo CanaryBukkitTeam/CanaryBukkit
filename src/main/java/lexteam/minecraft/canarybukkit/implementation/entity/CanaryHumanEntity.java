@@ -29,7 +29,6 @@ import java.util.Set;
 import net.canarymod.api.entity.living.humanoid.Human;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.Inventory;
@@ -41,7 +40,7 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
-public class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity {
+public abstract class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity {
     private Human entity;
 
     public CanaryHumanEntity(net.canarymod.api.entity.living.humanoid.Human entity) {
@@ -111,14 +110,6 @@ public class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity
 
     public int getSleepTicks() {
         return 0;
-    }
-
-    public GameMode getGameMode() {
-        throw new NotImplementedException();
-    }
-
-    public void setGameMode(GameMode mode) {
-        throw new NotImplementedException();
     }
 
     public boolean isBlocking() {

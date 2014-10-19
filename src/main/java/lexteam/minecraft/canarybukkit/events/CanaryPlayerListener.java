@@ -36,6 +36,8 @@ import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.command.PlayerCommandHook;
+import net.canarymod.hook.player.BedEnterHook;
+import net.canarymod.hook.player.BedExitHook;
 import net.canarymod.hook.player.ChatHook;
 import net.canarymod.hook.player.ConnectionHook;
 import net.canarymod.hook.player.DisconnectionHook;
@@ -47,6 +49,8 @@ import net.canarymod.plugin.PluginListener;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerBedEnterEvent;
+import org.bukkit.event.player.PlayerBedLeaveEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -116,5 +120,17 @@ public class CanaryPlayerListener implements PluginListener {
         if (server.dispatchCommand(new CanaryCommandSender(hook.getPlayer()), commandLine)) {
             hook.setCanceled();
         }
+    }
+
+    @HookHandler
+    public void onEnteringBed(BedEnterHook hook) {
+        server.getPluginManager().callEvent(
+                new PlayerBedEnterEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())));
+    }
+
+    @HookHandler
+    public void onExitingBed(BedExitHook hook) {
+        server.getPluginManager().callEvent(
+                new PlayerBedLeaveEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())));
     }
 }
