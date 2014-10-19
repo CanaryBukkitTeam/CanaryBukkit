@@ -22,31 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit;
+package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
-import net.canarymod.chat.MessageReceiver;
-import net.canarymod.commandsys.Command;
-import net.canarymod.commandsys.CommandListener;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Snowman;
 
-import org.bukkit.plugin.Plugin;
-
-public class CanaryCommands implements CommandListener {
-    private CanaryServer server;
-
-    public CanaryCommands(CanaryServer server) {
-        this.server = server;
+public class CanarySnowman extends CanaryGolem implements Snowman {
+    public CanarySnowman(net.canarymod.api.entity.living.Snowman entity) {
+        super(entity);
     }
-
-    @Command(aliases = { "bplugins" },
-             description = "list Bukkit plugins",
-             permissions = { "bukkit.listplugins" },
-             toolTip = "/bplugins",
-             version = 2)
-    public void bpluginsCommand(MessageReceiver caller, String[] args) {
-        caller.message("Bukkit plugins:");
-        for (Plugin plugin : server.getPluginManager().getPlugins()) {
-            caller.message(plugin.getName());
-        }
+    
+    @Override
+    public EntityType getType() {
+        return EntityType.SNOWMAN;
     }
 }

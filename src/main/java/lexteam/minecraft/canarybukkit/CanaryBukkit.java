@@ -30,7 +30,6 @@ import lexteam.minecraft.canarybukkit.events.CanaryServerListener;
 import lexteam.minecraft.canarybukkit.events.CanaryWorldListener;
 import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
 import net.canarymod.Canary;
-import net.canarymod.commandsys.CommandDependencyException;
 import net.canarymod.plugin.Plugin;
 
 import org.bukkit.Bukkit;
@@ -48,20 +47,12 @@ public final class CanaryBukkit extends Plugin {
         Canary.hooks().registerListener(new CanaryWorldListener(server), this);
         Canary.hooks().registerListener(new CanaryServerListener(server), this);
 
-        // Enable Commands
-        try {
-            Canary.commands().registerCommands(new CanaryCommands(server), this, false);
-        } catch (CommandDependencyException e) {
-            e.printStackTrace();
-        }
-
-        // Check if the directories exist
-        if (!Constants.bukkitDir.exists()) {
-            Constants.pluginsDir.mkdirs();
-            Constants.configDir.mkdirs();
-        }
+        // Create all the directories.
+        Constants.pluginsDir.mkdirs();
+        Constants.configDir.mkdirs();
+        
+        // Start server
         server.start();
-
         return true;
     }
 

@@ -24,35 +24,21 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.entity.Egg;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.entity.Projectile;
 
-public class CanaryEgg extends CanaryAbstractProjectile implements Egg {
-    public CanaryEgg(net.canarymod.api.entity.Entity entity) {
+public abstract class CanaryAbstractProjectile extends CanaryEntity implements Projectile {
+    private boolean doesBounce;
+
+    public CanaryAbstractProjectile(net.canarymod.api.entity.Entity entity) {
         super(entity);
+        doesBounce = false;
     }
 
-    public LivingEntity _INVALID_getShooter() {
-        throw new NotImplementedException();
+    public boolean doesBounce() {
+        return doesBounce;
     }
 
-    public ProjectileSource getShooter() {
-        throw new NotImplementedException();
-    }
-
-    public void _INVALID_setShooter(LivingEntity shooter) {
-        throw new NotImplementedException();
-    }
-
-    public void setShooter(ProjectileSource source) {
-        throw new NotImplementedException();
-    }
-
-    @Override
-    public EntityType getType() {
-        return EntityType.EGG;
+    public void setBounce(boolean doesBounce) {
+        this.doesBounce = doesBounce;
     }
 }

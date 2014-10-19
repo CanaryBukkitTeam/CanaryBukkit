@@ -30,7 +30,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.projectiles.ProjectileSource;
 
-public class CanaryArrow extends AbstractProjectile implements Arrow {
+public class CanaryArrow extends CanaryAbstractProjectile implements Arrow {
     private net.canarymod.api.entity.Arrow arrow;
 
     public CanaryArrow(net.canarymod.api.entity.Arrow arrow) {

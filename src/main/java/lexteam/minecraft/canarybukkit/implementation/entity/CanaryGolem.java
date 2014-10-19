@@ -24,21 +24,12 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.bukkit.entity.Projectile;
+import net.canarymod.api.entity.living.LivingBase;
 
-public abstract class AbstractProjectile extends CanaryEntity implements Projectile {
-    private boolean doesBounce;
+import org.bukkit.entity.Golem;
 
-    public AbstractProjectile(net.canarymod.api.entity.Entity entity) {
+public class CanaryGolem extends CanaryCreature implements Golem {
+    public CanaryGolem(LivingBase entity) {
         super(entity);
-        doesBounce = false;
-    }
-
-    public boolean doesBounce() {
-        return doesBounce;
-    }
-
-    public void setBounce(boolean doesBounce) {
-        this.doesBounce = doesBounce;
     }
 }

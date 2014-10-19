@@ -25,13 +25,13 @@
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.entity.Egg;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Snowball;
 import org.bukkit.projectiles.ProjectileSource;
 
-public class CanaryEgg extends CanaryAbstractProjectile implements Egg {
-    public CanaryEgg(net.canarymod.api.entity.Entity entity) {
+public class CanarySnowball extends CanaryAbstractProjectile implements Snowball {
+    public CanarySnowball(net.canarymod.api.entity.throwable.Snowball entity) {
         super(entity);
     }
 
@@ -50,9 +50,9 @@ public class CanaryEgg extends CanaryAbstractProjectile implements Egg {
     public void setShooter(ProjectileSource source) {
         throw new NotImplementedException();
     }
-
+    
     @Override
     public EntityType getType() {
-        return EntityType.EGG;
+        return EntityType.SNOWBALL;
     }
 }
