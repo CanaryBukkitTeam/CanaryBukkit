@@ -25,6 +25,10 @@
 package lexteam.minecraft.canarybukkit;
 
 import net.canarymod.api.GameMode;
+import net.canarymod.api.world.World.Difficulty;
+import net.canarymod.api.world.WorldType;
+
+import org.apache.commons.lang.Validate;
 
 /**
  * For turning Bukkit objects into Canary objects
@@ -32,7 +36,8 @@ import net.canarymod.api.GameMode;
  * @author Jamie
  */
 public class CanaryUtils {
-    public static GameMode toGamemode(org.bukkit.GameMode gm) {
+    public static GameMode toGameMode(org.bukkit.GameMode gm) {
+        Validate.notNull(gm);
         switch (gm) {
             case ADVENTURE:
                 return GameMode.ADVENTURE;
@@ -41,6 +46,38 @@ public class CanaryUtils {
             case SURVIVAL:
             default:
                 return GameMode.SURVIVAL;
+        }
+    }
+
+    public static Difficulty toDifficulty(org.bukkit.Difficulty difficulty) {
+        Validate.notNull(difficulty);
+        switch (difficulty) {
+            case EASY:
+                return Difficulty.EASY;
+            case HARD:
+                return Difficulty.HARD;
+            case PEACEFUL:
+                return Difficulty.PEACEFUL;
+            case NORMAL:
+            default:
+                return Difficulty.NORMAL;
+        }
+    }
+
+    public static WorldType toWorldType(org.bukkit.WorldType type) {
+        Validate.notNull(type);
+        switch (type) {
+            case AMPLIFIED:
+                return WorldType.AMPLIFIED;
+            case FLAT:
+                return WorldType.SUPERFLAT;
+            case LARGE_BIOMES:
+                return WorldType.LARGEBIOMES;
+            case VERSION_1_1:
+                return WorldType.DEFAULT_1_1;
+            case NORMAL:
+            default:
+                return WorldType.DEFAULT;
         }
     }
 }

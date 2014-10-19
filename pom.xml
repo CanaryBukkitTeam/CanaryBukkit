@@ -34,6 +34,10 @@
 			<id>bukkit-repo</id>
 			<url>http://repo.bukkit.org/content/groups/public</url>
 		</repository>
+		<repository>
+        	<id>repo1123</id>
+        	<url>http://repo.larry1123.net/content/groups/public</url>
+    	</repository>
 	</repositories>
   	
 	<dependencies>
@@ -49,6 +53,11 @@
 			<version>1.7.9-R0.2</version> <!-- Will use Glowkit when I update for 1.8 -->
 			<scope>compile</scope>
 		</dependency>
+			<dependency>
+	        <groupId>net.larry1123</groupId>
+	        <artifactId>CanaryUtil</artifactId>
+	        <version>0.3.3</version>
+	    </dependency>
 	</dependencies>
   	
   	<build>

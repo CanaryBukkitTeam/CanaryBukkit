@@ -207,7 +207,7 @@ public class CanaryServer implements Server {
     }
 
     public String getBukkitVersion() {
-        return getName() + "-" + getVersion();
+        return Constants.bukkitVersion;
     }
 
     public Player[] getOnlinePlayers() {

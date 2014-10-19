@@ -29,12 +29,8 @@ import java.util.Set;
 import net.canarymod.api.entity.living.humanoid.Human;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.Location;
 import org.bukkit.entity.HumanEntity;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
@@ -52,56 +48,8 @@ public abstract class CanaryHumanEntity extends CanaryLivingEntity implements Hu
         return entity.getName();
     }
 
-    public PlayerInventory getInventory() {
-        throw new NotImplementedException();
-    }
-
-    public Inventory getEnderChest() {
-        throw new NotImplementedException();
-    }
-
     public boolean setWindowProperty(InventoryView.Property prop, int value) {
         return false;
-    }
-
-    public InventoryView getOpenInventory() {
-        throw new NotImplementedException();
-    }
-
-    public InventoryView openInventory(Inventory inventory) {
-        throw new NotImplementedException();
-    }
-
-    public InventoryView openWorkbench(Location location, boolean force) {
-        throw new NotImplementedException();
-    }
-
-    public InventoryView openEnchanting(Location location, boolean force) {
-        throw new NotImplementedException();
-    }
-
-    public void openInventory(InventoryView inventory) {
-        throw new NotImplementedException();
-    }
-
-    public void closeInventory() {
-        throw new NotImplementedException();
-    }
-
-    public ItemStack getItemInHand() {
-        throw new NotImplementedException();
-    }
-
-    public void setItemInHand(ItemStack item) {
-        throw new NotImplementedException();
-    }
-
-    public ItemStack getItemOnCursor() {
-        throw new NotImplementedException();
-    }
-
-    public void setItemOnCursor(ItemStack item) {
-        throw new NotImplementedException();
     }
 
     public boolean isSleeping() {

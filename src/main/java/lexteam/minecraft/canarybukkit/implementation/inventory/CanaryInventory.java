@@ -164,7 +164,7 @@ public class CanaryInventory implements Inventory {
     }
 
     public String getTitle() {
-        throw new NotImplementedException();
+        return inv.getInventoryName();
     }
 
     public InventoryType getType() {

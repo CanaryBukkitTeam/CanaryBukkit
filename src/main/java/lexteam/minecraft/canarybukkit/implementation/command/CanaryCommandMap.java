@@ -22,37 +22,53 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package lexteam.minecraft.canarybukkit.implementation.entity;
+package lexteam.minecraft.canarybukkit.implementation.command;
+
+import java.util.List;
 
 import org.apache.commons.lang.NotImplementedException;
-import org.bukkit.entity.Egg;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandException;
+import org.bukkit.command.CommandMap;
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.defaults.PluginsCommand;
+import org.bukkit.command.defaults.VersionCommand;
 
-public class CanaryEgg extends CanaryAbstractProjectile implements Egg {
-    public CanaryEgg(net.canarymod.api.entity.throwable.ChickenEgg entity) {
-        super(entity);
+public class CanaryCommandMap implements CommandMap {
+    public CanaryCommandMap() {
+        setDefaultCommands();
     }
 
-    public LivingEntity _INVALID_getShooter() {
+    private void setDefaultCommands() {
+        register("bukkit", new VersionCommand("bversion"));
+        register("bukkit", new PluginsCommand("bplugins"));
+    }
+
+    public void registerAll(String fallbackPrefix, List<Command> commands) {
         throw new NotImplementedException();
     }
 
-    public ProjectileSource getShooter() {
+    public boolean register(String label, String fallbackPrefix, Command command) {
         throw new NotImplementedException();
     }
 
-    public void _INVALID_setShooter(LivingEntity shooter) {
+    public boolean register(String fallbackPrefix, Command command) {
         throw new NotImplementedException();
     }
 
-    public void setShooter(ProjectileSource source) {
+    public boolean dispatch(CommandSender sender, String cmdLine) throws CommandException {
         throw new NotImplementedException();
     }
 
-    @Override
-    public EntityType getType() {
-        return EntityType.EGG;
+    public void clearCommands() {
+        throw new NotImplementedException();
+    }
+
+    public Command getCommand(String name) {
+        throw new NotImplementedException();
+    }
+
+    public List<String> tabComplete(CommandSender sender, String cmdLine) throws IllegalArgumentException {
+        throw new NotImplementedException();
     }
 }

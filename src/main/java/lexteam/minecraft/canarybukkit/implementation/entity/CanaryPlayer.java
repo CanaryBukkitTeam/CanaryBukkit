@@ -31,6 +31,8 @@ import java.util.UUID;
 
 import lexteam.minecraft.canarybukkit.BukkitUtils;
 import lexteam.minecraft.canarybukkit.CanaryUtils;
+import lexteam.minecraft.canarybukkit.implementation.inventory.CanaryInventory;
+import lexteam.minecraft.canarybukkit.implementation.inventory.CanaryPlayerInventory;
 import net.canarymod.Canary;
 
 import org.apache.commons.lang.NotImplementedException;
@@ -49,6 +51,10 @@ import org.bukkit.conversations.Conversation;
 import org.bukkit.conversations.ConversationAbandonedEvent;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.Scoreboard;
@@ -530,11 +536,59 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     }
 
     public GameMode getGameMode() {
-        return BukkitUtils.toGamemode(entity.getMode());
+        return BukkitUtils.toGameMode(entity.getMode());
     }
 
     public void setGameMode(GameMode mode) {
-        entity.setMode(CanaryUtils.toGamemode(mode));
+        entity.setMode(CanaryUtils.toGameMode(mode));
+    }
+
+    public PlayerInventory getInventory() {
+        return new CanaryPlayerInventory(entity.getInventory(), this);
+    }
+
+    public Inventory getEnderChest() {
+        return new CanaryInventory(entity.getEnderChestInventory());
+    }
+
+    public InventoryView getOpenInventory() {
+        throw new NotImplementedException();
+    }
+
+    public InventoryView openInventory(Inventory inventory) {
+        throw new NotImplementedException();
+    }
+
+    public InventoryView openWorkbench(Location location, boolean force) {
+        throw new NotImplementedException();
+    }
+
+    public InventoryView openEnchanting(Location location, boolean force) {
+        throw new NotImplementedException();
+    }
+
+    public void openInventory(InventoryView inventory) {
+        throw new NotImplementedException();
+    }
+
+    public void closeInventory() {
+        throw new NotImplementedException();
+    }
+
+    public ItemStack getItemInHand() {
+        throw new NotImplementedException();
+    }
+
+    public void setItemInHand(ItemStack item) {
+        throw new NotImplementedException();
+    }
+
+    public ItemStack getItemOnCursor() {
+        throw new NotImplementedException();
+    }
+
+    public void setItemOnCursor(ItemStack item) {
+        throw new NotImplementedException();
     }
 
     @Override

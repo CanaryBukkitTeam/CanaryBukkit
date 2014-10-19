@@ -31,8 +31,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import lexteam.minecraft.canarybukkit.BukkitUtils;
 import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
 import net.canarymod.config.Configuration;
+import net.canarymod.config.WorldConfiguration;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.BlockChangeDelegate;
@@ -457,7 +459,7 @@ public class CanaryWorld implements World {
     }
 
     public Difficulty getDifficulty() {
-        throw new NotImplementedException();
+        return BukkitUtils.toDifficulty(getWorldConfig().getDifficulty());
     }
 
     public File getWorldFolder() {
@@ -465,7 +467,7 @@ public class CanaryWorld implements World {
     }
 
     public WorldType getWorldType() {
-        throw new NotImplementedException();
+        return BukkitUtils.toWorldType(getWorldConfig().getWorldType());
     }
 
     public boolean canGenerateStructures() {
@@ -562,5 +564,9 @@ public class CanaryWorld implements World {
 
     public Set<String> getListeningPluginChannels() {
         throw new NotImplementedException();
+    }
+
+    private WorldConfiguration getWorldConfig() {
+        return Configuration.getWorldConfig(this.getName());
     }
 }
