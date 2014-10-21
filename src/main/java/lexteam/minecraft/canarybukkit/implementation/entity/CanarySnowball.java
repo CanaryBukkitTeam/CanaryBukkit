@@ -30,29 +30,35 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Snowball;
 import org.bukkit.projectiles.ProjectileSource;
 
-public class CanarySnowball extends CanaryAbstractProjectile implements Snowball {
+public class CanarySnowball extends CanaryAbstractProjectile implements Snowball
+{
     public CanarySnowball(net.canarymod.api.entity.throwable.Snowball entity) {
         super(entity);
     }
 
-    public LivingEntity _INVALID_getShooter() {
+    public LivingEntity _INVALID_getShooter()
+    {
         throw new NotImplementedException();
     }
 
-    public ProjectileSource getShooter() {
+    public void _INVALID_setShooter(LivingEntity shooter)
+    {
         throw new NotImplementedException();
     }
 
-    public void _INVALID_setShooter(LivingEntity shooter) {
-        throw new NotImplementedException();
-    }
-
-    public void setShooter(ProjectileSource source) {
+    public ProjectileSource getShooter()
+    {
         throw new NotImplementedException();
     }
 
     @Override
-    public EntityType getType() {
+    public EntityType getType()
+    {
         return EntityType.SNOWBALL;
+    }
+
+    public void setShooter(ProjectileSource source)
+    {
+        throw new NotImplementedException();
     }
 }

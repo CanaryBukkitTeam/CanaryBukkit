@@ -27,7 +27,8 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 
-public class CanaryVillager extends CanaryAgeable implements Villager {
+public class CanaryVillager extends CanaryAgeable implements Villager
+{
     private net.canarymod.api.entity.living.humanoid.Villager entity;
 
     public CanaryVillager(net.canarymod.api.entity.living.humanoid.Villager entity) {
@@ -35,7 +36,8 @@ public class CanaryVillager extends CanaryAgeable implements Villager {
         this.entity = entity;
     }
 
-    public Profession getProfession() {
+    public Profession getProfession()
+    {
         switch (entity.getProfession()) {
             case BLACKSMITH:
                 return Profession.BLACKSMITH;
@@ -53,7 +55,14 @@ public class CanaryVillager extends CanaryAgeable implements Villager {
         }
     }
 
-    public void setProfession(Profession profession) {
+    @Override
+    public EntityType getType()
+    {
+        return EntityType.VILLAGER;
+    }
+
+    public void setProfession(Profession profession)
+    {
         switch (profession) {
             case BLACKSMITH:
                 entity.setProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession.BLACKSMITH);
@@ -71,10 +80,5 @@ public class CanaryVillager extends CanaryAgeable implements Villager {
                 entity.setProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession.PRIEST);
                 break;
         }
-    }
-
-    @Override
-    public EntityType getType() {
-        return EntityType.VILLAGER;
     }
 }

@@ -29,7 +29,8 @@ import net.canarymod.api.entity.living.LivingBase;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Ageable;
 
-public class CanaryAgeable extends CanaryCreature implements Ageable {
+public class CanaryAgeable extends CanaryCreature implements Ageable
+{
     private LivingBase entity;
 
     public CanaryAgeable(net.canarymod.api.entity.living.LivingBase entity) {
@@ -37,7 +38,13 @@ public class CanaryAgeable extends CanaryCreature implements Ageable {
         this.entity = entity;
     }
 
-    public int getAge() {
+    public boolean canBreed()
+    {
+        return getAge() == 0;
+    }
+
+    public int getAge()
+    {
         if (entity instanceof net.canarymod.api.entity.living.Ageable) {
             return ((net.canarymod.api.entity.living.Ageable) entity).getGrowingAge();
         } else {
@@ -45,41 +52,44 @@ public class CanaryAgeable extends CanaryCreature implements Ageable {
         }
     }
 
-    public void setAge(int age) {
-        if (entity instanceof net.canarymod.api.entity.living.Ageable) {
-            ((net.canarymod.api.entity.living.Ageable) entity).setGrowingAge(age);
-        }
-    }
-
-    public void setAgeLock(boolean lock) {
-        throw new NotImplementedException();
-    }
-
-    public boolean getAgeLock() {
+    public boolean getAgeLock()
+    {
         return false;
     }
 
-    public void setBaby() {
-        if (isAdult()) {
-            setAge(-24000);
-        }
+    public boolean isAdult()
+    {
+        return getAge() >= 0;
     }
 
-    public void setAdult() {
+    public void setAdult()
+    {
         if (!isAdult()) {
             setAge(0);
         }
     }
 
-    public boolean isAdult() {
-        return getAge() >= 0;
+    public void setAge(int age)
+    {
+        if (entity instanceof net.canarymod.api.entity.living.Ageable) {
+            ((net.canarymod.api.entity.living.Ageable) entity).setGrowingAge(age);
+        }
     }
 
-    public boolean canBreed() {
-        return getAge() == 0;
+    public void setAgeLock(boolean lock)
+    {
+        throw new NotImplementedException();
     }
 
-    public void setBreed(boolean breed) {
+    public void setBaby()
+    {
+        if (isAdult()) {
+            setAge(-24000);
+        }
+    }
+
+    public void setBreed(boolean breed)
+    {
         throw new NotImplementedException();
     }
 }

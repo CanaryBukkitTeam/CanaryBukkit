@@ -32,7 +32,8 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 
-public class CanaryChunk implements Chunk {
+public class CanaryChunk implements Chunk
+{
     private net.canarymod.api.world.Chunk chunk;
     private CanaryWorld world;
 
@@ -41,62 +42,76 @@ public class CanaryChunk implements Chunk {
         this.world = world;
     }
 
-    public int getX() {
-        return chunk.getX();
-    }
-
-    public int getZ() {
-        return chunk.getZ();
-    }
-
-    public World getWorld() {
-        return world;
-    }
-
-    public Block getBlock(int x, int y, int z) {
+    public Block getBlock(int x, int y, int z)
+    {
         return world.getBlockAt(x, y, z);
     }
 
-    public ChunkSnapshot getChunkSnapshot() {
+    public ChunkSnapshot getChunkSnapshot()
+    {
         throw new NotImplementedException();
     }
 
     public ChunkSnapshot getChunkSnapshot(boolean includeMaxblocky, boolean includeBiome,
-            boolean includeBiomeTempRain) {
+            boolean includeBiomeTempRain)
+    {
         throw new NotImplementedException();
     }
 
-    public Entity[] getEntities() {
+    public Entity[] getEntities()
+    {
         return new Entity[0];
     }
 
-    public BlockState[] getTileEntities() {
+    public BlockState[] getTileEntities()
+    {
         return new BlockState[0];
     }
 
-    public boolean isLoaded() {
+    public World getWorld()
+    {
+        return world;
+    }
+
+    public int getX()
+    {
+        return chunk.getX();
+    }
+
+    public int getZ()
+    {
+        return chunk.getZ();
+    }
+
+    public boolean isLoaded()
+    {
         return chunk.isLoaded();
     }
 
-    public boolean load(boolean generate) {
-        return false;
-    }
-
-    public boolean load() {
+    public boolean load()
+    {
         world.loadChunk(new CanaryChunk(chunk, world));
         return chunk.isLoaded();
     }
 
-    public boolean unload(boolean save, boolean safe) {
+    public boolean load(boolean generate)
+    {
         return false;
     }
 
-    public boolean unload(boolean save) {
-        return false;
-    }
-
-    public boolean unload() {
+    public boolean unload()
+    {
         world.unloadChunk(new CanaryChunk(chunk, world));
         return !chunk.isLoaded();
+    }
+
+    public boolean unload(boolean save)
+    {
+        return false;
+    }
+
+    public boolean unload(boolean save, boolean safe)
+    {
+        return false;
     }
 }

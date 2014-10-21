@@ -34,41 +34,50 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.defaults.PluginsCommand;
 import org.bukkit.command.defaults.VersionCommand;
 
-public class CanaryCommandMap implements CommandMap {
+public class CanaryCommandMap implements CommandMap
+{
     public CanaryCommandMap() {
         setDefaultCommands();
     }
 
-    private void setDefaultCommands() {
+    public void clearCommands()
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean dispatch(CommandSender sender, String cmdLine) throws CommandException
+    {
+        throw new NotImplementedException();
+    }
+
+    public Command getCommand(String name)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean register(String fallbackPrefix, Command command)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean register(String label, String fallbackPrefix, Command command)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void registerAll(String fallbackPrefix, List<Command> commands)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void setDefaultCommands()
+    {
         register("bukkit", new VersionCommand("bversion"));
         register("bukkit", new PluginsCommand("bplugins"));
     }
 
-    public void registerAll(String fallbackPrefix, List<Command> commands) {
-        throw new NotImplementedException();
-    }
-
-    public boolean register(String label, String fallbackPrefix, Command command) {
-        throw new NotImplementedException();
-    }
-
-    public boolean register(String fallbackPrefix, Command command) {
-        throw new NotImplementedException();
-    }
-
-    public boolean dispatch(CommandSender sender, String cmdLine) throws CommandException {
-        throw new NotImplementedException();
-    }
-
-    public void clearCommands() {
-        throw new NotImplementedException();
-    }
-
-    public Command getCommand(String name) {
-        throw new NotImplementedException();
-    }
-
-    public List<String> tabComplete(CommandSender sender, String cmdLine) throws IllegalArgumentException {
+    public List<String> tabComplete(CommandSender sender, String cmdLine) throws IllegalArgumentException
+    {
         throw new NotImplementedException();
     }
 }

@@ -36,7 +36,8 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
-public abstract class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity {
+public abstract class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity
+{
     private Human entity;
 
     public CanaryHumanEntity(net.canarymod.api.entity.living.humanoid.Human entity) {
@@ -44,79 +45,98 @@ public abstract class CanaryHumanEntity extends CanaryLivingEntity implements Hu
         this.entity = entity;
     }
 
-    public String getName() {
+    public PermissionAttachment addAttachment(Plugin plugin)
+    {
+        throw new NotImplementedException();
+    }
+
+    public PermissionAttachment addAttachment(Plugin plugin, int ticks)
+    {
+        throw new NotImplementedException();
+    }
+
+    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value)
+    {
+        throw new NotImplementedException();
+    }
+
+    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Set<PermissionAttachmentInfo> getEffectivePermissions()
+    {
+        throw new NotImplementedException();
+    }
+
+    public int getExpToLevel()
+    {
+        return 0;
+    }
+
+    public String getName()
+    {
         return entity.getName();
     }
 
-    public boolean setWindowProperty(InventoryView.Property prop, int value) {
-        return false;
-    }
-
-    public boolean isSleeping() {
-        return false;
-    }
-
-    public int getSleepTicks() {
+    public int getSleepTicks()
+    {
         return 0;
     }
 
-    public boolean isBlocking() {
+    public boolean hasPermission(Permission perm)
+    {
         return false;
     }
 
-    public int getExpToLevel() {
-        return 0;
-    }
-
-    public boolean isPermissionSet(String name) {
+    public boolean hasPermission(String name)
+    {
         return false;
     }
 
-    public boolean isPermissionSet(Permission perm) {
+    public boolean isBlocking()
+    {
         return false;
     }
 
-    public boolean hasPermission(String name) {
+    public boolean isOp()
+    {
         return false;
     }
 
-    public boolean hasPermission(Permission perm) {
+    public boolean isPermissionSet(Permission perm)
+    {
         return false;
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
-        throw new NotImplementedException();
-    }
-
-    public PermissionAttachment addAttachment(Plugin plugin) {
-        throw new NotImplementedException();
-    }
-
-    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
-        throw new NotImplementedException();
-    }
-
-    public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
-        throw new NotImplementedException();
-    }
-
-    public void removeAttachment(PermissionAttachment attachment) {
-        throw new NotImplementedException();
-    }
-
-    public void recalculatePermissions() {
-        throw new NotImplementedException();
-    }
-
-    public Set<PermissionAttachmentInfo> getEffectivePermissions() {
-        throw new NotImplementedException();
-    }
-
-    public boolean isOp() {
+    public boolean isPermissionSet(String name)
+    {
         return false;
     }
 
-    public void setOp(boolean value) {
+    public boolean isSleeping()
+    {
+        return false;
+    }
+
+    public void recalculatePermissions()
+    {
         throw new NotImplementedException();
+    }
+
+    public void removeAttachment(PermissionAttachment attachment)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setOp(boolean value)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean setWindowProperty(InventoryView.Property prop, int value)
+    {
+        return false;
     }
 }

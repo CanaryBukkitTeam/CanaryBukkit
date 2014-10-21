@@ -34,21 +34,10 @@ import org.bukkit.WorldType;
  * 
  * @author Jamie
  */
-public class BukkitUtils {
-    public static GameMode toGameMode(net.canarymod.api.GameMode gm) {
-        Validate.notNull(gm);
-        switch (gm) {
-            case ADVENTURE:
-                return GameMode.ADVENTURE;
-            case CREATIVE:
-                return GameMode.CREATIVE;
-            case SURVIVAL:
-            default:
-                return GameMode.SURVIVAL;
-        }
-    }
-
-    public static Difficulty toDifficulty(net.canarymod.api.world.World.Difficulty difficulty) {
+public class BukkitUtils
+{
+    public static Difficulty toDifficulty(net.canarymod.api.world.World.Difficulty difficulty)
+    {
         Validate.notNull(difficulty);
         switch (difficulty) {
             case EASY:
@@ -63,7 +52,22 @@ public class BukkitUtils {
         }
     }
 
-    public static WorldType toWorldType(net.canarymod.api.world.WorldType type) {
+    public static GameMode toGameMode(net.canarymod.api.GameMode gm)
+    {
+        Validate.notNull(gm);
+        switch (gm) {
+            case ADVENTURE:
+                return GameMode.ADVENTURE;
+            case CREATIVE:
+                return GameMode.CREATIVE;
+            case SURVIVAL:
+            default:
+                return GameMode.SURVIVAL;
+        }
+    }
+
+    public static WorldType toWorldType(net.canarymod.api.world.WorldType type)
+    {
         Validate.notNull(type);
         if (type == net.canarymod.api.world.WorldType.AMPLIFIED) {
             return WorldType.AMPLIFIED;

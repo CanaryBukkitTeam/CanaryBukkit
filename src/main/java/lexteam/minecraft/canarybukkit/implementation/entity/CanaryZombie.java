@@ -27,7 +27,8 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Zombie;
 
-public class CanaryZombie extends CanaryAgeable implements Zombie {
+public class CanaryZombie extends CanaryAgeable implements Zombie
+{
     private net.canarymod.api.entity.living.monster.Zombie entity;
 
     public CanaryZombie(net.canarymod.api.entity.living.monster.Zombie entity) {
@@ -35,24 +36,29 @@ public class CanaryZombie extends CanaryAgeable implements Zombie {
         this.entity = entity;
     }
 
-    public boolean isBaby() {
+    @Override
+    public EntityType getType()
+    {
+        return EntityType.ZOMBIE;
+    }
+
+    public boolean isBaby()
+    {
         return entity.isChild();
     }
 
-    public void setBaby(boolean flag) {
-        entity.setChild(flag);
-    }
-
-    public boolean isVillager() {
+    public boolean isVillager()
+    {
         return entity.isVillager();
     }
 
-    public void setVillager(boolean flag) {
-        entity.setVillager(flag);
+    public void setBaby(boolean flag)
+    {
+        entity.setChild(flag);
     }
 
-    @Override
-    public EntityType getType() {
-        return EntityType.ZOMBIE;
+    public void setVillager(boolean flag)
+    {
+        entity.setVillager(flag);
     }
 }

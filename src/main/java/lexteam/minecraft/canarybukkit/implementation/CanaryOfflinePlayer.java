@@ -35,74 +35,90 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
-public class CanaryOfflinePlayer implements OfflinePlayer {
+public class CanaryOfflinePlayer implements OfflinePlayer
+{
     private net.canarymod.api.OfflinePlayer offlinePlayer;
 
     public CanaryOfflinePlayer(net.canarymod.api.OfflinePlayer offlinePlayer) {
         this.offlinePlayer = offlinePlayer;
     }
 
-    public boolean isOp() {
-        return Canary.ops().isOpped(offlinePlayer.getName());
-    }
-
-    public void setOp(boolean op) {
-        Canary.ops().addPlayer(offlinePlayer.getName());
-    }
-
-    public Map<String, Object> serialize() {
-        throw new NotImplementedException();
-    }
-
-    public Location getBedSpawnLocation() {
+    public Location getBedSpawnLocation()
+    {
         return new CanaryLocation(offlinePlayer.getHome(), offlinePlayer.getWorld());
         // TODO: Is home the same as the bed?
     }
 
-    public long getFirstPlayed() {
+    public long getFirstPlayed()
+    {
         return 0;
     }
 
-    public long getLastPlayed() {
+    public long getLastPlayed()
+    {
         return 0;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return offlinePlayer.getName();
     }
 
-    public Player getPlayer() {
+    public Player getPlayer()
+    {
         return new CanaryPlayer(Canary.getServer().getPlayer(offlinePlayer.getName()));
     }
 
-    public boolean hasPlayedBefore() {
+    public UUID getUniqueId()
+    {
+        return offlinePlayer.getUUID();
+    }
+
+    public boolean hasPlayedBefore()
+    {
         return false;
     }
 
-    public boolean isBanned() {
+    public boolean isBanned()
+    {
         return Canary.bans().isBanned(getName());
     }
 
-    public boolean isOnline() {
+    public boolean isOnline()
+    {
         return offlinePlayer.isOnline();
     }
 
-    public boolean isWhitelisted() {
+    public boolean isOp()
+    {
+        return Canary.ops().isOpped(offlinePlayer.getName());
+    }
+
+    public boolean isWhitelisted()
+    {
         return Canary.whitelist().isWhitelisted(offlinePlayer.getName());
     }
 
-    public void setBanned(boolean banned) {
+    public Map<String, Object> serialize()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setBanned(boolean banned)
+    {
 
     }
 
-    public void setWhitelisted(boolean whitelisted) {
+    public void setOp(boolean op)
+    {
+        Canary.ops().addPlayer(offlinePlayer.getName());
+    }
+
+    public void setWhitelisted(boolean whitelisted)
+    {
         if (whitelisted)
             Canary.whitelist().addPlayer(getName());
         else
             Canary.whitelist().removePlayer(getName());
-    }
-
-    public UUID getUniqueId() {
-        return offlinePlayer.getUUID();
     }
 }

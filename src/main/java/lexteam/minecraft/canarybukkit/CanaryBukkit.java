@@ -34,11 +34,19 @@ import net.canarymod.plugin.Plugin;
 
 import org.bukkit.Bukkit;
 
-public final class CanaryBukkit extends Plugin {
+public final class CanaryBukkit extends Plugin
+{
     private CanaryServer server;
 
     @Override
-    public boolean enable() {
+    public void disable()
+    {
+        server.disablePlugins();
+    }
+
+    @Override
+    public boolean enable()
+    {
         if (Bukkit.getServer() == null) {
             server = new CanaryServer(Canary.getServer(), getLogman(), getDescriptor().getVersion());
         }
@@ -54,10 +62,5 @@ public final class CanaryBukkit extends Plugin {
         // Start server
         server.start();
         return true;
-    }
-
-    @Override
-    public void disable() {
-        server.disablePlugins();
     }
 }

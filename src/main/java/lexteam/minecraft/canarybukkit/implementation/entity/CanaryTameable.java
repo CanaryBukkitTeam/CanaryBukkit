@@ -29,7 +29,8 @@ import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Tameable;
 
-public class CanaryTameable extends CanaryAnimals implements Tameable, Creature {
+public class CanaryTameable extends CanaryAnimals implements Tameable, Creature
+{
     private net.canarymod.api.entity.living.animal.Tameable entity;
 
     public CanaryTameable(net.canarymod.api.entity.living.animal.Tameable entity) {
@@ -37,19 +38,23 @@ public class CanaryTameable extends CanaryAnimals implements Tameable, Creature 
         this.entity = entity;
     }
 
-    public boolean isTamed() {
+    public AnimalTamer getOwner()
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean isTamed()
+    {
         return entity.isTamed();
     }
 
-    public void setTamed(boolean tame) {
+    public void setOwner(AnimalTamer tamer)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setTamed(boolean tame)
+    {
         entity.setTamed(tame);
-    }
-
-    public AnimalTamer getOwner() {
-        throw new NotImplementedException();
-    }
-
-    public void setOwner(AnimalTamer tamer) {
-        throw new NotImplementedException();
     }
 }

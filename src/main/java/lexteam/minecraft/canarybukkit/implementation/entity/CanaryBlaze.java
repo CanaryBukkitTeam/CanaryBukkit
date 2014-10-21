@@ -27,13 +27,15 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.Blaze;
 import org.bukkit.entity.EntityType;
 
-public class CanaryBlaze extends CanaryMonster implements Blaze {
+public class CanaryBlaze extends CanaryMonster implements Blaze
+{
     public CanaryBlaze(net.canarymod.api.entity.living.monster.Blaze entity) {
         super(entity);
     }
 
     @Override
-    public EntityType getType() {
+    public EntityType getType()
+    {
         return EntityType.BLAZE;
     }
 }

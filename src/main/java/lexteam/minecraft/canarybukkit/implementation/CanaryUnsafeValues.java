@@ -34,28 +34,35 @@ import org.bukkit.UnsafeValues;
 import org.bukkit.inventory.ItemStack;
 
 @SuppressWarnings("deprecation")
-public class CanaryUnsafeValues implements UnsafeValues {
-    public Achievement getAchievementFromInternalName(String name) {
+public class CanaryUnsafeValues implements UnsafeValues
+{
+    public Achievement getAchievementFromInternalName(String name)
+    {
         throw new NotImplementedException();
     }
 
-    public Material getMaterialFromInternalName(String name) {
+    public Material getMaterialFromInternalName(String name)
+    {
         throw new NotImplementedException();
     }
 
-    public Statistic getStatisticFromInternalName(String name) {
+    public Statistic getStatisticFromInternalName(String name)
+    {
         throw new NotImplementedException();
     }
 
-    public ItemStack modifyItemStack(ItemStack stack, String arguments) {
+    public ItemStack modifyItemStack(ItemStack stack, String arguments)
+    {
         throw new NotImplementedException();
     }
 
-    public List<String> tabCompleteInternalMaterialName(String token, List<String> completions) {
+    public List<String> tabCompleteInternalMaterialName(String token, List<String> completions)
+    {
         throw new NotImplementedException();
     }
 
-    public List<String> tabCompleteInternalStatisticOrAchievementName(String token, List<String> completions) {
+    public List<String> tabCompleteInternalStatisticOrAchievementName(String token, List<String> completions)
+    {
         throw new NotImplementedException();
     }
 }

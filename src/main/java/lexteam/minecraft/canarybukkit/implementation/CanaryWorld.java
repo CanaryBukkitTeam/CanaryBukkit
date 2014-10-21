@@ -68,7 +68,8 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
-public class CanaryWorld implements World {
+public class CanaryWorld implements World
+{
     private net.canarymod.api.world.World world;
     private Server server;
 
@@ -77,57 +78,217 @@ public class CanaryWorld implements World {
         this.server = Bukkit.getServer();
     }
 
-    public Block getBlockAt(int x, int y, int z) {
+    public boolean canGenerateStructures()
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean createExplosion(double x, double y, double z, float power)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean createExplosion(double x, double y, double z, float power, boolean setFire)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean createExplosion(double x, double y, double z, float power, boolean setFire,
+            boolean breakBlocks)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean createExplosion(Location loc, float power)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean createExplosion(Location loc, float power, boolean setFire)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Item dropItem(Location location, ItemStack item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Item dropItemNaturally(Location location, ItemStack item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean generateTree(Location location, TreeType type)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean generateTree(Location loc, TreeType type, BlockChangeDelegate delegate)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean getAllowAnimals()
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean getAllowMonsters()
+    {
+        throw new NotImplementedException();
+    }
+
+    public int getAmbientSpawnLimit()
+    {
+        throw new NotImplementedException();
+    }
+
+    public int getAnimalSpawnLimit()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Biome getBiome(int x, int z)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Block getBlockAt(int x, int y, int z)
+    {
         return new CanaryBlock(world.getBlockAt(x, y, z));
     }
 
-    public Block getBlockAt(Location location) {
+    public Block getBlockAt(Location location)
+    {
         return getBlockAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
     }
 
-    public int getBlockTypeIdAt(int x, int y, int z) {
+    public int getBlockTypeIdAt(int x, int y, int z)
+    {
         return world.getBlockAt(x, y, z).getTypeId();
     }
 
-    public int getBlockTypeIdAt(Location location) {
+    public int getBlockTypeIdAt(Location location)
+    {
         return getBlockTypeIdAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
     }
 
-    public int getHighestBlockYAt(int x, int z) {
+    public Chunk getChunkAt(Block block)
+    {
+        return getChunkAt(block.getLocation().getBlockX(), block.getLocation().getBlockZ());
+    }
+
+    public Chunk getChunkAt(int x, int z)
+    {
+        return new CanaryChunk(world.getChunk(x, z), this);
+    }
+
+    public Chunk getChunkAt(Location location)
+    {
+        return getChunkAt(location.getBlockX(), location.getBlockZ());
+    }
+
+    public Difficulty getDifficulty()
+    {
+        return BukkitUtils.toDifficulty(getWorldConfig().getDifficulty());
+    }
+
+    public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome,
+            boolean includeBiomeTempRain)
+    {
         throw new NotImplementedException();
     }
 
-    public int getHighestBlockYAt(Location location) {
+    public List<Entity> getEntities()
+    {
         throw new NotImplementedException();
     }
 
-    public Block getHighestBlockAt(int x, int z) {
+    public <T extends Entity> Collection<T> getEntitiesByClass(Class<T>... classes)
+    {
+        throw new NotImplementedException();
+    }
+
+    public <T extends Entity> Collection<T> getEntitiesByClass(Class<T> cls)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Collection<Entity> getEntitiesByClasses(Class<?>... classes)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Environment getEnvironment()
+    {
+        throw new NotImplementedException();
+    }
+
+    public long getFullTime()
+    {
+        throw new NotImplementedException();
+    }
+
+    public String[] getGameRules()
+    {
+        return new String[0];
+    }
+
+    public String getGameRuleValue(String rule)
+    {
+        throw new NotImplementedException();
+    }
+
+    public ChunkGenerator getGenerator()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Block getHighestBlockAt(int x, int z)
+    {
         throw new NotImplementedException();
         // world.getHighestBlockAt(x, z)
     }
 
-    public Block getHighestBlockAt(Location location) {
+    public Block getHighestBlockAt(Location location)
+    {
         throw new NotImplementedException();
         // world.getHighestBlockAt(location.getBlockX(),location.getBlockZ())
     }
 
-    public Chunk getChunkAt(int x, int z) {
-        return new CanaryChunk(world.getChunk(x, z), this);
+    public int getHighestBlockYAt(int x, int z)
+    {
+        throw new NotImplementedException();
     }
 
-    public Chunk getChunkAt(Location location) {
-        return getChunkAt(location.getBlockX(), location.getBlockZ());
+    public int getHighestBlockYAt(Location location)
+    {
+        throw new NotImplementedException();
     }
 
-    public Chunk getChunkAt(Block block) {
-        return getChunkAt(block.getLocation().getBlockX(), block.getLocation().getBlockZ());
+    public double getHumidity(int x, int z)
+    {
+        throw new NotImplementedException();
     }
 
-    public boolean isChunkLoaded(Chunk chunk) {
-        return chunk.isLoaded();
+    public boolean getKeepSpawnInMemory()
+    {
+        throw new NotImplementedException();
     }
 
-    public Chunk[] getLoadedChunks() {
+    public Set<String> getListeningPluginChannels()
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<LivingEntity> getLivingEntities()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Chunk[] getLoadedChunks()
+    {
         List<Chunk> chunks = new ArrayList<Chunk>();
         for (net.canarymod.api.world.Chunk chunk : world.getLoadedChunks()) {
             chunks.add(new CanaryChunk(chunk, this));
@@ -135,438 +296,398 @@ public class CanaryWorld implements World {
         return chunks.toArray(new Chunk[chunks.size()]);
     }
 
-    public void loadChunk(Chunk chunk) {
-        chunk.load();
+    public int getMaxHeight()
+    {
+        return world.getHeight();
     }
 
-    public boolean isChunkLoaded(int x, int z) {
+    public List<MetadataValue> getMetadata(String metadataKey)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int getMonsterSpawnLimit()
+    {
+        throw new NotImplementedException();
+    }
+
+    public String getName()
+    {
+        return world.getName();
+    }
+
+    public List<Player> getPlayers()
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<BlockPopulator> getPopulators()
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean getPVP()
+    {
+        throw new NotImplementedException();
+    }
+
+    public int getSeaLevel()
+    {
+        throw new NotImplementedException();
+    }
+
+    public long getSeed()
+    {
+        return Long.parseLong(Configuration.getWorldConfig(getName()).getWorldSeed());
+    }
+
+    public Location getSpawnLocation()
+    {
+        return new CanaryLocation(world.getSpawnLocation(), this);
+    }
+
+    public double getTemperature(int x, int z)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int getThunderDuration()
+    {
+        throw new NotImplementedException();
+    }
+
+    public long getTicksPerAnimalSpawns()
+    {
+        throw new NotImplementedException();
+    }
+
+    public long getTicksPerMonsterSpawns()
+    {
+        throw new NotImplementedException();
+    }
+
+    public long getTime()
+    {
+        return world.getTotalTime();
+    }
+
+    public UUID getUID()
+    {
+        throw new NotImplementedException();
+    }
+
+    public int getWaterAnimalSpawnLimit()
+    {
+        throw new NotImplementedException();
+    }
+
+    public int getWeatherDuration()
+    {
+        throw new NotImplementedException();
+    }
+
+    private WorldConfiguration getWorldConfig()
+    {
+        return Configuration.getWorldConfig(this.getName());
+    }
+
+    public File getWorldFolder()
+    {
+        throw new NotImplementedException();
+    }
+
+    public WorldType getWorldType()
+    {
+        return BukkitUtils.toWorldType(getWorldConfig().getWorldType());
+    }
+
+    public boolean hasMetadata(String metadataKey)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean hasStorm()
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean isAutoSave()
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean isChunkInUse(int x, int z)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean isChunkLoaded(Chunk chunk)
+    {
+        return chunk.isLoaded();
+    }
+
+    public boolean isChunkLoaded(int x, int z)
+    {
         return getChunkAt(x, z).isLoaded();
     }
 
-    public boolean isChunkInUse(int x, int z) {
+    public boolean isGameRule(String rule)
+    {
         throw new NotImplementedException();
     }
 
-    public void loadChunk(int x, int z) {
+    public boolean isThundering()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void loadChunk(Chunk chunk)
+    {
+        chunk.load();
+    }
+
+    public void loadChunk(int x, int z)
+    {
         getChunkAt(x, z).load();
     }
 
-    public boolean loadChunk(int x, int z, boolean generate) {
+    public boolean loadChunk(int x, int z, boolean generate)
+    {
         return getChunkAt(x, z).load(generate);
     }
 
-    public boolean unloadChunk(Chunk chunk) {
-        return chunk.unload();
-    }
-
-    public boolean unloadChunk(int x, int z) {
-        return getChunkAt(x, z).unload();
-    }
-
-    public boolean unloadChunk(int x, int z, boolean save) {
-        return getChunkAt(x, z).unload(save);
-    }
-
-    public boolean unloadChunk(int x, int z, boolean save, boolean safe) {
-        return getChunkAt(x, z).unload(save, safe);
-    }
-
-    public boolean unloadChunkRequest(int x, int z) {
-        return unloadChunk(x, z);
-    }
-
-    public boolean unloadChunkRequest(int x, int z, boolean safe) {
+    public void playEffect(Location location, Effect effect, int data)
+    {
         throw new NotImplementedException();
     }
 
-    public boolean regenerateChunk(int x, int z) {
+    public void playEffect(Location location, Effect effect, int data, int radius)
+    {
         throw new NotImplementedException();
     }
 
-    public boolean refreshChunk(int x, int z) {
+    public <T> void playEffect(Location location, Effect effect, T data)
+    {
+        throw new NotImplementedException();
+    }
+
+    public <T> void playEffect(Location location, Effect effect, T data, int radius)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void playSound(Location location, Sound sound, float volume, float pitch)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean refreshChunk(int x, int z)
+    {
         getChunkAt(x, z).unload(true);
         return getChunkAt(x, z).load(true);
     }
 
-    public Item dropItem(Location location, ItemStack item) {
+    public boolean regenerateChunk(int x, int z)
+    {
         throw new NotImplementedException();
     }
 
-    public Item dropItemNaturally(Location location, ItemStack item) {
+    public void removeMetadata(String metadataKey, Plugin owningPlugin)
+    {
         throw new NotImplementedException();
     }
 
-    public Arrow spawnArrow(Location location, Vector direction, float speed, float spread) {
+    public void save()
+    {
+        world.save();
+    }
+
+    public void sendPluginMessage(Plugin source, String channel, byte[] message)
+    {
+        server.sendPluginMessage(source, channel, message);
+    }
+
+    public void setAmbientSpawnLimit(int limit)
+    {
         throw new NotImplementedException();
     }
 
-    public boolean generateTree(Location location, TreeType type) {
+    public void setAnimalSpawnLimit(int limit)
+    {
         throw new NotImplementedException();
     }
 
-    public boolean generateTree(Location loc, TreeType type, BlockChangeDelegate delegate) {
+    public void setAutoSave(boolean value)
+    {
         throw new NotImplementedException();
     }
 
-    public Entity spawnEntity(Location loc, EntityType type) {
+    public void setBiome(int x, int z, Biome bio)
+    {
         throw new NotImplementedException();
     }
 
-    public LivingEntity spawnCreature(Location loc, EntityType type) {
+    public void setDifficulty(Difficulty difficulty)
+    {
         throw new NotImplementedException();
     }
 
-    @SuppressWarnings("deprecation")
-    public LivingEntity spawnCreature(Location loc, CreatureType type) {
+    public void setFullTime(long time)
+    {
         throw new NotImplementedException();
     }
 
-    public LightningStrike strikeLightning(Location loc) {
+    public boolean setGameRuleValue(String rule, String value)
+    {
         throw new NotImplementedException();
     }
 
-    public LightningStrike strikeLightningEffect(Location loc) {
+    public void setKeepSpawnInMemory(boolean keepLoaded)
+    {
         throw new NotImplementedException();
     }
 
-    public List<Entity> getEntities() {
+    public void setMetadata(String metadataKey, MetadataValue newMetadataValue)
+    {
         throw new NotImplementedException();
     }
 
-    public List<LivingEntity> getLivingEntities() {
+    public void setMonsterSpawnLimit(int limit)
+    {
         throw new NotImplementedException();
     }
 
-    public <T extends Entity> Collection<T> getEntitiesByClass(Class<T>... classes) {
+    public void setPVP(boolean pvp)
+    {
         throw new NotImplementedException();
     }
 
-    public <T extends Entity> Collection<T> getEntitiesByClass(Class<T> cls) {
+    public void setSpawnFlags(boolean allowMonsters, boolean allowAnimals)
+    {
         throw new NotImplementedException();
     }
 
-    public Collection<Entity> getEntitiesByClasses(Class<?>... classes) {
-        throw new NotImplementedException();
-    }
-
-    public List<Player> getPlayers() {
-        throw new NotImplementedException();
-    }
-
-    public String getName() {
-        return world.getName();
-    }
-
-    public UUID getUID() {
-        throw new NotImplementedException();
-    }
-
-    public Location getSpawnLocation() {
-        return new CanaryLocation(world.getSpawnLocation(), this);
-    }
-
-    public boolean setSpawnLocation(int x, int y, int z) {
+    public boolean setSpawnLocation(int x, int y, int z)
+    {
         world.setSpawnLocation(new net.canarymod.api.world.position.Location(x, y, z));
         return (world.getSpawnLocation() == new net.canarymod.api.world.position.Location(x, y, z));
     }
 
-    public long getTime() {
-        return world.getTotalTime();
+    public void setStorm(boolean hasStorm)
+    {
+        throw new NotImplementedException();
     }
 
-    public void setTime(long time) {
+    public void setThunderDuration(int duration)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setThundering(boolean thundering)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setTicksPerAnimalSpawns(int ticksPerAnimalSpawns)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setTicksPerMonsterSpawns(int ticksPerMonsterSpawns)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setTime(long time)
+    {
         world.setTime(time);
     }
 
-    public long getFullTime() {
+    public void setWaterAnimalSpawnLimit(int limit)
+    {
         throw new NotImplementedException();
     }
 
-    public void setFullTime(long time) {
+    public void setWeatherDuration(int duration)
+    {
         throw new NotImplementedException();
     }
 
-    public boolean hasStorm() {
+    public <T extends Entity> T spawn(Location location, Class<T> clazz) throws IllegalArgumentException
+    {
         throw new NotImplementedException();
     }
 
-    public void setStorm(boolean hasStorm) {
+    public Arrow spawnArrow(Location location, Vector direction, float speed, float spread)
+    {
         throw new NotImplementedException();
     }
 
-    public int getWeatherDuration() {
+    @SuppressWarnings("deprecation")
+    public LivingEntity spawnCreature(Location loc, CreatureType type)
+    {
         throw new NotImplementedException();
     }
 
-    public void setWeatherDuration(int duration) {
+    public LivingEntity spawnCreature(Location loc, EntityType type)
+    {
         throw new NotImplementedException();
     }
 
-    public boolean isThundering() {
-        throw new NotImplementedException();
-    }
-
-    public void setThundering(boolean thundering) {
-        throw new NotImplementedException();
-    }
-
-    public int getThunderDuration() {
-        throw new NotImplementedException();
-    }
-
-    public void setThunderDuration(int duration) {
-        throw new NotImplementedException();
-    }
-
-    public boolean createExplosion(double x, double y, double z, float power) {
-        throw new NotImplementedException();
-    }
-
-    public boolean createExplosion(double x, double y, double z, float power, boolean setFire) {
-        throw new NotImplementedException();
-    }
-
-    public boolean createExplosion(double x, double y, double z, float power, boolean setFire,
-            boolean breakBlocks) {
-        throw new NotImplementedException();
-    }
-
-    public boolean createExplosion(Location loc, float power) {
-        throw new NotImplementedException();
-    }
-
-    public boolean createExplosion(Location loc, float power, boolean setFire) {
-        throw new NotImplementedException();
-    }
-
-    public Environment getEnvironment() {
-        throw new NotImplementedException();
-    }
-
-    public long getSeed() {
-        return Long.parseLong(Configuration.getWorldConfig(getName()).getWorldSeed());
-    }
-
-    public boolean getPVP() {
-        throw new NotImplementedException();
-    }
-
-    public void setPVP(boolean pvp) {
-        throw new NotImplementedException();
-    }
-
-    public ChunkGenerator getGenerator() {
-        throw new NotImplementedException();
-    }
-
-    public void save() {
-        world.save();
-    }
-
-    public List<BlockPopulator> getPopulators() {
-        throw new NotImplementedException();
-    }
-
-    public <T extends Entity> T spawn(Location location, Class<T> clazz) throws IllegalArgumentException {
-        throw new NotImplementedException();
-    }
-
-    public FallingBlock spawnFallingBlock(Location location, Material material, byte data)
-            throws IllegalArgumentException {
+    public Entity spawnEntity(Location loc, EntityType type)
+    {
         throw new NotImplementedException();
     }
 
     public FallingBlock spawnFallingBlock(Location location, int blockId, byte blockData)
-            throws IllegalArgumentException {
+            throws IllegalArgumentException
+    {
         throw new NotImplementedException();
     }
 
-    public void playEffect(Location location, Effect effect, int data) {
+    public FallingBlock spawnFallingBlock(Location location, Material material, byte data)
+            throws IllegalArgumentException
+    {
         throw new NotImplementedException();
     }
 
-    public void playEffect(Location location, Effect effect, int data, int radius) {
+    public LightningStrike strikeLightning(Location loc)
+    {
         throw new NotImplementedException();
     }
 
-    public <T> void playEffect(Location location, Effect effect, T data) {
+    public LightningStrike strikeLightningEffect(Location loc)
+    {
         throw new NotImplementedException();
     }
 
-    public <T> void playEffect(Location location, Effect effect, T data, int radius) {
+    public boolean unloadChunk(Chunk chunk)
+    {
+        return chunk.unload();
+    }
+
+    public boolean unloadChunk(int x, int z)
+    {
+        return getChunkAt(x, z).unload();
+    }
+
+    public boolean unloadChunk(int x, int z, boolean save)
+    {
+        return getChunkAt(x, z).unload(save);
+    }
+
+    public boolean unloadChunk(int x, int z, boolean save, boolean safe)
+    {
+        return getChunkAt(x, z).unload(save, safe);
+    }
+
+    public boolean unloadChunkRequest(int x, int z)
+    {
+        return unloadChunk(x, z);
+    }
+
+    public boolean unloadChunkRequest(int x, int z, boolean safe)
+    {
         throw new NotImplementedException();
-    }
-
-    public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome,
-            boolean includeBiomeTempRain) {
-        throw new NotImplementedException();
-    }
-
-    public void setSpawnFlags(boolean allowMonsters, boolean allowAnimals) {
-        throw new NotImplementedException();
-    }
-
-    public boolean getAllowAnimals() {
-        throw new NotImplementedException();
-    }
-
-    public boolean getAllowMonsters() {
-        throw new NotImplementedException();
-    }
-
-    public Biome getBiome(int x, int z) {
-        throw new NotImplementedException();
-    }
-
-    public void setBiome(int x, int z, Biome bio) {
-        throw new NotImplementedException();
-    }
-
-    public double getTemperature(int x, int z) {
-        throw new NotImplementedException();
-    }
-
-    public double getHumidity(int x, int z) {
-        throw new NotImplementedException();
-    }
-
-    public int getMaxHeight() {
-        return world.getHeight();
-    }
-
-    public int getSeaLevel() {
-        throw new NotImplementedException();
-    }
-
-    public boolean getKeepSpawnInMemory() {
-        throw new NotImplementedException();
-    }
-
-    public void setKeepSpawnInMemory(boolean keepLoaded) {
-        throw new NotImplementedException();
-    }
-
-    public boolean isAutoSave() {
-        throw new NotImplementedException();
-    }
-
-    public void setAutoSave(boolean value) {
-        throw new NotImplementedException();
-    }
-
-    public void setDifficulty(Difficulty difficulty) {
-        throw new NotImplementedException();
-    }
-
-    public Difficulty getDifficulty() {
-        return BukkitUtils.toDifficulty(getWorldConfig().getDifficulty());
-    }
-
-    public File getWorldFolder() {
-        throw new NotImplementedException();
-    }
-
-    public WorldType getWorldType() {
-        return BukkitUtils.toWorldType(getWorldConfig().getWorldType());
-    }
-
-    public boolean canGenerateStructures() {
-        throw new NotImplementedException();
-    }
-
-    public long getTicksPerAnimalSpawns() {
-        throw new NotImplementedException();
-    }
-
-    public void setTicksPerAnimalSpawns(int ticksPerAnimalSpawns) {
-        throw new NotImplementedException();
-    }
-
-    public long getTicksPerMonsterSpawns() {
-        throw new NotImplementedException();
-    }
-
-    public void setTicksPerMonsterSpawns(int ticksPerMonsterSpawns) {
-        throw new NotImplementedException();
-    }
-
-    public int getMonsterSpawnLimit() {
-        throw new NotImplementedException();
-    }
-
-    public void setMonsterSpawnLimit(int limit) {
-        throw new NotImplementedException();
-    }
-
-    public int getAnimalSpawnLimit() {
-        throw new NotImplementedException();
-    }
-
-    public void setAnimalSpawnLimit(int limit) {
-        throw new NotImplementedException();
-    }
-
-    public int getWaterAnimalSpawnLimit() {
-        throw new NotImplementedException();
-    }
-
-    public void setWaterAnimalSpawnLimit(int limit) {
-        throw new NotImplementedException();
-    }
-
-    public int getAmbientSpawnLimit() {
-        throw new NotImplementedException();
-    }
-
-    public void setAmbientSpawnLimit(int limit) {
-        throw new NotImplementedException();
-    }
-
-    public void playSound(Location location, Sound sound, float volume, float pitch) {
-        throw new NotImplementedException();
-    }
-
-    public String[] getGameRules() {
-        return new String[0];
-    }
-
-    public String getGameRuleValue(String rule) {
-        throw new NotImplementedException();
-    }
-
-    public boolean setGameRuleValue(String rule, String value) {
-        throw new NotImplementedException();
-    }
-
-    public boolean isGameRule(String rule) {
-        throw new NotImplementedException();
-    }
-
-    public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
-        throw new NotImplementedException();
-    }
-
-    public List<MetadataValue> getMetadata(String metadataKey) {
-        throw new NotImplementedException();
-    }
-
-    public boolean hasMetadata(String metadataKey) {
-        throw new NotImplementedException();
-    }
-
-    public void removeMetadata(String metadataKey, Plugin owningPlugin) {
-        throw new NotImplementedException();
-    }
-
-    public void sendPluginMessage(Plugin source, String channel, byte[] message) {
-        server.sendPluginMessage(source, channel, message);
-    }
-
-    public Set<String> getListeningPluginChannels() {
-        throw new NotImplementedException();
-    }
-
-    private WorldConfiguration getWorldConfig() {
-        return Configuration.getWorldConfig(this.getName());
     }
 }

@@ -30,7 +30,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-public class CanaryPlayerInventory extends CanaryInventory implements PlayerInventory {
+public class CanaryPlayerInventory extends CanaryInventory implements PlayerInventory
+{
     private net.canarymod.api.inventory.PlayerInventory inv;
     private Player owner;
 
@@ -40,68 +41,84 @@ public class CanaryPlayerInventory extends CanaryInventory implements PlayerInve
         this.owner = owner;
     }
 
-    public ItemStack[] getArmorContents() {
+    public int clear(int id, int data)
+    {
         throw new NotImplementedException();
     }
 
-    public ItemStack getHelmet() {
+    public ItemStack[] getArmorContents()
+    {
         throw new NotImplementedException();
     }
 
-    public ItemStack getChestplate() {
+    public ItemStack getBoots()
+    {
         throw new NotImplementedException();
     }
 
-    public ItemStack getLeggings() {
+    public ItemStack getChestplate()
+    {
         throw new NotImplementedException();
     }
 
-    public ItemStack getBoots() {
+    public int getHeldItemSlot()
+    {
         throw new NotImplementedException();
     }
 
-    public void setArmorContents(ItemStack[] items) {
-        throw new NotImplementedException();
-    }
-
-    public void setHelmet(ItemStack helmet) {
-        throw new NotImplementedException();
-    }
-
-    public void setChestplate(ItemStack chestplate) {
-        throw new NotImplementedException();
-    }
-
-    public void setLeggings(ItemStack leggings) {
-        throw new NotImplementedException();
-    }
-
-    public void setBoots(ItemStack boots) {
-        throw new NotImplementedException();
-    }
-
-    public ItemStack getItemInHand() {
-        throw new NotImplementedException();
-    }
-
-    public void setItemInHand(ItemStack stack) {
-        throw new NotImplementedException();
-    }
-
-    public int getHeldItemSlot() {
-        throw new NotImplementedException();
-    }
-
-    public void setHeldItemSlot(int slot) {
-        throw new NotImplementedException();
-    }
-
-    public int clear(int id, int data) {
+    public ItemStack getHelmet()
+    {
         throw new NotImplementedException();
     }
 
     @Override
-    public HumanEntity getHolder() {
+    public HumanEntity getHolder()
+    {
         return owner;
+    }
+
+    public ItemStack getItemInHand()
+    {
+        throw new NotImplementedException();
+    }
+
+    public ItemStack getLeggings()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setArmorContents(ItemStack[] items)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setBoots(ItemStack boots)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setChestplate(ItemStack chestplate)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setHeldItemSlot(int slot)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setHelmet(ItemStack helmet)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setItemInHand(ItemStack stack)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setLeggings(ItemStack leggings)
+    {
+        throw new NotImplementedException();
     }
 }

@@ -36,150 +36,186 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
-public class CanaryInventory implements Inventory {
+public class CanaryInventory implements Inventory
+{
     private net.canarymod.api.inventory.Inventory inv;
 
     public CanaryInventory(net.canarymod.api.inventory.Inventory inv) {
         this.inv = inv;
     }
 
-    public int getSize() {
-        return inv.getSize();
-    }
-
-    public int getMaxStackSize() {
-        return inv.getInventoryStackLimit();
-    }
-
-    public void setMaxStackSize(int size) {
+    public HashMap<Integer, ItemStack> addItem(ItemStack... items) throws IllegalArgumentException
+    {
         throw new NotImplementedException();
     }
 
-    public String getName() {
-        return inv.getInventoryName();
-    }
-
-    public ItemStack getItem(int index) {
+    public HashMap<Integer, ? extends ItemStack> all(int materialId)
+    {
         throw new NotImplementedException();
     }
 
-    public void setItem(int index, ItemStack item) {
+    public HashMap<Integer, ? extends ItemStack> all(ItemStack item)
+    {
         throw new NotImplementedException();
     }
 
-    public HashMap<Integer, ItemStack> addItem(ItemStack... items) throws IllegalArgumentException {
+    public HashMap<Integer, ? extends ItemStack> all(Material material) throws IllegalArgumentException
+    {
         throw new NotImplementedException();
     }
 
-    public HashMap<Integer, ItemStack> removeItem(ItemStack... items) throws IllegalArgumentException {
-        throw new NotImplementedException();
-    }
-
-    public ItemStack[] getContents() {
-        return new ItemStack[0];
-    }
-
-    public void setContents(ItemStack[] items) throws IllegalArgumentException {
-        throw new NotImplementedException();
-    }
-
-    public boolean contains(int materialId) {
-        return inv.hasItem(materialId);
-    }
-
-    public boolean contains(Material material) throws IllegalArgumentException {
-        return inv.hasItem(material.getId());
-    }
-
-    public boolean contains(ItemStack item) {
-        return inv.hasItem(item.getTypeId());
-    }
-
-    public boolean contains(int materialId, int amount) {
-        return inv.hasItemStack(materialId, amount);
-    }
-
-    public boolean contains(Material material, int amount) throws IllegalArgumentException {
-        return inv.hasItemStack(material.getId(), amount);
-    }
-
-    public boolean contains(ItemStack item, int amount) {
-        return inv.hasItemStack(item.getTypeId(), amount);
-    }
-
-    public boolean containsAtLeast(ItemStack item, int amount) {
-        return false;
-    }
-
-    public HashMap<Integer, ? extends ItemStack> all(int materialId) {
-        throw new NotImplementedException();
-    }
-
-    public HashMap<Integer, ? extends ItemStack> all(Material material) throws IllegalArgumentException {
-        throw new NotImplementedException();
-    }
-
-    public HashMap<Integer, ? extends ItemStack> all(ItemStack item) {
-        throw new NotImplementedException();
-    }
-
-    public int first(int materialId) {
-        return 0;
-    }
-
-    public int first(Material material) throws IllegalArgumentException {
-        return 0;
-    }
-
-    public int first(ItemStack item) {
-        return 0;
-    }
-
-    public int firstEmpty() {
-        return 0;
-    }
-
-    public void remove(int materialId) {
-        inv.removeItem(materialId);
-    }
-
-    public void remove(Material material) throws IllegalArgumentException {
-        inv.removeItem(material.getId());
-    }
-
-    public void remove(ItemStack item) {
-        inv.removeItem(item.getTypeId());
-    }
-
-    public void clear(int index) {
-        throw new NotImplementedException();
-    }
-
-    public void clear() {
+    public void clear()
+    {
         inv.clearInventory();
     }
 
-    public List<HumanEntity> getViewers() {
+    public void clear(int index)
+    {
         throw new NotImplementedException();
     }
 
-    public String getTitle() {
+    public boolean contains(int materialId)
+    {
+        return inv.hasItem(materialId);
+    }
+
+    public boolean contains(int materialId, int amount)
+    {
+        return inv.hasItemStack(materialId, amount);
+    }
+
+    public boolean contains(ItemStack item)
+    {
+        return inv.hasItem(item.getTypeId());
+    }
+
+    public boolean contains(ItemStack item, int amount)
+    {
+        return inv.hasItemStack(item.getTypeId(), amount);
+    }
+
+    public boolean contains(Material material) throws IllegalArgumentException
+    {
+        return inv.hasItem(material.getId());
+    }
+
+    public boolean contains(Material material, int amount) throws IllegalArgumentException
+    {
+        return inv.hasItemStack(material.getId(), amount);
+    }
+
+    public boolean containsAtLeast(ItemStack item, int amount)
+    {
+        return false;
+    }
+
+    public int first(int materialId)
+    {
+        return 0;
+    }
+
+    public int first(ItemStack item)
+    {
+        return 0;
+    }
+
+    public int first(Material material) throws IllegalArgumentException
+    {
+        return 0;
+    }
+
+    public int firstEmpty()
+    {
+        return 0;
+    }
+
+    public ItemStack[] getContents()
+    {
+        return new ItemStack[0];
+    }
+
+    public InventoryHolder getHolder()
+    {
+        throw new NotImplementedException();
+    }
+
+    public ItemStack getItem(int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int getMaxStackSize()
+    {
+        return inv.getInventoryStackLimit();
+    }
+
+    public String getName()
+    {
         return inv.getInventoryName();
     }
 
-    public InventoryType getType() {
+    public int getSize()
+    {
+        return inv.getSize();
+    }
+
+    public String getTitle()
+    {
+        return inv.getInventoryName();
+    }
+
+    public InventoryType getType()
+    {
         return InventoryType.valueOf(inv.getInventoryType().name());
     }
 
-    public InventoryHolder getHolder() {
+    public List<HumanEntity> getViewers()
+    {
         throw new NotImplementedException();
     }
 
-    public ListIterator<ItemStack> iterator() {
+    public ListIterator<ItemStack> iterator()
+    {
         throw new NotImplementedException();
     }
 
-    public ListIterator<ItemStack> iterator(int index) {
+    public ListIterator<ItemStack> iterator(int index)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void remove(int materialId)
+    {
+        inv.removeItem(materialId);
+    }
+
+    public void remove(ItemStack item)
+    {
+        inv.removeItem(item.getTypeId());
+    }
+
+    public void remove(Material material) throws IllegalArgumentException
+    {
+        inv.removeItem(material.getId());
+    }
+
+    public HashMap<Integer, ItemStack> removeItem(ItemStack... items) throws IllegalArgumentException
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setContents(ItemStack[] items) throws IllegalArgumentException
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setItem(int index, ItemStack item)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setMaxStackSize(int size)
+    {
         throw new NotImplementedException();
     }
 }

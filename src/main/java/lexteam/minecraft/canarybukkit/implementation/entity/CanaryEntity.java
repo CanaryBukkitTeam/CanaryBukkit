@@ -44,43 +44,207 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
-public class CanaryEntity implements Entity {
+public class CanaryEntity implements Entity
+{
     private net.canarymod.api.entity.Entity entity;
 
     public CanaryEntity(net.canarymod.api.entity.Entity entity) {
         this.entity = entity;
     }
 
-    public Location getLocation() {
+    public boolean eject()
+    {
+        return false;
+    }
+
+    public int getEntityId()
+    {
+        return entity.getID();
+    }
+
+    public float getFallDistance()
+    {
+        return 0;
+    }
+
+    public int getFireTicks()
+    {
+        return entity.getFireTicks();
+    }
+
+    public EntityDamageEvent getLastDamageCause()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Location getLocation()
+    {
         return new CanaryLocation(entity.getLocation(), entity.getWorld());
     }
 
-    public Location getLocation(Location loc) {
+    public Location getLocation(Location loc)
+    {
         if (loc != null) {
             loc = new CanaryLocation(entity.getLocation(), entity.getWorld());
         }
         return loc;
     }
 
-    public void setVelocity(Vector velocity) {
+    public int getMaxFireTicks()
+    {
+        return 0;
+    }
+
+    public List<MetadataValue> getMetadata(String metadataKey)
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<Entity> getNearbyEntities(double x, double y, double z)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Entity getPassenger()
+    {
+        return new CanaryEntity(entity.getRider());
+    }
+
+    public Server getServer()
+    {
+        return Bukkit.getServer();
+    }
+
+    public int getTicksLived()
+    {
+        return 0;
+    }
+
+    public EntityType getType()
+    {
+        throw new NotImplementedException();
+    }
+
+    public UUID getUniqueId()
+    {
+        return entity.getUUID();
+    }
+
+    public Entity getVehicle()
+    {
+        return new CanaryEntity(entity.getRiding());
+    }
+
+    public Vector getVelocity()
+    {
+        return new Vector(entity.getMotionX(), entity.getMotionY(), entity.getMotionZ());
+    }
+
+    public World getWorld()
+    {
+        return new CanaryWorld(entity.getWorld());
+    }
+
+    public boolean hasMetadata(String metadataKey)
+    {
+        return false;
+    }
+
+    public boolean isDead()
+    {
+        return entity.isDead();
+    }
+
+    public boolean isEmpty()
+    {
+        return false;
+    }
+
+    public boolean isInsideVehicle()
+    {
+        return entity.isRiding();
+    }
+
+    public boolean isOnGround()
+    {
+        return entity.isOnGround();
+    }
+
+    public boolean isValid()
+    {
+        return !entity.isDead();
+    }
+
+    public boolean leaveVehicle()
+    {
+        return false;
+    }
+
+    public void playEffect(EntityEffect type)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void remove()
+    {
+        entity.destroy();
+    }
+
+    public void removeMetadata(String metadataKey, Plugin owningPlugin)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setFallDistance(float distance)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setFireTicks(int ticks)
+    {
+        entity.setFireTicks(ticks);
+    }
+
+    public void setLastDamageCause(EntityDamageEvent event)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setMetadata(String metadataKey, MetadataValue newMetadataValue)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean setPassenger(Entity passenger)
+    {
+        return false;
+    }
+
+    public void setTicksLived(int value)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setVelocity(Vector velocity)
+    {
         entity.setMotionX(velocity.getX());
         entity.setMotionY(velocity.getY());
         entity.setMotionZ(velocity.getZ());
     }
 
-    public Vector getVelocity() {
-        return new Vector(entity.getMotionX(), entity.getMotionY(), entity.getMotionZ());
+    public boolean teleport(Entity destination)
+    {
+        return teleport(destination.getLocation());
     }
 
-    public boolean isOnGround() {
-        return entity.isOnGround();
+    public boolean teleport(Entity destination, PlayerTeleportEvent.TeleportCause cause)
+    {
+        // TODO: Investigate TeleportCause
+        return teleport(destination.getLocation());
     }
 
-    public World getWorld() {
-        return new CanaryWorld(entity.getWorld());
-    }
-
-    public boolean teleport(Location location) {
+    public boolean teleport(Location location)
+    {
         entity.teleportTo(location.getX(), location.getY(), location.getZ());
         if (entity.getX() == location.getX() && entity.getY() == location.getY()
                 && entity.getZ() == location.getZ()) {
@@ -90,133 +254,9 @@ public class CanaryEntity implements Entity {
         }
     }
 
-    public boolean teleport(Location location, PlayerTeleportEvent.TeleportCause cause) {
+    public boolean teleport(Location location, PlayerTeleportEvent.TeleportCause cause)
+    {
         // TODO: Investigate TeleportCause
         return teleport(location);
-    }
-
-    public boolean teleport(Entity destination) {
-        return teleport(destination.getLocation());
-    }
-
-    public boolean teleport(Entity destination, PlayerTeleportEvent.TeleportCause cause) {
-        // TODO: Investigate TeleportCause
-        return teleport(destination.getLocation());
-    }
-
-    public List<Entity> getNearbyEntities(double x, double y, double z) {
-        throw new NotImplementedException();
-    }
-
-    public int getEntityId() {
-        return entity.getID();
-    }
-
-    public int getFireTicks() {
-        return entity.getFireTicks();
-    }
-
-    public int getMaxFireTicks() {
-        return 0;
-    }
-
-    public void setFireTicks(int ticks) {
-        entity.setFireTicks(ticks);
-    }
-
-    public void remove() {
-        entity.destroy();
-    }
-
-    public boolean isDead() {
-        return entity.isDead();
-    }
-
-    public boolean isValid() {
-        return !entity.isDead();
-    }
-
-    public Server getServer() {
-        return Bukkit.getServer();
-    }
-
-    public Entity getPassenger() {
-        return new CanaryEntity(entity.getRider());
-    }
-
-    public boolean setPassenger(Entity passenger) {
-        return false;
-    }
-
-    public boolean isEmpty() {
-        return false;
-    }
-
-    public boolean eject() {
-        return false;
-    }
-
-    public float getFallDistance() {
-        return 0;
-    }
-
-    public void setFallDistance(float distance) {
-        throw new NotImplementedException();
-    }
-
-    public void setLastDamageCause(EntityDamageEvent event) {
-        throw new NotImplementedException();
-    }
-
-    public EntityDamageEvent getLastDamageCause() {
-        throw new NotImplementedException();
-    }
-
-    public UUID getUniqueId() {
-        return entity.getUUID();
-    }
-
-    public int getTicksLived() {
-        return 0;
-    }
-
-    public void setTicksLived(int value) {
-        throw new NotImplementedException();
-    }
-
-    public void playEffect(EntityEffect type) {
-        throw new NotImplementedException();
-    }
-
-    public EntityType getType() {
-        throw new NotImplementedException();
-    }
-
-    public boolean isInsideVehicle() {
-        return entity.isRiding();
-    }
-
-    public boolean leaveVehicle() {
-        return false;
-    }
-
-    public Entity getVehicle() {
-        return new CanaryEntity(entity.getRiding());
-    }
-
-    public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
-        throw new NotImplementedException();
-    }
-
-    public List<MetadataValue> getMetadata(String metadataKey) {
-        throw new NotImplementedException();
-    }
-
-    public boolean hasMetadata(String metadataKey) {
-        return false;
-    }
-
-    public void removeMetadata(String metadataKey, Plugin owningPlugin) {
-        throw new NotImplementedException();
     }
 }

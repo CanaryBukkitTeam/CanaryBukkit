@@ -30,29 +30,35 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.projectiles.ProjectileSource;
 
-public class CanaryEgg extends CanaryAbstractProjectile implements Egg {
+public class CanaryEgg extends CanaryAbstractProjectile implements Egg
+{
     public CanaryEgg(net.canarymod.api.entity.throwable.ChickenEgg entity) {
         super(entity);
     }
 
-    public LivingEntity _INVALID_getShooter() {
+    public LivingEntity _INVALID_getShooter()
+    {
         throw new NotImplementedException();
     }
 
-    public ProjectileSource getShooter() {
+    public void _INVALID_setShooter(LivingEntity shooter)
+    {
         throw new NotImplementedException();
     }
 
-    public void _INVALID_setShooter(LivingEntity shooter) {
-        throw new NotImplementedException();
-    }
-
-    public void setShooter(ProjectileSource source) {
+    public ProjectileSource getShooter()
+    {
         throw new NotImplementedException();
     }
 
     @Override
-    public EntityType getType() {
+    public EntityType getType()
+    {
         return EntityType.EGG;
+    }
+
+    public void setShooter(ProjectileSource source)
+    {
+        throw new NotImplementedException();
     }
 }

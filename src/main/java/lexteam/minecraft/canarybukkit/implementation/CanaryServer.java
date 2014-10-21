@@ -89,7 +89,8 @@ import org.bukkit.util.permissions.DefaultPermissions;
 
 import com.avaje.ebean.config.ServerConfig;
 
-public class CanaryServer implements Server {
+public class CanaryServer implements Server
+{
     private net.canarymod.api.Server server;
     private String canaryBukkitVersion;
     private final SimpleCommandMap commandMap = new SimpleCommandMap(this);
@@ -114,41 +115,506 @@ public class CanaryServer implements Server {
         saveConfigFile(config, Constants.configFile);
     }
 
-    public void start() {
-        // Start loading plugins
-        loadPlugins();
-        enablePlugins(PluginLoadOrder.STARTUP);
-
-        // Finish loading plugins
-        enablePlugins(PluginLoadOrder.POSTWORLD);
-        commandMap.registerServerAliases();
+    public boolean addRecipe(Recipe recipe)
+    {
+        return false;
     }
 
-    private void saveConfigFile(YamlConfiguration config, File file) {
-        try {
-            config.save(file);
-        } catch (IOException ex) {
-            logman.warn("Could not save " + config, ex);
-        }
+    public void banIP(String address)
+    {
+        throw new NotImplementedException();
     }
 
-    public void loadPlugins() {
-        pluginManager.registerInterface(JavaPluginLoader.class);
+    public int broadcast(String message, String permission)
+    {
+        int count = 0;
+        Set<Permissible> permissibles = getPluginManager().getPermissionSubscriptions(permission);
 
-        Plugin[] plugins = pluginManager.loadPlugins(Constants.pluginsDir);
-        for (Plugin plugin : plugins) {
-            try {
-                String message = String.format("Loading %s", plugin.getDescription().getFullName());
-                logman.info(message);
-                plugin.onLoad();
-            } catch (Throwable ex) {
-                logman.warn(ex.getMessage() + " initializing " + plugin.getDescription().getFullName()
-                        + " (Is it up to date?)", ex);
+        for (Permissible permissible : permissibles) {
+            if (permissible instanceof CommandSender && permissible.hasPermission(permission)) {
+                CommandSender user = (CommandSender) permissible;
+                user.sendMessage(message);
+                count++;
             }
         }
+        return count;
     }
 
-    private void loadPlugin(Plugin plugin) {
+    public int broadcastMessage(String message)
+    {
+        return broadcast(message, BROADCAST_CHANNEL_USERS);
+    }
+
+    public void clearRecipes()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void configureDbConfig(ServerConfig config)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Inventory createInventory(InventoryHolder owner, int size) throws IllegalArgumentException
+    {
+        throw new NotImplementedException();
+    }
+
+    public Inventory createInventory(InventoryHolder owner, int size, String title)
+            throws IllegalArgumentException
+    {
+        throw new NotImplementedException();
+    }
+
+    public Inventory createInventory(InventoryHolder owner, InventoryType type)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Inventory createInventory(InventoryHolder owner, InventoryType type, String title)
+    {
+        throw new NotImplementedException();
+    }
+
+    public MapView createMap(World world)
+    {
+        throw new NotImplementedException();
+    }
+
+    public World createWorld(WorldCreator creator)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void disablePlugins()
+    {
+        pluginManager.disablePlugins();
+    }
+
+    public boolean dispatchCommand(CommandSender sender, String commandLine)
+    {
+        Validate.notNull(sender, "Sender cannot be null");
+        Validate.notNull(commandLine, "CommandLine cannot be null");
+
+        if (commandLine.startsWith("/")) {
+            commandLine = commandLine.substring(1);
+        }
+        if (commandMap.dispatch(sender, commandLine)) {
+            return true;
+        }
+        return false;
+    }
+
+    public void enablePlugins(PluginLoadOrder type)
+    {
+        if (type == PluginLoadOrder.STARTUP) {
+            helpMap.clear();
+        }
+
+        for (Plugin plugin : pluginManager.getPlugins()) {
+            if ((!plugin.isEnabled()) && (plugin.getDescription().getLoad() == type)) {
+                loadPlugin(plugin);
+            }
+        }
+
+        if (type == PluginLoadOrder.POSTWORLD) {
+            commandMap.setFallbackCommands();
+            commandMap.registerServerAliases();
+            DefaultPermissions.registerCorePermissions();
+        }
+    }
+
+    public boolean getAllowEnd()
+    {
+        return Configuration.getWorldConfig(server.getDefaultWorldName()).isEndAllowed();
+    }
+
+    public boolean getAllowFlight()
+    {
+        return false;
+    }
+
+    public boolean getAllowNether()
+    {
+        return Configuration.getWorldConfig(server.getDefaultWorldName()).isNetherAllowed();
+    }
+
+    public int getAmbientSpawnLimit()
+    {
+        return 0;
+    }
+
+    public int getAnimalSpawnLimit()
+    {
+        return 0;
+    }
+
+    public BanList getBanList(BanList.Type type)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Set<OfflinePlayer> getBannedPlayers()
+    {
+        throw new NotImplementedException();
+    }
+
+    public String getBukkitVersion()
+    {
+        return Constants.bukkitVersion;
+    }
+
+    public Map<String, String[]> getCommandAliases()
+    {
+        Map<String, String[]> result = new LinkedHashMap<String, String[]>();
+        return result;
+    }
+
+    public long getConnectionThrottle()
+    {
+        return 0;
+    }
+
+    public ConsoleCommandSender getConsoleSender()
+    {
+        throw new NotImplementedException();
+    }
+
+    public GameMode getDefaultGameMode()
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean getGenerateStructures()
+    {
+        return Configuration.getWorldConfig(server.getDefaultWorldName()).generatesStructures();
+    }
+
+    public HelpMap getHelpMap()
+    {
+        return helpMap;
+    }
+
+    public int getIdleTimeout()
+    {
+        return 0;
+    }
+
+    public String getImplementationName()
+    {
+        return "CanaryBukkit";
+    }
+
+    public String getImplementationVersion()
+    {
+        return canaryBukkitVersion;
+    }
+
+    public String getIp()
+    {
+        return Configuration.getServerConfig().getBindIp();
+    }
+
+    public Set<String> getIPBans()
+    {
+        throw new NotImplementedException();
+    }
+
+    public ItemFactory getItemFactory()
+    {
+        throw new NotImplementedException();
+    }
+
+    public Set<String> getListeningPluginChannels()
+    {
+        Set<String> result = new HashSet<String>();
+
+        for (Player player : getOnlinePlayers()) {
+            result.addAll(player.getListeningPluginChannels());
+        }
+        return result;
+    }
+
+    public Logger getLogger()
+    {
+        return new WrappedLogger(logman);
+    }
+
+    public MapView getMap(short id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public int getMaxPlayers()
+    {
+        return Configuration.getServerConfig().getMaxPlayers();
+    }
+
+    public Messenger getMessenger()
+    {
+        return messenger;
+    }
+
+    public int getMonsterSpawnLimit()
+    {
+        return 0;
+    }
+
+    public String getMotd()
+    {
+        return Configuration.getServerConfig().getMotd();
+    }
+
+    public String getName()
+    {
+        return Canary.getImplementationTitle();
+    }
+
+    public OfflinePlayer getOfflinePlayer(String name)
+    {
+        throw new NotImplementedException();
+    }
+
+    public OfflinePlayer getOfflinePlayer(UUID id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public OfflinePlayer[] getOfflinePlayers()
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean getOnlineMode()
+    {
+        return Configuration.getServerConfig().isOnlineMode();
+    }
+
+    public Player[] getOnlinePlayers()
+    {
+        CanaryPlayer[] players = new CanaryPlayer[server.getPlayerList().size()];
+        int i = 0;
+        for (net.canarymod.api.entity.living.humanoid.Player player : server.getPlayerList()) {
+            players[i] = new CanaryPlayer(player);
+            i++;
+        }
+        return players;
+    }
+
+    public Set<OfflinePlayer> getOperators()
+    {
+        Set<OfflinePlayer> players = new HashSet<OfflinePlayer>();
+        for (String name : Canary.ops().getOps()) {
+            players.add(new CanaryOfflinePlayer(Canary.getServer().getOfflinePlayer(name)));
+        }
+        return players;
+    }
+
+    public Player getPlayer(String name)
+    {
+        // TODO: Look at difference between getPlayerExact and getPlayer.
+        Validate.notNull(name, "Name cannot be null");
+
+        String lname = name.toLowerCase();
+        for (Player player : getOnlinePlayers()) {
+            if (player.getName().equalsIgnoreCase(lname)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    public Player getPlayer(UUID id)
+    {
+        for (Player player : getOnlinePlayers()) {
+            if (player.getUniqueId().equals(id)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    public Player getPlayerExact(String name)
+    {
+        Validate.notNull(name, "Name cannot be null");
+
+        String lname = name.toLowerCase();
+        for (Player player : getOnlinePlayers()) {
+            if (player.getName().equalsIgnoreCase(lname)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    public PluginCommand getPluginCommand(String name)
+    {
+        Command command = commandMap.getCommand(name);
+
+        if (command instanceof PluginCommand) {
+            return (PluginCommand) command;
+        } else {
+            return null;
+        }
+    }
+
+    public PluginManager getPluginManager()
+    {
+        return pluginManager;
+    }
+
+    public int getPort()
+    {
+        return Configuration.getServerConfig().getPort();
+    }
+
+    public List<Recipe> getRecipesFor(ItemStack result)
+    {
+        throw new NotImplementedException();
+    }
+
+    public BukkitScheduler getScheduler()
+    {
+        throw new NotImplementedException();
+    }
+
+    public ScoreboardManager getScoreboardManager()
+    {
+        throw new NotImplementedException();
+    }
+
+    public CachedServerIcon getServerIcon()
+    {
+        return new CanaryCachedServerIcon();
+    }
+
+    public String getServerId()
+    {
+        throw new NotImplementedException();
+    }
+
+    public String getServerName()
+    {
+        return server.getName();
+    }
+
+    public ServicesManager getServicesManager()
+    {
+        return servicesManager;
+    }
+
+    public String getShutdownMessage()
+    {
+        return config.getString("shutdown-message");
+    }
+
+    public int getSpawnRadius()
+    {
+        return Configuration.getWorldConfig(server.getDefaultWorldName()).getSpawnProtectionSize();
+    }
+
+    public int getTicksPerAnimalSpawns()
+    {
+        return 0;
+    }
+
+    public int getTicksPerMonsterSpawns()
+    {
+        return 0;
+    }
+
+    @Deprecated
+    public CanaryUnsafeValues getUnsafe()
+    {
+        return new CanaryUnsafeValues();
+    }
+
+    public String getUpdateFolder()
+    {
+        return this.config.getString("settings.update-folder", "update");
+    }
+
+    public File getUpdateFolderFile()
+    {
+        return new File(Constants.pluginsDir, this.config.getString("settings.update-folder", "update"));
+    }
+
+    public String getVersion()
+    {
+        return Canary.getImplementationVersion();
+    }
+
+    public int getViewDistance()
+    {
+        return Configuration.getServerConfig().getViewDistance();
+    }
+
+    public WarningState getWarningState()
+    {
+        throw new NotImplementedException();
+    }
+
+    public int getWaterAnimalSpawnLimit()
+    {
+        return 0;
+    }
+
+    public Set<OfflinePlayer> getWhitelistedPlayers()
+    {
+        Set<OfflinePlayer> players = new HashSet<OfflinePlayer>();
+        for (String name : Canary.whitelist().getWhitelisted()) {
+            players.add(new CanaryOfflinePlayer(Canary.getServer().getOfflinePlayer(name)));
+        }
+        return players;
+    }
+
+    public World getWorld(String name)
+    {
+        return new CanaryWorld(server.getWorld(name));
+    }
+
+    public World getWorld(UUID uid)
+    {
+        throw new NotImplementedException();
+    }
+
+    public File getWorldContainer()
+    {
+        return Constants.worldsDir;
+    }
+
+    public List<World> getWorlds()
+    {
+        List<World> worlds = new ArrayList<World>();
+        for (net.canarymod.api.world.World world : Canary.getServer().getWorldManager().getAllWorlds()) {
+            World bWorld = new CanaryWorld(world);
+            worlds.add(bWorld);
+        }
+        return worlds;
+    }
+
+    public String getWorldType()
+    {
+        return server.getDefaultWorld().getType().getName();
+    }
+
+    public boolean hasWhitelist()
+    {
+        return Configuration.getServerConfig().isWhitelistEnabled();
+    }
+
+    public boolean isHardcore()
+    {
+        return false;
+    }
+
+    public boolean isPrimaryThread()
+    {
+        return false;
+    }
+
+    private void loadPlugin(Plugin plugin)
+    {
         try {
             pluginManager.enablePlugin(plugin);
 
@@ -168,172 +634,35 @@ public class CanaryServer implements Server {
         }
     }
 
-    public void enablePlugins(PluginLoadOrder type) {
-        if (type == PluginLoadOrder.STARTUP) {
-            helpMap.clear();
-        }
+    public void loadPlugins()
+    {
+        pluginManager.registerInterface(JavaPluginLoader.class);
 
-        for (Plugin plugin : pluginManager.getPlugins()) {
-            if ((!plugin.isEnabled()) && (plugin.getDescription().getLoad() == type)) {
-                loadPlugin(plugin);
+        Plugin[] plugins = pluginManager.loadPlugins(Constants.pluginsDir);
+        for (Plugin plugin : plugins) {
+            try {
+                String message = String.format("Loading %s", plugin.getDescription().getFullName());
+                logman.info(message);
+                plugin.onLoad();
+            } catch (Throwable ex) {
+                logman.warn(ex.getMessage() + " initializing " + plugin.getDescription().getFullName()
+                        + " (Is it up to date?)", ex);
             }
         }
-
-        if (type == PluginLoadOrder.POSTWORLD) {
-            commandMap.setFallbackCommands();
-            commandMap.registerServerAliases();
-            DefaultPermissions.registerCorePermissions();
-        }
     }
 
-    public void disablePlugins() {
-        pluginManager.disablePlugins();
-    }
-
-    public String getName() {
-        return Canary.getImplementationTitle();
-    }
-
-    public String getImplementationName() {
-        return "CanaryBukkit";
-    }
-
-    public String getVersion() {
-        return Canary.getImplementationVersion();
-    }
-
-    public String getImplementationVersion() {
-        return canaryBukkitVersion;
-    }
-
-    public String getBukkitVersion() {
-        return Constants.bukkitVersion;
-    }
-
-    public Player[] getOnlinePlayers() {
-        CanaryPlayer[] players = new CanaryPlayer[server.getPlayerList().size()];
-        int i = 0;
-        for (net.canarymod.api.entity.living.humanoid.Player player : server.getPlayerList()) {
-            players[i] = new CanaryPlayer(player);
-            i++;
-        }
-        return players;
-    }
-
-    public OfflinePlayer[] getOfflinePlayers() {
+    public CachedServerIcon loadServerIcon(BufferedImage image) throws IllegalArgumentException, Exception
+    {
         throw new NotImplementedException();
     }
 
-    public int getMaxPlayers() {
-        return Configuration.getServerConfig().getMaxPlayers();
-    }
-
-    public int getPort() {
-        return Configuration.getServerConfig().getPort();
-    }
-
-    public int getViewDistance() {
-        return Configuration.getServerConfig().getViewDistance();
-    }
-
-    public String getIp() {
-        return Configuration.getServerConfig().getBindIp();
-    }
-
-    public String getServerName() {
-        return server.getName();
-    }
-
-    public String getServerId() {
+    public CachedServerIcon loadServerIcon(File file) throws IllegalArgumentException, Exception
+    {
         throw new NotImplementedException();
     }
 
-    public String getWorldType() {
-        return server.getDefaultWorld().getType().getName();
-    }
-
-    public boolean getGenerateStructures() {
-        return Configuration.getWorldConfig(server.getDefaultWorldName()).generatesStructures();
-    }
-
-    public boolean getAllowEnd() {
-        return Configuration.getWorldConfig(server.getDefaultWorldName()).isEndAllowed();
-    }
-
-    public boolean getAllowNether() {
-        return Configuration.getWorldConfig(server.getDefaultWorldName()).isNetherAllowed();
-    }
-
-    public boolean hasWhitelist() {
-        return Configuration.getServerConfig().isWhitelistEnabled();
-    }
-
-    public void setWhitelist(boolean value) {
-        Configuration.getServerConfig().getFile().setBoolean("whitelist-enabled", value);
-    }
-
-    public Set<OfflinePlayer> getWhitelistedPlayers() {
-        Set<OfflinePlayer> players = new HashSet<OfflinePlayer>();
-        for (String name : Canary.whitelist().getWhitelisted()) {
-            players.add(new CanaryOfflinePlayer(Canary.getServer().getOfflinePlayer(name)));
-        }
-        return players;
-    }
-
-    public void reloadWhitelist() {
-        Canary.whitelist().reload();
-    }
-
-    public int broadcastMessage(String message) {
-        return broadcast(message, BROADCAST_CHANNEL_USERS);
-    }
-
-    public String getUpdateFolder() {
-        return this.config.getString("settings.update-folder", "update");
-    }
-
-    public File getUpdateFolderFile() {
-        return new File(Constants.pluginsDir, this.config.getString("settings.update-folder", "update"));
-    }
-
-    public long getConnectionThrottle() {
-        return 0;
-    }
-
-    public int getTicksPerAnimalSpawns() {
-        return 0;
-    }
-
-    public int getTicksPerMonsterSpawns() {
-        return 0;
-    }
-
-    public Player getPlayer(String name) {
-        // TODO: Look at difference between getPlayerExact and getPlayer.
-        Validate.notNull(name, "Name cannot be null");
-
-        String lname = name.toLowerCase();
-        for (Player player : getOnlinePlayers()) {
-            if (player.getName().equalsIgnoreCase(lname)) {
-                return player;
-            }
-        }
-        return null;
-    }
-
-    public Player getPlayerExact(String name) {
-        Validate.notNull(name, "Name cannot be null");
-
-        String lname = name.toLowerCase();
-        for (Player player : getOnlinePlayers()) {
-            if (player.getName().equalsIgnoreCase(lname)) {
-                return player;
-            }
-        }
-        return null;
-    }
-
-    public List<Player> matchPlayer(String partialName) {
+    public List<Player> matchPlayer(String partialName)
+    {
         Validate.notNull(partialName, "PartialName cannot be null");
 
         List<Player> matchedPlayers = new ArrayList<Player>();
@@ -352,316 +681,45 @@ public class CanaryServer implements Server {
         return matchedPlayers;
     }
 
-    public Player getPlayer(UUID id) {
-        for (Player player : getOnlinePlayers()) {
-            if (player.getUniqueId().equals(id)) {
-                return player;
-            }
-        }
-        return null;
-    }
-
-    public PluginManager getPluginManager() {
-        return pluginManager;
-    }
-
-    public BukkitScheduler getScheduler() {
+    public Iterator<Recipe> recipeIterator()
+    {
         throw new NotImplementedException();
     }
 
-    public ServicesManager getServicesManager() {
-        return servicesManager;
-    }
-
-    public List<World> getWorlds() {
-        List<World> worlds = new ArrayList<World>();
-        for (net.canarymod.api.world.World world : Canary.getServer().getWorldManager().getAllWorlds()) {
-            World bWorld = new CanaryWorld(world);
-            worlds.add(bWorld);
-        }
-        return worlds;
-    }
-
-    public World createWorld(WorldCreator creator) {
-        throw new NotImplementedException();
-    }
-
-    public boolean unloadWorld(String name, boolean save) {
-        return false;
-    }
-
-    public boolean unloadWorld(World world, boolean save) {
-        return false;
-    }
-
-    public World getWorld(String name) {
-        return new CanaryWorld(server.getWorld(name));
-    }
-
-    public World getWorld(UUID uid) {
-        throw new NotImplementedException();
-    }
-
-    public MapView getMap(short id) {
-        throw new NotImplementedException();
-    }
-
-    public MapView createMap(World world) {
-        throw new NotImplementedException();
-    }
-
-    public void reload() {
+    public void reload()
+    {
         config = YamlConfiguration.loadConfiguration(Constants.configFile);
         // TODO: More reload stuff.
 
         server.restart(true);
     }
 
-    public Logger getLogger() {
-        return new WrappedLogger(logman);
+    public void reloadWhitelist()
+    {
+        Canary.whitelist().reload();
     }
 
-    public PluginCommand getPluginCommand(String name) {
-        Command command = commandMap.getCommand(name);
+    public void resetRecipes()
+    {
+        throw new NotImplementedException();
+    }
 
-        if (command instanceof PluginCommand) {
-            return (PluginCommand) command;
-        } else {
-            return null;
+    private void saveConfigFile(YamlConfiguration config, File file)
+    {
+        try {
+            config.save(file);
+        } catch (IOException ex) {
+            logman.warn("Could not save " + config, ex);
         }
     }
 
-    public void savePlayers() {
+    public void savePlayers()
+    {
         throw new NotImplementedException();
     }
 
-    public boolean dispatchCommand(CommandSender sender, String commandLine) {
-        Validate.notNull(sender, "Sender cannot be null");
-        Validate.notNull(commandLine, "CommandLine cannot be null");
-
-        if (commandLine.startsWith("/")) {
-            commandLine = commandLine.substring(1);
-        }
-        if (commandMap.dispatch(sender, commandLine)) {
-            return true;
-        }
-        return false;
-    }
-
-    public void configureDbConfig(ServerConfig config) {
-        throw new NotImplementedException();
-    }
-
-    public boolean addRecipe(Recipe recipe) {
-        return false;
-    }
-
-    public List<Recipe> getRecipesFor(ItemStack result) {
-        throw new NotImplementedException();
-    }
-
-    public Iterator<Recipe> recipeIterator() {
-        throw new NotImplementedException();
-    }
-
-    public void clearRecipes() {
-        throw new NotImplementedException();
-    }
-
-    public void resetRecipes() {
-        throw new NotImplementedException();
-    }
-
-    public Map<String, String[]> getCommandAliases() {
-        Map<String, String[]> result = new LinkedHashMap<String, String[]>();
-        return result;
-    }
-
-    public int getSpawnRadius() {
-        return Configuration.getWorldConfig(server.getDefaultWorldName()).getSpawnProtectionSize();
-    }
-
-    public void setSpawnRadius(int value) {
-        throw new NotImplementedException();
-    }
-
-    public boolean getOnlineMode() {
-        return Configuration.getServerConfig().isOnlineMode();
-    }
-
-    public boolean getAllowFlight() {
-        return false;
-    }
-
-    public boolean isHardcore() {
-        return false;
-    }
-
-    public boolean useExactLoginLocation() {
-        return false;
-    }
-
-    public void shutdown() {
-        server.initiateShutdown(config.getString("shutdown-message"));
-    }
-
-    public int broadcast(String message, String permission) {
-        int count = 0;
-        Set<Permissible> permissibles = getPluginManager().getPermissionSubscriptions(permission);
-
-        for (Permissible permissible : permissibles) {
-            if (permissible instanceof CommandSender && permissible.hasPermission(permission)) {
-                CommandSender user = (CommandSender) permissible;
-                user.sendMessage(message);
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public OfflinePlayer getOfflinePlayer(String name) {
-        throw new NotImplementedException();
-    }
-
-    public OfflinePlayer getOfflinePlayer(UUID id) {
-        throw new NotImplementedException();
-    }
-
-    public Set<String> getIPBans() {
-        throw new NotImplementedException();
-    }
-
-    public void banIP(String address) {
-        throw new NotImplementedException();
-    }
-
-    public void unbanIP(String address) {
-        throw new NotImplementedException();
-    }
-
-    public Set<OfflinePlayer> getBannedPlayers() {
-        throw new NotImplementedException();
-    }
-
-    public BanList getBanList(BanList.Type type) {
-        throw new NotImplementedException();
-    }
-
-    public Set<OfflinePlayer> getOperators() {
-        Set<OfflinePlayer> players = new HashSet<OfflinePlayer>();
-        for (String name : Canary.ops().getOps()) {
-            players.add(new CanaryOfflinePlayer(Canary.getServer().getOfflinePlayer(name)));
-        }
-        return players;
-    }
-
-    public GameMode getDefaultGameMode() {
-        throw new NotImplementedException();
-    }
-
-    public void setDefaultGameMode(GameMode mode) {
-        throw new NotImplementedException();
-    }
-
-    public ConsoleCommandSender getConsoleSender() {
-        throw new NotImplementedException();
-    }
-
-    public File getWorldContainer() {
-        return Constants.worldsDir;
-    }
-
-    public Messenger getMessenger() {
-        return messenger;
-    }
-
-    public HelpMap getHelpMap() {
-        return helpMap;
-    }
-
-    public Inventory createInventory(InventoryHolder owner, InventoryType type) {
-        throw new NotImplementedException();
-    }
-
-    public Inventory createInventory(InventoryHolder owner, InventoryType type, String title) {
-        throw new NotImplementedException();
-    }
-
-    public Inventory createInventory(InventoryHolder owner, int size) throws IllegalArgumentException {
-        throw new NotImplementedException();
-    }
-
-    public Inventory createInventory(InventoryHolder owner, int size, String title)
-            throws IllegalArgumentException {
-        throw new NotImplementedException();
-    }
-
-    public int getMonsterSpawnLimit() {
-        return 0;
-    }
-
-    public int getAnimalSpawnLimit() {
-        return 0;
-    }
-
-    public int getWaterAnimalSpawnLimit() {
-        return 0;
-    }
-
-    public int getAmbientSpawnLimit() {
-        return 0;
-    }
-
-    public boolean isPrimaryThread() {
-        return false;
-    }
-
-    public String getMotd() {
-        return Configuration.getServerConfig().getMotd();
-    }
-
-    public String getShutdownMessage() {
-        return config.getString("shutdown-message");
-    }
-
-    public WarningState getWarningState() {
-        throw new NotImplementedException();
-    }
-
-    public ItemFactory getItemFactory() {
-        throw new NotImplementedException();
-    }
-
-    public ScoreboardManager getScoreboardManager() {
-        throw new NotImplementedException();
-    }
-
-    public CachedServerIcon getServerIcon() {
-        return new CanaryCachedServerIcon();
-    }
-
-    public CachedServerIcon loadServerIcon(File file) throws IllegalArgumentException, Exception {
-        throw new NotImplementedException();
-    }
-
-    public CachedServerIcon loadServerIcon(BufferedImage image) throws IllegalArgumentException, Exception {
-        throw new NotImplementedException();
-    }
-
-    public void setIdleTimeout(int threshold) {
-        throw new NotImplementedException();
-    }
-
-    public int getIdleTimeout() {
-        return 0;
-    }
-
-    @Deprecated
-    public CanaryUnsafeValues getUnsafe() {
-        return new CanaryUnsafeValues();
-    }
-
-    public void sendPluginMessage(Plugin source, String channel, byte[] message) {
+    public void sendPluginMessage(Plugin source, String channel, byte[] message)
+    {
         StandardMessenger.validatePluginMessage(getMessenger(), source, channel, message);
 
         for (Player player : getOnlinePlayers()) {
@@ -669,12 +727,59 @@ public class CanaryServer implements Server {
         }
     }
 
-    public Set<String> getListeningPluginChannels() {
-        Set<String> result = new HashSet<String>();
+    public void setDefaultGameMode(GameMode mode)
+    {
+        throw new NotImplementedException();
+    }
 
-        for (Player player : getOnlinePlayers()) {
-            result.addAll(player.getListeningPluginChannels());
-        }
-        return result;
+    public void setIdleTimeout(int threshold)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setSpawnRadius(int value)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setWhitelist(boolean value)
+    {
+        Configuration.getServerConfig().getFile().setBoolean("whitelist-enabled", value);
+    }
+
+    public void shutdown()
+    {
+        server.initiateShutdown(config.getString("shutdown-message"));
+    }
+
+    public void start()
+    {
+        // Start loading plugins
+        loadPlugins();
+        enablePlugins(PluginLoadOrder.STARTUP);
+
+        // Finish loading plugins
+        enablePlugins(PluginLoadOrder.POSTWORLD);
+        commandMap.registerServerAliases();
+    }
+
+    public void unbanIP(String address)
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean unloadWorld(String name, boolean save)
+    {
+        return false;
+    }
+
+    public boolean unloadWorld(World world, boolean save)
+    {
+        return false;
+    }
+
+    public boolean useExactLoginLocation()
+    {
+        return false;
     }
 }

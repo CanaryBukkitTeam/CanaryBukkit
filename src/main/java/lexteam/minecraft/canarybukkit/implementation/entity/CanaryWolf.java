@@ -29,7 +29,8 @@ import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Wolf;
 
-public class CanaryWolf extends CanaryTameable implements Wolf {
+public class CanaryWolf extends CanaryTameable implements Wolf
+{
     private net.canarymod.api.entity.living.animal.Wolf entity;
 
     public CanaryWolf(net.canarymod.api.entity.living.animal.Wolf entity) {
@@ -37,32 +38,39 @@ public class CanaryWolf extends CanaryTameable implements Wolf {
         this.entity = entity;
     }
 
-    public boolean isAngry() {
-        return entity.isAngry();
-    }
-
-    public void setAngry(boolean angry) {
-        entity.setAngry(angry);
-    }
-
-    public boolean isSitting() {
-        return entity.isSitting();
-    }
-
-    public void setSitting(boolean sitting) {
-        entity.setSitting(sitting);
-    }
-
-    public DyeColor getCollarColor() {
-        throw new NotImplementedException();
-    }
-
-    public void setCollarColor(DyeColor color) {
+    public DyeColor getCollarColor()
+    {
         throw new NotImplementedException();
     }
 
     @Override
-    public EntityType getType() {
+    public EntityType getType()
+    {
         return EntityType.WOLF;
+    }
+
+    public boolean isAngry()
+    {
+        return entity.isAngry();
+    }
+
+    public boolean isSitting()
+    {
+        return entity.isSitting();
+    }
+
+    public void setAngry(boolean angry)
+    {
+        entity.setAngry(angry);
+    }
+
+    public void setCollarColor(DyeColor color)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setSitting(boolean sitting)
+    {
+        entity.setSitting(sitting);
     }
 }

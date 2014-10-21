@@ -28,16 +28,19 @@ import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.LivingEntity;
 
-public class CanaryCreature extends CanaryLivingEntity implements Creature {
+public class CanaryCreature extends CanaryLivingEntity implements Creature
+{
     public CanaryCreature(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);
     }
 
-    public void setTarget(LivingEntity target) {
+    public LivingEntity getTarget()
+    {
         throw new NotImplementedException();
     }
 
-    public LivingEntity getTarget() {
+    public void setTarget(LivingEntity target)
+    {
         throw new NotImplementedException();
     }
 }

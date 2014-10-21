@@ -28,21 +28,25 @@ import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.EntityType;
 
-public class CanaryBat extends CanaryMonster implements Bat {
+public class CanaryBat extends CanaryMonster implements Bat
+{
     public CanaryBat(net.canarymod.api.entity.living.animal.Bat entity) {
         super(entity);
     }
 
-    public boolean isAwake() {
-        throw new NotImplementedException();
-    }
-
-    public void setAwake(boolean awake) {
-        throw new NotImplementedException();
-    }
-
     @Override
-    public EntityType getType() {
+    public EntityType getType()
+    {
         return EntityType.BAT;
+    }
+
+    public boolean isAwake()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setAwake(boolean awake)
+    {
+        throw new NotImplementedException();
     }
 }

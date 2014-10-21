@@ -28,7 +28,8 @@ import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ocelot;
 
-public class CanaryOcelot extends CanaryTameable implements Ocelot {
+public class CanaryOcelot extends CanaryTameable implements Ocelot
+{
     private net.canarymod.api.entity.living.animal.Ocelot entity;
 
     public CanaryOcelot(net.canarymod.api.entity.living.animal.Ocelot entity) {
@@ -36,24 +37,29 @@ public class CanaryOcelot extends CanaryTameable implements Ocelot {
         this.entity = entity;
     }
 
-    public Type getCatType() {
+    public Type getCatType()
+    {
         throw new NotImplementedException();
-    }
-
-    public void setCatType(Type type) {
-        throw new NotImplementedException();
-    }
-
-    public boolean isSitting() {
-        return entity.isSitting();
-    }
-
-    public void setSitting(boolean sitting) {
-        entity.setSitting(sitting);
     }
 
     @Override
-    public EntityType getType() {
+    public EntityType getType()
+    {
         return EntityType.OCELOT;
+    }
+
+    public boolean isSitting()
+    {
+        return entity.isSitting();
+    }
+
+    public void setCatType(Type type)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setSitting(boolean sitting)
+    {
+        entity.setSitting(sitting);
     }
 }

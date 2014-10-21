@@ -30,7 +30,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
 import org.bukkit.inventory.HorseInventory;
 
-public class CanaryHorse extends CanaryAnimals implements Horse {
+public class CanaryHorse extends CanaryAnimals implements Horse
+{
     private net.canarymod.api.entity.living.animal.Horse horse;
 
     public CanaryHorse(net.canarymod.api.entity.living.animal.Horse entity) {
@@ -38,84 +39,104 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
         this.horse = entity;
     }
 
-    public boolean isTamed() {
-        return horse.isTamed();
-    }
-
-    public void setTamed(boolean tame) {
-        horse.setTamed(tame);
-    }
-
-    public AnimalTamer getOwner() {
+    public Color getColor()
+    {
         throw new NotImplementedException();
     }
 
-    public void setOwner(AnimalTamer tamer) {
-        throw new NotImplementedException();
-    }
-
-    public Variant getVariant() {
-        throw new NotImplementedException();
-    }
-
-    public void setVariant(Variant variant) {
-        throw new NotImplementedException();
-    }
-
-    public Color getColor() {
-        throw new NotImplementedException();
-    }
-
-    public void setColor(Color color) {
-        throw new NotImplementedException();
-    }
-
-    public Style getStyle() {
-        throw new NotImplementedException();
-    }
-
-    public void setStyle(Style style) {
-        throw new NotImplementedException();
-    }
-
-    public boolean isCarryingChest() {
-        return horse.isChested();
-    }
-
-    public void setCarryingChest(boolean chest) {
-        throw new NotImplementedException();
-    }
-
-    public int getDomestication() {
+    public int getDomestication()
+    {
         return 0;
     }
 
-    public void setDomestication(int level) {
+    public HorseInventory getInventory()
+    {
         throw new NotImplementedException();
     }
 
-    public int getMaxDomestication() {
+    public double getJumpStrength()
+    {
         return 0;
     }
 
-    public void setMaxDomestication(int level) {
-        throw new NotImplementedException();
-    }
-
-    public double getJumpStrength() {
+    public int getMaxDomestication()
+    {
         return 0;
     }
 
-    public void setJumpStrength(double strength) {
+    public AnimalTamer getOwner()
+    {
         throw new NotImplementedException();
     }
 
-    public HorseInventory getInventory() {
+    public Style getStyle()
+    {
         throw new NotImplementedException();
     }
 
     @Override
-    public EntityType getType() {
+    public EntityType getType()
+    {
         return EntityType.HORSE;
+    }
+
+    public Variant getVariant()
+    {
+        throw new NotImplementedException();
+    }
+
+    public boolean isCarryingChest()
+    {
+        return horse.isChested();
+    }
+
+    public boolean isTamed()
+    {
+        return horse.isTamed();
+    }
+
+    public void setCarryingChest(boolean chest)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setColor(Color color)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setDomestication(int level)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setJumpStrength(double strength)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setMaxDomestication(int level)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setOwner(AnimalTamer tamer)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setStyle(Style style)
+    {
+        throw new NotImplementedException();
+    }
+
+    public void setTamed(boolean tame)
+    {
+        horse.setTamed(tame);
+    }
+
+    public void setVariant(Variant variant)
+    {
+        throw new NotImplementedException();
     }
 }

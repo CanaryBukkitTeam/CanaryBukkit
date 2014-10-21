@@ -35,21 +35,10 @@ import org.apache.commons.lang.Validate;
  * 
  * @author Jamie
  */
-public class CanaryUtils {
-    public static GameMode toGameMode(org.bukkit.GameMode gm) {
-        Validate.notNull(gm);
-        switch (gm) {
-            case ADVENTURE:
-                return GameMode.ADVENTURE;
-            case CREATIVE:
-                return GameMode.CREATIVE;
-            case SURVIVAL:
-            default:
-                return GameMode.SURVIVAL;
-        }
-    }
-
-    public static Difficulty toDifficulty(org.bukkit.Difficulty difficulty) {
+public class CanaryUtils
+{
+    public static Difficulty toDifficulty(org.bukkit.Difficulty difficulty)
+    {
         Validate.notNull(difficulty);
         switch (difficulty) {
             case EASY:
@@ -64,7 +53,22 @@ public class CanaryUtils {
         }
     }
 
-    public static WorldType toWorldType(org.bukkit.WorldType type) {
+    public static GameMode toGameMode(org.bukkit.GameMode gm)
+    {
+        Validate.notNull(gm);
+        switch (gm) {
+            case ADVENTURE:
+                return GameMode.ADVENTURE;
+            case CREATIVE:
+                return GameMode.CREATIVE;
+            case SURVIVAL:
+            default:
+                return GameMode.SURVIVAL;
+        }
+    }
+
+    public static WorldType toWorldType(org.bukkit.WorldType type)
+    {
         Validate.notNull(type);
         switch (type) {
             case AMPLIFIED:

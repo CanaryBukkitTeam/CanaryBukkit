@@ -33,34 +33,41 @@ import org.bukkit.help.HelpMap;
 import org.bukkit.help.HelpTopic;
 import org.bukkit.help.HelpTopicFactory;
 
-public class CanaryHelpMap implements HelpMap {
+public class CanaryHelpMap implements HelpMap
+{
     private CanaryServer server;
 
     public CanaryHelpMap(CanaryServer server) {
         this.server = server;
     }
 
-    public HelpTopic getHelpTopic(String topicName) {
+    public void addTopic(HelpTopic topic)
+    {
+
+    }
+
+    public void clear()
+    {
+
+    }
+
+    public HelpTopic getHelpTopic(String topicName)
+    {
         return null;
     }
 
-    public Collection<HelpTopic> getHelpTopics() {
+    public Collection<HelpTopic> getHelpTopics()
+    {
         return null;
     }
 
-    public void addTopic(HelpTopic topic) {
-
-    }
-
-    public void clear() {
-
-    }
-
-    public void registerHelpTopicFactory(Class<?> commandClass, HelpTopicFactory<?> factory) {
-
-    }
-
-    public List<String> getIgnoredPlugins() {
+    public List<String> getIgnoredPlugins()
+    {
         return null;
+    }
+
+    public void registerHelpTopicFactory(Class<?> commandClass, HelpTopicFactory<?> factory)
+    {
+
     }
 }

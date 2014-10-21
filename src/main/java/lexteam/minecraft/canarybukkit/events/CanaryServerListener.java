@@ -33,7 +33,8 @@ import net.canarymod.plugin.PluginListener;
 
 import org.bukkit.event.server.ServerListPingEvent;
 
-public class CanaryServerListener implements PluginListener {
+public class CanaryServerListener implements PluginListener
+{
     private CanaryServer server;
 
     public CanaryServerListener(CanaryServer server) {
@@ -41,14 +42,8 @@ public class CanaryServerListener implements PluginListener {
     }
 
     @HookHandler
-    public void onServerListPing(ServerListPingHook hook) {
-        server.getPluginManager().callEvent(
-                new ServerListPingEvent(hook.getRequesterAddress(), hook.getMotd(), hook.getCurrentPlayers(),
-                        hook.getMaxPlayers()));
-    }
-
-    @HookHandler
-    public void onCommand(ConsoleCommandHook hook) {
+    public void onCommand(ConsoleCommandHook hook)
+    {
         String commandLine = "";
         for (String s : hook.getCommand()) {
             commandLine += s + " ";
@@ -56,5 +51,13 @@ public class CanaryServerListener implements PluginListener {
         if (server.dispatchCommand(new CanaryCommandSender(hook.getCaller()), commandLine)) {
             hook.setCanceled();
         }
+    }
+
+    @HookHandler
+    public void onServerListPing(ServerListPingHook hook)
+    {
+        server.getPluginManager().callEvent(
+                new ServerListPingEvent(hook.getRequesterAddress(), hook.getMotd(), hook.getCurrentPlayers(),
+                        hook.getMaxPlayers()));
     }
 }
