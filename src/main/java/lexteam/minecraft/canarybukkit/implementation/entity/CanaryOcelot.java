@@ -42,7 +42,6 @@ public class CanaryOcelot extends CanaryTameable implements Ocelot
         throw new NotImplementedException();
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.OCELOT;

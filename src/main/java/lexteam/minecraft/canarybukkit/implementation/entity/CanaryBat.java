@@ -24,17 +24,18 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.EntityType;
 
 public class CanaryBat extends CanaryMonster implements Bat
 {
+    private net.canarymod.api.entity.living.animal.Bat entity;
+
     public CanaryBat(net.canarymod.api.entity.living.animal.Bat entity) {
         super(entity);
+        this.entity = entity;
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.BAT;
@@ -42,11 +43,11 @@ public class CanaryBat extends CanaryMonster implements Bat
 
     public boolean isAwake()
     {
-        throw new NotImplementedException();
+        return !entity.isHanging();
     }
 
     public void setAwake(boolean awake)
     {
-        throw new NotImplementedException();
+        entity.setHanging(!awake);
     }
 }

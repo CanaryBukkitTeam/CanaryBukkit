@@ -29,49 +29,39 @@ import lexteam.minecraft.canarybukkit.CanaryUtils;
 
 import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Wolf;
+import org.bukkit.entity.Sheep;
 
-public class CanaryWolf extends CanaryTameable implements Wolf
+public class CanarySheep extends CanaryAnimals implements Sheep
 {
-    private net.canarymod.api.entity.living.animal.Wolf entity;
+    private net.canarymod.api.entity.living.animal.Sheep entity;
 
-    public CanaryWolf(net.canarymod.api.entity.living.animal.Wolf entity) {
+    public CanarySheep(net.canarymod.api.entity.living.animal.Sheep entity) {
         super(entity);
         this.entity = entity;
     }
 
-    public DyeColor getCollarColor()
+    public DyeColor getColor()
     {
-        return BukkitUtils.toDyeColor(entity.getCollarColor());
+        return BukkitUtils.toDyeColor(entity.getColor());
     }
 
     public EntityType getType()
     {
-        return EntityType.WOLF;
+        return EntityType.SHEEP;
     }
 
-    public boolean isAngry()
+    public boolean isSheared()
     {
-        return entity.isAngry();
+        return entity.isSheared();
     }
 
-    public boolean isSitting()
+    public void setColor(DyeColor color)
     {
-        return entity.isSitting();
+        entity.setColor(CanaryUtils.toDyeColor(color));
     }
 
-    public void setAngry(boolean angry)
+    public void setSheared(boolean flag)
     {
-        entity.setAngry(angry);
-    }
-
-    public void setCollarColor(DyeColor color)
-    {
-        entity.setCollarColor(CanaryUtils.toDyeColor(color));
-    }
-
-    public void setSitting(boolean sitting)
-    {
-        entity.setSitting(sitting);
+        entity.setSheared(flag);
     }
 }

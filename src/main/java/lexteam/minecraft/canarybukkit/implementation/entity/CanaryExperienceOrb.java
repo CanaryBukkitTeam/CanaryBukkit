@@ -24,54 +24,33 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import lexteam.minecraft.canarybukkit.BukkitUtils;
-import lexteam.minecraft.canarybukkit.CanaryUtils;
+import net.canarymod.api.entity.XPOrb;
 
-import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Wolf;
+import org.bukkit.entity.ExperienceOrb;
 
-public class CanaryWolf extends CanaryTameable implements Wolf
+public class CanaryExperienceOrb extends CanaryEntity implements ExperienceOrb
 {
-    private net.canarymod.api.entity.living.animal.Wolf entity;
+    private XPOrb entity;
 
-    public CanaryWolf(net.canarymod.api.entity.living.animal.Wolf entity) {
+    public CanaryExperienceOrb(net.canarymod.api.entity.XPOrb entity) {
         super(entity);
         this.entity = entity;
     }
 
-    public DyeColor getCollarColor()
+    public int getExperience()
     {
-        return BukkitUtils.toDyeColor(entity.getCollarColor());
+        return entity.getXPValue();
     }
 
     public EntityType getType()
     {
-        return EntityType.WOLF;
+        return EntityType.EXPERIENCE_ORB;
     }
 
-    public boolean isAngry()
+    public void setExperience(int value)
     {
-        return entity.isAngry();
-    }
-
-    public boolean isSitting()
-    {
-        return entity.isSitting();
-    }
-
-    public void setAngry(boolean angry)
-    {
-        entity.setAngry(angry);
-    }
-
-    public void setCollarColor(DyeColor color)
-    {
-        entity.setCollarColor(CanaryUtils.toDyeColor(color));
-    }
-
-    public void setSitting(boolean sitting)
-    {
-        entity.setSitting(sitting);
+        entity.setXPValue((short) value);
+        // TODO: can you cast short to a int
     }
 }

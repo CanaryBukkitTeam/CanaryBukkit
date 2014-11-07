@@ -33,7 +33,6 @@ public class CanaryWitch extends CanaryMonster implements Witch
         super(entity);
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.WITCH;

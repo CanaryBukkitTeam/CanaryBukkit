@@ -100,11 +100,6 @@ public abstract class CanaryHumanEntity extends CanaryLivingEntity implements Hu
         return false;
     }
 
-    public boolean isOp()
-    {
-        return false;
-    }
-
     public boolean isPermissionSet(Permission perm)
     {
         return false;
@@ -126,11 +121,6 @@ public abstract class CanaryHumanEntity extends CanaryLivingEntity implements Hu
     }
 
     public void removeAttachment(PermissionAttachment attachment)
-    {
-        throw new NotImplementedException();
-    }
-
-    public void setOp(boolean value)
     {
         throw new NotImplementedException();
     }

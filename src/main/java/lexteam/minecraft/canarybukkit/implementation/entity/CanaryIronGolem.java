@@ -36,7 +36,6 @@ public class CanaryIronGolem extends CanaryGolem implements IronGolem
         this.entity = entity;
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.IRON_GOLEM;

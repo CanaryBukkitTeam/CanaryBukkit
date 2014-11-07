@@ -24,17 +24,14 @@
  */
 package lexteam.minecraft.canarybukkit;
 
+import net.canarymod.api.DyeColor;
 import net.canarymod.api.GameMode;
+import net.canarymod.api.entity.living.humanoid.Villager.Profession;
 import net.canarymod.api.world.World.Difficulty;
 import net.canarymod.api.world.WorldType;
 
 import org.apache.commons.lang.Validate;
 
-/**
- * For turning Bukkit objects into Canary objects
- * 
- * @author Jamie
- */
 public class CanaryUtils
 {
     public static Difficulty toDifficulty(org.bukkit.Difficulty difficulty)
@@ -50,6 +47,43 @@ public class CanaryUtils
             case NORMAL:
             default:
                 return Difficulty.NORMAL;
+        }
+    }
+
+    public static DyeColor toDyeColor(org.bukkit.DyeColor color)
+    {
+        switch (color) {
+            case BLACK:
+                return DyeColor.BLACK;
+            case BLUE:
+                return DyeColor.BLUE;
+            case BROWN:
+                return DyeColor.BROWN;
+            case CYAN:
+                return DyeColor.CYAN;
+            case GREEN:
+                return DyeColor.GREEN;
+            case LIGHT_BLUE:
+                return DyeColor.LIGHT_BLUE;
+            case GRAY:
+                return DyeColor.GRAY;
+            case LIME:
+                return DyeColor.LIME;
+            case MAGENTA:
+                return DyeColor.MAGENTA;
+            case ORANGE:
+                return DyeColor.ORANGE;
+            case PINK:
+                return DyeColor.PINK;
+            case PURPLE:
+                return DyeColor.PURPLE;
+            case RED:
+                return DyeColor.RED;
+            case YELLOW:
+                return DyeColor.YELLOW;
+            case WHITE:
+            default:
+                return DyeColor.WHITE;
         }
     }
 
@@ -82,6 +116,23 @@ public class CanaryUtils
             case NORMAL:
             default:
                 return WorldType.DEFAULT;
+        }
+    }
+
+    public static Profession toProfession(org.bukkit.entity.Villager.Profession profession)
+    {
+        switch (profession) {
+            case BLACKSMITH:
+                return Profession.BLACKSMITH;
+            case BUTCHER:
+                return Profession.BUTCHER;
+            case LIBRARIAN:
+                return Profession.LIBRARIAN;
+            case PRIEST:
+                return Profession.PRIEST;
+            case FARMER:
+            default:
+                return Profession.FARMER;
         }
     }
 }

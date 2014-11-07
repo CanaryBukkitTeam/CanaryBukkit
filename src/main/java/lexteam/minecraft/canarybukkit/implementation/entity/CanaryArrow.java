@@ -59,7 +59,6 @@ public class CanaryArrow extends CanaryAbstractProjectile implements Arrow
         throw new NotImplementedException();
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.ARROW;

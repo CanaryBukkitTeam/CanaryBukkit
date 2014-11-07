@@ -33,7 +33,6 @@ public class CanaryGhast extends CanaryMonster implements Ghast
         super(entity);
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.GHAST;

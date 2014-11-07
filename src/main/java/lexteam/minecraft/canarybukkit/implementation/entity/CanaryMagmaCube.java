@@ -24,54 +24,18 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import lexteam.minecraft.canarybukkit.BukkitUtils;
-import lexteam.minecraft.canarybukkit.CanaryUtils;
-
-import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Wolf;
+import org.bukkit.entity.MagmaCube;
 
-public class CanaryWolf extends CanaryTameable implements Wolf
+public class CanaryMagmaCube extends CanarySlime implements MagmaCube
 {
-    private net.canarymod.api.entity.living.animal.Wolf entity;
-
-    public CanaryWolf(net.canarymod.api.entity.living.animal.Wolf entity) {
+    public CanaryMagmaCube(net.canarymod.api.entity.living.monster.MagmaCube entity) {
         super(entity);
-        this.entity = entity;
     }
 
-    public DyeColor getCollarColor()
-    {
-        return BukkitUtils.toDyeColor(entity.getCollarColor());
-    }
-
+    @Override
     public EntityType getType()
     {
-        return EntityType.WOLF;
-    }
-
-    public boolean isAngry()
-    {
-        return entity.isAngry();
-    }
-
-    public boolean isSitting()
-    {
-        return entity.isSitting();
-    }
-
-    public void setAngry(boolean angry)
-    {
-        entity.setAngry(angry);
-    }
-
-    public void setCollarColor(DyeColor color)
-    {
-        entity.setCollarColor(CanaryUtils.toDyeColor(color));
-    }
-
-    public void setSitting(boolean sitting)
-    {
-        entity.setSitting(sitting);
+        return EntityType.MAGMA_CUBE;
     }
 }

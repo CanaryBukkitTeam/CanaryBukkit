@@ -49,7 +49,7 @@ public class CanaryPigZombie extends CanaryZombie implements PigZombie
 
     public boolean isAngry()
     {
-        return getAnger() > 0;
+        return entity.isAngry();
     }
 
     public void setAnger(int level)

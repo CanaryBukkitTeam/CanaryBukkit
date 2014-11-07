@@ -42,7 +42,6 @@ public class CanaryEnderDragon extends CanaryMonster implements EnderDragon
         throw new NotImplementedException();
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.ENDER_DRAGON;

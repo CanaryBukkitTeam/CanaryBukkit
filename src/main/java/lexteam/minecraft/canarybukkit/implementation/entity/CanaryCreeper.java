@@ -36,7 +36,6 @@ public class CanaryCreeper extends CanaryMonster implements Creeper
         this.entity = entity;
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.CREEPER;

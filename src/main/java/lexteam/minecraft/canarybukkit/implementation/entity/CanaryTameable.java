@@ -29,7 +29,7 @@ import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Tameable;
 
-public class CanaryTameable extends CanaryAnimals implements Tameable, Creature
+public abstract class CanaryTameable extends CanaryAnimals implements Tameable, Creature
 {
     private net.canarymod.api.entity.living.animal.Tameable entity;
 

@@ -24,6 +24,9 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
+import lexteam.minecraft.canarybukkit.BukkitUtils;
+import lexteam.minecraft.canarybukkit.CanaryUtils;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 
@@ -38,24 +41,9 @@ public class CanaryVillager extends CanaryAgeable implements Villager
 
     public Profession getProfession()
     {
-        switch (entity.getProfession()) {
-            case BLACKSMITH:
-                return Profession.BLACKSMITH;
-            case BUTCHER:
-                return Profession.BUTCHER;
-            case FARMER:
-                return Profession.FARMER;
-            case LIBRARIAN:
-                return Profession.LIBRARIAN;
-            case PRIEST:
-                return Profession.PRIEST;
-            case VILLAGER:
-            default:
-                return Profession.FARMER;
-        }
+        return BukkitUtils.toProfession(entity.getProfession());
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.VILLAGER;
@@ -63,22 +51,6 @@ public class CanaryVillager extends CanaryAgeable implements Villager
 
     public void setProfession(Profession profession)
     {
-        switch (profession) {
-            case BLACKSMITH:
-                entity.setProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession.BLACKSMITH);
-                break;
-            case BUTCHER:
-                entity.setProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession.BUTCHER);
-                break;
-            case FARMER:
-                entity.setProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession.FARMER);
-                break;
-            case LIBRARIAN:
-                entity.setProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession.LIBRARIAN);
-                break;
-            case PRIEST:
-                entity.setProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession.PRIEST);
-                break;
-        }
+        entity.setProfession(CanaryUtils.toProfession(profession));
     }
 }

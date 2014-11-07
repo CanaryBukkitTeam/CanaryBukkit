@@ -33,7 +33,6 @@ public class CanarySpider extends CanaryAgeable implements Spider
         super(entity);
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.SPIDER;

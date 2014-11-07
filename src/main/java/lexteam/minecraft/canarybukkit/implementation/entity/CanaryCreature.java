@@ -28,7 +28,7 @@ import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.LivingEntity;
 
-public class CanaryCreature extends CanaryLivingEntity implements Creature
+public abstract class CanaryCreature extends CanaryLivingEntity implements Creature
 {
     public CanaryCreature(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);

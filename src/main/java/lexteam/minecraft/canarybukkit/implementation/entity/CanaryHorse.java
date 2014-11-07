@@ -74,7 +74,6 @@ public class CanaryHorse extends CanaryAnimals implements Horse
         throw new NotImplementedException();
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.HORSE;

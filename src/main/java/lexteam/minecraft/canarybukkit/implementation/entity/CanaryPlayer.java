@@ -95,7 +95,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
 
     public boolean canSee(Player player)
     {
-        return false;
+        return entity.canSee(Canary.getServer().getPlayerFromUUID(player.getUniqueId()));
     }
 
     public void chat(String msg)
@@ -295,7 +295,6 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
         return 0;
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.PLAYER;
@@ -731,5 +730,15 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
     public void updateInventory()
     {
         entity.getInventory().update();
+    }
+
+    public boolean isOp()
+    {
+        return false;
+    }
+
+    public void setOp(boolean value)
+    {
+        throw new NotImplementedException();
     }
 }

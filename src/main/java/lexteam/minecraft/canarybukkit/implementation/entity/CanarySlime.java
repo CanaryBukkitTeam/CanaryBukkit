@@ -39,7 +39,6 @@ public class CanarySlime extends CanaryLivingEntity implements Slime
         throw new NotImplementedException();
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.SLIME;

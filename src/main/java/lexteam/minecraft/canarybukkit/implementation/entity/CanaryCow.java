@@ -33,7 +33,6 @@ public class CanaryCow extends CanaryAnimals implements Cow
         super(entity);
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.COW;

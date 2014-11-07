@@ -37,14 +37,13 @@ import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
-public class CanaryEntity implements Entity
+public abstract class CanaryEntity implements Entity
 {
     private net.canarymod.api.entity.Entity entity;
 
@@ -107,7 +106,8 @@ public class CanaryEntity implements Entity
 
     public Entity getPassenger()
     {
-        return new CanaryEntity(entity.getRider());
+        // return new CanaryEntity(entity.getRider());
+        throw new NotImplementedException();
     }
 
     public Server getServer()
@@ -120,11 +120,6 @@ public class CanaryEntity implements Entity
         return 0;
     }
 
-    public EntityType getType()
-    {
-        throw new NotImplementedException();
-    }
-
     public UUID getUniqueId()
     {
         return entity.getUUID();
@@ -132,7 +127,8 @@ public class CanaryEntity implements Entity
 
     public Entity getVehicle()
     {
-        return new CanaryEntity(entity.getRiding());
+        // return new CanaryEntity(entity.getRiding());
+        throw new NotImplementedException();
     }
 
     public Vector getVelocity()

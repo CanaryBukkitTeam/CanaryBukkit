@@ -36,7 +36,6 @@ public class CanaryZombie extends CanaryAgeable implements Zombie
         this.entity = entity;
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.ZOMBIE;

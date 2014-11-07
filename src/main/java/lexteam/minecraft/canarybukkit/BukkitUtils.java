@@ -26,14 +26,11 @@ package lexteam.minecraft.canarybukkit;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Difficulty;
+import org.bukkit.DyeColor;
 import org.bukkit.GameMode;
 import org.bukkit.WorldType;
+import org.bukkit.entity.Villager.Profession;
 
-/**
- * For turning Canary objects into Bukkit objects
- * 
- * @author Jamie
- */
 public class BukkitUtils
 {
     public static Difficulty toDifficulty(net.canarymod.api.world.World.Difficulty difficulty)
@@ -49,6 +46,46 @@ public class BukkitUtils
             case NORMAL:
             default:
                 return Difficulty.NORMAL;
+        }
+    }
+
+    public static DyeColor toDyeColor(net.canarymod.api.DyeColor color)
+    {
+        switch (color) {
+            case BLACK:
+                return DyeColor.BLACK;
+            case BLUE:
+                return DyeColor.BLUE;
+            case BROWN:
+                return DyeColor.BROWN;
+            case CUSTOM:
+                return null; // TODO: Does Bukkit have custom DyeColor's?
+            case CYAN:
+                return DyeColor.CYAN;
+            case GREEN:
+                return DyeColor.GREEN;
+            case LIGHT_BLUE:
+                return DyeColor.LIGHT_BLUE;
+            case LIGHT_GRAY:
+            case GRAY:
+                return DyeColor.GRAY;
+            case LIME:
+                return DyeColor.LIME;
+            case MAGENTA:
+                return DyeColor.MAGENTA;
+            case ORANGE:
+                return DyeColor.ORANGE;
+            case PINK:
+                return DyeColor.PINK;
+            case PURPLE:
+                return DyeColor.PURPLE;
+            case RED:
+                return DyeColor.RED;
+            case YELLOW:
+                return DyeColor.YELLOW;
+            case WHITE:
+            default:
+                return DyeColor.WHITE;
         }
     }
 
@@ -82,5 +119,25 @@ public class BukkitUtils
             return WorldType.VERSION_1_1;
         }
         return WorldType.NORMAL;
+    }
+
+    public static Profession toProfession(
+            net.canarymod.api.entity.living.humanoid.Villager.Profession profession)
+    {
+        switch (profession) {
+            case BLACKSMITH:
+                return Profession.BLACKSMITH;
+            case BUTCHER:
+                return Profession.BUTCHER;
+            case FARMER:
+                return Profession.FARMER;
+            case LIBRARIAN:
+                return Profession.LIBRARIAN;
+            case PRIEST:
+                return Profession.PRIEST;
+            case VILLAGER:
+            default:
+                return Profession.FARMER;
+        }
     }
 }

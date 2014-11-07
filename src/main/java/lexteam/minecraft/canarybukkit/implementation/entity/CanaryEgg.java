@@ -51,7 +51,6 @@ public class CanaryEgg extends CanaryAbstractProjectile implements Egg
         throw new NotImplementedException();
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.EGG;

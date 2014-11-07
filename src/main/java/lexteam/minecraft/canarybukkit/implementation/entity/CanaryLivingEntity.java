@@ -45,7 +45,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-public class CanaryLivingEntity extends CanaryEntity implements LivingEntity
+public abstract class CanaryLivingEntity extends CanaryEntity implements LivingEntity
 {
     private LivingBase entity;
 

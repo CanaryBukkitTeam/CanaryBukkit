@@ -26,6 +26,7 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import net.canarymod.api.entity.effect.LightningBolt;
 
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LightningStrike;
 
 public class CanaryLightningStrike extends CanaryEntity implements LightningStrike
@@ -38,5 +39,10 @@ public class CanaryLightningStrike extends CanaryEntity implements LightningStri
     {
         return false;
         // No lightning bolts are effects
+    }
+
+    public EntityType getType()
+    {
+        return EntityType.LIGHTNING;
     }
 }

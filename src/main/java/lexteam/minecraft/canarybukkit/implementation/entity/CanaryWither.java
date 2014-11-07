@@ -33,7 +33,6 @@ public class CanaryWither extends CanaryMonster implements Wither
         super(entity);
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.WITHER;

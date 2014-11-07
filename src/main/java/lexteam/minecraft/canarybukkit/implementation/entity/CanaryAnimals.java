@@ -26,9 +26,14 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import org.bukkit.entity.Animals;
 
-public class CanaryAnimals extends CanaryAgeable implements Animals
+/**
+ * Convert a Canary EntityAnimal into a Bukkit Animals.
+ * 
+ * @author Jamie Mansfield <https://github.com/lexware>
+ */
+public abstract class CanaryAnimals extends CanaryAgeable implements Animals
 {
-    public CanaryAnimals(net.canarymod.api.entity.living.LivingBase entity) {
+    public CanaryAnimals(net.canarymod.api.entity.living.animal.EntityAnimal entity) {
         super(entity);
     }
 }

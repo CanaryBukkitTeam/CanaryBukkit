@@ -33,7 +33,6 @@ public class CanaryCaveSpider extends CanaryAgeable implements CaveSpider
         super(entity);
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.CAVE_SPIDER;

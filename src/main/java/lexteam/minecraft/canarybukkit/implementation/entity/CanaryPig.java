@@ -36,7 +36,6 @@ public class CanaryPig extends CanaryAnimals implements Pig
         this.entity = entity;
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.PIG;

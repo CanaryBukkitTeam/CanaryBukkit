@@ -33,7 +33,6 @@ public class CanaryGiant extends CanaryMonster implements Giant
         super(entity);
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.GIANT;

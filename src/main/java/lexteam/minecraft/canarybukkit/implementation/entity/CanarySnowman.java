@@ -33,7 +33,6 @@ public class CanarySnowman extends CanaryGolem implements Snowman
         super(entity);
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.SNOWMAN;

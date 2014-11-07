@@ -42,7 +42,6 @@ public class CanaryEnderman extends CanaryMonster implements Enderman
         return new MaterialData(entity.getCarriedBlockID());
     }
 
-    @Override
     public EntityType getType()
     {
         return EntityType.ENDERMAN;
