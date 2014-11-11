@@ -27,7 +27,7 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.EntityType;
 
-public class CanaryBat extends CanaryMonster implements Bat
+public class CanaryBat extends CanaryAmbient implements Bat
 {
     private net.canarymod.api.entity.living.animal.Bat entity;
 

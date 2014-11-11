@@ -191,7 +191,7 @@ public class CanaryWorld implements World
 
     public Difficulty getDifficulty()
     {
-        return BukkitUtils.toDifficulty(getWorldConfig().getDifficulty());
+        return BukkitUtils.getDifficulty(getWorldConfig().getDifficulty());
     }
 
     public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome,
@@ -402,7 +402,7 @@ public class CanaryWorld implements World
 
     public WorldType getWorldType()
     {
-        return BukkitUtils.toWorldType(getWorldConfig().getWorldType());
+        return BukkitUtils.getWorldType(getWorldConfig().getWorldType());
     }
 
     public boolean hasMetadata(String metadataKey)

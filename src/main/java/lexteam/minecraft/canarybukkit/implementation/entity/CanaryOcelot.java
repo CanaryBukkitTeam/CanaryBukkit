@@ -24,7 +24,9 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
+import lexteam.minecraft.canarybukkit.BukkitUtils;
+import lexteam.minecraft.canarybukkit.CanaryUtils;
+
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ocelot;
 
@@ -39,7 +41,7 @@ public class CanaryOcelot extends CanaryTameable implements Ocelot
 
     public Type getCatType()
     {
-        throw new NotImplementedException();
+        return BukkitUtils.getCatType(entity.getSkinType());
     }
 
     public EntityType getType()
@@ -54,7 +56,7 @@ public class CanaryOcelot extends CanaryTameable implements Ocelot
 
     public void setCatType(Type type)
     {
-        throw new NotImplementedException();
+        entity.setSkinType(CanaryUtils.getCatType(type));
     }
 
     public void setSitting(boolean sitting)

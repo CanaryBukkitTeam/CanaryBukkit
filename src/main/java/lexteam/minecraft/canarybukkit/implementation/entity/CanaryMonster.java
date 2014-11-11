@@ -28,7 +28,7 @@ import org.bukkit.entity.Monster;
 
 public abstract class CanaryMonster extends CanaryCreature implements Monster
 {
-    public CanaryMonster(net.canarymod.api.entity.living.LivingBase entity) {
+    public CanaryMonster(net.canarymod.api.entity.living.monster.EntityMob entity) {
         super(entity);
     }
 }

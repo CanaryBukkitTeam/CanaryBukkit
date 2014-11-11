@@ -198,7 +198,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
 
     public GameMode getGameMode()
     {
-        return BukkitUtils.toGameMode(entity.getMode());
+        return BukkitUtils.getGameMode(entity.getMode());
     }
 
     public double getHealthScale()
@@ -614,7 +614,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
 
     public void setGameMode(GameMode mode)
     {
-        entity.setMode(CanaryUtils.toGameMode(mode));
+        entity.setMode(CanaryUtils.getGameMode(mode));
     }
 
     public void setHealthScale(double scale) throws IllegalArgumentException

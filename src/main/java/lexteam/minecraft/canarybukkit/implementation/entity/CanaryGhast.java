@@ -29,7 +29,7 @@ import org.bukkit.entity.Ghast;
 
 public class CanaryGhast extends CanaryMonster implements Ghast
 {
-    public CanaryGhast(net.canarymod.api.entity.living.LivingBase entity) {
+    public CanaryGhast(net.canarymod.api.entity.living.monster.Ghast entity) {
         super(entity);
     }
 

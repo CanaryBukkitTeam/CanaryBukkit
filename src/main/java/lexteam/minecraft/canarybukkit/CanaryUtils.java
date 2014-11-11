@@ -26,6 +26,7 @@ package lexteam.minecraft.canarybukkit;
 
 import net.canarymod.api.DyeColor;
 import net.canarymod.api.GameMode;
+import net.canarymod.api.entity.living.animal.Ocelot.SkinType;
 import net.canarymod.api.entity.living.humanoid.Villager.Profession;
 import net.canarymod.api.world.World.Difficulty;
 import net.canarymod.api.world.WorldType;
@@ -34,7 +35,7 @@ import org.apache.commons.lang.Validate;
 
 public class CanaryUtils
 {
-    public static Difficulty toDifficulty(org.bukkit.Difficulty difficulty)
+    public static Difficulty getDifficulty(org.bukkit.Difficulty difficulty)
     {
         Validate.notNull(difficulty);
         switch (difficulty) {
@@ -50,8 +51,9 @@ public class CanaryUtils
         }
     }
 
-    public static DyeColor toDyeColor(org.bukkit.DyeColor color)
+    public static DyeColor getDyeColor(org.bukkit.DyeColor color)
     {
+        Validate.notNull(color);
         switch (color) {
             case BLACK:
                 return DyeColor.BLACK;
@@ -87,7 +89,7 @@ public class CanaryUtils
         }
     }
 
-    public static GameMode toGameMode(org.bukkit.GameMode gm)
+    public static GameMode getGameMode(org.bukkit.GameMode gm)
     {
         Validate.notNull(gm);
         switch (gm) {
@@ -101,7 +103,7 @@ public class CanaryUtils
         }
     }
 
-    public static WorldType toWorldType(org.bukkit.WorldType type)
+    public static WorldType getWorldType(org.bukkit.WorldType type)
     {
         Validate.notNull(type);
         switch (type) {
@@ -119,8 +121,9 @@ public class CanaryUtils
         }
     }
 
-    public static Profession toProfession(org.bukkit.entity.Villager.Profession profession)
+    public static Profession getProfession(org.bukkit.entity.Villager.Profession profession)
     {
+        Validate.notNull(profession);
         switch (profession) {
             case BLACKSMITH:
                 return Profession.BLACKSMITH;
@@ -133,6 +136,20 @@ public class CanaryUtils
             case FARMER:
             default:
                 return Profession.FARMER;
+        }
+    }
+    
+    public static SkinType getCatType(org.bukkit.entity.Ocelot.Type type) {
+        switch(type) {
+            case BLACK_CAT:
+                return SkinType.TUXEDO;
+            case RED_CAT:
+                return SkinType.GINGER;
+            case SIAMESE_CAT:
+                return SkinType.SIAMESE;
+            case WILD_OCELOT:
+            default:
+                return SkinType.UNTAME;
         }
     }
 }

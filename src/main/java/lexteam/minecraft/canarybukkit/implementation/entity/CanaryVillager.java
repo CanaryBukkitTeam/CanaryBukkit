@@ -41,7 +41,7 @@ public class CanaryVillager extends CanaryAgeable implements Villager
 
     public Profession getProfession()
     {
-        return BukkitUtils.toProfession(entity.getProfession());
+        return BukkitUtils.getProfession(entity.getProfession());
     }
 
     public EntityType getType()
@@ -51,6 +51,6 @@ public class CanaryVillager extends CanaryAgeable implements Villager
 
     public void setProfession(Profession profession)
     {
-        entity.setProfession(CanaryUtils.toProfession(profession));
+        entity.setProfession(CanaryUtils.getProfession(profession));
     }
 }

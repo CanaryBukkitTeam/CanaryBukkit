@@ -42,7 +42,7 @@ public class CanarySheep extends CanaryAnimals implements Sheep
 
     public DyeColor getColor()
     {
-        return BukkitUtils.toDyeColor(entity.getColor());
+        return BukkitUtils.getDyeColor(entity.getColor());
     }
 
     public EntityType getType()
@@ -57,7 +57,7 @@ public class CanarySheep extends CanaryAnimals implements Sheep
 
     public void setColor(DyeColor color)
     {
-        entity.setColor(CanaryUtils.toDyeColor(color));
+        entity.setColor(CanaryUtils.getDyeColor(color));
     }
 
     public void setSheared(boolean flag)

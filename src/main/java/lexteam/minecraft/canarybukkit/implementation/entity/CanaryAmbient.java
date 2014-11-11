@@ -24,54 +24,11 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import lexteam.minecraft.canarybukkit.BukkitUtils;
-import lexteam.minecraft.canarybukkit.CanaryUtils;
+import org.bukkit.entity.Ambient;
 
-import org.bukkit.DyeColor;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Wolf;
-
-public class CanaryWolf extends CanaryTameable implements Wolf
+public abstract class CanaryAmbient extends CanaryLivingEntity implements Ambient
 {
-    private net.canarymod.api.entity.living.animal.Wolf entity;
-
-    public CanaryWolf(net.canarymod.api.entity.living.animal.Wolf entity) {
+    public CanaryAmbient(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);
-        this.entity = entity;
-    }
-
-    public DyeColor getCollarColor()
-    {
-        return BukkitUtils.getDyeColor(entity.getCollarColor());
-    }
-
-    public EntityType getType()
-    {
-        return EntityType.WOLF;
-    }
-
-    public boolean isAngry()
-    {
-        return entity.isAngry();
-    }
-
-    public boolean isSitting()
-    {
-        return entity.isSitting();
-    }
-
-    public void setAngry(boolean angry)
-    {
-        entity.setAngry(angry);
-    }
-
-    public void setCollarColor(DyeColor color)
-    {
-        entity.setCollarColor(CanaryUtils.getDyeColor(color));
-    }
-
-    public void setSitting(boolean sitting)
-    {
-        entity.setSitting(sitting);
     }
 }

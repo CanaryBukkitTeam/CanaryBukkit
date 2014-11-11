@@ -28,6 +28,10 @@ import lexteam.minecraft.canarybukkit.implementation.entity.CanaryArrow;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryChicken;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryCow;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryEgg;
+import lexteam.minecraft.canarybukkit.implementation.entity.CanaryHorse;
+import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPig;
+import lexteam.minecraft.canarybukkit.implementation.entity.CanarySheep;
+import lexteam.minecraft.canarybukkit.implementation.entity.CanaryWolf;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Difficulty;
@@ -35,11 +39,12 @@ import org.bukkit.DyeColor;
 import org.bukkit.GameMode;
 import org.bukkit.WorldType;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Ocelot.Type;
 import org.bukkit.entity.Villager.Profession;
 
 public class BukkitUtils
 {
-    public static Difficulty toDifficulty(net.canarymod.api.world.World.Difficulty difficulty)
+    public static Difficulty getDifficulty(net.canarymod.api.world.World.Difficulty difficulty)
     {
         Validate.notNull(difficulty);
         switch (difficulty) {
@@ -55,8 +60,9 @@ public class BukkitUtils
         }
     }
 
-    public static DyeColor toDyeColor(net.canarymod.api.DyeColor color)
+    public static DyeColor getDyeColor(net.canarymod.api.DyeColor color)
     {
+        Validate.notNull(color);
         switch (color) {
             case BLACK:
                 return DyeColor.BLACK;
@@ -95,7 +101,7 @@ public class BukkitUtils
         }
     }
 
-    public static GameMode toGameMode(net.canarymod.api.GameMode gm)
+    public static GameMode getGameMode(net.canarymod.api.GameMode gm)
     {
         Validate.notNull(gm);
         switch (gm) {
@@ -109,7 +115,7 @@ public class BukkitUtils
         }
     }
 
-    public static WorldType toWorldType(net.canarymod.api.world.WorldType type)
+    public static WorldType getWorldType(net.canarymod.api.world.WorldType type)
     {
         Validate.notNull(type);
         if (type == net.canarymod.api.world.WorldType.AMPLIFIED) {
@@ -127,9 +133,10 @@ public class BukkitUtils
         return WorldType.NORMAL;
     }
 
-    public static Profession toProfession(
+    public static Profession getProfession(
             net.canarymod.api.entity.living.humanoid.Villager.Profession profession)
     {
+        Validate.notNull(profession);
         switch (profession) {
             case BLACKSMITH:
                 return Profession.BLACKSMITH;
@@ -147,7 +154,22 @@ public class BukkitUtils
         }
     }
     
+    public static Type getCatType(net.canarymod.api.entity.living.animal.Ocelot.SkinType type) {
+        switch(type) {
+            case GINGER:
+                return Type.RED_CAT;
+            case SIAMESE:
+                return Type.SIAMESE_CAT;
+            case TUXEDO:
+                return Type.BLACK_CAT;
+            case UNTAME:
+            default:
+                return Type.WILD_OCELOT;
+        }
+    }
+    
     public static Entity getEntity(net.canarymod.api.entity.Entity cEntity) {
+        Validate.notNull(cEntity);
         if(cEntity instanceof net.canarymod.api.entity.Projectile) {
             if(cEntity instanceof net.canarymod.api.entity.Arrow) {
                 return new CanaryArrow((net.canarymod.api.entity.Arrow) cEntity);
@@ -155,12 +177,21 @@ public class BukkitUtils
                 return new CanaryEgg((net.canarymod.api.entity.throwable.ChickenEgg) cEntity);
             }
         } else if(cEntity instanceof net.canarymod.api.entity.living.LivingBase) {
-            if(cEntity instanceof net.canarymod.api.entity.living.animal.EntityAnimal) {
+            if(cEntity instanceof net.canarymod.api.entity.living.animal.Tameable) {
+                if(cEntity instanceof net.canarymod.api.entity.living.animal.Wolf) {
+                    return new CanaryWolf((net.canarymod.api.entity.living.animal.Wolf) cEntity);
+                }
+            } else if(cEntity instanceof net.canarymod.api.entity.living.animal.EntityAnimal) {
                 if(cEntity instanceof net.canarymod.api.entity.living.animal.Chicken) {
                     return new CanaryChicken((net.canarymod.api.entity.living.animal.Chicken) cEntity);
-                }
-                if(cEntity instanceof net.canarymod.api.entity.living.animal.Cow) {
+                } else if(cEntity instanceof net.canarymod.api.entity.living.animal.Cow) {
                     return new CanaryCow((net.canarymod.api.entity.living.animal.Cow) cEntity);
+                } else if(cEntity instanceof net.canarymod.api.entity.living.animal.Horse) {
+                    return new CanaryHorse((net.canarymod.api.entity.living.animal.Horse) cEntity);
+                } else if(cEntity instanceof net.canarymod.api.entity.living.animal.Pig) {
+                    return new CanaryPig((net.canarymod.api.entity.living.animal.Pig) cEntity);
+                } else if(cEntity instanceof net.canarymod.api.entity.living.animal.Sheep) {
+                    return new CanarySheep((net.canarymod.api.entity.living.animal.Sheep) cEntity);
                 }
             }
         }
