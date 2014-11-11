@@ -105,7 +105,8 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
 
     public void closeInventory()
     {
-        throw new NotImplementedException();
+        entity.closeWindow();
+        //TODO: Review
     }
 
     public void decrementStatistic(Statistic statistic) throws IllegalArgumentException
@@ -371,7 +372,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
 
     public boolean isBanned()
     {
-        return false;
+        return Canary.bans().isBanned(entity.getUUID().toString());
     }
 
     public boolean isConversing()
@@ -416,7 +417,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
 
     public boolean isWhitelisted()
     {
-        return Canary.whitelist().isWhitelisted(getName());
+        return Canary.whitelist().isWhitelisted(entity.getUUID().toString());
     }
 
     public void kickPlayer(String message)
@@ -563,7 +564,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
 
     public void setBanned(boolean banned)
     {
-        throw new NotImplementedException();
+        Canary.bans().issueBan(entity, "The Ban Hammer Has Spoken!");
     }
 
     public void setBedSpawnLocation(Location location)
@@ -709,7 +710,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
 
     public void setTotalExperience(int exp)
     {
-        throw new NotImplementedException();
+        entity.setExperience(exp);
     }
 
     public void setWalkSpeed(float value) throws IllegalArgumentException
@@ -734,11 +735,17 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
 
     public boolean isOp()
     {
-        return false;
+        return entity.isAdmin();
+        //TODO: is admin the same as op?
     }
 
     public void setOp(boolean value)
     {
         throw new NotImplementedException();
+    }
+
+    public boolean isSleeping()
+    {
+        return entity.isSleeping();
     }
 }

@@ -110,11 +110,6 @@ public abstract class CanaryHumanEntity extends CanaryLivingEntity implements Hu
         return false;
     }
 
-    public boolean isSleeping()
-    {
-        return false;
-    }
-
     public void recalculatePermissions()
     {
         throw new NotImplementedException();

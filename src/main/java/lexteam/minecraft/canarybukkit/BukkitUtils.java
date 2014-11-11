@@ -24,11 +24,17 @@
  */
 package lexteam.minecraft.canarybukkit;
 
+import lexteam.minecraft.canarybukkit.implementation.entity.CanaryArrow;
+import lexteam.minecraft.canarybukkit.implementation.entity.CanaryChicken;
+import lexteam.minecraft.canarybukkit.implementation.entity.CanaryCow;
+import lexteam.minecraft.canarybukkit.implementation.entity.CanaryEgg;
+
 import org.apache.commons.lang.Validate;
 import org.bukkit.Difficulty;
 import org.bukkit.DyeColor;
 import org.bukkit.GameMode;
 import org.bukkit.WorldType;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Villager.Profession;
 
 public class BukkitUtils
@@ -139,5 +145,25 @@ public class BukkitUtils
             default:
                 return Profession.FARMER;
         }
+    }
+    
+    public static Entity getEntity(net.canarymod.api.entity.Entity cEntity) {
+        if(cEntity instanceof net.canarymod.api.entity.Projectile) {
+            if(cEntity instanceof net.canarymod.api.entity.Arrow) {
+                return new CanaryArrow((net.canarymod.api.entity.Arrow) cEntity);
+            } else if(cEntity instanceof net.canarymod.api.entity.throwable.ChickenEgg) {
+                return new CanaryEgg((net.canarymod.api.entity.throwable.ChickenEgg) cEntity);
+            }
+        } else if(cEntity instanceof net.canarymod.api.entity.living.LivingBase) {
+            if(cEntity instanceof net.canarymod.api.entity.living.animal.EntityAnimal) {
+                if(cEntity instanceof net.canarymod.api.entity.living.animal.Chicken) {
+                    return new CanaryChicken((net.canarymod.api.entity.living.animal.Chicken) cEntity);
+                }
+                if(cEntity instanceof net.canarymod.api.entity.living.animal.Cow) {
+                    return new CanaryCow((net.canarymod.api.entity.living.animal.Cow) cEntity);
+                }
+            }
+        }
+        return null;
     }
 }

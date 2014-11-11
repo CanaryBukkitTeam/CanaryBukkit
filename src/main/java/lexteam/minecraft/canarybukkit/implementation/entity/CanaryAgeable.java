@@ -29,11 +29,6 @@ import net.canarymod.api.entity.living.LivingBase;
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Ageable;
 
-/**
- * Convert a Canary Ageable/LivingBase into a Bukkit Ageable.
- * 
- * @author Jamie Mansfield <https://github.com/lexware>
- */
 public abstract class CanaryAgeable extends CanaryCreature implements Ageable
 {
     private LivingBase entity;

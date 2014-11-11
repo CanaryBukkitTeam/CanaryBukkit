@@ -63,7 +63,7 @@ public class CanaryPlayerInventory extends CanaryInventory implements PlayerInve
 
     public int getHeldItemSlot()
     {
-        throw new NotImplementedException();
+        return inv.getSelectedHotbarSlotId();
     }
 
     public ItemStack getHelmet()

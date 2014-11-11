@@ -39,7 +39,6 @@ import java.util.logging.Logger;
 
 import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
-import lexteam.minecraft.canarybukkit.implementation.help.CanaryHelpMap;
 import lexteam.minecraft.canarybukkit.implementation.util.CanaryCachedServerIcon;
 import net.canarymod.Canary;
 import net.canarymod.config.Configuration;
@@ -95,7 +94,6 @@ public class CanaryServer implements Server
     private String canaryBukkitVersion;
     private final SimpleCommandMap commandMap = new SimpleCommandMap(this);
     private PluginManager pluginManager = new SimplePluginManager(this, commandMap);
-    private final CanaryHelpMap helpMap = new CanaryHelpMap(this);
     private final StandardMessenger messenger = new StandardMessenger();
     private final ServicesManager servicesManager = new SimpleServicesManager();
     private Logman logman;
@@ -208,7 +206,7 @@ public class CanaryServer implements Server
     public void enablePlugins(PluginLoadOrder type)
     {
         if (type == PluginLoadOrder.STARTUP) {
-            helpMap.clear();
+            //helpMap.clear();
         }
 
         for (Plugin plugin : pluginManager.getPlugins()) {
@@ -292,7 +290,7 @@ public class CanaryServer implements Server
 
     public HelpMap getHelpMap()
     {
-        return helpMap;
+        throw new NotImplementedException();
     }
 
     public int getIdleTimeout()
@@ -765,7 +763,7 @@ public class CanaryServer implements Server
 
     public void unbanIP(String address)
     {
-        throw new NotImplementedException();
+        Canary.bans().unban(address);
     }
 
     public boolean unloadWorld(String name, boolean save)

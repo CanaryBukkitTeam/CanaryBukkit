@@ -27,6 +27,7 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import java.util.List;
 import java.util.UUID;
 
+import lexteam.minecraft.canarybukkit.BukkitUtils;
 import lexteam.minecraft.canarybukkit.implementation.CanaryLocation;
 import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 
@@ -106,8 +107,7 @@ public abstract class CanaryEntity implements Entity
 
     public Entity getPassenger()
     {
-        // return new CanaryEntity(entity.getRider());
-        throw new NotImplementedException();
+        return BukkitUtils.getEntity(entity.getRider());
     }
 
     public Server getServer()
@@ -127,8 +127,7 @@ public abstract class CanaryEntity implements Entity
 
     public Entity getVehicle()
     {
-        // return new CanaryEntity(entity.getRiding());
-        throw new NotImplementedException();
+        return BukkitUtils.getEntity(entity.getRiding());
     }
 
     public Vector getVelocity()

@@ -202,7 +202,11 @@ public class CanaryWorld implements World
 
     public List<Entity> getEntities()
     {
-        throw new NotImplementedException();
+        List<Entity> entities = new ArrayList<Entity>();
+        for(net.canarymod.api.entity.Entity e : world.getEntityLivingList()) {
+            entities.add(BukkitUtils.getEntity(e));
+        }
+        return entities;
     }
 
     public <T extends Entity> Collection<T> getEntitiesByClass(Class<T>... classes)

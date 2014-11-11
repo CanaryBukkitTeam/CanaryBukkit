@@ -26,11 +26,6 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import org.bukkit.entity.Projectile;
 
-/**
- * Convert a Canary Projectile into a Bukkit Projectile.
- * 
- * @author Jamie Mansfield <https://github.com/lexware>
- */
 public abstract class CanaryAbstractProjectile extends CanaryEntity implements Projectile
 {
     private boolean doesBounce;
