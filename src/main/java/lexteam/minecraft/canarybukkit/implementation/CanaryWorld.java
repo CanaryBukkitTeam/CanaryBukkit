@@ -32,7 +32,9 @@ import java.util.Set;
 import java.util.UUID;
 
 import lexteam.minecraft.canarybukkit.BukkitUtils;
+import lexteam.minecraft.canarybukkit.CanaryUtils;
 import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
+import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 import net.canarymod.config.Configuration;
 import net.canarymod.config.WorldConfiguration;
 
@@ -131,12 +133,12 @@ public class CanaryWorld implements World
 
     public boolean getAllowAnimals()
     {
-        throw new NotImplementedException();
+        return getWorldConfig().canSpawnAnimals();
     }
 
     public boolean getAllowMonsters()
     {
-        throw new NotImplementedException();
+        return getWorldConfig().canSpawnMonsters();
     }
 
     public int getAmbientSpawnLimit()
@@ -203,7 +205,7 @@ public class CanaryWorld implements World
     public List<Entity> getEntities()
     {
         List<Entity> entities = new ArrayList<Entity>();
-        for(net.canarymod.api.entity.Entity e : world.getEntityLivingList()) {
+        for (net.canarymod.api.entity.Entity e : world.getEntityLivingList()) {
             entities.add(BukkitUtils.getEntity(e));
         }
         return entities;
@@ -226,7 +228,7 @@ public class CanaryWorld implements World
 
     public Environment getEnvironment()
     {
-        throw new NotImplementedException();
+        return BukkitUtils.getEnviroment(world.getType());
     }
 
     public long getFullTime()
@@ -288,7 +290,11 @@ public class CanaryWorld implements World
 
     public List<LivingEntity> getLivingEntities()
     {
-        throw new NotImplementedException();
+        List<LivingEntity> entities = new ArrayList<LivingEntity>();
+        for (net.canarymod.api.entity.living.EntityLiving entity : world.getEntityLivingList()) {
+            entities.add((LivingEntity) BukkitUtils.getEntity(entity));
+        }
+        return entities;
     }
 
     public Chunk[] getLoadedChunks()
@@ -322,7 +328,11 @@ public class CanaryWorld implements World
 
     public List<Player> getPlayers()
     {
-        throw new NotImplementedException();
+        List<Player> players = new ArrayList<Player>();
+        for (net.canarymod.api.entity.living.humanoid.Player p : world.getPlayerList()) {
+            players.add(new CanaryPlayer(p));
+        }
+        return players;
     }
 
     public List<BlockPopulator> getPopulators()
@@ -332,7 +342,7 @@ public class CanaryWorld implements World
 
     public boolean getPVP()
     {
-        throw new NotImplementedException();
+        return getWorldConfig().isPvpEnabled();
     }
 
     public int getSeaLevel()
@@ -528,7 +538,7 @@ public class CanaryWorld implements World
 
     public void setBiome(int x, int z, Biome bio)
     {
-        throw new NotImplementedException();
+        world.setBiome(x, z, CanaryUtils.getBiome(bio));
     }
 
     public void setDifficulty(Difficulty difficulty)

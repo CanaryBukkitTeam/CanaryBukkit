@@ -106,7 +106,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
     public void closeInventory()
     {
         entity.closeWindow();
-        //TODO: Review
+        // TODO: Review
     }
 
     public void decrementStatistic(Statistic statistic) throws IllegalArgumentException
@@ -736,7 +736,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
     public boolean isOp()
     {
         return entity.isAdmin();
-        //TODO: is admin the same as op?
+        // TODO: is admin the same as op?
     }
 
     public void setOp(boolean value)

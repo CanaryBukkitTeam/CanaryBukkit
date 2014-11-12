@@ -206,7 +206,7 @@ public class CanaryServer implements Server
     public void enablePlugins(PluginLoadOrder type)
     {
         if (type == PluginLoadOrder.STARTUP) {
-            //helpMap.clear();
+            // helpMap.clear();
         }
 
         for (Plugin plugin : pluginManager.getPlugins()) {
