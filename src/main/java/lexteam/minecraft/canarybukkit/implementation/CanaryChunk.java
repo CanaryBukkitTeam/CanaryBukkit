@@ -24,6 +24,11 @@
  */
 package lexteam.minecraft.canarybukkit.implementation;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import lexteam.minecraft.canarybukkit.BukkitUtils;
+
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;
@@ -60,7 +65,13 @@ public class CanaryChunk implements Chunk
 
     public Entity[] getEntities()
     {
-        return new Entity[0];
+        List<Entity> entities = new ArrayList<Entity>();
+        for (List<net.canarymod.api.entity.Entity> e : chunk.getEntityLists()) {
+            for (net.canarymod.api.entity.Entity en : e) {
+                entities.add(BukkitUtils.getEntity(en));
+            }
+        }
+        return entities.toArray(new Entity[entities.size()]);
     }
 
     public BlockState[] getTileEntities()

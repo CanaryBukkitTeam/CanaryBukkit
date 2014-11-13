@@ -143,7 +143,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
 
     public InetSocketAddress getAddress()
     {
-        throw new NotImplementedException();
+        return new InetSocketAddress(entity.getIP(), 0);
     }
 
     public boolean getAllowFlight()
@@ -173,7 +173,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
 
     public float getExhaustion()
     {
-        return 0;
+        return entity.getExhaustionLevel();
     }
 
     public float getExp()

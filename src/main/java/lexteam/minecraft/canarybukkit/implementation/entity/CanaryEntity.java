@@ -254,4 +254,9 @@ public abstract class CanaryEntity implements Entity
         // TODO: Investigate TeleportCause
         return teleport(location);
     }
+
+    public net.canarymod.api.entity.Entity getCanaryEntity()
+    {
+        return entity;
+    }
 }

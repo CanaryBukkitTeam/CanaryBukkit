@@ -143,6 +143,7 @@ public class CanaryUtils
 
     public static SkinType getCatType(org.bukkit.entity.Ocelot.Type type)
     {
+        Validate.notNull(type);
         switch (type) {
             case BLACK_CAT:
                 return SkinType.TUXEDO;

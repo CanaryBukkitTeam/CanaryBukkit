@@ -432,7 +432,7 @@ public class CanaryWorld implements World
 
     public boolean isChunkInUse(int x, int z)
     {
-        throw new NotImplementedException();
+        return world.getChunk(x, z).hasEntities();
     }
 
     public boolean isChunkLoaded(Chunk chunk)
