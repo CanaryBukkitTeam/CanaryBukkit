@@ -27,14 +27,12 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Wither;
 
-public class CanaryWither extends CanaryMonster implements Wither
-{
+public class CanaryWither extends CanaryMonster implements Wither {
     public CanaryWither(net.canarymod.api.entity.living.monster.Wither entity) {
         super(entity);
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.WITHER;
     }
 }

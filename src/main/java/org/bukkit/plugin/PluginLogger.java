@@ -29,15 +29,13 @@ import java.util.logging.LogRecord;
 import net.canarymod.logger.Logman;
 import net.visualillusionsent.minecraft.plugin.canary.WrappedLogger;
 
-public class PluginLogger extends WrappedLogger
-{
+public class PluginLogger extends WrappedLogger {
     public PluginLogger(Plugin plugin) {
         super(Logman.getLogman("CanaryBukkit - " + plugin.getName()));
     }
 
     @Override
-    public void log(LogRecord logRecord)
-    {
+    public void log(LogRecord logRecord) {
         log(logRecord.getLevel(), logRecord.getMessage());
     }
 }

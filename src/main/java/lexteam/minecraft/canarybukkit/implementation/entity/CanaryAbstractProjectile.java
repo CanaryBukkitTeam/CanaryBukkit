@@ -26,8 +26,7 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import org.bukkit.entity.Projectile;
 
-public abstract class CanaryAbstractProjectile extends CanaryEntity implements Projectile
-{
+public abstract class CanaryAbstractProjectile extends CanaryEntity implements Projectile {
     private boolean doesBounce;
 
     public CanaryAbstractProjectile(net.canarymod.api.entity.Projectile entity) {
@@ -35,13 +34,11 @@ public abstract class CanaryAbstractProjectile extends CanaryEntity implements P
         doesBounce = false;
     }
 
-    public boolean doesBounce()
-    {
+    public boolean doesBounce() {
         return doesBounce;
     }
 
-    public void setBounce(boolean doesBounce)
-    {
+    public void setBounce(boolean doesBounce) {
         this.doesBounce = doesBounce;
     }
 }

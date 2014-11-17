@@ -59,8 +59,7 @@ import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.Scoreboard;
 
-public class CanaryPlayer extends CanaryHumanEntity implements Player
-{
+public class CanaryPlayer extends CanaryHumanEntity implements Player {
     private net.canarymod.api.entity.living.humanoid.Player entity;
 
     public CanaryPlayer(net.canarymod.api.entity.living.humanoid.Player entity) {
@@ -68,684 +67,549 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player
         this.entity = entity;
     }
 
-    public void abandonConversation(Conversation conversation)
-    {
+    public void abandonConversation(Conversation conversation) {
         throw new NotImplementedException();
     }
 
-    public void abandonConversation(Conversation conversation, ConversationAbandonedEvent details)
-    {
+    public void abandonConversation(Conversation conversation, ConversationAbandonedEvent details) {
         throw new NotImplementedException();
     }
 
-    public void acceptConversationInput(String input)
-    {
+    public void acceptConversationInput(String input) {
         throw new NotImplementedException();
     }
 
-    public void awardAchievement(Achievement achievement)
-    {
+    public void awardAchievement(Achievement achievement) {
         throw new NotImplementedException();
     }
 
-    public boolean beginConversation(Conversation conversation)
-    {
+    public boolean beginConversation(Conversation conversation) {
         return false;
     }
 
-    public boolean canSee(Player player)
-    {
+    public boolean canSee(Player player) {
         return entity.canSee(Canary.getServer().getPlayerFromUUID(player.getUniqueId()));
     }
 
-    public void chat(String msg)
-    {
+    public void chat(String msg) {
         entity.chat(msg);
     }
 
-    public void closeInventory()
-    {
+    public void closeInventory() {
         entity.closeWindow();
         // TODO: Review
     }
 
-    public void decrementStatistic(Statistic statistic) throws IllegalArgumentException
-    {
+    public void decrementStatistic(Statistic statistic) throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
     public void decrementStatistic(Statistic statistic, EntityType entityType)
-            throws IllegalArgumentException
-    {
+            throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
-    public void decrementStatistic(Statistic statistic, EntityType entityType, int amount)
-    {
+    public void decrementStatistic(Statistic statistic, EntityType entityType, int amount) {
         throw new NotImplementedException();
     }
 
-    public void decrementStatistic(Statistic statistic, int amount) throws IllegalArgumentException
-    {
+    public void decrementStatistic(Statistic statistic, int amount) throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
-    public void decrementStatistic(Statistic statistic, Material material) throws IllegalArgumentException
-    {
+    public void decrementStatistic(Statistic statistic, Material material) throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
     public void decrementStatistic(Statistic statistic, Material material, int amount)
-            throws IllegalArgumentException
-    {
+            throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
-    public InetSocketAddress getAddress()
-    {
+    public InetSocketAddress getAddress() {
         return new InetSocketAddress(entity.getIP(), 0);
     }
 
-    public boolean getAllowFlight()
-    {
+    public boolean getAllowFlight() {
         return false;
     }
 
-    public Location getBedSpawnLocation()
-    {
+    public Location getBedSpawnLocation() {
         throw new NotImplementedException();
     }
 
-    public Location getCompassTarget()
-    {
+    public Location getCompassTarget() {
         throw new NotImplementedException();
     }
 
-    public String getDisplayName()
-    {
+    public String getDisplayName() {
         return entity.getDisplayName();
     }
 
-    public Inventory getEnderChest()
-    {
+    public Inventory getEnderChest() {
         return new CanaryInventory(entity.getEnderChestInventory());
     }
 
-    public float getExhaustion()
-    {
+    public float getExhaustion() {
         return entity.getExhaustionLevel();
     }
 
-    public float getExp()
-    {
+    public float getExp() {
         return entity.getExperience();
     }
 
-    public long getFirstPlayed()
-    {
+    public long getFirstPlayed() {
         return 0;
     }
 
-    public float getFlySpeed()
-    {
+    public float getFlySpeed() {
         return 0;
     }
 
-    public int getFoodLevel()
-    {
+    public int getFoodLevel() {
         return 0;
     }
 
-    public GameMode getGameMode()
-    {
+    public GameMode getGameMode() {
         return BukkitUtils.getGameMode(entity.getMode());
     }
 
-    public double getHealthScale()
-    {
+    public double getHealthScale() {
         return 0;
     }
 
-    public PlayerInventory getInventory()
-    {
+    public PlayerInventory getInventory() {
         return new CanaryPlayerInventory(entity.getInventory(), this);
     }
 
-    public ItemStack getItemInHand()
-    {
+    public ItemStack getItemInHand() {
         throw new NotImplementedException();
     }
 
-    public ItemStack getItemOnCursor()
-    {
+    public ItemStack getItemOnCursor() {
         throw new NotImplementedException();
     }
 
-    public long getLastPlayed()
-    {
+    public long getLastPlayed() {
         return 0;
     }
 
-    public int getLevel()
-    {
+    public int getLevel() {
         return entity.getLevel();
     }
 
-    public Set<String> getListeningPluginChannels()
-    {
+    public Set<String> getListeningPluginChannels() {
         throw new NotImplementedException();
     }
 
-    public InventoryView getOpenInventory()
-    {
+    public InventoryView getOpenInventory() {
         throw new NotImplementedException();
     }
 
-    public Player getPlayer()
-    {
+    public Player getPlayer() {
         return this;
     }
 
-    public String getPlayerListName()
-    {
+    public String getPlayerListName() {
         throw new NotImplementedException();
     }
 
-    public long getPlayerTime()
-    {
+    public long getPlayerTime() {
         return 0;
     }
 
-    public long getPlayerTimeOffset()
-    {
+    public long getPlayerTimeOffset() {
         return 0;
     }
 
-    public WeatherType getPlayerWeather()
-    {
+    public WeatherType getPlayerWeather() {
         throw new NotImplementedException();
     }
 
-    public float getSaturation()
-    {
+    public float getSaturation() {
         return 0;
     }
 
-    public Scoreboard getScoreboard()
-    {
+    public Scoreboard getScoreboard() {
         throw new NotImplementedException();
     }
 
-    public int getStatistic(Statistic statistic) throws IllegalArgumentException
-    {
+    public int getStatistic(Statistic statistic) throws IllegalArgumentException {
         return 0;
     }
 
-    public int getStatistic(Statistic statistic, EntityType entityType) throws IllegalArgumentException
-    {
+    public int getStatistic(Statistic statistic, EntityType entityType) throws IllegalArgumentException {
         return 0;
     }
 
-    public int getStatistic(Statistic statistic, Material material) throws IllegalArgumentException
-    {
+    public int getStatistic(Statistic statistic, Material material) throws IllegalArgumentException {
         return 0;
     }
 
-    public int getTotalExperience()
-    {
+    public int getTotalExperience() {
         return 0;
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.PLAYER;
     }
 
     @Override
-    public UUID getUniqueId()
-    {
+    public UUID getUniqueId() {
         return entity.getUUID();
     }
 
-    public float getWalkSpeed()
-    {
+    public float getWalkSpeed() {
         return 0;
     }
 
-    public void giveExp(int amount)
-    {
+    public void giveExp(int amount) {
         entity.addExperience(amount);
     }
 
-    public void giveExpLevels(int amount)
-    {
+    public void giveExpLevels(int amount) {
         entity.addLevel(amount);
     }
 
-    public boolean hasAchievement(Achievement achievement)
-    {
+    public boolean hasAchievement(Achievement achievement) {
         return false;
     }
 
-    public boolean hasPlayedBefore()
-    {
+    public boolean hasPlayedBefore() {
         return false;
     }
 
-    public void hidePlayer(Player player)
-    {
+    public void hidePlayer(Player player) {
         throw new NotImplementedException();
     }
 
-    public void incrementStatistic(Statistic statistic) throws IllegalArgumentException
-    {
+    public void incrementStatistic(Statistic statistic) throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
     public void incrementStatistic(Statistic statistic, EntityType entityType)
-            throws IllegalArgumentException
-    {
+            throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
     public void incrementStatistic(Statistic statistic, EntityType entityType, int amount)
-            throws IllegalArgumentException
-    {
+            throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
-    public void incrementStatistic(Statistic statistic, int amount) throws IllegalArgumentException
-    {
+    public void incrementStatistic(Statistic statistic, int amount) throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
-    public void incrementStatistic(Statistic statistic, Material material) throws IllegalArgumentException
-    {
+    public void incrementStatistic(Statistic statistic, Material material) throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
     public void incrementStatistic(Statistic statistic, Material material, int amount)
-            throws IllegalArgumentException
-    {
+            throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
-    public boolean isBanned()
-    {
+    public boolean isBanned() {
         return Canary.bans().isBanned(entity.getUUID().toString());
     }
 
-    public boolean isConversing()
-    {
+    public boolean isConversing() {
         return false;
     }
 
-    public boolean isFlying()
-    {
+    public boolean isFlying() {
         return false;
     }
 
-    public boolean isHealthScaled()
-    {
+    public boolean isHealthScaled() {
         return false;
     }
 
-    public boolean isOnline()
-    {
+    public boolean isOnline() {
         return entity.isOnline();
     }
 
-    public boolean isPlayerTimeRelative()
-    {
+    public boolean isPlayerTimeRelative() {
         return false;
     }
 
-    public boolean isSleepingIgnored()
-    {
+    public boolean isSleepingIgnored() {
         return false;
     }
 
-    public boolean isSneaking()
-    {
+    public boolean isSneaking() {
         return entity.isSneaking();
     }
 
-    public boolean isSprinting()
-    {
+    public boolean isSprinting() {
         return entity.isSprinting();
     }
 
-    public boolean isWhitelisted()
-    {
+    public boolean isWhitelisted() {
         return Canary.whitelist().isWhitelisted(entity.getUUID().toString());
     }
 
-    public void kickPlayer(String message)
-    {
+    public void kickPlayer(String message) {
         entity.kick(message);
     }
 
-    public void loadData()
-    {
+    public void loadData() {
         throw new NotImplementedException();
     }
 
-    public InventoryView openEnchanting(Location location, boolean force)
-    {
+    public InventoryView openEnchanting(Location location, boolean force) {
         throw new NotImplementedException();
     }
 
-    public InventoryView openInventory(Inventory inventory)
-    {
+    public InventoryView openInventory(Inventory inventory) {
         throw new NotImplementedException();
     }
 
-    public void openInventory(InventoryView inventory)
-    {
+    public void openInventory(InventoryView inventory) {
         throw new NotImplementedException();
     }
 
-    public InventoryView openWorkbench(Location location, boolean force)
-    {
+    public InventoryView openWorkbench(Location location, boolean force) {
         throw new NotImplementedException();
     }
 
-    public boolean performCommand(String command)
-    {
+    public boolean performCommand(String command) {
         return Bukkit.getServer().dispatchCommand(this, command);
     }
 
-    public void playEffect(Location loc, Effect effect, int data)
-    {
+    public void playEffect(Location loc, Effect effect, int data) {
         throw new NotImplementedException();
     }
 
-    public <T> void playEffect(Location loc, Effect effect, T data)
-    {
+    public <T> void playEffect(Location loc, Effect effect, T data) {
         throw new NotImplementedException();
     }
 
-    public void playNote(Location loc, byte instrument, byte note)
-    {
+    public void playNote(Location loc, byte instrument, byte note) {
         throw new NotImplementedException();
     }
 
-    public void playNote(Location loc, Instrument instrument, Note note)
-    {
+    public void playNote(Location loc, Instrument instrument, Note note) {
         throw new NotImplementedException();
     }
 
-    public void playSound(Location location, Sound sound, float volume, float pitch)
-    {
+    public void playSound(Location location, Sound sound, float volume, float pitch) {
         throw new NotImplementedException();
     }
 
-    public void playSound(Location location, String sound, float volume, float pitch)
-    {
+    public void playSound(Location location, String sound, float volume, float pitch) {
         throw new NotImplementedException();
     }
 
-    public void removeAchievement(Achievement achievement)
-    {
+    public void removeAchievement(Achievement achievement) {
         throw new NotImplementedException();
     }
 
-    public void resetPlayerTime()
-    {
+    public void resetPlayerTime() {
         throw new NotImplementedException();
     }
 
-    public void resetPlayerWeather()
-    {
+    public void resetPlayerWeather() {
         throw new NotImplementedException();
     }
 
-    public void saveData()
-    {
+    public void saveData() {
         throw new NotImplementedException();
     }
 
-    public void sendBlockChange(Location loc, int material, byte data)
-    {
+    public void sendBlockChange(Location loc, int material, byte data) {
         throw new NotImplementedException();
     }
 
-    public void sendBlockChange(Location loc, Material material, byte data)
-    {
+    public void sendBlockChange(Location loc, Material material, byte data) {
         throw new NotImplementedException();
     }
 
-    public boolean sendChunkChange(Location loc, int sx, int sy, int sz, byte[] data)
-    {
+    public boolean sendChunkChange(Location loc, int sx, int sy, int sz, byte[] data) {
         return false;
     }
 
-    public void sendMap(MapView map)
-    {
+    public void sendMap(MapView map) {
         throw new NotImplementedException();
     }
 
-    public void sendMessage(String message)
-    {
+    public void sendMessage(String message) {
         entity.message(message);
     }
 
-    public void sendMessage(String[] messages)
-    {
+    public void sendMessage(String[] messages) {
         for (String msg : messages) {
             entity.message(msg);
         }
     }
 
-    public void sendPluginMessage(Plugin source, String channel, byte[] message)
-    {
+    public void sendPluginMessage(Plugin source, String channel, byte[] message) {
         Bukkit.getServer().sendPluginMessage(source, channel, message);
     }
 
-    public void sendRawMessage(String message)
-    {
+    public void sendRawMessage(String message) {
         throw new NotImplementedException();
     }
 
-    public void sendSignChange(Location loc, String[] lines) throws IllegalArgumentException
-    {
+    public void sendSignChange(Location loc, String[] lines) throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
-    public Map<String, Object> serialize()
-    {
+    public Map<String, Object> serialize() {
         throw new NotImplementedException();
     }
 
-    public void setAllowFlight(boolean flight)
-    {
+    public void setAllowFlight(boolean flight) {
         throw new NotImplementedException();
     }
 
-    public void setBanned(boolean banned)
-    {
+    public void setBanned(boolean banned) {
         Canary.bans().issueBan(entity, "The Ban Hammer Has Spoken!");
     }
 
-    public void setBedSpawnLocation(Location location)
-    {
+    public void setBedSpawnLocation(Location location) {
         throw new NotImplementedException();
     }
 
-    public void setBedSpawnLocation(Location location, boolean force)
-    {
+    public void setBedSpawnLocation(Location location, boolean force) {
         throw new NotImplementedException();
     }
 
-    public void setCompassTarget(Location loc)
-    {
+    public void setCompassTarget(Location loc) {
         throw new NotImplementedException();
     }
 
-    public void setDisplayName(String name)
-    {
+    public void setDisplayName(String name) {
         entity.setDisplayName(name);
     }
 
-    public void setExhaustion(float value)
-    {
+    public void setExhaustion(float value) {
         throw new NotImplementedException();
     }
 
-    public void setExp(float exp)
-    {
+    public void setExp(float exp) {
         throw new NotImplementedException();
     }
 
-    public void setFlying(boolean value)
-    {
+    public void setFlying(boolean value) {
         throw new NotImplementedException();
     }
 
-    public void setFlySpeed(float value) throws IllegalArgumentException
-    {
+    public void setFlySpeed(float value) throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
-    public void setFoodLevel(int value)
-    {
+    public void setFoodLevel(int value) {
         throw new NotImplementedException();
     }
 
-    public void setGameMode(GameMode mode)
-    {
+    public void setGameMode(GameMode mode) {
         entity.setMode(CanaryUtils.getGameMode(mode));
     }
 
-    public void setHealthScale(double scale) throws IllegalArgumentException
-    {
+    public void setHealthScale(double scale) throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
-    public void setHealthScaled(boolean scale)
-    {
+    public void setHealthScaled(boolean scale) {
         throw new NotImplementedException();
     }
 
-    public void setItemInHand(ItemStack item)
-    {
+    public void setItemInHand(ItemStack item) {
         throw new NotImplementedException();
     }
 
-    public void setItemOnCursor(ItemStack item)
-    {
+    public void setItemOnCursor(ItemStack item) {
         throw new NotImplementedException();
     }
 
-    public void setLevel(int level)
-    {
+    public void setLevel(int level) {
         entity.setLevel(level);
     }
 
-    public void setPlayerListName(String name)
-    {
+    public void setPlayerListName(String name) {
         throw new NotImplementedException();
     }
 
-    public void setPlayerTime(long time, boolean relative)
-    {
+    public void setPlayerTime(long time, boolean relative) {
         throw new NotImplementedException();
     }
 
-    public void setPlayerWeather(WeatherType type)
-    {
+    public void setPlayerWeather(WeatherType type) {
         throw new NotImplementedException();
     }
 
-    public void setResourcePack(String url)
-    {
+    public void setResourcePack(String url) {
         throw new NotImplementedException();
     }
 
-    public void setSaturation(float value)
-    {
+    public void setSaturation(float value) {
         throw new NotImplementedException();
     }
 
-    public void setScoreboard(Scoreboard scoreboard) throws IllegalArgumentException, IllegalStateException
-    {
+    public void setScoreboard(Scoreboard scoreboard) throws IllegalArgumentException, IllegalStateException {
         throw new NotImplementedException();
     }
 
-    public void setSleepingIgnored(boolean isSleeping)
-    {
+    public void setSleepingIgnored(boolean isSleeping) {
         throw new NotImplementedException();
     }
 
-    public void setSneaking(boolean sneak)
-    {
+    public void setSneaking(boolean sneak) {
         entity.setSneaking(sneak);
     }
 
-    public void setSprinting(boolean sprinting)
-    {
+    public void setSprinting(boolean sprinting) {
         entity.setSprinting(sprinting);
     }
 
-    public void setStatistic(Statistic statistic, EntityType entityType, int newValue)
-    {
+    public void setStatistic(Statistic statistic, EntityType entityType, int newValue) {
         throw new NotImplementedException();
     }
 
-    public void setStatistic(Statistic statistic, int newValue) throws IllegalArgumentException
-    {
+    public void setStatistic(Statistic statistic, int newValue) throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
     public void setStatistic(Statistic statistic, Material material, int newValue)
-            throws IllegalArgumentException
-    {
+            throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
-    public void setTexturePack(String url)
-    {
+    public void setTexturePack(String url) {
         throw new NotImplementedException();
     }
 
-    public void setTotalExperience(int exp)
-    {
+    public void setTotalExperience(int exp) {
         entity.setExperience(exp);
     }
 
-    public void setWalkSpeed(float value) throws IllegalArgumentException
-    {
+    public void setWalkSpeed(float value) throws IllegalArgumentException {
         throw new NotImplementedException();
     }
 
-    public void setWhitelisted(boolean value)
-    {
+    public void setWhitelisted(boolean value) {
         Canary.whitelist().addPlayer(getName());
     }
 
-    public void showPlayer(Player player)
-    {
+    public void showPlayer(Player player) {
         throw new NotImplementedException();
     }
 
-    public void updateInventory()
-    {
+    public void updateInventory() {
         entity.getInventory().update();
     }
 
-    public boolean isOp()
-    {
-        return entity.isAdmin();
-        // TODO: is admin the same as op?
+    public boolean isOp() {
+        return Canary.ops().isOpped(entity.getUUIDString());
     }
 
-    public void setOp(boolean value)
-    {
-        throw new NotImplementedException();
+    public void setOp(boolean value) {
+        Canary.ops().addPlayer(entity.getUUIDString());
     }
 
-    public boolean isSleeping()
-    {
+    public boolean isSleeping() {
         return entity.isSleeping();
     }
 }

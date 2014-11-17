@@ -43,10 +43,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Ocelot.Type;
 import org.bukkit.entity.Villager.Profession;
 
-public class BukkitUtils
-{
-    public static Difficulty getDifficulty(net.canarymod.api.world.World.Difficulty difficulty)
-    {
+public class BukkitUtils {
+    public static Difficulty getDifficulty(net.canarymod.api.world.World.Difficulty difficulty) {
         Validate.notNull(difficulty);
         switch (difficulty) {
             case EASY:
@@ -61,8 +59,7 @@ public class BukkitUtils
         }
     }
 
-    public static DyeColor getDyeColor(net.canarymod.api.DyeColor color)
-    {
+    public static DyeColor getDyeColor(net.canarymod.api.DyeColor color) {
         Validate.notNull(color);
         switch (color) {
             case BLACK:
@@ -102,8 +99,7 @@ public class BukkitUtils
         }
     }
 
-    public static GameMode getGameMode(net.canarymod.api.GameMode gm)
-    {
+    public static GameMode getGameMode(net.canarymod.api.GameMode gm) {
         Validate.notNull(gm);
         switch (gm) {
             case ADVENTURE:
@@ -116,8 +112,7 @@ public class BukkitUtils
         }
     }
 
-    public static WorldType getWorldType(net.canarymod.api.world.WorldType type)
-    {
+    public static WorldType getWorldType(net.canarymod.api.world.WorldType type) {
         Validate.notNull(type);
         if (type == net.canarymod.api.world.WorldType.AMPLIFIED) {
             return WorldType.AMPLIFIED;
@@ -135,8 +130,7 @@ public class BukkitUtils
     }
 
     public static Profession getProfession(
-            net.canarymod.api.entity.living.humanoid.Villager.Profession profession)
-    {
+            net.canarymod.api.entity.living.humanoid.Villager.Profession profession) {
         Validate.notNull(profession);
         switch (profession) {
             case BLACKSMITH:
@@ -155,8 +149,7 @@ public class BukkitUtils
         }
     }
 
-    public static Type getCatType(net.canarymod.api.entity.living.animal.Ocelot.SkinType type)
-    {
+    public static Type getCatType(net.canarymod.api.entity.living.animal.Ocelot.SkinType type) {
         Validate.notNull(type);
         switch (type) {
             case GINGER:
@@ -171,8 +164,7 @@ public class BukkitUtils
         }
     }
 
-    public static Environment getEnviroment(net.canarymod.api.world.DimensionType type)
-    {
+    public static Environment getEnviroment(net.canarymod.api.world.DimensionType type) {
         Validate.notNull(type);
         if (type == net.canarymod.api.world.DimensionType.NORMAL) {
             return Environment.NORMAL;
@@ -185,8 +177,7 @@ public class BukkitUtils
         }
     }
 
-    public static Entity getEntity(net.canarymod.api.entity.Entity cEntity)
-    {
+    public static Entity getEntity(net.canarymod.api.entity.Entity cEntity) {
         Validate.notNull(cEntity);
         if (cEntity instanceof net.canarymod.api.entity.Projectile) {
             if (cEntity instanceof net.canarymod.api.entity.Arrow) {

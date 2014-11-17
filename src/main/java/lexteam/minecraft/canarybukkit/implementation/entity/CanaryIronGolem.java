@@ -27,8 +27,7 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.IronGolem;
 
-public class CanaryIronGolem extends CanaryGolem implements IronGolem
-{
+public class CanaryIronGolem extends CanaryGolem implements IronGolem {
     private net.canarymod.api.entity.living.IronGolem entity;
 
     public CanaryIronGolem(net.canarymod.api.entity.living.IronGolem entity) {
@@ -36,18 +35,15 @@ public class CanaryIronGolem extends CanaryGolem implements IronGolem
         this.entity = entity;
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.IRON_GOLEM;
     }
 
-    public boolean isPlayerCreated()
-    {
+    public boolean isPlayerCreated() {
         return entity.isPlayerCreated();
     }
 
-    public void setPlayerCreated(boolean playerCreated)
-    {
+    public void setPlayerCreated(boolean playerCreated) {
         entity.setPlayerCreated(playerCreated);
     }
 }

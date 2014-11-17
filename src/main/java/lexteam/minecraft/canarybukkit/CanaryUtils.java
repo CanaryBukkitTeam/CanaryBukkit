@@ -35,10 +35,8 @@ import net.canarymod.api.world.WorldType;
 
 import org.apache.commons.lang.Validate;
 
-public class CanaryUtils
-{
-    public static Difficulty getDifficulty(org.bukkit.Difficulty difficulty)
-    {
+public class CanaryUtils {
+    public static Difficulty getDifficulty(org.bukkit.Difficulty difficulty) {
         Validate.notNull(difficulty);
         switch (difficulty) {
             case EASY:
@@ -53,8 +51,7 @@ public class CanaryUtils
         }
     }
 
-    public static DyeColor getDyeColor(org.bukkit.DyeColor color)
-    {
+    public static DyeColor getDyeColor(org.bukkit.DyeColor color) {
         Validate.notNull(color);
         switch (color) {
             case BLACK:
@@ -91,8 +88,7 @@ public class CanaryUtils
         }
     }
 
-    public static GameMode getGameMode(org.bukkit.GameMode gm)
-    {
+    public static GameMode getGameMode(org.bukkit.GameMode gm) {
         Validate.notNull(gm);
         switch (gm) {
             case ADVENTURE:
@@ -105,8 +101,7 @@ public class CanaryUtils
         }
     }
 
-    public static WorldType getWorldType(org.bukkit.WorldType type)
-    {
+    public static WorldType getWorldType(org.bukkit.WorldType type) {
         Validate.notNull(type);
         switch (type) {
             case AMPLIFIED:
@@ -123,8 +118,7 @@ public class CanaryUtils
         }
     }
 
-    public static Profession getProfession(org.bukkit.entity.Villager.Profession profession)
-    {
+    public static Profession getProfession(org.bukkit.entity.Villager.Profession profession) {
         Validate.notNull(profession);
         switch (profession) {
             case BLACKSMITH:
@@ -141,8 +135,7 @@ public class CanaryUtils
         }
     }
 
-    public static SkinType getCatType(org.bukkit.entity.Ocelot.Type type)
-    {
+    public static SkinType getCatType(org.bukkit.entity.Ocelot.Type type) {
         Validate.notNull(type);
         switch (type) {
             case BLACK_CAT:
@@ -157,8 +150,7 @@ public class CanaryUtils
         }
     }
 
-    public static DimensionType getEnviroment(org.bukkit.World.Environment type)
-    {
+    public static DimensionType getEnviroment(org.bukkit.World.Environment type) {
         Validate.notNull(type);
         switch (type) {
             case NETHER:
@@ -172,8 +164,7 @@ public class CanaryUtils
         }
     }
 
-    public static BiomeType getBiome(org.bukkit.block.Biome biome)
-    {
+    public static BiomeType getBiome(org.bukkit.block.Biome biome) {
         Validate.notNull(biome);
         switch (biome) {
             case BEACH:

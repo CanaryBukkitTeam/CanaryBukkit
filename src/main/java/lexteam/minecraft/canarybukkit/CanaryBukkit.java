@@ -34,19 +34,16 @@ import net.canarymod.plugin.Plugin;
 
 import org.bukkit.Bukkit;
 
-public final class CanaryBukkit extends Plugin
-{
+public final class CanaryBukkit extends Plugin {
     private CanaryServer server;
 
     @Override
-    public void disable()
-    {
+    public void disable() {
         server.disablePlugins();
     }
 
     @Override
-    public boolean enable()
-    {
+    public boolean enable() {
         if (Bukkit.getServer() == null) {
             server = new CanaryServer(Canary.getServer(), getLogman(), getDescriptor().getVersion());
         }
@@ -56,8 +53,7 @@ public final class CanaryBukkit extends Plugin
         Canary.hooks().registerListener(new CanaryServerListener(server), this);
 
         // Create all the directories.
-        Constants.pluginsDir.mkdirs();
-        Constants.configDir.mkdirs();
+        Constants.checkFolders();
 
         // Start server
         server.start();

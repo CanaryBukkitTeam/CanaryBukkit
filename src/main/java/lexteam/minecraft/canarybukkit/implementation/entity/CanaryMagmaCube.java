@@ -27,15 +27,13 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.MagmaCube;
 
-public class CanaryMagmaCube extends CanarySlime implements MagmaCube
-{
+public class CanaryMagmaCube extends CanarySlime implements MagmaCube {
     public CanaryMagmaCube(net.canarymod.api.entity.living.monster.MagmaCube entity) {
         super(entity);
     }
 
     @Override
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.MAGMA_CUBE;
     }
 }

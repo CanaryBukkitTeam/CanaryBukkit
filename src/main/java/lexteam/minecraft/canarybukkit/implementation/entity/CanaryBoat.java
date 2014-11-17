@@ -28,54 +28,44 @@ import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Boat;
 import org.bukkit.entity.EntityType;
 
-public class CanaryBoat extends CanaryVehicle implements Boat
-{
+public class CanaryBoat extends CanaryVehicle implements Boat {
     public CanaryBoat(net.canarymod.api.entity.vehicle.Boat entity) {
         super(entity);
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.BOAT;
     }
 
-    public double getMaxSpeed()
-    {
+    public double getMaxSpeed() {
         throw new NotImplementedException();
     }
 
-    public void setMaxSpeed(double speed)
-    {
+    public void setMaxSpeed(double speed) {
         throw new NotImplementedException();
     }
 
-    public double getOccupiedDeceleration()
-    {
+    public double getOccupiedDeceleration() {
         throw new NotImplementedException();
     }
 
-    public void setOccupiedDeceleration(double rate)
-    {
+    public void setOccupiedDeceleration(double rate) {
         throw new NotImplementedException();
     }
 
-    public double getUnoccupiedDeceleration()
-    {
+    public double getUnoccupiedDeceleration() {
         throw new NotImplementedException();
     }
 
-    public void setUnoccupiedDeceleration(double rate)
-    {
+    public void setUnoccupiedDeceleration(double rate) {
         throw new NotImplementedException();
     }
 
-    public boolean getWorkOnLand()
-    {
+    public boolean getWorkOnLand() {
         throw new NotImplementedException();
     }
 
-    public void setWorkOnLand(boolean workOnLand)
-    {
+    public void setWorkOnLand(boolean workOnLand) {
         throw new NotImplementedException();
     }
 }

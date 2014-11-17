@@ -28,24 +28,20 @@ import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Slime;
 
-public class CanarySlime extends CanaryLivingEntity implements Slime
-{
+public class CanarySlime extends CanaryLivingEntity implements Slime {
     public CanarySlime(net.canarymod.api.entity.living.monster.Slime entity) {
         super(entity);
     }
 
-    public int getSize()
-    {
+    public int getSize() {
         throw new NotImplementedException();
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.SLIME;
     }
 
-    public void setSize(int size)
-    {
+    public void setSize(int size) {
         throw new NotImplementedException();
     }
 }

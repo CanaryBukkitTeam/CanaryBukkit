@@ -27,14 +27,12 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.EntityType;
 
-public class CanaryChicken extends CanaryAgeable implements Chicken
-{
+public class CanaryChicken extends CanaryAgeable implements Chicken {
     public CanaryChicken(net.canarymod.api.entity.living.animal.Chicken entity) {
         super(entity);
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.CHICKEN;
     }
 }

@@ -27,14 +27,12 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.CaveSpider;
 import org.bukkit.entity.EntityType;
 
-public class CanaryCaveSpider extends CanaryAgeable implements CaveSpider
-{
+public class CanaryCaveSpider extends CanaryAgeable implements CaveSpider {
     public CanaryCaveSpider(net.canarymod.api.entity.living.monster.CaveSpider entity) {
         super(entity);
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.CAVE_SPIDER;
     }
 }

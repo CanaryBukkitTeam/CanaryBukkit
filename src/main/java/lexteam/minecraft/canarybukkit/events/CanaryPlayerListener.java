@@ -55,8 +55,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
-public class CanaryPlayerListener implements PluginListener
-{
+public class CanaryPlayerListener implements PluginListener {
     private CanaryServer server;
 
     public CanaryPlayerListener(CanaryServer server) {
@@ -64,8 +63,7 @@ public class CanaryPlayerListener implements PluginListener
     }
 
     @HookHandler
-    public void onCommand(PlayerCommandHook hook)
-    {
+    public void onCommand(PlayerCommandHook hook) {
         String commandLine = "";
         for (String s : hook.getCommand()) {
             commandLine += s + " ";
@@ -76,8 +74,7 @@ public class CanaryPlayerListener implements PluginListener
     }
 
     @HookHandler
-    public void onEnchant(EnchantHook hook)
-    {
+    public void onEnchant(EnchantHook hook) {
         server.getPluginManager().callEvent(
                 new EnchantItemEvent(new CanaryPlayer(hook.getPlayer()), null, new CanaryBlock(hook
                         .getEnchantmentTable().getBlock()), null, 0, null, 0));
@@ -85,22 +82,19 @@ public class CanaryPlayerListener implements PluginListener
     }
 
     @HookHandler
-    public void onEnteringBed(BedEnterHook hook)
-    {
+    public void onEnteringBed(BedEnterHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerBedEnterEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())));
     }
 
     @HookHandler
-    public void onExitingBed(BedExitHook hook)
-    {
+    public void onExitingBed(BedExitHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerBedLeaveEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())));
     }
 
     @HookHandler
-    public void onPlayerChat(ChatHook hook)
-    {
+    public void onPlayerChat(ChatHook hook) {
         Set<org.bukkit.entity.Player> recievers = new HashSet<org.bukkit.entity.Player>();
         for (Player p : hook.getReceiverList()) {
             recievers.add(new CanaryPlayer(p));
@@ -112,8 +106,7 @@ public class CanaryPlayerListener implements PluginListener
     }
 
     @HookHandler
-    public void onPlayerDeath(PlayerDeathHook hook)
-    {
+    public void onPlayerDeath(PlayerDeathHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, hook.getPlayer()
                         .getExperience(), hook.getDeathMessage1().getFullText()));
@@ -121,22 +114,19 @@ public class CanaryPlayerListener implements PluginListener
     }
 
     @HookHandler
-    public void onPlayerJoin(ConnectionHook hook)
-    {
+    public void onPlayerJoin(ConnectionHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerJoinEvent(new CanaryPlayer(hook.getPlayer()), hook.getMessage()));
     }
 
     @HookHandler
-    public void onPlayerQuit(DisconnectionHook hook)
-    {
+    public void onPlayerQuit(DisconnectionHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerQuitEvent(new CanaryPlayer(hook.getPlayer()), hook.getLeaveMessage()));
     }
 
     @HookHandler
-    public void onTeleportation(TeleportHook hook)
-    {
+    public void onTeleportation(TeleportHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()), new CanaryLocation(hook
                         .getPlayer().getLocation(), new CanaryWorld(hook.getDestination().getWorld())),

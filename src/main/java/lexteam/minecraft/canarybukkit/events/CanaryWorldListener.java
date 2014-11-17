@@ -52,8 +52,7 @@ import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 
-public class CanaryWorldListener implements PluginListener
-{
+public class CanaryWorldListener implements PluginListener {
     private CanaryServer server;
 
     public CanaryWorldListener(CanaryServer server) {
@@ -61,15 +60,13 @@ public class CanaryWorldListener implements PluginListener
     }
 
     @HookHandler
-    public void blockDestroy(BlockDestroyHook hook)
-    {
+    public void blockDestroy(BlockDestroyHook hook) {
         server.getPluginManager().callEvent(
                 new BlockBreakEvent(new CanaryBlock(hook.getBlock()), new CanaryPlayer(hook.getPlayer())));
     }
 
     @HookHandler
-    public void blockPlace(BlockPlaceHook hook)
-    {
+    public void blockPlace(BlockPlaceHook hook) {
         server.getPluginManager().callEvent(
                 new BlockPlaceEvent(new CanaryBlock(hook.getBlockPlaced()), null, new CanaryBlock(hook
                         .getBlockClicked()), null, new CanaryPlayer(hook.getPlayer()), hook.isCanceled()));
@@ -77,51 +74,44 @@ public class CanaryWorldListener implements PluginListener
     }
 
     @HookHandler
-    public void onBlockGrowth(BlockGrowHook hook)
-    {
+    public void onBlockGrowth(BlockGrowHook hook) {
         server.getPluginManager().callEvent(new BlockGrowEvent(new CanaryBlock(hook.getOriginal()), null));
         // TODO: Fill in second argument
     }
 
     @HookHandler
-    public void onChunkLoad(ChunkLoadedHook hook)
-    {
+    public void onChunkLoad(ChunkLoadedHook hook) {
         server.getPluginManager().callEvent(
                 new ChunkLoadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld())), hook
                         .isNew()));
     }
 
     @HookHandler
-    public void onChunkUnload(ChunkUnloadHook hook)
-    {
+    public void onChunkUnload(ChunkUnloadHook hook) {
         server.getPluginManager().callEvent(
                 new ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld()))));
     }
 
     @HookHandler
-    public void onLightningStrike(LightningStrikeHook hook)
-    {
+    public void onLightningStrike(LightningStrikeHook hook) {
         server.getPluginManager().callEvent(
                 new LightningStrikeEvent(new CanaryWorld(hook.getLightningBolt().getWorld()),
                         new CanaryLightningStrike(hook.getLightningBolt())));
     }
 
     @HookHandler
-    public void onWeatherChange(WeatherChangeHook hook)
-    {
+    public void onWeatherChange(WeatherChangeHook hook) {
         server.getPluginManager().callEvent(
                 new WeatherChangeEvent(new CanaryWorld(hook.getWorld()), hook.turningOn()));
     }
 
     @HookHandler
-    public void onWorldLoad(LoadWorldHook hook)
-    {
+    public void onWorldLoad(LoadWorldHook hook) {
         server.getPluginManager().callEvent(new WorldLoadEvent(new CanaryWorld(hook.getWorld())));
     }
 
     @HookHandler
-    public void onWorldUnload(UnloadWorldHook hook)
-    {
+    public void onWorldUnload(UnloadWorldHook hook) {
         server.getPluginManager().callEvent(new WorldUnloadEvent(new CanaryWorld(hook.getWorld())));
     }
 }

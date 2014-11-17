@@ -26,7 +26,6 @@ package lexteam.minecraft.canarybukkit.implementation.util;
 
 import org.bukkit.util.CachedServerIcon;
 
-public class CanaryCachedServerIcon implements CachedServerIcon
-{
+public class CanaryCachedServerIcon implements CachedServerIcon {
 
 }

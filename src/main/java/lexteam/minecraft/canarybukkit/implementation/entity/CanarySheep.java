@@ -31,8 +31,7 @@ import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Sheep;
 
-public class CanarySheep extends CanaryAnimals implements Sheep
-{
+public class CanarySheep extends CanaryAnimals implements Sheep {
     private net.canarymod.api.entity.living.animal.Sheep entity;
 
     public CanarySheep(net.canarymod.api.entity.living.animal.Sheep entity) {
@@ -40,28 +39,23 @@ public class CanarySheep extends CanaryAnimals implements Sheep
         this.entity = entity;
     }
 
-    public DyeColor getColor()
-    {
+    public DyeColor getColor() {
         return BukkitUtils.getDyeColor(entity.getColor());
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.SHEEP;
     }
 
-    public boolean isSheared()
-    {
+    public boolean isSheared() {
         return entity.isSheared();
     }
 
-    public void setColor(DyeColor color)
-    {
+    public void setColor(DyeColor color) {
         entity.setColor(CanaryUtils.getDyeColor(color));
     }
 
-    public void setSheared(boolean flag)
-    {
+    public void setSheared(boolean flag) {
         entity.setSheared(flag);
     }
 }

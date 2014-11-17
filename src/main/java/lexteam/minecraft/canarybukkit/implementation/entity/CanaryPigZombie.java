@@ -27,8 +27,7 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.PigZombie;
 
-public class CanaryPigZombie extends CanaryZombie implements PigZombie
-{
+public class CanaryPigZombie extends CanaryZombie implements PigZombie {
     private net.canarymod.api.entity.living.monster.PigZombie entity;
 
     public CanaryPigZombie(net.canarymod.api.entity.living.monster.PigZombie entity) {
@@ -36,29 +35,24 @@ public class CanaryPigZombie extends CanaryZombie implements PigZombie
         this.entity = entity;
     }
 
-    public int getAnger()
-    {
+    public int getAnger() {
         return entity.getAngerLevel();
     }
 
     @Override
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.PIG_ZOMBIE;
     }
 
-    public boolean isAngry()
-    {
+    public boolean isAngry() {
         return entity.isAngry();
     }
 
-    public void setAnger(int level)
-    {
+    public void setAnger(int level) {
         entity.setAngerLevel(level);
     }
 
-    public void setAngry(boolean angry)
-    {
+    public void setAngry(boolean angry) {
         setAnger(angry ? 400 : 0);
     }
 }

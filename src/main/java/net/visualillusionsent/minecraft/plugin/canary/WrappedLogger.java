@@ -30,8 +30,7 @@ import org.apache.logging.log4j.MarkerManager;
  *
  * @author Jason (darkdiplomat)
  */
-public class WrappedLogger extends Logger
-{
+public class WrappedLogger extends Logger {
     private final Logman logman;
 
     public WrappedLogger(Logman logman) {
@@ -39,8 +38,7 @@ public class WrappedLogger extends Logger
         this.logman = logman;
     }
 
-    private org.apache.logging.log4j.Level convertLevel(Level level)
-    {
+    private org.apache.logging.log4j.Level convertLevel(Level level) {
         if (level == Level.INFO) {
             return org.apache.logging.log4j.Level.INFO;
         }
@@ -57,8 +55,7 @@ public class WrappedLogger extends Logger
     }
 
     @Override
-    public final void log(Level level, String msg)
-    {
+    public final void log(Level level, String msg) {
         org.apache.logging.log4j.Level conv = convertLevel(level);
         if (conv == null) {
             conv = org.apache.logging.log4j.Level.INFO;

@@ -28,8 +28,7 @@ import net.canarymod.api.entity.living.LivingBase;
 
 import org.bukkit.entity.Golem;
 
-public abstract class CanaryGolem extends CanaryCreature implements Golem
-{
+public abstract class CanaryGolem extends CanaryCreature implements Golem {
     public CanaryGolem(LivingBase entity) {
         super(entity);
     }

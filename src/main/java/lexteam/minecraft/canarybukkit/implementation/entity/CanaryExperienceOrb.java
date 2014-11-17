@@ -29,8 +29,7 @@ import net.canarymod.api.entity.XPOrb;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
 
-public class CanaryExperienceOrb extends CanaryEntity implements ExperienceOrb
-{
+public class CanaryExperienceOrb extends CanaryEntity implements ExperienceOrb {
     private XPOrb entity;
 
     public CanaryExperienceOrb(net.canarymod.api.entity.XPOrb entity) {
@@ -38,18 +37,15 @@ public class CanaryExperienceOrb extends CanaryEntity implements ExperienceOrb
         this.entity = entity;
     }
 
-    public int getExperience()
-    {
+    public int getExperience() {
         return entity.getXPValue();
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.EXPERIENCE_ORB;
     }
 
-    public void setExperience(int value)
-    {
+    public void setExperience(int value) {
         entity.setXPValue((short) value);
         // TODO: can you cast short to a int
     }

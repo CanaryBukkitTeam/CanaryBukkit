@@ -27,8 +27,7 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.EntityType;
 
-public class CanaryBat extends CanaryAmbient implements Bat
-{
+public class CanaryBat extends CanaryAmbient implements Bat {
     private net.canarymod.api.entity.living.animal.Bat entity;
 
     public CanaryBat(net.canarymod.api.entity.living.animal.Bat entity) {
@@ -36,18 +35,15 @@ public class CanaryBat extends CanaryAmbient implements Bat
         this.entity = entity;
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.BAT;
     }
 
-    public boolean isAwake()
-    {
+    public boolean isAwake() {
         return !entity.isHanging();
     }
 
-    public void setAwake(boolean awake)
-    {
+    public void setAwake(boolean awake) {
         entity.setHanging(!awake);
     }
 }

@@ -27,8 +27,7 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
 
-public class CanaryCreeper extends CanaryMonster implements Creeper
-{
+public class CanaryCreeper extends CanaryMonster implements Creeper {
     private net.canarymod.api.entity.living.monster.Creeper entity;
 
     public CanaryCreeper(net.canarymod.api.entity.living.monster.Creeper entity) {
@@ -36,18 +35,15 @@ public class CanaryCreeper extends CanaryMonster implements Creeper
         this.entity = entity;
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.CREEPER;
     }
 
-    public boolean isPowered()
-    {
+    public boolean isPowered() {
         return entity.isCharged();
     }
 
-    public void setPowered(boolean value)
-    {
+    public void setPowered(boolean value) {
         entity.setCharged(value);
     }
 }

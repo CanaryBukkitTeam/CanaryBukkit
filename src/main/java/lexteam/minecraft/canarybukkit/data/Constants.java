@@ -28,8 +28,7 @@ import java.io.File;
 
 import net.canarymod.Canary;
 
-public class Constants
-{
+public class Constants {
     // Canary
     public static final File canaryDir = Canary.getWorkingDirectory();
     public static final File worldsDir = new File(canaryDir, "worlds");
@@ -40,4 +39,11 @@ public class Constants
     public static final File pluginsDir = new File(bukkitDir, "plugins");
     public static final File configDir = new File(bukkitDir, "config");
     public static final File configFile = new File(configDir, "config.yml");
+
+    public static void checkFolders() {
+        File[] folders = new File[] { pluginsDir, configDir };
+        for (File f : folders) {
+            f.mkdirs();
+        }
+    }
 }

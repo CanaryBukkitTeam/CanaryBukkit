@@ -36,8 +36,7 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
-public abstract class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity
-{
+public abstract class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity {
     private Human entity;
 
     public CanaryHumanEntity(net.canarymod.api.entity.living.humanoid.Human entity) {
@@ -45,83 +44,67 @@ public abstract class CanaryHumanEntity extends CanaryLivingEntity implements Hu
         this.entity = entity;
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin)
-    {
+    public PermissionAttachment addAttachment(Plugin plugin) {
         throw new NotImplementedException();
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin, int ticks)
-    {
+    public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
         throw new NotImplementedException();
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value)
-    {
+    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
         throw new NotImplementedException();
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks)
-    {
+    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
         throw new NotImplementedException();
     }
 
-    public Set<PermissionAttachmentInfo> getEffectivePermissions()
-    {
+    public Set<PermissionAttachmentInfo> getEffectivePermissions() {
         throw new NotImplementedException();
     }
 
-    public int getExpToLevel()
-    {
+    public int getExpToLevel() {
         return 0;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return entity.getName();
     }
 
-    public int getSleepTicks()
-    {
+    public int getSleepTicks() {
         return 0;
     }
 
-    public boolean hasPermission(Permission perm)
-    {
+    public boolean hasPermission(Permission perm) {
         return false;
     }
 
-    public boolean hasPermission(String name)
-    {
+    public boolean hasPermission(String name) {
         return false;
     }
 
-    public boolean isBlocking()
-    {
+    public boolean isBlocking() {
         return false;
     }
 
-    public boolean isPermissionSet(Permission perm)
-    {
+    public boolean isPermissionSet(Permission perm) {
         return false;
     }
 
-    public boolean isPermissionSet(String name)
-    {
+    public boolean isPermissionSet(String name) {
         return false;
     }
 
-    public void recalculatePermissions()
-    {
+    public void recalculatePermissions() {
         throw new NotImplementedException();
     }
 
-    public void removeAttachment(PermissionAttachment attachment)
-    {
+    public void removeAttachment(PermissionAttachment attachment) {
         throw new NotImplementedException();
     }
 
-    public boolean setWindowProperty(InventoryView.Property prop, int value)
-    {
+    public boolean setWindowProperty(InventoryView.Property prop, int value) {
         return false;
     }
 }

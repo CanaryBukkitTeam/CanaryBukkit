@@ -27,15 +27,13 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.MushroomCow;
 
-public class CanaryMushroomCow extends CanaryCow implements MushroomCow
-{
+public class CanaryMushroomCow extends CanaryCow implements MushroomCow {
     public CanaryMushroomCow(net.canarymod.api.entity.living.animal.Mooshroom entity) {
         super(entity);
     }
 
     @Override
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.MUSHROOM_COW;
     }
 }

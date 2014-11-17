@@ -26,8 +26,7 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import org.bukkit.entity.Ambient;
 
-public abstract class CanaryAmbient extends CanaryLivingEntity implements Ambient
-{
+public abstract class CanaryAmbient extends CanaryLivingEntity implements Ambient {
     public CanaryAmbient(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);
     }

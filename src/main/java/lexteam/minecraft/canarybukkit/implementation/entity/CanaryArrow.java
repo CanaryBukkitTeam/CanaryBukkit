@@ -30,8 +30,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.projectiles.ProjectileSource;
 
-public class CanaryArrow extends CanaryAbstractProjectile implements Arrow
-{
+public class CanaryArrow extends CanaryAbstractProjectile implements Arrow {
     private net.canarymod.api.entity.Arrow arrow;
 
     public CanaryArrow(net.canarymod.api.entity.Arrow arrow) {
@@ -39,48 +38,39 @@ public class CanaryArrow extends CanaryAbstractProjectile implements Arrow
         this.arrow = arrow;
     }
 
-    public LivingEntity _INVALID_getShooter()
-    {
+    public LivingEntity _INVALID_getShooter() {
         throw new NotImplementedException();
     }
 
-    public void _INVALID_setShooter(LivingEntity shooter)
-    {
+    public void _INVALID_setShooter(LivingEntity shooter) {
         throw new NotImplementedException();
     }
 
-    public int getKnockbackStrength()
-    {
+    public int getKnockbackStrength() {
         return arrow.getKnockbackStrength();
     }
 
-    public ProjectileSource getShooter()
-    {
+    public ProjectileSource getShooter() {
         throw new NotImplementedException();
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.ARROW;
     }
 
-    public boolean isCritical()
-    {
+    public boolean isCritical() {
         return arrow.isCritical();
     }
 
-    public void setCritical(boolean critical)
-    {
+    public void setCritical(boolean critical) {
         arrow.setIsCritical(critical);
     }
 
-    public void setKnockbackStrength(int knockbackStrength)
-    {
+    public void setKnockbackStrength(int knockbackStrength) {
         arrow.setKnockbackStrenth(knockbackStrength);
     }
 
-    public void setShooter(ProjectileSource source)
-    {
+    public void setShooter(ProjectileSource source) {
         throw new NotImplementedException();
     }
 }

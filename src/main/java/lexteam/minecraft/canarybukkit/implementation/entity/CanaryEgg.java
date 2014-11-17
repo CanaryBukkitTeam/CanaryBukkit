@@ -24,40 +24,40 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
+import lexteam.minecraft.canarybukkit.BukkitUtils;
+import net.canarymod.api.entity.throwable.ChickenEgg;
+
 import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.projectiles.ProjectileSource;
 
-public class CanaryEgg extends CanaryAbstractProjectile implements Egg
-{
+public class CanaryEgg extends CanaryAbstractProjectile implements Egg {
+    private ChickenEgg entity;
+
     public CanaryEgg(net.canarymod.api.entity.throwable.ChickenEgg entity) {
         super(entity);
+        this.entity = entity;
     }
 
-    public LivingEntity _INVALID_getShooter()
-    {
+    public LivingEntity _INVALID_getShooter() {
+        return (LivingEntity) BukkitUtils.getEntity(entity.getThrower());
+    }
+
+    public void _INVALID_setShooter(LivingEntity shooter) {
         throw new NotImplementedException();
     }
 
-    public void _INVALID_setShooter(LivingEntity shooter)
-    {
+    public ProjectileSource getShooter() {
         throw new NotImplementedException();
     }
 
-    public ProjectileSource getShooter()
-    {
-        throw new NotImplementedException();
-    }
-
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.EGG;
     }
 
-    public void setShooter(ProjectileSource source)
-    {
+    public void setShooter(ProjectileSource source) {
         throw new NotImplementedException();
     }
 }

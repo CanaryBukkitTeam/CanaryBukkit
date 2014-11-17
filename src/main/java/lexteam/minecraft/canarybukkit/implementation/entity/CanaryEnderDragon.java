@@ -31,19 +31,16 @@ import org.bukkit.entity.ComplexEntityPart;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.EntityType;
 
-public class CanaryEnderDragon extends CanaryMonster implements EnderDragon
-{
+public class CanaryEnderDragon extends CanaryMonster implements EnderDragon {
     public CanaryEnderDragon(net.canarymod.api.entity.living.monster.EnderDragon entity) {
         super(entity);
     }
 
-    public Set<ComplexEntityPart> getParts()
-    {
+    public Set<ComplexEntityPart> getParts() {
         throw new NotImplementedException();
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.ENDER_DRAGON;
     }
 }

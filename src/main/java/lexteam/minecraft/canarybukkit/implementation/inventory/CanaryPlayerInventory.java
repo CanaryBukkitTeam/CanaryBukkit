@@ -30,8 +30,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-public class CanaryPlayerInventory extends CanaryInventory implements PlayerInventory
-{
+public class CanaryPlayerInventory extends CanaryInventory implements PlayerInventory {
     private net.canarymod.api.inventory.PlayerInventory inv;
     private Player owner;
 
@@ -41,84 +40,68 @@ public class CanaryPlayerInventory extends CanaryInventory implements PlayerInve
         this.owner = owner;
     }
 
-    public int clear(int id, int data)
-    {
+    public int clear(int id, int data) {
         throw new NotImplementedException();
     }
 
-    public ItemStack[] getArmorContents()
-    {
+    public ItemStack[] getArmorContents() {
         throw new NotImplementedException();
     }
 
-    public ItemStack getBoots()
-    {
+    public ItemStack getBoots() {
         throw new NotImplementedException();
     }
 
-    public ItemStack getChestplate()
-    {
+    public ItemStack getChestplate() {
         throw new NotImplementedException();
     }
 
-    public int getHeldItemSlot()
-    {
+    public int getHeldItemSlot() {
         return inv.getSelectedHotbarSlotId();
     }
 
-    public ItemStack getHelmet()
-    {
+    public ItemStack getHelmet() {
         throw new NotImplementedException();
     }
 
     @Override
-    public HumanEntity getHolder()
-    {
+    public HumanEntity getHolder() {
         return owner;
     }
 
-    public ItemStack getItemInHand()
-    {
+    public ItemStack getItemInHand() {
         throw new NotImplementedException();
     }
 
-    public ItemStack getLeggings()
-    {
+    public ItemStack getLeggings() {
         throw new NotImplementedException();
     }
 
-    public void setArmorContents(ItemStack[] items)
-    {
+    public void setArmorContents(ItemStack[] items) {
         throw new NotImplementedException();
     }
 
-    public void setBoots(ItemStack boots)
-    {
+    public void setBoots(ItemStack boots) {
         throw new NotImplementedException();
     }
 
-    public void setChestplate(ItemStack chestplate)
-    {
+    public void setChestplate(ItemStack chestplate) {
         throw new NotImplementedException();
     }
 
-    public void setHeldItemSlot(int slot)
-    {
+    public void setHeldItemSlot(int slot) {
         throw new NotImplementedException();
     }
 
-    public void setHelmet(ItemStack helmet)
-    {
+    public void setHelmet(ItemStack helmet) {
         throw new NotImplementedException();
     }
 
-    public void setItemInHand(ItemStack stack)
-    {
+    public void setItemInHand(ItemStack stack) {
         throw new NotImplementedException();
     }
 
-    public void setLeggings(ItemStack leggings)
-    {
+    public void setLeggings(ItemStack leggings) {
         throw new NotImplementedException();
     }
 }

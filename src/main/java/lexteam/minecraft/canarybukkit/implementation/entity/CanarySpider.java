@@ -27,14 +27,12 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Spider;
 
-public class CanarySpider extends CanaryAgeable implements Spider
-{
+public class CanarySpider extends CanaryAgeable implements Spider {
     public CanarySpider(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.SPIDER;
     }
 }

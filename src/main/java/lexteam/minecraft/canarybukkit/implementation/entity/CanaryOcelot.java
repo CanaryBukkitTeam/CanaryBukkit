@@ -30,8 +30,7 @@ import lexteam.minecraft.canarybukkit.CanaryUtils;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ocelot;
 
-public class CanaryOcelot extends CanaryTameable implements Ocelot
-{
+public class CanaryOcelot extends CanaryTameable implements Ocelot {
     private net.canarymod.api.entity.living.animal.Ocelot entity;
 
     public CanaryOcelot(net.canarymod.api.entity.living.animal.Ocelot entity) {
@@ -39,28 +38,23 @@ public class CanaryOcelot extends CanaryTameable implements Ocelot
         this.entity = entity;
     }
 
-    public Type getCatType()
-    {
+    public Type getCatType() {
         return BukkitUtils.getCatType(entity.getSkinType());
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.OCELOT;
     }
 
-    public boolean isSitting()
-    {
+    public boolean isSitting() {
         return entity.isSitting();
     }
 
-    public void setCatType(Type type)
-    {
+    public void setCatType(Type type) {
         entity.setSkinType(CanaryUtils.getCatType(type));
     }
 
-    public void setSitting(boolean sitting)
-    {
+    public void setSitting(boolean sitting) {
         entity.setSitting(sitting);
     }
 }

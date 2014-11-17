@@ -28,8 +28,7 @@ import net.canarymod.api.world.World;
 
 import org.bukkit.Location;
 
-public class CanaryLocation extends Location
-{
+public class CanaryLocation extends Location {
     public CanaryLocation(net.canarymod.api.world.position.Location loc, CanaryWorld world) {
         super(world, loc.getX(), loc.getY(), loc.getZ());
         setPitch(loc.getPitch());

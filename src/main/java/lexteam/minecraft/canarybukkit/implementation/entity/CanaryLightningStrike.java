@@ -29,20 +29,17 @@ import net.canarymod.api.entity.effect.LightningBolt;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LightningStrike;
 
-public class CanaryLightningStrike extends CanaryEntity implements LightningStrike
-{
+public class CanaryLightningStrike extends CanaryEntity implements LightningStrike {
     public CanaryLightningStrike(LightningBolt entity) {
         super(entity);
     }
 
-    public boolean isEffect()
-    {
+    public boolean isEffect() {
         return false;
         // No lightning bolts are effects
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.LIGHTNING;
     }
 }

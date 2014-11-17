@@ -38,104 +38,84 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
-public class CanaryCommandSender implements CommandSender
-{
+public class CanaryCommandSender implements CommandSender {
     private MessageReceiver caller;
 
     public CanaryCommandSender(MessageReceiver caller) {
         this.caller = caller;
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin)
-    {
+    public PermissionAttachment addAttachment(Plugin plugin) {
         return null;
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin, int ticks)
-    {
+    public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
         return null;
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value)
-    {
+    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
         return null;
     }
 
-    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks)
-    {
+    public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
         return null;
     }
 
-    public Set<PermissionAttachmentInfo> getEffectivePermissions()
-    {
+    public Set<PermissionAttachmentInfo> getEffectivePermissions() {
         return null;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return caller.getName();
     }
 
-    public Server getServer()
-    {
+    public Server getServer() {
         return Bukkit.getServer();
     }
 
-    public boolean hasPermission(Permission perm)
-    {
+    public boolean hasPermission(Permission perm) {
         return caller.hasPermission(perm.getName());
-        // TODO: Check
     }
 
-    public boolean hasPermission(String name)
-    {
+    public boolean hasPermission(String name) {
         return caller.hasPermission(name);
     }
 
-    public boolean isOp()
-    {
+    public boolean isOp() {
         return Canary.ops().isOpped(caller.getName());
     }
 
-    public boolean isPermissionSet(Permission perm)
-    {
+    public boolean isPermissionSet(Permission perm) {
         return true;
     }
 
-    public boolean isPermissionSet(String name)
-    {
+    public boolean isPermissionSet(String name) {
         return true;
     }
 
-    public boolean isPlayer()
-    {
+    public boolean isPlayer() {
         return caller.getReceiverType() == ReceiverType.PLAYER;
     }
 
-    public void recalculatePermissions()
-    {
+    public void recalculatePermissions() {
 
     }
 
-    public void removeAttachment(PermissionAttachment attachment)
-    {
+    public void removeAttachment(PermissionAttachment attachment) {
 
     }
 
-    public void sendMessage(String message)
-    {
+    public void sendMessage(String message) {
         caller.message(message);
     }
 
-    public void sendMessage(String[] messages)
-    {
+    public void sendMessage(String[] messages) {
         for (String msg : messages) {
             caller.message(msg);
         }
     }
 
-    public void setOp(boolean value)
-    {
+    public void setOp(boolean value) {
         Canary.ops().addPlayer(caller.getName());
     }
 }

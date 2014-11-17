@@ -27,14 +27,12 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.minecart.RideableMinecart;
 
-public class CanaryMinecartRideable extends CanaryMinecart implements RideableMinecart
-{
+public class CanaryMinecartRideable extends CanaryMinecart implements RideableMinecart {
     public CanaryMinecartRideable(net.canarymod.api.entity.vehicle.Minecart entity) {
         super(entity);
     }
 
-    public EntityType getType()
-    {
+    public EntityType getType() {
         return EntityType.MINECART;
     }
 }
