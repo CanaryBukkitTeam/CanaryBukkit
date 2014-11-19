@@ -23,6 +23,7 @@
   	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <main.class>${project.groupId}.${project.artifactId}.${project.name}</main.class>
 	</properties>
   	
   	<repositories>
@@ -52,15 +53,39 @@
 	</dependencies>
   	
   	<build>
+        <defaultGoal>clean install</defaultGoal>
+        <sourceDirectory>${basedir}/src/main/java/</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>Canary.inf</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>Canary.inf</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>${basedir}/src/test/resources</directory>
+            </testResource>
+        </testResources>
+        <finalName>${project.name}-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>${project.jdk.version}</source>
-					<target>${project.jdk.version}</target>
-					<compilerVersion>${project.jdk.version}</compilerVersion>
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -70,32 +95,40 @@
 				<configuration>
 					<archive>
 						<index>true</index>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<mainClass>${mainclass}</mainClass>
-						</manifest>
-						<manifestEntries>
-							<Implementation-Vender>Lexteam</Implementation-Vender>
-							<Implementation-Version>${project.version}</Implementation-Version>
-							<Built-By>${user.name}</Built-By>
-						</manifestEntries>
+                        <manifest>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
 					</archive>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
+                <version>2.3</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
 						<goals>
 							<goal>shade</goal>
 						</goals>
-						<configuration>
-							<finalName>CanaryBukkit-${project.version}</finalName>
-						</configuration>
 					</execution>
 				</executions>
+                <configuration>
+                    <shadedArtifactAttached>true</shadedArtifactAttached>
+                    <shadedArtifactId>${project.name}</shadedArtifactId>
+                    <filters>
+                        <filter>
+                            <artifact>org.bukkit:bukkit</artifact>
+                            <excludes>
+                                <exclude>com/google/**</exclude>
+                                <exclide>META-INF/maven/com.google.guava/**</exclide>
+                                <exclude>org/apache/**</exclude>
+                                <exclude>com.googlecode.json-simple/**</exclude>
+                            </excludes>
+                        </filter>
+                    </filters>
+                </configuration>
 			</plugin>
 		</plugins>
 	</build>
