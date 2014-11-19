@@ -1,4 +1,4 @@
 name=${project.name}
-main-class=lexteam.minecraft.canarybukkit.CanaryBukkit
-author=Lexteam
+main-class=${main.class}
+author=${project.organization.name}
 version=${project.version}
