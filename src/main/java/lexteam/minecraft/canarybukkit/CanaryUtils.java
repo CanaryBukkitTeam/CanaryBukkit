@@ -19,6 +19,7 @@ package lexteam.minecraft.canarybukkit;
 
 import net.canarymod.api.DyeColor;
 import net.canarymod.api.GameMode;
+import net.canarymod.api.entity.hanging.Painting.ArtType;
 import net.canarymod.api.entity.living.animal.Ocelot.SkinType;
 import net.canarymod.api.entity.living.humanoid.Villager.Profession;
 import net.canarymod.api.world.BiomeType;
@@ -284,6 +285,65 @@ public class CanaryUtils {
                 return BiomeType.TAIGA; // TODO: check.
             default:
                 return BiomeType.PLAINS;
+        }
+    }
+
+    public static ArtType getArtType(org.bukkit.Art art) {
+        switch (art) {
+            case ALBAN:
+                return ArtType.Alban;
+            case AZTEC:
+                return ArtType.Aztec;
+            case AZTEC2:
+                return ArtType.Aztec2;
+            case BOMB:
+                return ArtType.Bomb;
+            case BURNINGSKULL:
+                return ArtType.BurningSkull;
+            case BUST:
+                return ArtType.Bust;
+            case COURBET:
+                return ArtType.Courbet;
+            case CREEBET:
+                return ArtType.Creebet;
+            case DONKEYKONG:
+                return ArtType.DonkeyKong;
+            case FIGHTERS:
+                return ArtType.Fighters;
+            case GRAHAM:
+                return ArtType.Graham;
+            case KEBAB:
+                return ArtType.Kebab;
+            case MATCH:
+                return ArtType.Match;
+            case PIGSCENE:
+                return ArtType.Pigscene;
+            case PLANT:
+                return ArtType.Plant;
+            case POINTER:
+                return ArtType.Pointer;
+            case POOL:
+                return ArtType.Pool;
+            case SEA:
+                return ArtType.Sea;
+            case SKELETON:
+                return ArtType.Skeleton;
+            case SKULL_AND_ROSES:
+                return ArtType.SkullAndRoses;
+            case STAGE:
+                return ArtType.Stage;
+            case SUNSET:
+                return ArtType.Sunset;
+            case VOID:
+                return ArtType.Void;
+            case WANDERER:
+                return ArtType.Wanderer;
+            case WASTELAND:
+                return ArtType.Wasteland;
+            case WITHER:
+                return ArtType.Wither;
+            default:
+                return ArtType.valueOf(art.name());
         }
     }
 }

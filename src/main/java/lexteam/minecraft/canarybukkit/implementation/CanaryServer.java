@@ -36,6 +36,7 @@ import lexteam.minecraft.canarybukkit.implementation.util.CanaryCachedServerIcon
 import net.canarymod.Canary;
 import net.canarymod.config.Configuration;
 import net.canarymod.logger.Logman;
+
 import org.apache.commons.lang.NotImplementedException;
 import org.apache.commons.lang.Validate;
 import org.bukkit.BanList;

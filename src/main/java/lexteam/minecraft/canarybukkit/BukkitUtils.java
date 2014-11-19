@@ -27,6 +27,7 @@ import lexteam.minecraft.canarybukkit.implementation.entity.CanarySheep;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryWolf;
 
 import org.apache.commons.lang.Validate;
+import org.bukkit.Art;
 import org.bukkit.Difficulty;
 import org.bukkit.DyeColor;
 import org.bukkit.GameMode;
@@ -167,6 +168,65 @@ public class BukkitUtils {
             return Environment.NETHER;
         } else {
             return Environment.valueOf(type.getName());
+        }
+    }
+
+    public static Art getArt(net.canarymod.api.entity.hanging.Painting.ArtType art) {
+        switch (art) {
+            case Alban:
+                return Art.ALBAN;
+            case Aztec:
+                return Art.AZTEC;
+            case Aztec2:
+                return Art.AZTEC2;
+            case Bomb:
+                return Art.BOMB;
+            case BurningSkull:
+                return Art.BURNINGSKULL;
+            case Bust:
+                return Art.BUST;
+            case Courbet:
+                return Art.COURBET;
+            case Creebet:
+                return Art.CREEBET;
+            case DonkeyKong:
+                return Art.DONKEYKONG;
+            case Fighters:
+                return Art.FIGHTERS;
+            case Graham:
+                return Art.GRAHAM;
+            case Kebab:
+                return Art.KEBAB;
+            case Match:
+                return Art.MATCH;
+            case Pigscene:
+                return Art.PIGSCENE;
+            case Plant:
+                return Art.PLANT;
+            case Pointer:
+                return Art.POINTER;
+            case Pool:
+                return Art.POOL;
+            case Sea:
+                return Art.SEA;
+            case Skeleton:
+                return Art.SKELETON;
+            case SkullAndRoses:
+                return Art.SKULL_AND_ROSES;
+            case Stage:
+                return Art.STAGE;
+            case Sunset:
+                return Art.SUNSET;
+            case Void:
+                return Art.VOID;
+            case Wanderer:
+                return Art.WANDERER;
+            case Wasteland:
+                return Art.WASTELAND;
+            case Wither:
+                return Art.WITHER;
+            default:
+                return Art.valueOf(art.name());
         }
     }
 
