@@ -44,7 +44,7 @@ public class CanaryChunk implements Chunk {
     }
 
     public ChunkSnapshot getChunkSnapshot() {
-        throw new NotImplementedException();
+        return new CanaryChunkSnapshot(chunk, world);
     }
 
     public ChunkSnapshot getChunkSnapshot(boolean includeMaxblocky, boolean includeBiome,

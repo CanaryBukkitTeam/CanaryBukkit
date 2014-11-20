@@ -73,7 +73,7 @@ public class CanaryWorld implements World {
     }
 
     public boolean canGenerateStructures() {
-        throw new NotImplementedException();
+        return getWorldConfig().generatesStructures();
     }
 
     public boolean createExplosion(double x, double y, double z, float power) {

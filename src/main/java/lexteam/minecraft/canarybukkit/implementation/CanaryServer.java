@@ -364,6 +364,8 @@ public class CanaryServer implements Server {
     }
 
     public Player getPlayer(UUID id) {
+        Validate.notNull(id, "UUID cannot be null");
+        
         for (Player player : getOnlinePlayers()) {
             if (player.getUniqueId().equals(id)) {
                 return player;
