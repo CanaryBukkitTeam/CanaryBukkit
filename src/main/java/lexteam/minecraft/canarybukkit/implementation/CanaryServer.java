@@ -186,7 +186,7 @@ public class CanaryServer implements Server {
         }
 
         for (Plugin plugin : pluginManager.getPlugins()) {
-            if ((!plugin.isEnabled()) && (plugin.getDescription().getLoad() == type)) {
+            if (!plugin.isEnabled() && plugin.getDescription().getLoad() == type) {
                 loadPlugin(plugin);
             }
         }
@@ -219,7 +219,7 @@ public class CanaryServer implements Server {
     }
 
     public BanList getBanList(BanList.Type type) {
-        throw new NotImplementedException();
+        return new CanaryBanList(Canary.bans(), type);
     }
 
     public Set<OfflinePlayer> getBannedPlayers() {
