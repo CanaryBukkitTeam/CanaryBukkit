@@ -23,7 +23,6 @@ import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.command.ConsoleCommandHook;
 import net.canarymod.hook.system.ServerListPingHook;
 import net.canarymod.plugin.PluginListener;
-
 import org.bukkit.event.server.ServerListPingEvent;
 
 public class CanaryServerListener implements PluginListener {
@@ -47,7 +46,7 @@ public class CanaryServerListener implements PluginListener {
     @HookHandler
     public void onServerListPing(ServerListPingHook hook) {
         server.getPluginManager().callEvent(
-                new ServerListPingEvent(hook.getRequesterAddress(), hook.getMotd(), hook.getCurrentPlayers(),
+                new ServerListPingEvent(hook.getRequesterAddress(), hook.getMotd().getFullText(), hook.getCurrentPlayers(),
                         hook.getMaxPlayers()));
     }
 }

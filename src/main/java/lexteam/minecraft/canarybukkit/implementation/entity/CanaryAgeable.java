@@ -19,7 +19,7 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import net.canarymod.api.entity.living.LivingBase;
 
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.Ageable;
 
 public abstract class CanaryAgeable extends CanaryCreature implements Ageable {
@@ -63,7 +63,7 @@ public abstract class CanaryAgeable extends CanaryCreature implements Ageable {
     }
 
     public void setAgeLock(boolean lock) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setAgeLock(boolean)");
     }
 
     public void setBaby() {
@@ -73,6 +73,6 @@ public abstract class CanaryAgeable extends CanaryCreature implements Ageable {
     }
 
     public void setBreed(boolean breed) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setBreed(boolean)");
     }
 }

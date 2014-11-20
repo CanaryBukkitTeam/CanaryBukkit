@@ -17,7 +17,6 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Slime;
 
@@ -27,7 +26,7 @@ public class CanarySlime extends CanaryLivingEntity implements Slime {
     }
 
     public int getSize() {
-        throw new NotImplementedException();
+        return getEntity().getSize().getByte();
     }
 
     public EntityType getType() {
@@ -35,6 +34,11 @@ public class CanarySlime extends CanaryLivingEntity implements Slime {
     }
 
     public void setSize(int size) {
-        throw new NotImplementedException();
+        getEntity().setSize(net.canarymod.api.entity.living.monster.Slime.Size.fromByte((byte) size));
     }
+
+    protected net.canarymod.api.entity.living.monster.Slime getEntity() {
+        return (net.canarymod.api.entity.living.monster.Slime) super.getEntity();
+    }
+
 }

@@ -17,7 +17,10 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
+import org.apache.commons.lang3.NotImplementedException;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Projectile;
+import org.bukkit.projectiles.ProjectileSource;
 
 public abstract class CanaryAbstractProjectile extends CanaryEntity implements Projectile {
     private boolean doesBounce;
@@ -34,4 +37,26 @@ public abstract class CanaryAbstractProjectile extends CanaryEntity implements P
     public void setBounce(boolean doesBounce) {
         this.doesBounce = doesBounce;
     }
+
+    public LivingEntity _INVALID_getShooter() {
+        throw new NotImplementedException("_INVALID_getShooter()");
+        // return (LivingEntity) BukkitUtils.getEntity(getEnity().getThrower());
+    }
+
+    public void _INVALID_setShooter(LivingEntity shooter) {
+        throw new NotImplementedException("_INVALID_setShooter(LivingEntity)");
+    }
+
+    public ProjectileSource getShooter() {
+        throw new NotImplementedException("getShooter()");
+    }
+
+    public void setShooter(ProjectileSource source) {
+        throw new NotImplementedException("setShooter(ProjectileSource)");
+    }
+
+    protected net.canarymod.api.entity.Projectile getEnity() {
+        return (net.canarymod.api.entity.Projectile) super.getEntity();
+    }
+
 }

@@ -17,14 +17,11 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import java.util.List;
-import java.util.UUID;
-
 import lexteam.minecraft.canarybukkit.BukkitUtils;
+import lexteam.minecraft.canarybukkit.CanaryUtils;
 import lexteam.minecraft.canarybukkit.implementation.CanaryLocation;
 import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
-
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
 import org.bukkit.Location;
@@ -37,7 +34,11 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
+import java.util.List;
+import java.util.UUID;
+
 public abstract class CanaryEntity implements Entity {
+
     private net.canarymod.api.entity.Entity entity;
 
     public CanaryEntity(net.canarymod.api.entity.Entity entity) {
@@ -45,6 +46,10 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public boolean eject() {
+        if (getEntity().isRidden()) {
+            getEntity().getRider().dismount();
+            return true;
+        }
         return false;
     }
 
@@ -53,7 +58,7 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public float getFallDistance() {
-        return 0;
+        throw new NotImplementedException("getFallDistance()");
     }
 
     public int getFireTicks() {
@@ -61,7 +66,7 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public EntityDamageEvent getLastDamageCause() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getLastDamageCause()");
     }
 
     public Location getLocation() {
@@ -70,21 +75,26 @@ public abstract class CanaryEntity implements Entity {
 
     public Location getLocation(Location loc) {
         if (loc != null) {
-            loc = new CanaryLocation(entity.getLocation(), entity.getWorld());
+            loc.setWorld(getWorld());
+            loc.setX(getEntity().getX());
+            loc.setY(getEntity().getY());
+            loc.setZ(getEntity().getZ());
+            loc.setPitch(getEntity().getPitch());
+            loc.setYaw(getEntity().getRotation());
         }
         return loc;
     }
 
     public int getMaxFireTicks() {
-        return 0;
+        throw new NotImplementedException("getMaxFireTicks()");
     }
 
     public List<MetadataValue> getMetadata(String metadataKey) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getMetadata(String)");
     }
 
     public List<Entity> getNearbyEntities(double x, double y, double z) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getNearbyEntities(double, double, double)");
     }
 
     public Entity getPassenger() {
@@ -96,7 +106,7 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public int getTicksLived() {
-        return 0;
+        throw new NotImplementedException("getTicksLived()");
     }
 
     public UUID getUniqueId() {
@@ -140,35 +150,39 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public boolean leaveVehicle() {
+        if (getEntity().isRiding()) {
+            getEntity().dismount();
+            return true;
+        }
         return false;
     }
 
     public void playEffect(EntityEffect type) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("playEffect(EntityEffect)");
     }
 
     public void remove() {
-        entity.destroy();
+        getEntity().destroy();
     }
 
     public void removeMetadata(String metadataKey, Plugin owningPlugin) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("removeMetadata(String, Plugin)");
     }
 
     public void setFallDistance(float distance) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setFallDistance(float)");
     }
 
     public void setFireTicks(int ticks) {
-        entity.setFireTicks(ticks);
+        getEntity().setFireTicks(ticks);
     }
 
     public void setLastDamageCause(EntityDamageEvent event) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setLastDamageCause(EntityDamageEvent)");
     }
 
     public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setMetadata(String, MetadataValue)");
     }
 
     public boolean setPassenger(Entity passenger) {
@@ -176,7 +190,7 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public void setTicksLived(int value) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setTicksLived(int)");
     }
 
     public void setVelocity(Vector velocity) {
@@ -195,21 +209,20 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public boolean teleport(Location location) {
-        entity.teleportTo(location.getX(), location.getY(), location.getZ());
-        if (entity.getX() == location.getX() && entity.getY() == location.getY()
-                && entity.getZ() == location.getZ()) {
-            return true;
-        } else {
-            return false;
-        }
+        getEntity().teleportTo(CanaryUtils.getLocation(location));
+        return entity.getX() == location.getX() && entity.getY() == location.getY()
+                && entity.getZ() == location.getZ();
     }
 
     public boolean teleport(Location location, PlayerTeleportEvent.TeleportCause cause) {
+        getEntity().teleportTo(CanaryUtils.getLocation(location));
         // TODO: Investigate TeleportCause
+        // In canary it seems that only Player gets a TeleportCause part
         return teleport(location);
     }
 
-    public net.canarymod.api.entity.Entity getCanaryEntity() {
+    protected net.canarymod.api.entity.Entity getEntity() {
         return entity;
     }
+
 }

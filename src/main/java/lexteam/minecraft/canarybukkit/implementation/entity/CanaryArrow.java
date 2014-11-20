@@ -17,34 +17,17 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.projectiles.ProjectileSource;
 
 public class CanaryArrow extends CanaryAbstractProjectile implements Arrow {
-    private net.canarymod.api.entity.Arrow arrow;
 
     public CanaryArrow(net.canarymod.api.entity.Arrow arrow) {
         super(arrow);
-        this.arrow = arrow;
-    }
-
-    public LivingEntity _INVALID_getShooter() {
-        throw new NotImplementedException();
-    }
-
-    public void _INVALID_setShooter(LivingEntity shooter) {
-        throw new NotImplementedException();
     }
 
     public int getKnockbackStrength() {
-        return arrow.getKnockbackStrength();
-    }
-
-    public ProjectileSource getShooter() {
-        throw new NotImplementedException();
+        return getEnity().getKnockbackStrength();
     }
 
     public EntityType getType() {
@@ -52,18 +35,19 @@ public class CanaryArrow extends CanaryAbstractProjectile implements Arrow {
     }
 
     public boolean isCritical() {
-        return arrow.isCritical();
+        return getEnity().isCritical();
     }
 
     public void setCritical(boolean critical) {
-        arrow.setIsCritical(critical);
+        getEnity().setIsCritical(critical);
     }
 
     public void setKnockbackStrength(int knockbackStrength) {
-        arrow.setKnockbackStrenth(knockbackStrength);
+        getEnity().setKnockbackStrenth(knockbackStrength);
     }
 
-    public void setShooter(ProjectileSource source) {
-        throw new NotImplementedException();
+    protected net.canarymod.api.entity.Arrow getEnity() {
+        return (net.canarymod.api.entity.Arrow) super.getEntity();
     }
+
 }

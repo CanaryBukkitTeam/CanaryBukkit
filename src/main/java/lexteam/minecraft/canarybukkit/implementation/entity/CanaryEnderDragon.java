@@ -17,12 +17,12 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import java.util.Set;
-
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.ComplexEntityPart;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.EntityType;
+
+import java.util.Set;
 
 public class CanaryEnderDragon extends CanaryMonster implements EnderDragon {
     public CanaryEnderDragon(net.canarymod.api.entity.living.monster.EnderDragon entity) {
@@ -30,7 +30,7 @@ public class CanaryEnderDragon extends CanaryMonster implements EnderDragon {
     }
 
     public Set<ComplexEntityPart> getParts() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getParts() not Implemented");
     }
 
     public EntityType getType() {

@@ -17,13 +17,11 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-
+import lexteam.minecraft.canarybukkit.BukkitUtils;
+import lexteam.minecraft.canarybukkit.CanaryUtils;
+import net.canarymod.api.DamageType;
 import net.canarymod.api.entity.living.LivingBase;
-
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
@@ -38,24 +36,27 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+
 public abstract class CanaryLivingEntity extends CanaryEntity implements LivingEntity {
-    private LivingBase entity;
 
     public CanaryLivingEntity(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public void _INVALID_damage(int amount) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("_INVALID_damage(int)");
     }
 
     public void _INVALID_damage(int amount, Entity source) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("_INVALID_damage(int, Entity)");
     }
 
     public int _INVALID_getHealth() {
-        return Float.floatToIntBits(entity.getHealth());
+        return Float.floatToIntBits(getEntity().getHealth());
     }
 
     public int _INVALID_getLastDamage() {
@@ -63,59 +64,69 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public int _INVALID_getMaxHealth() {
-        return (int) Math.round(entity.getMaxHealth());
+        return (int) Math.round(getEntity().getMaxHealth());
     }
 
     public void _INVALID_setHealth(int health) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("_INVALID_setHealth(int)");
     }
 
     public void _INVALID_setLastDamage(int damage) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("_INVALID_setLastDamage(int)");
     }
 
     public void _INVALID_setMaxHealth(int health) {
-        entity.setMaxHealth(health);
+        getEntity().setMaxHealth(health);
     }
 
     public boolean addPotionEffect(PotionEffect effect) {
-        return false;
+        getEntity().addPotionEffect(CanaryUtils.getPotionEffect(effect));
+        return true;
     }
 
     public boolean addPotionEffect(PotionEffect effect, boolean force) {
-        return false;
+        return addPotionEffect(effect);
     }
 
     public boolean addPotionEffects(Collection<PotionEffect> effects) {
-        return false;
+        for (PotionEffect effect : effects) {
+            addPotionEffect(effect);
+        }
+
+        return true;
     }
 
     public void damage(double amount) {
-        throw new NotImplementedException();
+        getEntity().dealDamage(DamageType.GENERIC, (float) amount);
     }
 
     public void damage(double amount, Entity source) {
-        throw new NotImplementedException();
+        // getEntity().attackEntity(source, amount);
+        throw new NotImplementedException("damage(double, Entity)");
     }
 
     public Collection<PotionEffect> getActivePotionEffects() {
-        throw new NotImplementedException();
+        ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();
+        for (net.canarymod.api.potion.PotionEffect potionEffect : getEntity().getAllActivePotionEffects()) {
+            ret.add(BukkitUtils.getPotionEffect(potionEffect));
+        }
+        return ret;
     }
 
     public boolean getCanPickupItems() {
-        return false;
+        throw new NotImplementedException("getCanPickupItems()");
     }
 
     public String getCustomName() {
-        throw new NotImplementedException();
+        return getEntity().getName();
     }
 
     public EntityEquipment getEquipment() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getEquipment()");
     }
 
     public double getEyeHeight() {
-        return entity.getEyeHeight();
+        return getEntity().getEyeHeight();
     }
 
     public double getEyeHeight(boolean ignoreSneaking) {
@@ -123,150 +134,163 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public Location getEyeLocation() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getEyeLocation()");
     }
 
     public double getHealth() {
-        return entity.getHealth();
+        return getEntity().getHealth();
     }
 
     public Player getKiller() {
-        throw new NotImplementedException();
+        LivingBase temp = getEntity().getLastAssailant();
+        if (temp != null && temp.isPlayer()) {
+            return (new CanaryPlayer((net.canarymod.api.entity.living.humanoid.Player) temp));
+        }
+        else {
+            return null;
+        }
     }
 
     public double getLastDamage() {
-        return 0;
+        throw new NotImplementedException("getLastDamage()");
     }
 
     public List<Block> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getLastTwoTargetBlocks(HashSet<Byte>, int)");
     }
 
     public Entity getLeashHolder() throws IllegalStateException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getLeashHolder()");
     }
 
     public List<Block> getLineOfSight(HashSet<Byte> transparent, int maxDistance) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getLineOfSight(HashSet<Byte>, int)");
     }
 
     public double getMaxHealth() {
-        return entity.getMaxHealth();
+        return getEntity().getMaxHealth();
     }
 
     public int getMaximumAir() {
-        return 0;
+        throw new NotImplementedException("getMaximumAir()");
     }
 
     public int getMaximumNoDamageTicks() {
-        return 0;
+        return getEntity().getInvulnerabilityTicks();
+        // TODO check if that is what this means
     }
 
     public int getNoDamageTicks() {
-        return 0;
+        return getEntity().getInvulnerabilityTicks();
     }
 
     public int getRemainingAir() {
-        return 0;
+        throw new NotImplementedException("getRemainingAir()");
     }
 
     public boolean getRemoveWhenFarAway() {
-        return false;
+        throw new NotImplementedException("getRemoveWhenFarAway()");
     }
 
     public Block getTargetBlock(HashSet<Byte> transparent, int maxDistance) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getTargetBlock(HashSet<Byte>, int)");
     }
 
     public boolean hasLineOfSight(Entity other) {
-        return false;
+        throw new NotImplementedException("hasLineOfSight(Entity)");
     }
 
     public boolean hasPotionEffect(PotionEffectType type) {
-        return false;
+        throw new NotImplementedException("hasPotionEffect(PotionEffectType)");
     }
 
     public boolean isCustomNameVisible() {
-        return false;
+        throw new NotImplementedException("isCustomNameVisible()");
     }
 
     public boolean isLeashed() {
-        return false;
+        throw new NotImplementedException("isLeashed()");
     }
 
     public <T extends Projectile> T launchProjectile(Class<? extends T> projectile) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("launchProjectile(Class<? extends T>)");
     }
 
     public <T extends Projectile> T launchProjectile(Class<? extends T> projectile, Vector velocity) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("launchProjectile(Class<? extends T>, Vector)");
     }
 
     public void removePotionEffect(PotionEffectType type) {
-        throw new NotImplementedException();
+        getEntity().removePotionEffect(CanaryUtils.getPotionEffectType(type));
     }
 
     public void resetMaxHealth() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("resetMaxHealth()");
     }
 
     public void setCanPickupItems(boolean pickup) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setCanPickupItems(boolean)");
     }
 
     public void setCustomName(String name) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setCustomName(String)");
     }
 
     public void setCustomNameVisible(boolean flag) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setCustomNameVisible(boolean)");
     }
 
     public void setHealth(double health) {
-        throw new NotImplementedException();
+        getEntity().setHealth((float) health);
     }
 
     public void setLastDamage(double damage) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setLastDamage(double)");
     }
 
     public boolean setLeashHolder(Entity holder) {
-        return false;
+        throw new NotImplementedException("setLeashHolder(Entity)");
     }
 
     public void setMaxHealth(double health) {
-        entity.setMaxHealth(health);
+        getEntity().setMaxHealth(health);
     }
 
     public void setMaximumAir(int ticks) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setMaximumAir(int)");
     }
 
     public void setMaximumNoDamageTicks(int ticks) {
-        throw new NotImplementedException();
+        getEntity().setInvulnerabilityTicks(ticks);
+        // TODO check if that is what this means
     }
 
     public void setNoDamageTicks(int ticks) {
-        throw new NotImplementedException();
+        getEntity().setInvulnerabilityTicks(ticks);
     }
 
     public void setRemainingAir(int ticks) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setRemainingAir(int)");
     }
 
     public void setRemoveWhenFarAway(boolean remove) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setRemoveWhenFarAway(boolean)");
     }
 
     public Arrow shootArrow() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("shootArrow()");
     }
 
     public Egg throwEgg() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("throwEgg()");
     }
 
     public Snowball throwSnowball() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("throwSnowball()");
     }
+
+    protected LivingBase getEntity() {
+        return (LivingBase) super.getEntity();
+    }
+
 }

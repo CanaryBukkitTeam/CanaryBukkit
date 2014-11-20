@@ -17,17 +17,23 @@
  */
 package lexteam.minecraft.canarybukkit;
 
+import net.canarymod.Canary;
 import net.canarymod.api.DyeColor;
 import net.canarymod.api.GameMode;
 import net.canarymod.api.entity.hanging.Painting.ArtType;
 import net.canarymod.api.entity.living.animal.Ocelot.SkinType;
 import net.canarymod.api.entity.living.humanoid.Villager.Profession;
+import net.canarymod.api.potion.PotionEffect;
+import net.canarymod.api.potion.PotionEffectType;
 import net.canarymod.api.world.BiomeType;
 import net.canarymod.api.world.DimensionType;
+import net.canarymod.api.world.World;
 import net.canarymod.api.world.World.Difficulty;
 import net.canarymod.api.world.WorldType;
-
-import org.apache.commons.lang.Validate;
+import net.canarymod.api.world.blocks.BlockType;
+import net.canarymod.api.world.position.Location;
+import org.apache.commons.lang3.Validate;
+import org.bukkit.Material;
 
 public class CanaryUtils {
     public static Difficulty getDifficulty(org.bukkit.Difficulty difficulty) {
@@ -346,4 +352,29 @@ public class CanaryUtils {
                 return ArtType.valueOf(art.name());
         }
     }
+
+    public static BlockType getBlockType(Material material) {
+        return BlockType.fromId(material.getId());
+    }
+
+    public static PotionEffectType getPotionEffectType(int id) {
+        return PotionEffectType.fromId(id);
+    }
+
+    public static PotionEffectType getPotionEffectType(org.bukkit.potion.PotionEffectType potionEffectType) {
+        return PotionEffectType.fromName(potionEffectType.getName());
+    }
+
+    public static PotionEffect getPotionEffect(org.bukkit.potion.PotionEffect potionEffect) {
+        return Canary.factory().getPotionFactory().newPotionEffect(getPotionEffectType(potionEffect.getType()), potionEffect.getDuration(), potionEffect.getAmplifier(), potionEffect.isAmbient());
+    }
+
+    public static World getWorld(org.bukkit.World world) {
+        return Canary.getServer().getWorld(world.getName());
+    }
+
+    public static Location getLocation(org.bukkit.Location location) {
+        return new Location(getWorld(location.getWorld()), location.getX(), location.getY(), location.getZ(), location.getPitch(), location.getYaw());
+    }
+
 }

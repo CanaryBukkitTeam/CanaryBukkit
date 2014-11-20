@@ -17,11 +17,12 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.Boat;
 import org.bukkit.entity.EntityType;
 
 public class CanaryBoat extends CanaryVehicle implements Boat {
+
     public CanaryBoat(net.canarymod.api.entity.vehicle.Boat entity) {
         super(entity);
     }
@@ -31,34 +32,39 @@ public class CanaryBoat extends CanaryVehicle implements Boat {
     }
 
     public double getMaxSpeed() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getMaxSpeed()");
     }
 
     public void setMaxSpeed(double speed) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setMaxSpeed(double)");
     }
 
     public double getOccupiedDeceleration() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getOccupiedDeceleration()");
     }
 
     public void setOccupiedDeceleration(double rate) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setOccupiedDeceleration(double)");
     }
 
     public double getUnoccupiedDeceleration() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getUnoccupiedDeceleration()");
     }
 
     public void setUnoccupiedDeceleration(double rate) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setUnoccupiedDeceleration(double)");
     }
 
     public boolean getWorkOnLand() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getWorkOnLand()");
     }
 
     public void setWorkOnLand(boolean workOnLand) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setWorkOnLand(boolean)");
     }
+
+    protected net.canarymod.api.entity.vehicle.Boat getEntity() {
+        return (net.canarymod.api.entity.vehicle.Boat) super.getEntity();
+    }
+
 }

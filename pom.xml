@@ -1,58 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  	<modelVersion>4.0.0</modelVersion>
-  	
-  	<groupId>lexteam.minecraft</groupId>
-  	<artifactId>canarybukkit</artifactId>
-  	
-  	<name>CanaryBukkit</name>
-  	<description>CanaryBukkit allows plugins created for the Bukkit API platform to be used on the CanaryMod server platform.</description>
-  	<version>0.1</version>
-  	<url>https://github.com/LexMinecraft/Canary-Bukkit</url>
-  	<inceptionYear>2014</inceptionYear>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  	<organization>
-  		<name>Lexteam</name>
-  		<url>https://github.com/Lexteam</url>
-  	</organization>
-  	
-  	<issueManagement>
-  		<system>GitHub</system>
-  		<url>https://github.com/LexMinecraft/Canary-Bukkit/issues</url>
-  	</issueManagement>
-  	
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <groupId>lexteam.minecraft</groupId>
+    <artifactId>canarybukkit</artifactId>
+
+    <name>CanaryBukkit</name>
+    <description>CanaryBukkit allows plugins created for the Bukkit API platform to be used on the CanaryMod server
+        platform.
+    </description>
+    <version>0.1</version>
+    <url>https://github.com/LexMinecraft/Canary-Bukkit</url>
+    <inceptionYear>2014</inceptionYear>
+
+    <organization>
+        <name>Lexteam</name>
+        <url>https://github.com/Lexteam</url>
+    </organization>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/LexMinecraft/Canary-Bukkit/issues</url>
+    </issueManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <main.class>${project.groupId}.${project.artifactId}.${project.name}</main.class>
-	</properties>
-  	
-  	<repositories>
-		<repository>
-			<id>vi-repo</id>
-			<url>http://repo.visualillusionsent.net/repository/public</url>
-		</repository>
-		<repository>
-			<id>bukkit-repo</id>
-			<url>http://repo.bukkit.org/content/groups/public</url>
-		</repository>
-	</repositories>
-  	
-	<dependencies>
-		<dependency>
-			<groupId>net.canarymod</groupId>
-			<artifactId>CanaryLib</artifactId>
-			<version>1.1.2</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>bukkit</artifactId>
-			<version>1.7.9-R0.2</version> <!-- Will use Glowkit when I update for 1.8 -->
-			<scope>compile</scope>
-		</dependency>
-	</dependencies>
-  	
-  	<build>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>repo1123</id>
+            <url>http://repo.larry1123.net/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.canarymod</groupId>
+            <artifactId>CanaryLib</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
         <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>${basedir}/src/main/java/</sourceDirectory>
         <resources>
@@ -78,57 +73,85 @@
             </testResource>
         </testResources>
         <finalName>${project.name}-${project.version}</finalName>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<archive>
-						<index>true</index>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <index>true</index>
                         <manifest>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
                 <version>2.3</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-					</execution>
-				</executions>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <shadedArtifactAttached>true</shadedArtifactAttached>
                     <shadedArtifactId>${project.name}</shadedArtifactId>
-                    <filters>
-                        <filter>
-                            <artifact>org.bukkit:bukkit</artifact>
-                            <excludes>
-                                <exclude>com/google/**</exclude>
-                                <exclide>META-INF/maven/com.google.guava/**</exclide>
-                                <exclude>com.googlecode.json-simple/**</exclude>
-                            </excludes>
-                        </filter>
-                    </filters>
                 </configuration>
-			</plugin>
-		</plugins>
-	</build>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.canarymod</groupId>
+                <artifactId>CanaryLib</artifactId>
+                <version>1.2.0-SNAPSHOT</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.bukkit</groupId>
+                <artifactId>bukkit</artifactId>
+                <version>1.7.10-C0.1-SNAPSHOT</version>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.googlecode.json-simple</groupId>
+                <artifactId>json-simple</artifactId>
+                <version>1.1</version>
+                <type>jar</type>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>10.0.1</version>
+                <type>jar</type>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.3.2</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
 </project>

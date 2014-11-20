@@ -17,7 +17,7 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.Minecart;
 import org.bukkit.util.Vector;
 
@@ -27,50 +27,55 @@ public abstract class CanaryMinecart extends CanaryVehicle implements Minecart {
     }
 
     public void _INVALID_setDamage(int damage) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("_INVALID_setDamage(int)");
     }
 
     public void setDamage(double damage) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setDamage(double)");
     }
 
     public int _INVALID_getDamage() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("_INVALID_getDamage()");
     }
 
     public double getDamage() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getDamage()");
     }
 
     public double getMaxSpeed() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getMaxSpeed()");
     }
 
     public void setMaxSpeed(double speed) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setMaxSpeed(double)");
     }
 
     public boolean isSlowWhenEmpty() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("isSlowWhenEmpty()");
     }
 
     public void setSlowWhenEmpty(boolean slow) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setSlowWhenEmpty(boolean)");
     }
 
     public Vector getFlyingVelocityMod() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getFlyingVelocityMod()");
     }
 
     public void setFlyingVelocityMod(Vector flying) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setFlyingVelocityMod(Vector)");
     }
 
     public Vector getDerailedVelocityMod() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getDerailedVelocityMod()");
     }
 
     public void setDerailedVelocityMod(Vector derailed) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setDerailedVelocityMod(Vector)");
     }
+
+    protected net.canarymod.api.entity.vehicle.Minecart getEntity() {
+        return (net.canarymod.api.entity.vehicle.Minecart) super.getEntity();
+    }
+
 }

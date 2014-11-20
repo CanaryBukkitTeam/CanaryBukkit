@@ -26,7 +26,7 @@ import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPig;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanarySheep;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryWolf;
 
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 import org.bukkit.Art;
 import org.bukkit.Difficulty;
 import org.bukkit.DyeColor;
@@ -36,6 +36,8 @@ import org.bukkit.WorldType;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Ocelot.Type;
 import org.bukkit.entity.Villager.Profession;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class BukkitUtils {
     public static Difficulty getDifficulty(net.canarymod.api.world.World.Difficulty difficulty) {
@@ -259,4 +261,13 @@ public class BukkitUtils {
         }
         return null;
     }
+
+    public static PotionEffectType getPotionEffectType(net.canarymod.api.potion.PotionEffectType potionEffectType) {
+        return PotionEffectType.getByName(potionEffectType.name());
+    }
+
+    public static PotionEffect getPotionEffect(net.canarymod.api.potion.PotionEffect potionEffect) {
+        return new PotionEffect(getPotionEffectType(CanaryUtils.getPotionEffectType(potionEffect.getPotionID())), potionEffect.getDuration(), potionEffect.getAmplifier(), potionEffect.isAmbient());
+    }
+
 }

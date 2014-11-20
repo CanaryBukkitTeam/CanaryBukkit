@@ -19,32 +19,30 @@ package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import lexteam.minecraft.canarybukkit.BukkitUtils;
 
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.TNTPrimed;
 
 public class CanaryTNTPrimed extends CanaryEntity implements TNTPrimed {
-    private net.canarymod.api.entity.TNTPrimed entity;
 
     public CanaryTNTPrimed(net.canarymod.api.entity.TNTPrimed entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public void setYield(float yield) {
-        throw new NotImplementedException();
+        getEntity().setPower(yield);
     }
 
     public float getYield() {
-        throw new NotImplementedException();
+        return getEntity().getPower();
     }
 
     public void setIsIncendiary(boolean isIncendiary) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setIsIncendiary(boolean)");
     }
 
     public boolean isIncendiary() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("isIncendiary()");
     }
 
     public EntityType getType() {
@@ -52,14 +50,19 @@ public class CanaryTNTPrimed extends CanaryEntity implements TNTPrimed {
     }
 
     public void setFuseTicks(int fuseTicks) {
-        entity.setFuse(fuseTicks);
+        getEntity().setFuse(fuseTicks);
     }
 
     public int getFuseTicks() {
-        return entity.getFuse();
+        return getEntity().getFuse();
     }
 
     public org.bukkit.entity.Entity getSource() {
-        return BukkitUtils.getEntity(entity.getActivatedBy());
+        return BukkitUtils.getEntity(getEntity().getActivatedBy());
     }
+
+    protected net.canarymod.api.entity.TNTPrimed getEntity() {
+        return (net.canarymod.api.entity.TNTPrimed) super.getEntity();
+    }
+
 }

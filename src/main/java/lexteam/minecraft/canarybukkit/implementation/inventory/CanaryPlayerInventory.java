@@ -17,44 +17,44 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.inventory;
 
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 public class CanaryPlayerInventory extends CanaryInventory implements PlayerInventory {
-    private net.canarymod.api.inventory.PlayerInventory inv;
+
     private Player owner;
 
     public CanaryPlayerInventory(net.canarymod.api.inventory.PlayerInventory inv, Player owner) {
+        // Not sure but that Player may be the wrong player
         super(inv);
-        this.inv = inv;
         this.owner = owner;
     }
 
     public int clear(int id, int data) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("clear(int, int)");
     }
 
     public ItemStack[] getArmorContents() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getArmorContents()");
     }
 
     public ItemStack getBoots() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getBoots()");
     }
 
     public ItemStack getChestplate() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getChestplate()");
     }
 
     public int getHeldItemSlot() {
-        return inv.getSelectedHotbarSlotId();
+        return getInventory().getSelectedHotbarSlotId();
     }
 
     public ItemStack getHelmet() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getHelmet()");
     }
 
     @Override
@@ -63,38 +63,43 @@ public class CanaryPlayerInventory extends CanaryInventory implements PlayerInve
     }
 
     public ItemStack getItemInHand() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getItemInHand()");
     }
 
     public ItemStack getLeggings() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getLeggings()");
     }
 
     public void setArmorContents(ItemStack[] items) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setArmorContents(ItemStack[])");
     }
 
     public void setBoots(ItemStack boots) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setBoots(ItemStack)");
     }
 
     public void setChestplate(ItemStack chestplate) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setChestplate(ItemStack)");
     }
 
     public void setHeldItemSlot(int slot) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setHeldItemSlot(int)");
     }
 
     public void setHelmet(ItemStack helmet) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setHelmet(ItemStack)");
     }
 
     public void setItemInHand(ItemStack stack) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setItemInHand(ItemStack)");
     }
 
     public void setLeggings(ItemStack leggings) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setLeggings(ItemStack)");
     }
+
+    protected net.canarymod.api.inventory.PlayerInventory getInventory() {
+        return (net.canarymod.api.inventory.PlayerInventory) super.getInventory();
+    }
+
 }

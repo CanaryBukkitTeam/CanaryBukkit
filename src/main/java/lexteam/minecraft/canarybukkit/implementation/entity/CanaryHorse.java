@@ -17,46 +17,44 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Horse;
 import org.bukkit.inventory.HorseInventory;
 
 public class CanaryHorse extends CanaryAnimals implements Horse {
-    private net.canarymod.api.entity.living.animal.Horse horse;
 
     public CanaryHorse(net.canarymod.api.entity.living.animal.Horse entity) {
         super(entity);
-        this.horse = entity;
     }
 
     public Color getColor() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getColor()");
     }
 
     public int getDomestication() {
-        return 0;
+        return getEntity().getTemper(); // I think that is right
     }
 
     public HorseInventory getInventory() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getInventory()");
     }
 
     public double getJumpStrength() {
-        return 0;
+        throw new NotImplementedException("getJumpStrength()");
     }
 
     public int getMaxDomestication() {
-        return 0;
+        throw new NotImplementedException("getMaxDomestication()");
     }
 
     public AnimalTamer getOwner() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getOwner()");
     }
 
     public Style getStyle() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getStyle()");
     }
 
     public EntityType getType() {
@@ -64,50 +62,55 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
     }
 
     public Variant getVariant() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getVariant()");
     }
 
     public boolean isCarryingChest() {
-        return horse.isChested();
+        return getEntity().isChested();
     }
 
     public boolean isTamed() {
-        return horse.isTamed();
+        return getEntity().isTamed();
     }
 
     public void setCarryingChest(boolean chest) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setCarryingChest(boolean)");
     }
 
     public void setColor(Color color) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setColor(Color)");
     }
 
     public void setDomestication(int level) {
-        throw new NotImplementedException();
+        getEntity().setTemper(level);
     }
 
     public void setJumpStrength(double strength) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setJumpStrength(double)");
     }
 
     public void setMaxDomestication(int level) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setMaxDomestication(int)");
     }
 
     public void setOwner(AnimalTamer tamer) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setOwner(AnimalTamer)");
     }
 
     public void setStyle(Style style) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setStyle(Style)");
     }
 
     public void setTamed(boolean tame) {
-        horse.setTamed(tame);
+        getEntity().setTamed(tame);
     }
 
     public void setVariant(Variant variant) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setVariant(Variant)");
     }
+
+    protected net.canarymod.api.entity.living.animal.Horse getEntity() {
+        return (net.canarymod.api.entity.living.animal.Horse) super.getEntity();
+    }
+
 }

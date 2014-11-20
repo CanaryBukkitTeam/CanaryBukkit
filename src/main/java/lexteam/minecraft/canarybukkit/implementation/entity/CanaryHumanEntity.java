@@ -17,11 +17,8 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import java.util.Set;
-
 import net.canarymod.api.entity.living.humanoid.Human;
-
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.permissions.Permission;
@@ -29,75 +26,80 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
-public abstract class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity {
-    private Human entity;
+import java.util.Set;
 
-    public CanaryHumanEntity(net.canarymod.api.entity.living.humanoid.Human entity) {
+public abstract class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity {
+
+    public CanaryHumanEntity(Human entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public PermissionAttachment addAttachment(Plugin plugin) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("addAttachment(Plugin)");
     }
 
     public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("addAttachment(Plugin, int)");
     }
 
     public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("addAttachment(Plugin, String, boolean)");
     }
 
     public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("addAttachment(Plugin, String, boolean, int)");
     }
 
     public Set<PermissionAttachmentInfo> getEffectivePermissions() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getEffectivePermissions()");
     }
 
     public int getExpToLevel() {
-        return 0;
+        throw new NotImplementedException("getExpToLevel()");
     }
 
     public String getName() {
-        return entity.getName();
+        return getEntity().getName();
     }
 
     public int getSleepTicks() {
-        return 0;
+        throw new NotImplementedException("getSleepTicks()");
     }
 
     public boolean hasPermission(Permission perm) {
-        return false;
+        throw new NotImplementedException("hasPermission(Permission)");
     }
 
     public boolean hasPermission(String name) {
-        return false;
+        throw new NotImplementedException("hasPermission(String)");
     }
 
     public boolean isBlocking() {
-        return false;
+        return getEntity().isBlocking();
     }
 
     public boolean isPermissionSet(Permission perm) {
-        return false;
+        throw new NotImplementedException("isPermissionSet(Permission)");
     }
 
     public boolean isPermissionSet(String name) {
-        return false;
+        throw new NotImplementedException("isPermissionSet(String)");
     }
 
     public void recalculatePermissions() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("recalculatePermissions()");
     }
 
     public void removeAttachment(PermissionAttachment attachment) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("removeAttachment(PermissionAttachment)");
     }
 
     public boolean setWindowProperty(InventoryView.Property prop, int value) {
-        return false;
+        throw new NotImplementedException("setWindowProperty(InventoryView.Property, int)");
     }
+
+    protected Human getEntity() {
+        return (Human) super.getEntity();
+    }
+
 }

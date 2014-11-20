@@ -17,11 +17,7 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.inventory;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.ListIterator;
-
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.InventoryType;
@@ -29,7 +25,12 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.ListIterator;
+
 public class CanaryInventory implements Inventory {
+
     private net.canarymod.api.inventory.Inventory inv;
 
     public CanaryInventory(net.canarymod.api.inventory.Inventory inv) {
@@ -37,71 +38,71 @@ public class CanaryInventory implements Inventory {
     }
 
     public HashMap<Integer, ItemStack> addItem(ItemStack... items) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("addItem(ItemStack...)");
     }
 
     public HashMap<Integer, ? extends ItemStack> all(int materialId) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("all(int)");
     }
 
     public HashMap<Integer, ? extends ItemStack> all(ItemStack item) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("all(ItemStack)");
     }
 
     public HashMap<Integer, ? extends ItemStack> all(Material material) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("all(Material)");
     }
 
     public void clear() {
-        inv.clearInventory();
+        getInventory().clearInventory();
     }
 
     public void clear(int index) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("clear(int)");
     }
 
     public boolean contains(int materialId) {
-        return inv.hasItem(materialId);
+        return getInventory().hasItem(materialId);
     }
 
     public boolean contains(int materialId, int amount) {
-        return inv.hasItemStack(materialId, amount);
+        return getInventory().hasItemStack(materialId, amount);
     }
 
     public boolean contains(ItemStack item) {
-        return inv.hasItem(item.getTypeId());
+        return getInventory().hasItem(item.getTypeId());
     }
 
     public boolean contains(ItemStack item, int amount) {
-        return inv.hasItemStack(item.getTypeId(), amount);
+        return getInventory().hasItemStack(item.getTypeId(), amount);
     }
 
     public boolean contains(Material material) throws IllegalArgumentException {
-        return inv.hasItem(material.getId());
+        return getInventory().hasItem(material.getId());
     }
 
     public boolean contains(Material material, int amount) throws IllegalArgumentException {
-        return inv.hasItemStack(material.getId(), amount);
+        return getInventory().hasItemStack(material.getId(), amount);
     }
 
     public boolean containsAtLeast(ItemStack item, int amount) {
-        return false;
+        throw new NotImplementedException("containsAtLeast(ItemStack, int)");
     }
 
     public int first(int materialId) {
-        return 0;
+        throw new NotImplementedException("first(int)");
     }
 
     public int first(ItemStack item) {
-        return 0;
+        throw new NotImplementedException("first(ItemStack)");
     }
 
     public int first(Material material) throws IllegalArgumentException {
-        return 0;
+        throw new NotImplementedException("first(Material)");
     }
 
     public int firstEmpty() {
-        return 0;
+        throw new NotImplementedException("firstEmpty()");
     }
 
     public ItemStack[] getContents() {
@@ -109,27 +110,27 @@ public class CanaryInventory implements Inventory {
     }
 
     public InventoryHolder getHolder() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getHolder()");
     }
 
     public ItemStack getItem(int index) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getItem(int)");
     }
 
     public int getMaxStackSize() {
-        return inv.getInventoryStackLimit();
+        return getInventory().getInventoryStackLimit();
     }
 
     public String getName() {
-        return inv.getInventoryName();
+        return getInventory().getInventoryName();
     }
 
     public int getSize() {
-        return inv.getSize();
+        return getInventory().getSize();
     }
 
     public String getTitle() {
-        return inv.getInventoryName();
+        return getInventory().getInventoryName();
     }
 
     public InventoryType getType() {
@@ -137,42 +138,47 @@ public class CanaryInventory implements Inventory {
     }
 
     public List<HumanEntity> getViewers() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getViewers()");
     }
 
     public ListIterator<ItemStack> iterator() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("iterator()");
     }
 
     public ListIterator<ItemStack> iterator(int index) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("iterator(int)");
     }
 
     public void remove(int materialId) {
-        inv.removeItem(materialId);
+        getInventory().removeItem(materialId);
     }
 
     public void remove(ItemStack item) {
-        inv.removeItem(item.getTypeId());
+        getInventory().removeItem(item.getTypeId());
     }
 
     public void remove(Material material) throws IllegalArgumentException {
-        inv.removeItem(material.getId());
+        getInventory().removeItem(material.getId());
     }
 
     public HashMap<Integer, ItemStack> removeItem(ItemStack... items) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("removeItem(ItemStack...)");
     }
 
     public void setContents(ItemStack[] items) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("ItemStack[]");
     }
 
     public void setItem(int index, ItemStack item) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setItem(int, ItemStack)");
     }
 
     public void setMaxStackSize(int size) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setMaxStackSize(int)");
     }
+
+    protected net.canarymod.api.inventory.Inventory getInventory() {
+        return inv;
+    }
+
 }

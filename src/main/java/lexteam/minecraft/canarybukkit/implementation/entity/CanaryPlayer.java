@@ -17,18 +17,12 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import java.net.InetSocketAddress;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-
 import lexteam.minecraft.canarybukkit.BukkitUtils;
 import lexteam.minecraft.canarybukkit.CanaryUtils;
 import lexteam.minecraft.canarybukkit.implementation.inventory.CanaryInventory;
 import lexteam.minecraft.canarybukkit.implementation.inventory.CanaryPlayerInventory;
 import net.canarymod.Canary;
-
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Achievement;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
@@ -52,151 +46,154 @@ import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.Scoreboard;
 
+import java.net.InetSocketAddress;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+
 public class CanaryPlayer extends CanaryHumanEntity implements Player {
-    private net.canarymod.api.entity.living.humanoid.Player entity;
 
     public CanaryPlayer(net.canarymod.api.entity.living.humanoid.Player entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public void abandonConversation(Conversation conversation) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("abandonConversation(Conversation)");
     }
 
     public void abandonConversation(Conversation conversation, ConversationAbandonedEvent details) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("abandonConversation(Conversation, ConversationAbandonedEvent)");
     }
 
     public void acceptConversationInput(String input) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("acceptConversationInput(String)");
     }
 
     public void awardAchievement(Achievement achievement) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("awardAchievement(Achievement)");
     }
 
     public boolean beginConversation(Conversation conversation) {
-        return false;
+        throw new NotImplementedException("beginConversation(Conversation)");
     }
 
     public boolean canSee(Player player) {
-        return entity.canSee(Canary.getServer().getPlayerFromUUID(player.getUniqueId()));
+        return getEntity().canSee(Canary.getServer().getPlayerFromUUID(player.getUniqueId()));
     }
 
     public void chat(String msg) {
-        entity.chat(msg);
+        getEntity().chat(msg);
     }
 
     public void closeInventory() {
-        entity.closeWindow();
+        getEntity().closeWindow();
         // TODO: Review
     }
 
     public void decrementStatistic(Statistic statistic) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("decrementStatistic(Statistic)");
     }
 
     public void decrementStatistic(Statistic statistic, EntityType entityType)
             throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("decrementStatistic(Statistic, EntityType)");
     }
 
     public void decrementStatistic(Statistic statistic, EntityType entityType, int amount) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("decrementStatistic(Statistic, EntityType, int)");
     }
 
     public void decrementStatistic(Statistic statistic, int amount) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("decrementStatistic(Statistic, int)");
     }
 
     public void decrementStatistic(Statistic statistic, Material material) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("decrementStatistic(Statistic, Material)");
     }
 
     public void decrementStatistic(Statistic statistic, Material material, int amount)
             throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("decrementStatistic(Statistic, Material, int)");
     }
 
     public InetSocketAddress getAddress() {
-        return new InetSocketAddress(entity.getIP(), 0);
+        return new InetSocketAddress(getEntity().getIP(), 0);
     }
 
     public boolean getAllowFlight() {
-        return false;
+        return getEntity().getCapabilities().mayFly();
     }
 
     public Location getBedSpawnLocation() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getBedSpawnLocation()");
     }
 
     public Location getCompassTarget() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getCompassTarget()");
     }
 
     public String getDisplayName() {
-        return entity.getDisplayName();
+        return getEntity().getDisplayName();
     }
 
     public Inventory getEnderChest() {
-        return new CanaryInventory(entity.getEnderChestInventory());
+        return new CanaryInventory(getEntity().getEnderChestInventory());
     }
 
     public float getExhaustion() {
-        return entity.getExhaustionLevel();
+        return getEntity().getExhaustionLevel();
     }
 
     public float getExp() {
-        return entity.getExperience();
+        return getEntity().getExperience();
     }
 
     public long getFirstPlayed() {
-        return 0;
+        throw new NotImplementedException("getFirstPlayed()");
     }
 
     public float getFlySpeed() {
-        return 0;
+        return getEntity().getCapabilities().getFlySpeed();
     }
 
     public int getFoodLevel() {
-        return 0;
+        throw new NotImplementedException("getFoodLevel()");
     }
 
     public GameMode getGameMode() {
-        return BukkitUtils.getGameMode(entity.getMode());
+        return BukkitUtils.getGameMode(getEntity().getMode());
     }
 
     public double getHealthScale() {
-        return 0;
+        throw new NotImplementedException("getHealthScale()");
     }
 
     public PlayerInventory getInventory() {
-        return new CanaryPlayerInventory(entity.getInventory(), this);
+        return new CanaryPlayerInventory(getEntity().getInventory(), this);
     }
 
     public ItemStack getItemInHand() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getItemInHand()");
     }
 
     public ItemStack getItemOnCursor() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getItemOnCursor()");
     }
 
     public long getLastPlayed() {
-        return 0;
+        throw new NotImplementedException("getLastPlayed()");
     }
 
     public int getLevel() {
-        return entity.getLevel();
+        return getEntity().getLevel();
     }
 
     public Set<String> getListeningPluginChannels() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getListeningPluginChannels()");
     }
 
     public InventoryView getOpenInventory() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getOpenInventory()");
     }
 
     public Player getPlayer() {
@@ -204,43 +201,43 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     }
 
     public String getPlayerListName() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getPlayerListName()");
     }
 
     public long getPlayerTime() {
-        return 0;
+        throw new NotImplementedException("getPlayerTime()");
     }
 
     public long getPlayerTimeOffset() {
-        return 0;
+        throw new NotImplementedException("getPlayerTimeOffset()");
     }
 
     public WeatherType getPlayerWeather() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getPlayerWeather()");
     }
 
     public float getSaturation() {
-        return 0;
+        throw new NotImplementedException("getSaturation()");
     }
 
     public Scoreboard getScoreboard() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getScoreboard()");
     }
 
     public int getStatistic(Statistic statistic) throws IllegalArgumentException {
-        return 0;
+        throw new NotImplementedException("getStatistic(Statistic)");
     }
 
     public int getStatistic(Statistic statistic, EntityType entityType) throws IllegalArgumentException {
-        return 0;
+        throw new NotImplementedException("getStatistic(Statistic, EntityType)");
     }
 
     public int getStatistic(Statistic statistic, Material material) throws IllegalArgumentException {
-        return 0;
+        throw new NotImplementedException("getStatistic(Statistic, Material)");
     }
 
     public int getTotalExperience() {
-        return 0;
+        return getEntity().getExperience();
     }
 
     public EntityType getType() {
@@ -249,122 +246,122 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
 
     @Override
     public UUID getUniqueId() {
-        return entity.getUUID();
+        return getEntity().getUUID();
     }
 
     public float getWalkSpeed() {
-        return 0;
+        return getEntity().getCapabilities().getWalkSpeed();
     }
 
     public void giveExp(int amount) {
-        entity.addExperience(amount);
+        getEntity().addExperience(amount);
     }
 
     public void giveExpLevels(int amount) {
-        entity.addLevel(amount);
+        getEntity().addLevel(amount);
     }
 
     public boolean hasAchievement(Achievement achievement) {
-        return false;
+        throw new NotImplementedException("hasAchievement(Achievement achievement)");
     }
 
     public boolean hasPlayedBefore() {
-        return false;
+        throw new NotImplementedException("hasPlayedBefore()");
     }
 
     public void hidePlayer(Player player) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("hidePlayer(Player)");
     }
 
     public void incrementStatistic(Statistic statistic) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("incrementStatistic(Statistic)");
     }
 
     public void incrementStatistic(Statistic statistic, EntityType entityType)
             throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("incrementStatistic(Statistic, EntityType)");
     }
 
     public void incrementStatistic(Statistic statistic, EntityType entityType, int amount)
             throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("incrementStatistic(Statistic, EntityType, int)");
     }
 
     public void incrementStatistic(Statistic statistic, int amount) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("incrementStatistic(Statistic, int)");
     }
 
     public void incrementStatistic(Statistic statistic, Material material) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("incrementStatistic(Statistic, Material)");
     }
 
     public void incrementStatistic(Statistic statistic, Material material, int amount)
             throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("incrementStatistic(Statistic, Material, int)");
     }
 
     public boolean isBanned() {
-        return Canary.bans().isBanned(entity.getUUID().toString());
+        return Canary.bans().isBanned(getEntity().getUUID().toString());
     }
 
     public boolean isConversing() {
-        return false;
+        throw new NotImplementedException("isConversing()");
     }
 
     public boolean isFlying() {
-        return false;
+        return getEntity().getCapabilities().isFlying();
     }
 
     public boolean isHealthScaled() {
-        return false;
+        throw new NotImplementedException("isHealthScaled()");
     }
 
     public boolean isOnline() {
-        return entity.isOnline();
+        return getEntity().isOnline();
     }
 
     public boolean isPlayerTimeRelative() {
-        return false;
+        throw new NotImplementedException("isPlayerTimeRelative()");
     }
 
     public boolean isSleepingIgnored() {
-        return false;
+        throw new NotImplementedException("isSleepingIgnored()");
     }
 
     public boolean isSneaking() {
-        return entity.isSneaking();
+        return getEntity().isSneaking();
     }
 
     public boolean isSprinting() {
-        return entity.isSprinting();
+        return getEntity().isSprinting();
     }
 
     public boolean isWhitelisted() {
-        return Canary.whitelist().isWhitelisted(entity.getUUID().toString());
+        return Canary.whitelist().isWhitelisted(getEntity().getUUID().toString());
     }
 
     public void kickPlayer(String message) {
-        entity.kick(message);
+        getEntity().kick(message);
     }
 
     public void loadData() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("loadData()");
     }
 
     public InventoryView openEnchanting(Location location, boolean force) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("openEnchanting(Location, boolean)");
     }
 
     public InventoryView openInventory(Inventory inventory) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("openInventory(Inventory)");
     }
 
     public void openInventory(InventoryView inventory) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("openInventory(InventoryView)");
     }
 
     public InventoryView openWorkbench(Location location, boolean force) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("openWorkbench(Location, boolean)");
     }
 
     public boolean performCommand(String command) {
@@ -372,68 +369,68 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     }
 
     public void playEffect(Location loc, Effect effect, int data) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("playEffect(Location, Effect, int)");
     }
 
     public <T> void playEffect(Location loc, Effect effect, T data) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("playEffect(Location, Effect, T)");
     }
 
     public void playNote(Location loc, byte instrument, byte note) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("playNote(Location, byte, byte)");
     }
 
     public void playNote(Location loc, Instrument instrument, Note note) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("playNote(Location, Instrument, Note)");
     }
 
     public void playSound(Location location, Sound sound, float volume, float pitch) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("playSound(Location, Sound, float, float)");
     }
 
     public void playSound(Location location, String sound, float volume, float pitch) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("playSound(Location, String, float, float)");
     }
 
     public void removeAchievement(Achievement achievement) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("removeAchievement(Achievement)");
     }
 
     public void resetPlayerTime() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("resetPlayerTime()");
     }
 
     public void resetPlayerWeather() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("resetPlayerWeather()");
     }
 
     public void saveData() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("saveData()");
     }
 
     public void sendBlockChange(Location loc, int material, byte data) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("sendBlockChange(Location, int, byte)");
     }
 
     public void sendBlockChange(Location loc, Material material, byte data) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("sendBlockChange(Location, Material, byte)");
     }
 
     public boolean sendChunkChange(Location loc, int sx, int sy, int sz, byte[] data) {
-        return false;
+        throw new NotImplementedException("sendChunkChange(Location, int, int, int, byte[])");
     }
 
     public void sendMap(MapView map) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("sendMap(MapView)");
     }
 
     public void sendMessage(String message) {
-        entity.message(message);
+        getEntity().message(message);
     }
 
     public void sendMessage(String[] messages) {
         for (String msg : messages) {
-            entity.message(msg);
+            getEntity().message(msg);
         }
     }
 
@@ -442,144 +439,144 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     }
 
     public void sendRawMessage(String message) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("sendRawMessage(String)");
     }
 
     public void sendSignChange(Location loc, String[] lines) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("sendSignChange(Location, String[])");
     }
 
     public Map<String, Object> serialize() {
-        throw new NotImplementedException();
+        throw new NotImplementedException("serialize()");
     }
 
     public void setAllowFlight(boolean flight) {
-        throw new NotImplementedException();
+        getEntity().getCapabilities().setMayFly(flight);
     }
 
     public void setBanned(boolean banned) {
-        Canary.bans().issueBan(entity, "The Ban Hammer Has Spoken!");
+        Canary.bans().issueBan(getEntity(), "The Ban Hammer Has Spoken!");
     }
 
     public void setBedSpawnLocation(Location location) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setBedSpawnLocation(Location)");
     }
 
     public void setBedSpawnLocation(Location location, boolean force) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setBedSpawnLocation(Location, boolean)");
     }
 
     public void setCompassTarget(Location loc) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setCompassTarget(Location)");
     }
 
     public void setDisplayName(String name) {
-        entity.setDisplayName(name);
+        getEntity().setDisplayName(name);
     }
 
     public void setExhaustion(float value) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setExhaustion(float)");
     }
 
     public void setExp(float exp) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setExp(float)");
     }
 
     public void setFlying(boolean value) {
-        throw new NotImplementedException();
+        getEntity().getCapabilities().setFlying(value);
     }
 
     public void setFlySpeed(float value) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        getEntity().getCapabilities().setFlySpeed(value);
     }
 
     public void setFoodLevel(int value) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setFoodLevel(int)");
     }
 
     public void setGameMode(GameMode mode) {
-        entity.setMode(CanaryUtils.getGameMode(mode));
+        getEntity().setMode(CanaryUtils.getGameMode(mode));
     }
 
     public void setHealthScale(double scale) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setHealthScale(double)");
     }
 
     public void setHealthScaled(boolean scale) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setHealthScaled(boolean)");
     }
 
     public void setItemInHand(ItemStack item) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setItemInHand(ItemStack)");
     }
 
     public void setItemOnCursor(ItemStack item) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setItemOnCursor(ItemStack)");
     }
 
     public void setLevel(int level) {
-        entity.setLevel(level);
+        getEntity().setLevel(level);
     }
 
     public void setPlayerListName(String name) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setPlayerListName(String)");
     }
 
     public void setPlayerTime(long time, boolean relative) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setPlayerTime(long, boolean)");
     }
 
     public void setPlayerWeather(WeatherType type) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setPlayerWeather(WeatherType)");
     }
 
     public void setResourcePack(String url) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setResourcePack(String)");
     }
 
     public void setSaturation(float value) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setSaturation(float)");
     }
 
     public void setScoreboard(Scoreboard scoreboard) throws IllegalArgumentException, IllegalStateException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setScoreboard(Scoreboard)");
     }
 
     public void setSleepingIgnored(boolean isSleeping) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setSleepingIgnored(boolean)");
     }
 
     public void setSneaking(boolean sneak) {
-        entity.setSneaking(sneak);
+        getEntity().setSneaking(sneak);
     }
 
     public void setSprinting(boolean sprinting) {
-        entity.setSprinting(sprinting);
+        getEntity().setSprinting(sprinting);
     }
 
     public void setStatistic(Statistic statistic, EntityType entityType, int newValue) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setStatistic(Statistic, EntityType, int)");
     }
 
     public void setStatistic(Statistic statistic, int newValue) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setStatistic(Statistic, int)");
     }
 
     public void setStatistic(Statistic statistic, Material material, int newValue)
             throws IllegalArgumentException {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setStatistic(Statistic, Material, int)");
     }
 
     public void setTexturePack(String url) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setTexturePack(String)");
     }
 
     public void setTotalExperience(int exp) {
-        entity.setExperience(exp);
+        getEntity().setExperience(exp);
     }
 
     public void setWalkSpeed(float value) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        getEntity().getCapabilities().setWalkSpeed(value);
     }
 
     public void setWhitelisted(boolean value) {
@@ -587,22 +584,27 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     }
 
     public void showPlayer(Player player) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("showPlayer(Player)");
     }
 
     public void updateInventory() {
-        entity.getInventory().update();
+        getEntity().getInventory().update();
     }
 
     public boolean isOp() {
-        return Canary.ops().isOpped(entity.getUUIDString());
+        return Canary.ops().isOpped(getEntity().getUUIDString());
     }
 
     public void setOp(boolean value) {
-        Canary.ops().addPlayer(entity.getUUIDString());
+        Canary.ops().addPlayer(getEntity().getUUIDString());
     }
 
     public boolean isSleeping() {
-        return entity.isSleeping();
+        return getEntity().isSleeping();
     }
+
+    protected net.canarymod.api.entity.living.humanoid.Player getEntity() {
+        return (net.canarymod.api.entity.living.humanoid.Player) super.getEntity();
+    }
+
 }

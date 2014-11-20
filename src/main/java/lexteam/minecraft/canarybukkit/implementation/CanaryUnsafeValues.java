@@ -17,38 +17,39 @@
  */
 package lexteam.minecraft.canarybukkit.implementation;
 
-import java.util.List;
-
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Achievement;
 import org.bukkit.Material;
 import org.bukkit.Statistic;
 import org.bukkit.UnsafeValues;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.List;
+
 @SuppressWarnings("deprecation")
 public class CanaryUnsafeValues implements UnsafeValues {
+
     public Achievement getAchievementFromInternalName(String name) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getAchievementFromInternalName(String)");
     }
 
     public Material getMaterialFromInternalName(String name) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getMaterialFromInternalName(String)");
     }
 
     public Statistic getStatisticFromInternalName(String name) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("getStatisticFromInternalName(String)");
     }
 
     public ItemStack modifyItemStack(ItemStack stack, String arguments) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("modifyItemStack(ItemStack, String)");
     }
 
     public List<String> tabCompleteInternalMaterialName(String token, List<String> completions) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("tabCompleteInternalMaterialName(String, List<String>)");
     }
 
     public List<String> tabCompleteInternalStatisticOrAchievementName(String token, List<String> completions) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("tabCompleteInternalStatisticOrAchievementName(String, List<String>)");
     }
 }

@@ -17,7 +17,8 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
-import org.apache.commons.lang.NotImplementedException;
+import lexteam.minecraft.canarybukkit.BukkitUtils;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.LivingEntity;
 
@@ -27,10 +28,11 @@ public abstract class CanaryCreature extends CanaryLivingEntity implements Creat
     }
 
     public LivingEntity getTarget() {
-        throw new NotImplementedException();
+        return (LivingEntity) BukkitUtils.getEntity(getEntity().getRevengeTarget());
     }
 
     public void setTarget(LivingEntity target) {
-        throw new NotImplementedException();
+        throw new NotImplementedException("setTarget(LivingEntity)");
     }
+
 }
