@@ -5,7 +5,7 @@ CanaryBukkit
 CanaryBukkit allows plugins created for the Bukkit API platform to be used on a CanaryLib implementation.
 
 ### License
-I have chosen the MIT license for this project.
+CanaryBukkit is using the GNU General Public License Version 3.
 
 ### Links
 [CanaryLib](https://github.com/CanaryModTeam/CanaryLib)

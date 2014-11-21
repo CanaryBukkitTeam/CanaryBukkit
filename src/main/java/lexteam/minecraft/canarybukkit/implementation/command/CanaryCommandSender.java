@@ -83,7 +83,7 @@ public class CanaryCommandSender implements CommandSender {
     }
 
     public boolean isPermissionSet(String name) {
-        return true;
+        return caller.hasPermission(name);
     }
 
     public boolean isPlayer() {

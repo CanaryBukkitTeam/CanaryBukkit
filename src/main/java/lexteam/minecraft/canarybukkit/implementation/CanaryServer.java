@@ -181,7 +181,7 @@ public class CanaryServer implements Server {
         }
 
         for (Plugin plugin : pluginManager.getPlugins()) {
-            if ((!plugin.isEnabled()) && (plugin.getDescription().getLoad() == type)) {
+            if (!plugin.isEnabled() && plugin.getDescription().getLoad() == type) {
                 loadPlugin(plugin);
             }
         }
@@ -216,7 +216,7 @@ public class CanaryServer implements Server {
     }
 
     public BanList getBanList(BanList.Type type) {
-        throw new NotImplementedException("getBanList(BanList.Type)");
+        return new CanaryBanList(Canary.bans(), type);
     }
 
     public Set<OfflinePlayer> getBannedPlayers() {
@@ -361,6 +361,8 @@ public class CanaryServer implements Server {
     }
 
     public Player getPlayer(UUID id) {
+        Validate.notNull(id, "UUID cannot be null");
+        
         for (Player player : getOnlinePlayers()) {
             if (player.getUniqueId().equals(id)) {
                 return player;
