@@ -17,12 +17,20 @@
  */
 package lexteam.minecraft.canarybukkit.implementation;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+
 import lexteam.minecraft.canarybukkit.BukkitUtils;
 import lexteam.minecraft.canarybukkit.CanaryUtils;
 import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 import net.canarymod.config.Configuration;
 import net.canarymod.config.WorldConfiguration;
+
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.BlockChangeDelegate;
 import org.bukkit.Bukkit;
@@ -55,13 +63,6 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-
 public class CanaryWorld implements World {
 
     private net.canarymod.api.world.World world;
@@ -85,7 +86,8 @@ public class CanaryWorld implements World {
         throw new NotImplementedException("createExplosion(double, double, double, float, boolean)");
     }
 
-    public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks) {
+    public boolean createExplosion(double x, double y, double z, float power, boolean setFire,
+            boolean breakBlocks) {
         throw new NotImplementedException("createExplosion(double, double, double, float, boolean, boolean)");
     }
 
@@ -166,7 +168,8 @@ public class CanaryWorld implements World {
         return BukkitUtils.getDifficulty(getWorldConfiguration().getDifficulty());
     }
 
-    public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome, boolean includeBiomeTempRain) {
+    public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome,
+            boolean includeBiomeTempRain) {
         throw new NotImplementedException("getEmptyChunkSnapshot(int, int, boolean, boolean)");
     }
 
@@ -529,11 +532,13 @@ public class CanaryWorld implements World {
         throw new NotImplementedException("spawnEntity(Location, EntityType)");
     }
 
-    public FallingBlock spawnFallingBlock(Location location, int blockId, byte blockData) throws IllegalArgumentException {
+    public FallingBlock spawnFallingBlock(Location location, int blockId, byte blockData)
+            throws IllegalArgumentException {
         throw new NotImplementedException("spawnFallingBlock(Location, int, byte)");
     }
 
-    public FallingBlock spawnFallingBlock(Location location, Material material, byte data) throws IllegalArgumentException {
+    public FallingBlock spawnFallingBlock(Location location, Material material, byte data)
+            throws IllegalArgumentException {
         throw new NotImplementedException("spawnFallingBlock(Location, Material, byte)");
     }
 
@@ -580,5 +585,4 @@ public class CanaryWorld implements World {
     protected Server getServer() {
         return server;
     }
-
 }

@@ -24,7 +24,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 public class CanaryPlayerInventory extends CanaryInventory implements PlayerInventory {
-
     private Player owner;
 
     public CanaryPlayerInventory(net.canarymod.api.inventory.PlayerInventory inv, Player owner) {
@@ -101,5 +100,4 @@ public class CanaryPlayerInventory extends CanaryInventory implements PlayerInve
     protected net.canarymod.api.inventory.PlayerInventory getInventory() {
         return (net.canarymod.api.inventory.PlayerInventory) super.getInventory();
     }
-
 }

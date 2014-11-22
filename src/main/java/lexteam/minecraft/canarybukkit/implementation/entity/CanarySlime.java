@@ -40,5 +40,4 @@ public class CanarySlime extends CanaryLivingEntity implements Slime {
     protected net.canarymod.api.entity.living.monster.Slime getEntity() {
         return (net.canarymod.api.entity.living.monster.Slime) super.getEntity();
     }
-
 }

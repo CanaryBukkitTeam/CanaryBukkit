@@ -21,7 +21,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Snowball;
 
 public class CanarySnowball extends CanaryAbstractProjectile implements Snowball {
-
     public CanarySnowball(net.canarymod.api.entity.throwable.Snowball entity) {
         super(entity);
     }
@@ -33,5 +32,4 @@ public class CanarySnowball extends CanaryAbstractProjectile implements Snowball
     protected net.canarymod.api.entity.throwable.Snowball getEnity() {
         return (net.canarymod.api.entity.throwable.Snowball) super.getEntity();
     }
-
 }

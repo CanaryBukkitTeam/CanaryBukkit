@@ -17,11 +17,17 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
+import java.net.InetSocketAddress;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+
 import lexteam.minecraft.canarybukkit.BukkitUtils;
 import lexteam.minecraft.canarybukkit.CanaryUtils;
 import lexteam.minecraft.canarybukkit.implementation.inventory.CanaryInventory;
 import lexteam.minecraft.canarybukkit.implementation.inventory.CanaryPlayerInventory;
 import net.canarymod.Canary;
+
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Achievement;
 import org.bukkit.Bukkit;
@@ -46,13 +52,7 @@ import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.Scoreboard;
 
-import java.net.InetSocketAddress;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-
 public class CanaryPlayer extends CanaryHumanEntity implements Player {
-
     public CanaryPlayer(net.canarymod.api.entity.living.humanoid.Player entity) {
         super(entity);
     }
@@ -606,5 +606,4 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     protected net.canarymod.api.entity.living.humanoid.Player getEntity() {
         return (net.canarymod.api.entity.living.humanoid.Player) super.getEntity();
     }
-
 }

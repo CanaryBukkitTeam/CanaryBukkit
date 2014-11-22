@@ -26,7 +26,7 @@ public class Constants {
     public static final File canaryDir = Canary.getWorkingDirectory();
     public static final File worldsDir = new File(canaryDir, "worlds");
     // Bukkit
-    public static final String bukkitVersion = "1.7.9-R0.2";
+    public static final String bukkitVersion = "1.7.10-C0.1-SNAPSHOT";
     // CanaryBukkit
     public static final File bukkitDir = new File(canaryDir, "bukkit");
     public static final File pluginsDir = new File(bukkitDir, "plugins");

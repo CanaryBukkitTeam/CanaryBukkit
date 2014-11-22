@@ -40,7 +40,7 @@ public abstract class CanaryAbstractProjectile extends CanaryEntity implements P
 
     public LivingEntity _INVALID_getShooter() {
         throw new NotImplementedException("_INVALID_getShooter()");
-        // return (LivingEntity) BukkitUtils.getEntity(getEnity().getThrower());
+        // return (LivingEntity) BukkitUtils.getEntity(getEntity().getThrower());
     }
 
     public void _INVALID_setShooter(LivingEntity shooter) {
@@ -55,8 +55,7 @@ public abstract class CanaryAbstractProjectile extends CanaryEntity implements P
         throw new NotImplementedException("setShooter(ProjectileSource)");
     }
 
-    protected net.canarymod.api.entity.Projectile getEnity() {
+    protected net.canarymod.api.entity.Projectile getEntity() {
         return (net.canarymod.api.entity.Projectile) super.getEntity();
     }
-
 }

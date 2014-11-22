@@ -17,7 +17,10 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
+import java.util.Set;
+
 import net.canarymod.api.entity.living.humanoid.Human;
+
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.InventoryView;
@@ -26,10 +29,7 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
-import java.util.Set;
-
 public abstract class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity {
-
     public CanaryHumanEntity(Human entity) {
         super(entity);
     }
@@ -101,5 +101,4 @@ public abstract class CanaryHumanEntity extends CanaryLivingEntity implements Hu
     protected Human getEntity() {
         return (Human) super.getEntity();
     }
-
 }

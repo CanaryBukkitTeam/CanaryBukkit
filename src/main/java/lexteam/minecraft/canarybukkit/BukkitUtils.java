@@ -262,12 +262,14 @@ public class BukkitUtils {
         return null;
     }
 
-    public static PotionEffectType getPotionEffectType(net.canarymod.api.potion.PotionEffectType potionEffectType) {
+    public static PotionEffectType getPotionEffectType(
+            net.canarymod.api.potion.PotionEffectType potionEffectType) {
         return PotionEffectType.getByName(potionEffectType.name());
     }
 
     public static PotionEffect getPotionEffect(net.canarymod.api.potion.PotionEffect potionEffect) {
-        return new PotionEffect(getPotionEffectType(CanaryUtils.getPotionEffectType(potionEffect.getPotionID())), potionEffect.getDuration(), potionEffect.getAmplifier(), potionEffect.isAmbient());
+        return new PotionEffect(getPotionEffectType(CanaryUtils.getPotionEffectType(potionEffect
+                .getPotionID())), potionEffect.getDuration(), potionEffect.getAmplifier(),
+                potionEffect.isAmbient());
     }
-
 }

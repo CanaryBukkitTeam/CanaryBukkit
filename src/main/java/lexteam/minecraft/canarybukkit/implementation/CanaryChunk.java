@@ -17,7 +17,11 @@
  */
 package lexteam.minecraft.canarybukkit.implementation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import lexteam.minecraft.canarybukkit.BukkitUtils;
+
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;
@@ -26,11 +30,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CanaryChunk implements Chunk {
-
     private net.canarymod.api.world.Chunk chunk;
     private CanaryWorld world;
 
@@ -108,5 +108,4 @@ public class CanaryChunk implements Chunk {
     protected net.canarymod.api.world.Chunk getChunk() {
         return chunk;
     }
-
 }

@@ -24,7 +24,6 @@ import org.bukkit.entity.Horse;
 import org.bukkit.inventory.HorseInventory;
 
 public class CanaryHorse extends CanaryAnimals implements Horse {
-
     public CanaryHorse(net.canarymod.api.entity.living.animal.Horse entity) {
         super(entity);
     }
@@ -112,5 +111,4 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
     protected net.canarymod.api.entity.living.animal.Horse getEntity() {
         return (net.canarymod.api.entity.living.animal.Horse) super.getEntity();
     }
-
 }

@@ -18,11 +18,11 @@
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
 import net.canarymod.api.entity.throwable.ChickenEgg;
+
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.EntityType;
 
 public class CanaryEgg extends CanaryAbstractProjectile implements Egg {
-
     public CanaryEgg(ChickenEgg entity) {
         super(entity);
     }
@@ -30,5 +30,4 @@ public class CanaryEgg extends CanaryAbstractProjectile implements Egg {
     public EntityType getType() {
         return EntityType.EGG;
     }
-
 }

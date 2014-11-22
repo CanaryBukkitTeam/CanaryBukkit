@@ -15,16 +15,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package lexteam.minecraft.canarybukkit.implementation.entity;
+package lexteam.minecraft.canarybukkit.implementation.scheduler;
 
-import org.bukkit.entity.Vehicle;
+import net.canarymod.tasks.ServerTask;
+import net.canarymod.tasks.TaskOwner;
 
-public abstract class CanaryVehicle extends CanaryEntity implements Vehicle {
-    public CanaryVehicle(net.canarymod.api.entity.vehicle.Vehicle entity) {
-        super(entity);
+public class BukkitServerTask extends ServerTask {
+    private CanaryTask task;
+
+    public BukkitServerTask(CanaryTask task) {
+        super((TaskOwner)task.getOwner(), task.getPeriod(), true);
+        this.task = task;
     }
 
-    protected net.canarymod.api.entity.vehicle.Vehicle getEntity() {
-        return (net.canarymod.api.entity.vehicle.Vehicle) super.getEntity();
+    @Override
+    public void run() {
+        task.run();
     }
 }

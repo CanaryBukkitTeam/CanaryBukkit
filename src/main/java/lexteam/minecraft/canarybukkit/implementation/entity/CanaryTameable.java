@@ -23,7 +23,6 @@ import org.bukkit.entity.Creature;
 import org.bukkit.entity.Tameable;
 
 public abstract class CanaryTameable extends CanaryAnimals implements Tameable, Creature {
-
     public CanaryTameable(net.canarymod.api.entity.living.animal.Tameable entity) {
         super(entity);
     }
@@ -47,5 +46,4 @@ public abstract class CanaryTameable extends CanaryAnimals implements Tameable, 
     protected net.canarymod.api.entity.living.animal.Tameable getEntity() {
         return (net.canarymod.api.entity.living.animal.Tameable) super.getEntity();
     }
-
 }

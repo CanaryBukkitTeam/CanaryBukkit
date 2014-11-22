@@ -17,10 +17,14 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.block;
 
+import java.util.Collection;
+import java.util.List;
+
 import lexteam.minecraft.canarybukkit.CanaryUtils;
 import lexteam.minecraft.canarybukkit.implementation.CanaryChunk;
 import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
 import net.canarymod.api.world.BiomeType;
+
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -34,9 +38,6 @@ import org.bukkit.block.PistonMoveReaction;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
-
-import java.util.Collection;
-import java.util.List;
 
 public class CanaryBlock implements Block {
     private net.canarymod.api.world.blocks.Block block;
@@ -54,7 +55,8 @@ public class CanaryBlock implements Block {
     }
 
     public Biome getBiome() {
-        return Biome.valueOf(getCanaryWorld().getBiome(getCanaryBlock().getX(), getCanaryBlock().getZ()).getBiomeType().name());
+        return Biome.valueOf(getCanaryWorld().getBiome(getCanaryBlock().getX(), getCanaryBlock().getZ())
+                .getBiomeType().name());
         // TODO: Check if that works
     }
 
@@ -256,7 +258,7 @@ public class CanaryBlock implements Block {
     }
 
     public boolean equals(Object object) {
-        return ((object instanceof CanaryBlock || object instanceof net.canarymod.api.world.blocks.Block) && object.equals(getCanaryBlock()));
+        return ((object instanceof CanaryBlock || object instanceof net.canarymod.api.world.blocks.Block) && object
+                .equals(getCanaryBlock()));
     }
-
 }

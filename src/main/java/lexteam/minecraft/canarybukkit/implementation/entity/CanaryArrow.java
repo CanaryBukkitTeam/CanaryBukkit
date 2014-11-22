@@ -21,7 +21,6 @@ import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 
 public class CanaryArrow extends CanaryAbstractProjectile implements Arrow {
-
     public CanaryArrow(net.canarymod.api.entity.Arrow arrow) {
         super(arrow);
     }
@@ -49,5 +48,4 @@ public class CanaryArrow extends CanaryAbstractProjectile implements Arrow {
     protected net.canarymod.api.entity.Arrow getEnity() {
         return (net.canarymod.api.entity.Arrow) super.getEntity();
     }
-
 }

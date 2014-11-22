@@ -17,6 +17,10 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.inventory;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.ListIterator;
+
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
@@ -25,12 +29,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.ListIterator;
-
 public class CanaryInventory implements Inventory {
-
     private net.canarymod.api.inventory.Inventory inv;
 
     public CanaryInventory(net.canarymod.api.inventory.Inventory inv) {
@@ -180,5 +179,4 @@ public class CanaryInventory implements Inventory {
     protected net.canarymod.api.inventory.Inventory getInventory() {
         return inv;
     }
-
 }

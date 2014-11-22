@@ -17,12 +17,27 @@
  */
 package lexteam.minecraft.canarybukkit.implementation;
 
-import com.avaje.ebean.config.ServerConfig;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import java.util.logging.Logger;
+
 import lexteam.minecraft.canarybukkit.data.Constants;
+import lexteam.minecraft.canarybukkit.implementation.scheduler.CanaryScheduler;
 import lexteam.minecraft.canarybukkit.implementation.util.CanaryCachedServerIcon;
 import net.canarymod.Canary;
 import net.canarymod.config.Configuration;
 import net.canarymod.logger.Logman;
+
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.Validate;
 import org.bukkit.BanList;
@@ -64,19 +79,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
 import org.bukkit.util.permissions.DefaultPermissions;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.logging.Logger;
+import com.avaje.ebean.config.ServerConfig;
 
 public class CanaryServer implements Server {
     private net.canarymod.api.Server server;
@@ -85,6 +88,7 @@ public class CanaryServer implements Server {
     private PluginManager pluginManager = new SimplePluginManager(this, commandMap);
     private final StandardMessenger messenger = new StandardMessenger();
     private final ServicesManager servicesManager = new SimpleServicesManager();
+    private final BukkitScheduler scheduler = new CanaryScheduler();
     private Logman logman;
     private YamlConfiguration config;
 
@@ -316,7 +320,8 @@ public class CanaryServer implements Server {
     }
 
     public String getName() {
-        return getImplementationName() + "_" + Canary.getSpecificationTitle() + "_" + Canary.getImplementationTitle();
+        return getImplementationName() + "_" + Canary.getSpecificationTitle() + "_"
+                + Canary.getImplementationTitle();
     }
 
     public OfflinePlayer getOfflinePlayer(String name) {
@@ -362,7 +367,7 @@ public class CanaryServer implements Server {
 
     public Player getPlayer(UUID id) {
         Validate.notNull(id, "UUID cannot be null");
-        
+
         for (Player player : getOnlinePlayers()) {
             if (player.getUniqueId().equals(id)) {
                 return player;
@@ -406,7 +411,7 @@ public class CanaryServer implements Server {
     }
 
     public BukkitScheduler getScheduler() {
-        throw new NotImplementedException("getScheduler()");
+        return scheduler;
     }
 
     public ScoreboardManager getScoreboardManager() {

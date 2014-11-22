@@ -17,15 +17,16 @@
  */
 package lexteam.minecraft.canarybukkit.implementation;
 
+import java.util.Map;
+import java.util.UUID;
+
 import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 import net.canarymod.Canary;
+
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
-
-import java.util.Map;
-import java.util.UUID;
 
 public class CanaryOfflinePlayer implements OfflinePlayer {
     private net.canarymod.api.OfflinePlayer offlinePlayer;

@@ -24,7 +24,6 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.TNTPrimed;
 
 public class CanaryTNTPrimed extends CanaryEntity implements TNTPrimed {
-
     public CanaryTNTPrimed(net.canarymod.api.entity.TNTPrimed entity) {
         super(entity);
     }
@@ -64,5 +63,4 @@ public class CanaryTNTPrimed extends CanaryEntity implements TNTPrimed {
     protected net.canarymod.api.entity.TNTPrimed getEntity() {
         return (net.canarymod.api.entity.TNTPrimed) super.getEntity();
     }
-
 }

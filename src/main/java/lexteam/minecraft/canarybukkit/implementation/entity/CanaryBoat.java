@@ -22,7 +22,6 @@ import org.bukkit.entity.Boat;
 import org.bukkit.entity.EntityType;
 
 public class CanaryBoat extends CanaryVehicle implements Boat {
-
     public CanaryBoat(net.canarymod.api.entity.vehicle.Boat entity) {
         super(entity);
     }
@@ -66,5 +65,4 @@ public class CanaryBoat extends CanaryVehicle implements Boat {
     protected net.canarymod.api.entity.vehicle.Boat getEntity() {
         return (net.canarymod.api.entity.vehicle.Boat) super.getEntity();
     }
-
 }

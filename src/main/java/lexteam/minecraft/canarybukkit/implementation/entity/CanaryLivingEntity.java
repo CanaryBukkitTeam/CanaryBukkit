@@ -17,10 +17,16 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.entity;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+
 import lexteam.minecraft.canarybukkit.BukkitUtils;
 import lexteam.minecraft.canarybukkit.CanaryUtils;
 import net.canarymod.api.DamageType;
 import net.canarymod.api.entity.living.LivingBase;
+
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -36,13 +42,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-
 public abstract class CanaryLivingEntity extends CanaryEntity implements LivingEntity {
-
     public CanaryLivingEntity(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);
     }
@@ -145,8 +145,7 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
         LivingBase temp = getEntity().getLastAssailant();
         if (temp != null && temp.isPlayer()) {
             return (new CanaryPlayer((net.canarymod.api.entity.living.humanoid.Player) temp));
-        }
-        else {
+        } else {
             return null;
         }
     }
@@ -292,5 +291,4 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     protected LivingBase getEntity() {
         return (LivingBase) super.getEntity();
     }
-
 }

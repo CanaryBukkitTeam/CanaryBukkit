@@ -17,10 +17,11 @@
  */
 package lexteam.minecraft.canarybukkit.implementation;
 
-import net.canarymod.bansystem.Ban;
-import org.bukkit.BanEntry;
-
 import java.util.Date;
+
+import net.canarymod.bansystem.Ban;
+
+import org.bukkit.BanEntry;
 
 public class CanaryBanEntry implements BanEntry {
     private Ban ban;
