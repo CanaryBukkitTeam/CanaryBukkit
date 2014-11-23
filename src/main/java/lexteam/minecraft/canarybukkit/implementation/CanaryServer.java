@@ -32,6 +32,7 @@ import java.util.UUID;
 import java.util.logging.Logger;
 
 import lexteam.minecraft.canarybukkit.data.Constants;
+import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
 import lexteam.minecraft.canarybukkit.implementation.scheduler.CanaryScheduler;
 import lexteam.minecraft.canarybukkit.implementation.util.CanaryCachedServerIcon;
 import net.canarymod.Canary;
@@ -91,6 +92,10 @@ public class CanaryServer implements Server {
     private final BukkitScheduler scheduler = new CanaryScheduler();
     private Logman logman;
     private YamlConfiguration config;
+    /**
+     * An empty player array used for deprecated getOnlinePlayers.
+     */
+    private final Player[] EMPTY_PLAYER_ARRAY = new Player[0];
 
     public CanaryServer(net.canarymod.api.Server server, Logman logman, String canaryBukkitVersion) {
         this.server = server;
@@ -232,7 +237,7 @@ public class CanaryServer implements Server {
     }
 
     public Player[] _INVALID_getOnlinePlayers() {
-        throw new NotImplementedException("_INVALID_getOnlinePlayers()");
+        return getOnlinePlayers().toArray(EMPTY_PLAYER_ARRAY);
     }
 
     public Map<String, String[]> getCommandAliases() {
@@ -341,7 +346,11 @@ public class CanaryServer implements Server {
     }
 
     public Collection<? extends Player> getOnlinePlayers() {
-        throw new NotImplementedException("getOnlinePlayers()");
+        ArrayList<Player> players = new ArrayList<Player>();
+        for (net.canarymod.api.entity.living.humanoid.Player player : server.getPlayerList()) {
+            players.add(new CanaryPlayer(player));
+        }
+        return players;
     }
 
     public Set<OfflinePlayer> getOperators() {
@@ -464,7 +473,8 @@ public class CanaryServer implements Server {
     }
 
     public String getVersion() {
-        return Canary.getImplementationVersion();
+        return "canarybukkit_" + Canary.getImplementationVersion() + " (MC: " + server.getServerVersion()
+                + ")";
     }
 
     public int getViewDistance() {

@@ -35,6 +35,13 @@
             <url>http://repo.larry1123.net/content/groups/public/</url>
         </repository>
     </repositories>
+    
+    <pluginRepositories>
+        <pluginRepository>
+        	<id>bukkit</id>
+        	<url>http://repo.bukkit.org/content/groups/public</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencies>
         <dependency>
@@ -114,6 +121,24 @@
                     <shadedArtifactId>${project.name}</shadedArtifactId>
                 </configuration>
             </plugin>
+            <plugin>
+				<groupId>com.wolvereness</groupId>
+				<artifactId>overmapped</artifactId>
+				<version>0.0.2</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>map</goal>
+						</goals>
+						<configuration>
+							<maps>${basedir}/maps.yml</maps>
+							<input>${basedir}/target/${project.name}-${project.version}-shaded.jar</input>
+							<original>${basedir}/target/unmapped-${project.name}-${project.version}.jar</original>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
         </plugins>
     </build>
 

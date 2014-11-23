@@ -17,15 +17,15 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.scheduler;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import net.canarymod.tasks.ServerTask;
 import net.canarymod.tasks.ServerTaskManager;
-import net.canarymod.tasks.TaskOwner;
-
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -35,7 +35,7 @@ import org.bukkit.scheduler.BukkitWorker;
 public class CanaryScheduler implements BukkitScheduler {
     private final AtomicInteger ids = new AtomicInteger(1);
     private final ConcurrentHashMap<Integer, CanaryTask> tasks = new ConcurrentHashMap<Integer, CanaryTask>();
-    
+
     public int scheduleSyncDelayedTask(Plugin plugin, Runnable task, long delay) {
         return 0;
     }
@@ -45,7 +45,7 @@ public class CanaryScheduler implements BukkitScheduler {
     }
 
     public int scheduleSyncDelayedTask(Plugin plugin, Runnable task) {
-        return 0;
+        return this.scheduleSyncDelayedTask(plugin, task, 0l);
     }
 
     public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task) {
@@ -53,7 +53,7 @@ public class CanaryScheduler implements BukkitScheduler {
     }
 
     public int scheduleSyncRepeatingTask(Plugin plugin, Runnable task, long delay, long period) {
-        return 0;
+        return scheduleTask(plugin, task, delay, period, false);
     }
 
     public int scheduleSyncRepeatingTask(Plugin plugin, BukkitRunnable task, long delay, long period) {
@@ -61,7 +61,7 @@ public class CanaryScheduler implements BukkitScheduler {
     }
 
     public int scheduleAsyncDelayedTask(Plugin plugin, Runnable task, long delay) {
-        return 0;
+        return this.scheduleAsyncRepeatingTask(plugin, task, delay, -1l);
     }
 
     public int scheduleAsyncDelayedTask(Plugin plugin, Runnable task) {
@@ -69,7 +69,7 @@ public class CanaryScheduler implements BukkitScheduler {
     }
 
     public int scheduleAsyncRepeatingTask(Plugin plugin, Runnable task, long delay, long period) {
-        return 0;
+        return scheduleTask(plugin, task, delay, period, true);
     }
 
     public <T> Future<T> callSyncMethod(Plugin plugin, Callable<T> task) {
@@ -82,11 +82,18 @@ public class CanaryScheduler implements BukkitScheduler {
     }
 
     public void cancelTasks(Plugin plugin) {
-        ServerTaskManager.removeTasks((TaskOwner) plugin);
+        ServerTaskManager.removeTasks(new BukkitTaskOwner(plugin));
     }
 
     public void cancelAllTasks() {
-        
+        Iterator<CanaryTask> it = tasks.values().iterator();
+        while (it.hasNext()) {
+            CanaryTask task = it.next();
+            task.cancel();
+            if (task.isSync()) {
+                it.remove();
+            }
+        }
     }
 
     public boolean isCurrentlyRunning(int taskId) {
@@ -105,62 +112,74 @@ public class CanaryScheduler implements BukkitScheduler {
         return null;
     }
 
-    public BukkitTask runTask(Plugin plugin, Runnable task) throws IllegalArgumentException {
+    public BukkitTask runTask(Plugin plugin, Runnable task) {
         return null;
     }
 
-    public BukkitTask runTask(Plugin plugin, BukkitRunnable task) throws IllegalArgumentException {
+    public BukkitTask runTask(Plugin plugin, BukkitRunnable task) {
         return null;
     }
 
-    public BukkitTask runTaskAsynchronously(Plugin plugin, Runnable task) throws IllegalArgumentException {
+    public BukkitTask runTaskAsynchronously(Plugin plugin, Runnable task) {
         return null;
     }
 
-    public BukkitTask runTaskAsynchronously(Plugin plugin, BukkitRunnable task)
-            throws IllegalArgumentException {
+    public BukkitTask runTaskAsynchronously(Plugin plugin, BukkitRunnable task) {
         return null;
     }
 
-    public BukkitTask runTaskLater(Plugin plugin, Runnable task, long delay) throws IllegalArgumentException {
+    public BukkitTask runTaskLater(Plugin plugin, Runnable task, long delay) {
         return null;
     }
 
-    public BukkitTask runTaskLater(Plugin plugin, BukkitRunnable task, long delay)
-            throws IllegalArgumentException {
+    public BukkitTask runTaskLater(Plugin plugin, BukkitRunnable task, long delay) {
         return null;
     }
 
-    public BukkitTask runTaskLaterAsynchronously(Plugin plugin, Runnable task, long delay)
-            throws IllegalArgumentException {
+    public BukkitTask runTaskLaterAsynchronously(Plugin plugin, Runnable task, long delay) {
         return null;
     }
 
-    public BukkitTask runTaskLaterAsynchronously(Plugin plugin, BukkitRunnable task, long delay)
-            throws IllegalArgumentException {
+    public BukkitTask runTaskLaterAsynchronously(Plugin plugin, BukkitRunnable task, long delay) {
         return null;
     }
 
-    public BukkitTask runTaskTimer(Plugin plugin, Runnable task, long delay, long period)
-            throws IllegalArgumentException {
+    public BukkitTask runTaskTimer(Plugin plugin, Runnable task, long delay, long period) {
+        return makeTask(plugin, task, delay, period, false);
+    }
+
+    public BukkitTask runTaskTimer(Plugin plugin, BukkitRunnable task, long delay, long period) {
         return null;
     }
 
-    public BukkitTask runTaskTimer(Plugin plugin, BukkitRunnable task, long delay, long period)
-            throws IllegalArgumentException {
+    public BukkitTask runTaskTimerAsynchronously(Plugin plugin, Runnable task, long delay, long period) {
+        return makeTask(plugin, task, delay, period, true);
+    }
+
+    public BukkitTask runTaskTimerAsynchronously(Plugin plugin, BukkitRunnable task, long delay, long period) {
         return null;
     }
 
-    public BukkitTask runTaskTimerAsynchronously(Plugin plugin, Runnable task, long delay, long period)
-            throws IllegalArgumentException {
-        return null;
+    public int scheduleTask(Plugin plugin, Runnable task, long delay, long period, boolean isAsync) {
+        return makeTask(plugin, task, delay, period, isAsync).getTaskId();
     }
 
-    public BukkitTask runTaskTimerAsynchronously(Plugin plugin, BukkitRunnable task, long delay, long period)
-            throws IllegalArgumentException {
-        return null;
+    public BukkitTask makeTask(Plugin plugin, Runnable task, long delay, long period, boolean isAsync) {
+        if (delay < 0l) {
+            delay = 0;
+        }
+        if (period == 0l) {
+            period = 1l;
+        } else if (period < -1l) {
+            period = -1l;
+        }
+        CanaryTask btask = new CanaryTask(plugin, task, nextId(), delay, period, isAsync);
+        ServerTask ctask = btask.getServerTask();
+        tasks.put(btask.getTaskId(), btask);
+        ServerTaskManager.addTask(ctask);
+        return btask;
     }
-    
+
     private int nextId() {
         return ids.incrementAndGet();
     }

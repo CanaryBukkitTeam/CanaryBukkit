@@ -17,18 +17,11 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.scheduler;
 
-import net.canarymod.tasks.ServerTask;
+import org.bukkit.plugin.Plugin;
 
-public class BukkitServerTask extends ServerTask {
-    private CanaryTask task;
+import net.canarymod.tasks.TaskOwner;
 
-    public BukkitServerTask(CanaryTask task) {
-        super(new BukkitTaskOwner(task.getOwner()), task.getDelay(), task.getRepeat());
-        this.task = task;
-    }
-
-    @Override
-    public void run() {
-        task.run();
+public class BukkitTaskOwner implements TaskOwner {
+    public BukkitTaskOwner(Plugin plugin) {
     }
 }
