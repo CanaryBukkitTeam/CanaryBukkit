@@ -160,7 +160,7 @@ public class BukkitUtils {
         }
     }
 
-    public static Environment getEnviroment(net.canarymod.api.world.DimensionType type) {
+    public static Environment getEnvironment(net.canarymod.api.world.DimensionType type) {
         Validate.notNull(type);
         if (type == net.canarymod.api.world.DimensionType.NORMAL) {
             return Environment.NORMAL;

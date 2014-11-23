@@ -194,7 +194,7 @@ public class CanaryWorld implements World {
     }
 
     public Environment getEnvironment() {
-        return BukkitUtils.getEnviroment(getWorld().getType());
+        return BukkitUtils.getEnvironment(getWorld().getType());
     }
 
     public long getFullTime() {

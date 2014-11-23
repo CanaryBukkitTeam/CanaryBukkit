@@ -151,7 +151,7 @@ public class CanaryUtils {
         }
     }
 
-    public static DimensionType getEnviroment(org.bukkit.World.Environment type) {
+    public static DimensionType getDimensionType(org.bukkit.World.Environment type) {
         Validate.notNull(type);
         switch (type) {
             case NETHER:
