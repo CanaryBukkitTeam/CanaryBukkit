@@ -20,12 +20,12 @@ package lexteam.minecraft.canarybukkit.events;
 import java.util.HashSet;
 import java.util.Set;
 
-import lexteam.minecraft.canarybukkit.implementation.CanaryLocation;
-import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
-import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
-import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
-import lexteam.minecraft.canarybukkit.implementation.command.CanaryCommandSender;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
+import lexteam.minecraft.canarybukkit.impl.CanaryLocation;
+import lexteam.minecraft.canarybukkit.impl.CanaryServer;
+import lexteam.minecraft.canarybukkit.impl.CanaryWorld;
+import lexteam.minecraft.canarybukkit.impl.block.CanaryBlock;
+import lexteam.minecraft.canarybukkit.impl.command.CanaryCommandSender;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryPlayer;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.command.PlayerCommandHook;

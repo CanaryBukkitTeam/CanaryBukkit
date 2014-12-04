@@ -17,12 +17,12 @@
  */
 package lexteam.minecraft.canarybukkit.events;
 
-import lexteam.minecraft.canarybukkit.implementation.CanaryChunk;
-import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
-import lexteam.minecraft.canarybukkit.implementation.CanaryWorld;
-import lexteam.minecraft.canarybukkit.implementation.block.CanaryBlock;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryLightningStrike;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPlayer;
+import lexteam.minecraft.canarybukkit.impl.CanaryChunk;
+import lexteam.minecraft.canarybukkit.impl.CanaryServer;
+import lexteam.minecraft.canarybukkit.impl.CanaryWorld;
+import lexteam.minecraft.canarybukkit.impl.block.CanaryBlock;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryLightningStrike;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryPlayer;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.player.BlockDestroyHook;
 import net.canarymod.hook.player.BlockPlaceHook;

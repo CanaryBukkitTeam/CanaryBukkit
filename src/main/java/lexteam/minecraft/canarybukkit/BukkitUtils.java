@@ -17,14 +17,14 @@
  */
 package lexteam.minecraft.canarybukkit;
 
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryArrow;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryChicken;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryCow;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryEgg;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryHorse;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPig;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanarySheep;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryWolf;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryArrow;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryChicken;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryCow;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryEgg;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryHorse;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryPig;
+import lexteam.minecraft.canarybukkit.impl.entity.CanarySheep;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryWolf;
 
 import org.apache.commons.lang3.Validate;
 import org.bukkit.Art;

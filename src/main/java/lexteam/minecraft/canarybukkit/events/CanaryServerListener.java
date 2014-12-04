@@ -17,8 +17,8 @@
  */
 package lexteam.minecraft.canarybukkit.events;
 
-import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
-import lexteam.minecraft.canarybukkit.implementation.command.CanaryCommandSender;
+import lexteam.minecraft.canarybukkit.impl.CanaryServer;
+import lexteam.minecraft.canarybukkit.impl.command.CanaryCommandSender;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.command.ConsoleCommandHook;
 import net.canarymod.hook.system.ServerListPingHook;

@@ -7,10 +7,10 @@
     <artifactId>canarybukkit</artifactId>
 
     <name>CanaryBukkit</name>
-    <description>CanaryBukkit allows plugins created for the Bukkit API platform to be used on the CanaryMod server
+    <description>CanaryBukkit allows plugins created for the Bukkit API platform to be used on the CanaryLib server
         platform.
     </description>
-    <version>0.1</version>
+    <version>0.1-dev</version>
     <url>https://github.com/LexMinecraft/Canary-Bukkit</url>
     <inceptionYear>2014</inceptionYear>
 
@@ -178,5 +178,4 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>

@@ -21,7 +21,7 @@ import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.events.CanaryPlayerListener;
 import lexteam.minecraft.canarybukkit.events.CanaryServerListener;
 import lexteam.minecraft.canarybukkit.events.CanaryWorldListener;
-import lexteam.minecraft.canarybukkit.implementation.CanaryServer;
+import lexteam.minecraft.canarybukkit.impl.CanaryServer;
 import net.canarymod.Canary;
 import net.canarymod.plugin.Plugin;
 
