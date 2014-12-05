@@ -64,7 +64,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
 public class CanaryWorld implements World {
-
     private net.canarymod.api.world.World world;
     private Server server;
 

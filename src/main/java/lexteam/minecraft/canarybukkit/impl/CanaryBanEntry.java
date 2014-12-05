@@ -21,6 +21,7 @@ import java.util.Date;
 
 import net.canarymod.bansystem.Ban;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.BanEntry;
 
 public class CanaryBanEntry implements BanEntry {
@@ -35,11 +36,11 @@ public class CanaryBanEntry implements BanEntry {
     }
 
     public Date getCreated() {
-        return null;
+        throw new NotImplementedException("getCreated()");
     }
 
     public void setCreated(Date created) {
-
+        throw new NotImplementedException("setCreated(Date)");
     }
 
     public String getSource() {
@@ -51,11 +52,11 @@ public class CanaryBanEntry implements BanEntry {
     }
 
     public Date getExpiration() {
-        return null;
+        return new Date(ban.getTimestamp());
     }
 
     public void setExpiration(Date expiration) {
-
+        ban.setTimestamp(expiration.getTime());
     }
 
     public String getReason() {
@@ -67,6 +68,6 @@ public class CanaryBanEntry implements BanEntry {
     }
 
     public void save() {
-
+        throw new NotImplementedException("save()");
     }
 }

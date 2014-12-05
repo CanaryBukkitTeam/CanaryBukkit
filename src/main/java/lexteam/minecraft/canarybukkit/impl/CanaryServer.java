@@ -33,6 +33,7 @@ import java.util.logging.Logger;
 
 import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.impl.entity.CanaryPlayer;
+import lexteam.minecraft.canarybukkit.impl.help.CanaryHelpMap;
 import lexteam.minecraft.canarybukkit.impl.scheduler.CanaryScheduler;
 import lexteam.minecraft.canarybukkit.impl.util.CanaryCachedServerIcon;
 import net.canarymod.Canary;
@@ -90,6 +91,7 @@ public class CanaryServer implements Server {
     private final StandardMessenger messenger = new StandardMessenger();
     private final ServicesManager servicesManager = new SimpleServicesManager();
     private final BukkitScheduler scheduler = new CanaryScheduler();
+    private final CanaryHelpMap helpMap = new CanaryHelpMap(Canary.help());
     private Logman logman;
     private YamlConfiguration config;
     /**
@@ -186,7 +188,7 @@ public class CanaryServer implements Server {
 
     public void enablePlugins(PluginLoadOrder type) {
         if (type == PluginLoadOrder.STARTUP) {
-            // helpMap.clear();
+            helpMap.clear();
         }
 
         for (Plugin plugin : pluginManager.getPlugins()) {
