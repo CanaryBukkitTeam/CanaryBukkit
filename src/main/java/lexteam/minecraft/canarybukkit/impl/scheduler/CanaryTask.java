@@ -18,6 +18,7 @@
 package lexteam.minecraft.canarybukkit.impl.scheduler;
 
 import net.canarymod.tasks.ServerTask;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;

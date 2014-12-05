@@ -25,7 +25,6 @@ import java.util.UUID;
 import lexteam.minecraft.canarybukkit.BukkitUtils;
 import lexteam.minecraft.canarybukkit.CanaryUtils;
 import lexteam.minecraft.canarybukkit.impl.inventory.CanaryInventory;
-import lexteam.minecraft.canarybukkit.impl.inventory.CanaryPlayerInventory;
 import net.canarymod.Canary;
 
 import org.apache.commons.lang3.NotImplementedException;
@@ -47,7 +46,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.Scoreboard;
@@ -166,10 +164,6 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
 
     public double getHealthScale() {
         throw new NotImplementedException("getHealthScale()");
-    }
-
-    public PlayerInventory getInventory() {
-        return new CanaryPlayerInventory(getEntity().getInventory(), this);
     }
 
     public ItemStack getItemInHand() {

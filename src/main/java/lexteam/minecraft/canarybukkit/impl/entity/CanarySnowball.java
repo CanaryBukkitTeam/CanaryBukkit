@@ -20,7 +20,7 @@ package lexteam.minecraft.canarybukkit.impl.entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Snowball;
 
-public class CanarySnowball extends CanaryAbstractProjectile implements Snowball {
+public class CanarySnowball extends CanaryProjectile implements Snowball {
     public CanarySnowball(net.canarymod.api.entity.throwable.Snowball entity) {
         super(entity);
     }

@@ -22,7 +22,7 @@ import net.canarymod.api.entity.throwable.ChickenEgg;
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.EntityType;
 
-public class CanaryEgg extends CanaryAbstractProjectile implements Egg {
+public class CanaryEgg extends CanaryProjectile implements Egg {
     public CanaryEgg(ChickenEgg entity) {
         super(entity);
     }

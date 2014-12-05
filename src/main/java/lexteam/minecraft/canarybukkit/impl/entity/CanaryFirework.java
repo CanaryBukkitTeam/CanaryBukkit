@@ -17,35 +17,34 @@
  */
 package lexteam.minecraft.canarybukkit.impl.entity;
 
-import org.bukkit.entity.Arrow;
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Firework;
+import org.bukkit.inventory.meta.FireworkMeta;
 
-public class CanaryArrow extends CanaryProjectile implements Arrow {
-    public CanaryArrow(net.canarymod.api.entity.Arrow arrow) {
-        super(arrow);
+public class CanaryFirework extends CanaryEntity implements Firework {
+    public CanaryFirework(net.canarymod.api.entity.FireworkRocket entity) {
+        super(entity);
     }
 
-    public int getKnockbackStrength() {
-        return getEnity().getKnockbackStrength();
-    }
-
+    @Override
     public EntityType getType() {
-        return EntityType.ARROW;
+        return EntityType.FIREWORK;
     }
 
-    public boolean isCritical() {
-        return getEnity().isCritical();
+    public FireworkMeta getFireworkMeta() {
+        throw new NotImplementedException("getFireworkMeta()");
     }
 
-    public void setCritical(boolean critical) {
-        getEnity().setIsCritical(critical);
+    public void setFireworkMeta(FireworkMeta meta) {
+        throw new NotImplementedException("setFireworkMeta(FireworkMeta)");
     }
 
-    public void setKnockbackStrength(int knockbackStrength) {
-        getEnity().setKnockbackStrenth(knockbackStrength);
+    public void detonate() {
+        throw new NotImplementedException("detonate()");
     }
 
-    protected net.canarymod.api.entity.Arrow getEnity() {
-        return (net.canarymod.api.entity.Arrow) super.getEntity();
+    protected net.canarymod.api.entity.FireworkRocket getEntity() {
+        return (net.canarymod.api.entity.FireworkRocket) super.getEntity();
     }
 }

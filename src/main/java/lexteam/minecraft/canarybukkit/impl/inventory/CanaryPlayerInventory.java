@@ -19,14 +19,13 @@ package lexteam.minecraft.canarybukkit.impl.inventory;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 public class CanaryPlayerInventory extends CanaryInventory implements PlayerInventory {
-    private Player owner;
+    private HumanEntity owner;
 
-    public CanaryPlayerInventory(net.canarymod.api.inventory.PlayerInventory inv, Player owner) {
+    public CanaryPlayerInventory(net.canarymod.api.inventory.PlayerInventory inv, HumanEntity owner) {
         // Not sure but that Player may be the wrong player
         super(inv);
         this.owner = owner;

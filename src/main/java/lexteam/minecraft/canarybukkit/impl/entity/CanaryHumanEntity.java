@@ -19,11 +19,13 @@ package lexteam.minecraft.canarybukkit.impl.entity;
 
 import java.util.Set;
 
+import lexteam.minecraft.canarybukkit.impl.inventory.CanaryPlayerInventory;
 import net.canarymod.api.entity.living.humanoid.Human;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.InventoryView;
+import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
@@ -32,6 +34,10 @@ import org.bukkit.plugin.Plugin;
 public abstract class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity {
     public CanaryHumanEntity(Human entity) {
         super(entity);
+    }
+
+    public PlayerInventory getInventory() {
+        return new CanaryPlayerInventory(getEntity().getInventory(), this);
     }
 
     public PermissionAttachment addAttachment(Plugin plugin) {

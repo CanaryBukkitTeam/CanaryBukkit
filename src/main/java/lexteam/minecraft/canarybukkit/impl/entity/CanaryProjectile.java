@@ -22,10 +22,10 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Projectile;
 import org.bukkit.projectiles.ProjectileSource;
 
-public abstract class CanaryAbstractProjectile extends CanaryEntity implements Projectile {
+public abstract class CanaryProjectile extends CanaryEntity implements Projectile {
     private boolean doesBounce;
 
-    public CanaryAbstractProjectile(net.canarymod.api.entity.Projectile entity) {
+    public CanaryProjectile(net.canarymod.api.entity.Projectile entity) {
         super(entity);
         doesBounce = false;
     }
@@ -40,7 +40,6 @@ public abstract class CanaryAbstractProjectile extends CanaryEntity implements P
 
     public LivingEntity _INVALID_getShooter() {
         throw new NotImplementedException("_INVALID_getShooter()");
-        // return (LivingEntity) BukkitUtils.getEntity(getEntity().getThrower());
     }
 
     public void _INVALID_setShooter(LivingEntity shooter) {

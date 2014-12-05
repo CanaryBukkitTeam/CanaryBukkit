@@ -19,29 +19,12 @@ package lexteam.minecraft.canarybukkit.impl.entity;
 
 import lexteam.minecraft.canarybukkit.BukkitUtils;
 
-import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.TNTPrimed;
 
-public class CanaryTNTPrimed extends CanaryEntity implements TNTPrimed {
+public class CanaryTNTPrimed extends CanaryExplosive implements TNTPrimed {
     public CanaryTNTPrimed(net.canarymod.api.entity.TNTPrimed entity) {
         super(entity);
-    }
-
-    public void setYield(float yield) {
-        getEntity().setPower(yield);
-    }
-
-    public float getYield() {
-        return getEntity().getPower();
-    }
-
-    public void setIsIncendiary(boolean isIncendiary) {
-        throw new NotImplementedException("setIsIncendiary(boolean)");
-    }
-
-    public boolean isIncendiary() {
-        throw new NotImplementedException("isIncendiary()");
     }
 
     public EntityType getType() {

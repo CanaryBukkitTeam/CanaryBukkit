@@ -17,9 +17,9 @@
  */
 package lexteam.minecraft.canarybukkit.impl.scheduler;
 
-import org.bukkit.plugin.Plugin;
-
 import net.canarymod.tasks.TaskOwner;
+
+import org.bukkit.plugin.Plugin;
 
 public class BukkitTaskOwner implements TaskOwner {
     public BukkitTaskOwner(Plugin plugin) {
