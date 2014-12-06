@@ -17,6 +17,8 @@
  */
 package lexteam.minecraft.canarybukkit;
 
+import java.io.IOException;
+
 import lexteam.minecraft.canarybukkit.data.Constants;
 import lexteam.minecraft.canarybukkit.events.CanaryPlayerListener;
 import lexteam.minecraft.canarybukkit.events.CanaryServerListener;
@@ -26,6 +28,8 @@ import net.canarymod.Canary;
 import net.canarymod.plugin.Plugin;
 
 import org.bukkit.Bukkit;
+import org.mcstats.Metrics;
+import org.mcstats.Metrics.Graph;
 
 public final class CanaryBukkit extends Plugin {
     private CanaryServer server;
@@ -38,7 +42,7 @@ public final class CanaryBukkit extends Plugin {
     @Override
     public boolean enable() {
         if (Bukkit.getServer() == null) {
-            server = new CanaryServer(Canary.getServer(), getLogman(), getDescriptor().getVersion());
+            server = new CanaryServer(Canary.getServer(), getLogman(), getVersion());
         }
         // Enable Listener
         Canary.hooks().registerListener(new CanaryPlayerListener(server), this);
@@ -46,10 +50,30 @@ public final class CanaryBukkit extends Plugin {
         Canary.hooks().registerListener(new CanaryServerListener(server), this);
 
         // Create all the directories.
-        Constants.checkFolders();
+        Constants.checkDirs();
 
         // Start server
         server.start();
+        
+        // Metrics (statistics)
+        try {
+            Metrics metrics = new Metrics(this);
+            
+            Graph plugins = metrics.createGraph("Plugins");
+            for(org.bukkit.plugin.Plugin plugin : server.getPluginManager().getPlugins()) {
+                plugins.addPlotter(new Metrics.Plotter(plugin.getName()) {
+                    @Override
+                    public int getValue() {
+                        return 1;
+                    }
+                });
+            }
+            
+            metrics.start();
+        } catch (IOException e) {
+            getLogman().error("Failed to send statistics to Metrics");
+        }
+        
         return true;
     }
 }

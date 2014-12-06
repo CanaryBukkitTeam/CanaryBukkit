@@ -42,7 +42,9 @@ import net.canarymod.logger.Logman;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.Validate;
+import org.bukkit.BanEntry;
 import org.bukkit.BanList;
+import org.bukkit.BanList.Type;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.OfflinePlayer;
@@ -118,7 +120,9 @@ public class CanaryServer implements Server {
     }
 
     public void banIP(String address) {
-        throw new NotImplementedException("banIP(String)");
+        Validate.notNull(address, "Address cannot be null.");
+
+        this.getBanList(Type.IP).addBan(address, null, null, null);
     }
 
     public int broadcast(String message, String permission) {
@@ -188,7 +192,7 @@ public class CanaryServer implements Server {
 
     public void enablePlugins(PluginLoadOrder type) {
         if (type == PluginLoadOrder.STARTUP) {
-            helpMap.clear();
+            //helpMap.clear();
         }
 
         for (Plugin plugin : pluginManager.getPlugins()) {
@@ -227,6 +231,8 @@ public class CanaryServer implements Server {
     }
 
     public BanList getBanList(BanList.Type type) {
+        Validate.notNull(type, "Type cannot be null");
+        
         return new CanaryBanList(Canary.bans(), type);
     }
 
@@ -285,7 +291,13 @@ public class CanaryServer implements Server {
     }
 
     public Set<String> getIPBans() {
-        throw new NotImplementedException("getIPBans()");
+        Set<String> ipBans = new HashSet<String>();
+        
+        for(BanEntry entry : this.getBanList(Type.IP).getBanEntries()) {
+            ipBans.add(entry.getTarget());
+        }
+        
+        return ipBans;
     }
 
     public ItemFactory getItemFactory() {
