@@ -43,6 +43,7 @@ public class CanaryTNTPrimed extends CanaryExplosive implements TNTPrimed {
         return BukkitUtils.getEntity(getEntity().getActivatedBy());
     }
 
+    @Override
     protected net.canarymod.api.entity.TNTPrimed getEntity() {
         return (net.canarymod.api.entity.TNTPrimed) super.getEntity();
     }

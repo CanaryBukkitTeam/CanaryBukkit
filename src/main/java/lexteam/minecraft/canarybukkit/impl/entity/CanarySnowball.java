@@ -28,8 +28,4 @@ public class CanarySnowball extends CanaryProjectile implements Snowball {
     public EntityType getType() {
         return EntityType.SNOWBALL;
     }
-
-    protected net.canarymod.api.entity.throwable.Snowball getEnity() {
-        return (net.canarymod.api.entity.throwable.Snowball) super.getEntity();
-    }
 }

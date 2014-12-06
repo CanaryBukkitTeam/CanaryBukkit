@@ -21,11 +21,8 @@ import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EntityType;
 
 public class CanaryCreeper extends CanaryMonster implements Creeper {
-    private net.canarymod.api.entity.living.monster.Creeper entity;
-
     public CanaryCreeper(net.canarymod.api.entity.living.monster.Creeper entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public EntityType getType() {
@@ -33,10 +30,15 @@ public class CanaryCreeper extends CanaryMonster implements Creeper {
     }
 
     public boolean isPowered() {
-        return entity.isCharged();
+        return getEntity().isCharged();
     }
 
     public void setPowered(boolean value) {
-        entity.setCharged(value);
+        getEntity().setCharged(value);
+    }
+
+    @Override
+    protected net.canarymod.api.entity.living.monster.Creeper getEntity() {
+        return (net.canarymod.api.entity.living.monster.Creeper) super.getEntity();
     }
 }

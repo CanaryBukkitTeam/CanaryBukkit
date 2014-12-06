@@ -17,26 +17,21 @@
  */
 package lexteam.minecraft.canarybukkit.impl.entity;
 
-import net.canarymod.api.entity.living.LivingBase;
-
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.Ageable;
 
 public abstract class CanaryAgeable extends CanaryCreature implements Ageable {
-    private LivingBase entity;
-
     public CanaryAgeable(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public boolean canBreed() {
-        return getAge() == 0;
+        return getAge() >= 0;
     }
 
     public int getAge() {
-        if (entity instanceof net.canarymod.api.entity.living.Ageable) {
-            return ((net.canarymod.api.entity.living.Ageable) entity).getGrowingAge();
+        if (getEntity() instanceof net.canarymod.api.entity.living.Ageable) {
+            return ((net.canarymod.api.entity.living.Ageable) getEntity()).getGrowingAge();
         } else {
             return 0;
         }
@@ -57,8 +52,8 @@ public abstract class CanaryAgeable extends CanaryCreature implements Ageable {
     }
 
     public void setAge(int age) {
-        if (entity instanceof net.canarymod.api.entity.living.Ageable) {
-            ((net.canarymod.api.entity.living.Ageable) entity).setGrowingAge(age);
+        if (getEntity() instanceof net.canarymod.api.entity.living.Ageable) {
+            ((net.canarymod.api.entity.living.Ageable) getEntity()).setGrowingAge(age);
         }
     }
 
@@ -74,5 +69,10 @@ public abstract class CanaryAgeable extends CanaryCreature implements Ageable {
 
     public void setBreed(boolean breed) {
         throw new NotImplementedException("setBreed(boolean)");
+    }
+
+    @Override
+    protected net.canarymod.api.entity.living.LivingBase getEntity() {
+        return (net.canarymod.api.entity.living.LivingBase) super.getEntity();
     }
 }

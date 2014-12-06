@@ -21,11 +21,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.IronGolem;
 
 public class CanaryIronGolem extends CanaryGolem implements IronGolem {
-    private net.canarymod.api.entity.living.IronGolem entity;
-
     public CanaryIronGolem(net.canarymod.api.entity.living.IronGolem entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public EntityType getType() {
@@ -33,10 +30,15 @@ public class CanaryIronGolem extends CanaryGolem implements IronGolem {
     }
 
     public boolean isPlayerCreated() {
-        return entity.isPlayerCreated();
+        return getEntity().isPlayerCreated();
     }
 
     public void setPlayerCreated(boolean playerCreated) {
-        entity.setPlayerCreated(playerCreated);
+        getEntity().setPlayerCreated(playerCreated);
+    }
+
+    @Override
+    protected net.canarymod.api.entity.living.IronGolem getEntity() {
+        return (net.canarymod.api.entity.living.IronGolem) super.getEntity();
     }
 }

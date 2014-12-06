@@ -24,15 +24,12 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
 
 public class CanaryVillager extends CanaryAgeable implements Villager {
-    private net.canarymod.api.entity.living.humanoid.Villager entity;
-
     public CanaryVillager(net.canarymod.api.entity.living.humanoid.Villager entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public Profession getProfession() {
-        return BukkitUtils.getProfession(entity.getProfession());
+        return BukkitUtils.getProfession(getEntity().getProfession());
     }
 
     public EntityType getType() {
@@ -40,6 +37,11 @@ public class CanaryVillager extends CanaryAgeable implements Villager {
     }
 
     public void setProfession(Profession profession) {
-        entity.setProfession(CanaryUtils.getProfession(profession));
+        getEntity().setProfession(CanaryUtils.getProfession(profession));
+    }
+
+    @Override
+    protected net.canarymod.api.entity.living.humanoid.Villager getEntity() {
+        return (net.canarymod.api.entity.living.humanoid.Villager) super.getEntity();
     }
 }

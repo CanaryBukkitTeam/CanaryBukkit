@@ -25,15 +25,12 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Wolf;
 
 public class CanaryWolf extends CanaryTameable implements Wolf {
-    private net.canarymod.api.entity.living.animal.Wolf entity;
-
     public CanaryWolf(net.canarymod.api.entity.living.animal.Wolf entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public DyeColor getCollarColor() {
-        return BukkitUtils.getDyeColor(entity.getCollarColor());
+        return BukkitUtils.getDyeColor(getEntity().getCollarColor());
     }
 
     public EntityType getType() {
@@ -41,22 +38,27 @@ public class CanaryWolf extends CanaryTameable implements Wolf {
     }
 
     public boolean isAngry() {
-        return entity.isAngry();
+        return getEntity().isAngry();
     }
 
     public boolean isSitting() {
-        return entity.isSitting();
+        return getEntity().isSitting();
     }
 
     public void setAngry(boolean angry) {
-        entity.setAngry(angry);
+        getEntity().setAngry(angry);
     }
 
     public void setCollarColor(DyeColor color) {
-        entity.setCollarColor(CanaryUtils.getDyeColor(color));
+        getEntity().setCollarColor(CanaryUtils.getDyeColor(color));
     }
 
     public void setSitting(boolean sitting) {
-        entity.setSitting(sitting);
+        getEntity().setSitting(sitting);
+    }
+
+    @Override
+    protected net.canarymod.api.entity.living.animal.Wolf getEntity() {
+        return (net.canarymod.api.entity.living.animal.Wolf) super.getEntity();
     }
 }

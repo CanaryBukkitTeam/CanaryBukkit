@@ -108,6 +108,7 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
         throw new NotImplementedException("setVariant(Variant)");
     }
 
+    @Override
     protected net.canarymod.api.entity.living.animal.Horse getEntity() {
         return (net.canarymod.api.entity.living.animal.Horse) super.getEntity();
     }

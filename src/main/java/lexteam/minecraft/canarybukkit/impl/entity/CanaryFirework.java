@@ -27,7 +27,6 @@ public class CanaryFirework extends CanaryEntity implements Firework {
         super(entity);
     }
 
-    @Override
     public EntityType getType() {
         return EntityType.FIREWORK;
     }
@@ -44,6 +43,7 @@ public class CanaryFirework extends CanaryEntity implements Firework {
         throw new NotImplementedException("detonate()");
     }
 
+    @Override
     protected net.canarymod.api.entity.FireworkRocket getEntity() {
         return (net.canarymod.api.entity.FireworkRocket) super.getEntity();
     }

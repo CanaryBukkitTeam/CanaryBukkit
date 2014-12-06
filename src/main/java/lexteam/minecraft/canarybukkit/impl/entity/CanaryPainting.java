@@ -25,11 +25,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Painting;
 
 public class CanaryPainting extends CanaryHanging implements Painting {
-    private net.canarymod.api.entity.hanging.Painting entity;
-
     public CanaryPainting(net.canarymod.api.entity.hanging.Painting entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public EntityType getType() {
@@ -37,15 +34,20 @@ public class CanaryPainting extends CanaryHanging implements Painting {
     }
 
     public Art getArt() {
-        return BukkitUtils.getArt(entity.getArtType());
+        return BukkitUtils.getArt(getEntity().getArtType());
     }
 
     public boolean setArt(Art art) {
-        entity.setArtType(CanaryUtils.getArtType(art));
-        return entity.getArtType() == CanaryUtils.getArtType(art);
+        getEntity().setArtType(CanaryUtils.getArtType(art));
+        return getEntity().getArtType() == CanaryUtils.getArtType(art);
     }
 
     public boolean setArt(Art art, boolean force) {
         return setArt(art);
+    }
+
+    @Override
+    protected net.canarymod.api.entity.hanging.Painting getEntity() {
+        return (net.canarymod.api.entity.hanging.Painting) super.getEntity();
     }
 }

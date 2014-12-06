@@ -17,21 +17,16 @@
  */
 package lexteam.minecraft.canarybukkit.impl.entity;
 
-import net.canarymod.api.entity.XPOrb;
-
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
 
 public class CanaryExperienceOrb extends CanaryEntity implements ExperienceOrb {
-    private XPOrb entity;
-
     public CanaryExperienceOrb(net.canarymod.api.entity.XPOrb entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public int getExperience() {
-        return entity.getXPValue();
+        return getEntity().getXPValue();
     }
 
     public EntityType getType() {
@@ -39,7 +34,12 @@ public class CanaryExperienceOrb extends CanaryEntity implements ExperienceOrb {
     }
 
     public void setExperience(int value) {
-        entity.setXPValue((short) value);
+        getEntity().setXPValue((short) value);
         // TODO: can you cast short to a int
+    }
+
+    @Override
+    protected net.canarymod.api.entity.XPOrb getEntity() {
+        return (net.canarymod.api.entity.XPOrb) super.getEntity();
     }
 }

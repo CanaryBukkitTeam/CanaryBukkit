@@ -21,11 +21,8 @@ import org.bukkit.entity.Bat;
 import org.bukkit.entity.EntityType;
 
 public class CanaryBat extends CanaryAmbient implements Bat {
-    private net.canarymod.api.entity.living.animal.Bat entity;
-
     public CanaryBat(net.canarymod.api.entity.living.animal.Bat entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public EntityType getType() {
@@ -33,10 +30,15 @@ public class CanaryBat extends CanaryAmbient implements Bat {
     }
 
     public boolean isAwake() {
-        return !entity.isHanging();
+        return !getEntity().isHanging();
     }
 
     public void setAwake(boolean awake) {
-        entity.setHanging(!awake);
+        getEntity().setHanging(!awake);
+    }
+
+    @Override
+    protected net.canarymod.api.entity.living.animal.Bat getEntity() {
+        return (net.canarymod.api.entity.living.animal.Bat) super.getEntity();
     }
 }

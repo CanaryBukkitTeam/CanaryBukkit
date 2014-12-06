@@ -21,11 +21,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Zombie;
 
 public class CanaryZombie extends CanaryAgeable implements Zombie {
-    private net.canarymod.api.entity.living.monster.Zombie entity;
-
     public CanaryZombie(net.canarymod.api.entity.living.monster.Zombie entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public EntityType getType() {
@@ -33,18 +30,23 @@ public class CanaryZombie extends CanaryAgeable implements Zombie {
     }
 
     public boolean isBaby() {
-        return entity.isChild();
+        return getEntity().isChild();
     }
 
     public boolean isVillager() {
-        return entity.isVillager();
+        return getEntity().isVillager();
     }
 
     public void setBaby(boolean flag) {
-        entity.setChild(flag);
+        getEntity().setChild(flag);
     }
 
     public void setVillager(boolean flag) {
-        entity.setVillager(flag);
+        getEntity().setVillager(flag);
+    }
+
+    @Override
+    protected net.canarymod.api.entity.living.monster.Zombie getEntity() {
+        return (net.canarymod.api.entity.living.monster.Zombie) super.getEntity();
     }
 }

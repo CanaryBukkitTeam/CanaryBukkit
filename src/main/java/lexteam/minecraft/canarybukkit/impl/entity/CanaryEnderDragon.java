@@ -30,7 +30,7 @@ public class CanaryEnderDragon extends CanaryMonster implements EnderDragon {
     }
 
     public Set<ComplexEntityPart> getParts() {
-        throw new NotImplementedException("getParts() not Implemented");
+        throw new NotImplementedException("getParts()");
     }
 
     public EntityType getType() {

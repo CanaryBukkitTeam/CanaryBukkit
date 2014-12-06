@@ -54,6 +54,7 @@ public abstract class CanaryProjectile extends CanaryEntity implements Projectil
         throw new NotImplementedException("setShooter(ProjectileSource)");
     }
 
+    @Override
     protected net.canarymod.api.entity.Projectile getEntity() {
         return (net.canarymod.api.entity.Projectile) super.getEntity();
     }

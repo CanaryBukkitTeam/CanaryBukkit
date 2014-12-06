@@ -43,6 +43,7 @@ public abstract class CanaryTameable extends CanaryAnimals implements Tameable, 
         getEntity().setTamed(tame);
     }
 
+    @Override
     protected net.canarymod.api.entity.living.animal.Tameable getEntity() {
         return (net.canarymod.api.entity.living.animal.Tameable) super.getEntity();
     }

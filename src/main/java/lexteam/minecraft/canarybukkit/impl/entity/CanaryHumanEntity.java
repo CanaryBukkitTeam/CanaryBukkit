@@ -20,7 +20,6 @@ package lexteam.minecraft.canarybukkit.impl.entity;
 import java.util.Set;
 
 import lexteam.minecraft.canarybukkit.impl.inventory.CanaryPlayerInventory;
-import net.canarymod.api.entity.living.humanoid.Human;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.HumanEntity;
@@ -32,7 +31,7 @@ import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
 public abstract class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity {
-    public CanaryHumanEntity(Human entity) {
+    public CanaryHumanEntity(net.canarymod.api.entity.living.humanoid.Human entity) {
         super(entity);
     }
 
@@ -104,7 +103,8 @@ public abstract class CanaryHumanEntity extends CanaryLivingEntity implements Hu
         throw new NotImplementedException("setWindowProperty(InventoryView.Property, int)");
     }
 
-    protected Human getEntity() {
-        return (Human) super.getEntity();
+    @Override
+    protected net.canarymod.api.entity.living.humanoid.Human getEntity() {
+        return (net.canarymod.api.entity.living.humanoid.Human) super.getEntity();
     }
 }

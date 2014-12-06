@@ -26,7 +26,7 @@ public class CanaryArrow extends CanaryProjectile implements Arrow {
     }
 
     public int getKnockbackStrength() {
-        return getEnity().getKnockbackStrength();
+        return getEntity().getKnockbackStrength();
     }
 
     public EntityType getType() {
@@ -34,18 +34,19 @@ public class CanaryArrow extends CanaryProjectile implements Arrow {
     }
 
     public boolean isCritical() {
-        return getEnity().isCritical();
+        return getEntity().isCritical();
     }
 
     public void setCritical(boolean critical) {
-        getEnity().setIsCritical(critical);
+        getEntity().setIsCritical(critical);
     }
 
     public void setKnockbackStrength(int knockbackStrength) {
-        getEnity().setKnockbackStrenth(knockbackStrength);
+        getEntity().setKnockbackStrenth(knockbackStrength);
     }
 
-    protected net.canarymod.api.entity.Arrow getEnity() {
+    @Override
+    protected net.canarymod.api.entity.Arrow getEntity() {
         return (net.canarymod.api.entity.Arrow) super.getEntity();
     }
 }

@@ -17,6 +17,7 @@
  */
 package lexteam.minecraft.canarybukkit.impl.entity;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Hanging;
 
@@ -26,18 +27,23 @@ public abstract class CanaryHanging extends CanaryEntity implements Hanging {
     }
 
     public BlockFace getAttachedFace() {
-        return null;
+        throw new NotImplementedException("getAttachedFace()");
     }
 
     public void setFacingDirection(BlockFace face) {
-
+        throw new NotImplementedException("setFacingDirection(BlockFace)");
     }
 
     public BlockFace getFacing() {
-        return null;
+        throw new NotImplementedException("getFacing()");
     }
 
     public boolean setFacingDirection(BlockFace face, boolean force) {
-        return false;
+        throw new NotImplementedException("setFacingDirection(BlockFace, boolean");
+    }
+
+    @Override
+    protected net.canarymod.api.entity.hanging.HangingEntity getEntity() {
+        return (net.canarymod.api.entity.hanging.HangingEntity) super.getEntity();
     }
 }

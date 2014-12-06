@@ -62,6 +62,7 @@ public class CanaryBoat extends CanaryVehicle implements Boat {
         throw new NotImplementedException("setWorkOnLand(boolean)");
     }
 
+    @Override
     protected net.canarymod.api.entity.vehicle.Boat getEntity() {
         return (net.canarymod.api.entity.vehicle.Boat) super.getEntity();
     }

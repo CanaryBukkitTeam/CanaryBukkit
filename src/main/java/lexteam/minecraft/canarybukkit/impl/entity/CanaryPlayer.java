@@ -20,8 +20,6 @@ package lexteam.minecraft.canarybukkit.impl.entity;
 import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.Set;
-import java.util.UUID;
-
 import lexteam.minecraft.canarybukkit.BukkitUtils;
 import lexteam.minecraft.canarybukkit.CanaryUtils;
 import lexteam.minecraft.canarybukkit.impl.inventory.CanaryInventory;
@@ -236,11 +234,6 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
 
     public EntityType getType() {
         return EntityType.PLAYER;
-    }
-
-    @Override
-    public UUID getUniqueId() {
-        return getEntity().getUUID();
     }
 
     public float getWalkSpeed() {
@@ -597,6 +590,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         return getEntity().isSleeping();
     }
 
+    @Override
     protected net.canarymod.api.entity.living.humanoid.Player getEntity() {
         return (net.canarymod.api.entity.living.humanoid.Player) super.getEntity();
     }

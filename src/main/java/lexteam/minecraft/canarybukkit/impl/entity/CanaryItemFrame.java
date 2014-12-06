@@ -17,17 +17,15 @@
  */
 package lexteam.minecraft.canarybukkit.impl.entity;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Rotation;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.inventory.ItemStack;
 
 public class CanaryItemFrame extends CanaryHanging implements ItemFrame {
-    private net.canarymod.api.entity.hanging.ItemFrame entity;
-
     public CanaryItemFrame(net.canarymod.api.entity.hanging.ItemFrame entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public EntityType getType() {
@@ -35,19 +33,19 @@ public class CanaryItemFrame extends CanaryHanging implements ItemFrame {
     }
 
     public ItemStack getItem() {
-        return null;
+        throw new NotImplementedException("getItem()");
     }
 
     public void setItem(ItemStack item) {
-
+        throw new NotImplementedException("setItem(ItemStack)");
     }
 
     public Rotation getRotation() {
-        if (entity.getItemRotation() == 0) {
+        if (getEntity().getItemRotation() == 0) {
             return Rotation.NONE;
-        } else if (entity.getItemRotation() == 1) {
+        } else if (getEntity().getItemRotation() == 1) {
             return Rotation.CLOCKWISE;
-        } else if (entity.getItemRotation() == 2) {
+        } else if (getEntity().getItemRotation() == 2) {
             return Rotation.FLIPPED;
         } else {
             return Rotation.COUNTER_CLOCKWISE;
@@ -57,17 +55,22 @@ public class CanaryItemFrame extends CanaryHanging implements ItemFrame {
     public void setRotation(Rotation rotation) throws IllegalArgumentException {
         switch (rotation) {
             case CLOCKWISE:
-                entity.setItemRotation(0);
+                getEntity().setItemRotation(0);
                 break;
             case COUNTER_CLOCKWISE:
-                entity.setItemRotation(1);
+                getEntity().setItemRotation(1);
                 break;
             case FLIPPED:
-                entity.setItemRotation(2);
+                getEntity().setItemRotation(2);
                 break;
             case NONE:
-                entity.setItemRotation(3);
+                getEntity().setItemRotation(3);
                 break;
         }
+    }
+
+    @Override
+    protected net.canarymod.api.entity.hanging.ItemFrame getEntity() {
+        return (net.canarymod.api.entity.hanging.ItemFrame) super.getEntity();
     }
 }

@@ -24,15 +24,12 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ocelot;
 
 public class CanaryOcelot extends CanaryTameable implements Ocelot {
-    private net.canarymod.api.entity.living.animal.Ocelot entity;
-
     public CanaryOcelot(net.canarymod.api.entity.living.animal.Ocelot entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public Type getCatType() {
-        return BukkitUtils.getCatType(entity.getSkinType());
+        return BukkitUtils.getCatType(getEntity().getSkinType());
     }
 
     public EntityType getType() {
@@ -40,14 +37,19 @@ public class CanaryOcelot extends CanaryTameable implements Ocelot {
     }
 
     public boolean isSitting() {
-        return entity.isSitting();
+        return getEntity().isSitting();
     }
 
     public void setCatType(Type type) {
-        entity.setSkinType(CanaryUtils.getCatType(type));
+        getEntity().setSkinType(CanaryUtils.getCatType(type));
     }
 
     public void setSitting(boolean sitting) {
-        entity.setSitting(sitting);
+        getEntity().setSitting(sitting);
+    }
+
+    @Override
+    protected net.canarymod.api.entity.living.animal.Ocelot getEntity() {
+        return (net.canarymod.api.entity.living.animal.Ocelot) super.getEntity();
     }
 }

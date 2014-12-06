@@ -21,11 +21,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Pig;
 
 public class CanaryPig extends CanaryAnimals implements Pig {
-    private net.canarymod.api.entity.living.animal.Pig entity;
-
     public CanaryPig(net.canarymod.api.entity.living.animal.Pig entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public EntityType getType() {
@@ -33,10 +30,15 @@ public class CanaryPig extends CanaryAnimals implements Pig {
     }
 
     public boolean hasSaddle() {
-        return entity.isSaddled();
+        return getEntity().isSaddled();
     }
 
     public void setSaddle(boolean saddled) {
-        entity.setSaddled(saddled);
+        getEntity().setSaddled(saddled);
+    }
+
+    @Override
+    protected net.canarymod.api.entity.living.animal.Pig getEntity() {
+        return (net.canarymod.api.entity.living.animal.Pig) super.getEntity();
     }
 }

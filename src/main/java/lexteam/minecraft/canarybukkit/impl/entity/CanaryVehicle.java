@@ -23,8 +23,4 @@ public abstract class CanaryVehicle extends CanaryEntity implements Vehicle {
     public CanaryVehicle(net.canarymod.api.entity.vehicle.Vehicle entity) {
         super(entity);
     }
-
-    protected net.canarymod.api.entity.vehicle.Vehicle getEntity() {
-        return (net.canarymod.api.entity.vehicle.Vehicle) super.getEntity();
-    }
 }

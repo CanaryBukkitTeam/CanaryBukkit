@@ -22,15 +22,12 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.material.MaterialData;
 
 public class CanaryEnderman extends CanaryMonster implements Enderman {
-    private net.canarymod.api.entity.living.monster.Enderman entity;
-
     public CanaryEnderman(net.canarymod.api.entity.living.monster.Enderman entity) {
         super(entity);
-        this.entity = entity;
     }
 
     public MaterialData getCarriedMaterial() {
-        return new MaterialData(entity.getCarriedBlockID());
+        return new MaterialData(getEntity().getCarriedBlockID());
     }
 
     public EntityType getType() {
@@ -38,7 +35,11 @@ public class CanaryEnderman extends CanaryMonster implements Enderman {
     }
 
     public void setCarriedMaterial(MaterialData material) {
-        entity.setCarriedBlockID((short) material.getItemTypeId());
+        getEntity().setCarriedBlockID((short) material.getItemTypeId());
         // TODO: Check
+    }
+
+    protected net.canarymod.api.entity.living.monster.Enderman getEntity() {
+        return (net.canarymod.api.entity.living.monster.Enderman) super.getEntity();
     }
 }
