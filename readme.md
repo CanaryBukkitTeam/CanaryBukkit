@@ -1,4 +1,4 @@
-CanaryBukkit
+CanaryBukkit [![Build Status](https://ci.larry1123.net/job/Canary-Bukkit/badge/icon)](https://ci.larry1123.net/job/Canary-Bukkit/)
 =======================
 
 ### What is it?
