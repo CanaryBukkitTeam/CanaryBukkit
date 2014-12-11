@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package lexteam.minecraft.canarybukkit.events;
+package lexteam.minecraft.canarybukkit.event;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -67,63 +67,92 @@ public class CanaryPlayerListener implements PluginListener {
     }
 
     @HookHandler
-    public void onEnchant(EnchantHook hook) {
+    public void onEnchant(final EnchantHook hook) {
         server.getPluginManager().callEvent(
                 new EnchantItemEvent(new CanaryPlayer(hook.getPlayer()), null, new CanaryBlock(hook
-                        .getEnchantmentTable().getBlock()), null, 0, null, 0));
+                        .getEnchantmentTable().getBlock()), null, 0, null, 0) {
+                    @Override
+                    public void setCancelled(boolean cancelled) {
+                        super.setCancelled(cancelled);
+                        if(cancelled) {
+                            hook.setCanceled();
+                        }
+                    }
+                });
         // TODO: Fill in.
     }
 
     @HookHandler
-    public void onEnteringBed(BedEnterHook hook) {
+    public void onEnteringBed(final BedEnterHook hook) {
         server.getPluginManager().callEvent(
-                new PlayerBedEnterEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())));
+                new PlayerBedEnterEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())){
+                    @Override
+                    public void setCancelled(boolean cancelled) {
+                        super.setCancelled(cancelled);
+                        if(cancelled) {
+                            hook.setCanceled();
+                        }
+                    }
+                });
     }
 
     @HookHandler
-    public void onExitingBed(BedExitHook hook) {
+    public void onExitingBed(final BedExitHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerBedLeaveEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())));
     }
 
     @HookHandler
-    public void onPlayerChat(ChatHook hook) {
+    public void onPlayerChat(final ChatHook hook) {
         Set<org.bukkit.entity.Player> recievers = new HashSet<org.bukkit.entity.Player>();
         for (Player p : hook.getReceiverList()) {
             recievers.add(new CanaryPlayer(p));
         }
         server.getPluginManager().callEvent(
-                new AsyncPlayerChatEvent(false, new CanaryPlayer(hook.getPlayer()), hook.getMessage(),
-                        recievers));
+                new AsyncPlayerChatEvent(false, new CanaryPlayer(hook.getPlayer()), hook.getMessage(), recievers){
+                    @Override
+                    public void setCancelled(boolean cancelled) {
+                        super.setCancelled(cancelled);
+                        if(cancelled) {
+                            hook.setCanceled();
+                        }
+                    }
+                });
         // TODO: Fill in
     }
 
     @HookHandler
-    public void onPlayerDeath(PlayerDeathHook hook) {
+    public void onPlayerDeath(final PlayerDeathHook hook) {
         server.getPluginManager().callEvent(
-                new PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, hook.getPlayer()
-                        .getExperience(), hook.getDeathMessage1().getFullText()));
+                new PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, hook.getPlayer().getExperience(), hook
+                        .getDeathMessage1().getFullText()));
         // TODO: Fill in and check.
     }
 
     @HookHandler
-    public void onPlayerJoin(ConnectionHook hook) {
-        server.getPluginManager().callEvent(
-                new PlayerJoinEvent(new CanaryPlayer(hook.getPlayer()), hook.getMessage()));
+    public void onPlayerJoin(final ConnectionHook hook) {
+        server.getPluginManager().callEvent(new PlayerJoinEvent(new CanaryPlayer(hook.getPlayer()), hook.getMessage()));
     }
 
     @HookHandler
-    public void onPlayerQuit(DisconnectionHook hook) {
+    public void onPlayerQuit(final DisconnectionHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerQuitEvent(new CanaryPlayer(hook.getPlayer()), hook.getLeaveMessage()));
     }
 
     @HookHandler
-    public void onTeleportation(TeleportHook hook) {
+    public void onTeleportation(final TeleportHook hook) {
         server.getPluginManager().callEvent(
-                new PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()), new CanaryLocation(hook
-                        .getPlayer().getLocation(), new CanaryWorld(hook.getDestination().getWorld())),
-                        new CanaryLocation(hook.getDestination(), new CanaryWorld(hook.getDestination()
-                                .getWorld()))));
+                new PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()), new CanaryLocation(hook.getPlayer()
+                        .getLocation(), new CanaryWorld(hook.getDestination().getWorld())), new CanaryLocation(hook
+                        .getDestination(), new CanaryWorld(hook.getDestination().getWorld()))){
+                    @Override
+                    public void setCancelled(boolean cancelled) {
+                        super.setCancelled(cancelled);
+                        if(cancelled) {
+                            hook.setCanceled();
+                        }
+                    }
+                });
     }
 }

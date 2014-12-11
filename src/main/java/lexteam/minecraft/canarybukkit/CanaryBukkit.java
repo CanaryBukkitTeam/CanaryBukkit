@@ -20,9 +20,9 @@ package lexteam.minecraft.canarybukkit;
 import java.io.IOException;
 
 import lexteam.minecraft.canarybukkit.data.Constants;
-import lexteam.minecraft.canarybukkit.events.CanaryPlayerListener;
-import lexteam.minecraft.canarybukkit.events.CanaryServerListener;
-import lexteam.minecraft.canarybukkit.events.CanaryWorldListener;
+import lexteam.minecraft.canarybukkit.event.CanaryPlayerListener;
+import lexteam.minecraft.canarybukkit.event.CanaryServerListener;
+import lexteam.minecraft.canarybukkit.event.CanaryWorldListener;
 import lexteam.minecraft.canarybukkit.impl.CanaryServer;
 import net.canarymod.Canary;
 import net.canarymod.plugin.Plugin;

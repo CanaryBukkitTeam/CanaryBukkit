@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package lexteam.minecraft.canarybukkit.events;
+package lexteam.minecraft.canarybukkit.event;
 
 import lexteam.minecraft.canarybukkit.impl.CanaryServer;
 import lexteam.minecraft.canarybukkit.impl.command.CanaryCommandSender;
@@ -34,7 +34,7 @@ public class CanaryServerListener implements PluginListener {
     }
 
     @HookHandler
-    public void onCommand(ConsoleCommandHook hook) {
+    public void onCommand(final ConsoleCommandHook hook) {
         String commandLine = "";
         for (String s : hook.getCommand()) {
             commandLine += s + " ";
@@ -45,7 +45,7 @@ public class CanaryServerListener implements PluginListener {
     }
 
     @HookHandler
-    public void onServerListPing(ServerListPingHook hook) {
+    public void onServerListPing(final ServerListPingHook hook) {
         server.getPluginManager().callEvent(
                 new ServerListPingEvent(hook.getRequesterAddress(), hook.getMotd().getFullText(), hook
                         .getCurrentPlayers(), hook.getMaxPlayers()));
