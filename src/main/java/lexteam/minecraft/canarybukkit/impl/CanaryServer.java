@@ -271,7 +271,7 @@ public class CanaryServer implements Server {
     }
 
     public HelpMap getHelpMap() {
-        throw new NotImplementedException("getHelpMap()");
+        return helpMap;
     }
 
     public int getIdleTimeout() {
