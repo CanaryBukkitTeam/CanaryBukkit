@@ -20,6 +20,7 @@ package lexteam.minecraft.canarybukkit;
 import java.io.IOException;
 
 import lexteam.minecraft.canarybukkit.data.Constants;
+import lexteam.minecraft.canarybukkit.event.CanaryBlockListener;
 import lexteam.minecraft.canarybukkit.event.CanaryPlayerListener;
 import lexteam.minecraft.canarybukkit.event.CanaryServerListener;
 import lexteam.minecraft.canarybukkit.event.CanaryWorldListener;
@@ -46,6 +47,7 @@ public final class CanaryBukkit extends Plugin {
         }
         // Enable Listener
         Canary.hooks().registerListener(new CanaryPlayerListener(server), this);
+        Canary.hooks().registerListener(new CanaryBlockListener(server), this);
         Canary.hooks().registerListener(new CanaryWorldListener(server), this);
         Canary.hooks().registerListener(new CanaryServerListener(server), this);
 
@@ -54,13 +56,13 @@ public final class CanaryBukkit extends Plugin {
 
         // Start server
         server.start();
-        
+
         // Metrics (statistics)
         try {
             Metrics metrics = new Metrics(this);
-            
+
             Graph plugins = metrics.createGraph("Plugins");
-            for(org.bukkit.plugin.Plugin plugin : server.getPluginManager().getPlugins()) {
+            for (org.bukkit.plugin.Plugin plugin : server.getPluginManager().getPlugins()) {
                 plugins.addPlotter(new Metrics.Plotter(plugin.getName()) {
                     @Override
                     public int getValue() {
@@ -68,12 +70,12 @@ public final class CanaryBukkit extends Plugin {
                     }
                 });
             }
-            
+
             metrics.start();
         } catch (IOException e) {
-            getLogman().error("Failed to send statistics to Metrics");
+            getLogman().warn("Failed to send statistics to Metrics");
         }
-        
+
         return true;
     }
 }

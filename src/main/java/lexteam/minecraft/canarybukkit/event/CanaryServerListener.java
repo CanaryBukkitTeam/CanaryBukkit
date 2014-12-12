@@ -25,6 +25,7 @@ import net.canarymod.hook.system.ServerListPingHook;
 import net.canarymod.plugin.PluginListener;
 
 import org.bukkit.event.server.ServerListPingEvent;
+import org.bukkit.util.CachedServerIcon;
 
 public class CanaryServerListener implements PluginListener {
     private CanaryServer server;
@@ -48,6 +49,24 @@ public class CanaryServerListener implements PluginListener {
     public void onServerListPing(final ServerListPingHook hook) {
         server.getPluginManager().callEvent(
                 new ServerListPingEvent(hook.getRequesterAddress(), hook.getMotd().getFullText(), hook
-                        .getCurrentPlayers(), hook.getMaxPlayers()));
+                        .getCurrentPlayers(), hook.getMaxPlayers()) {
+                    @Override
+                    public void setMotd(String motd) {
+                        super.setMotd(motd);
+                        hook.setMotd(motd);
+                    }
+
+                    @Override
+                    public void setMaxPlayers(int maxPlayers) {
+                        super.setMaxPlayers(maxPlayers);
+                        hook.setMaxPlayers(maxPlayers);
+                    }
+
+                    @Override
+                    public void setServerIcon(CachedServerIcon icon) throws IllegalArgumentException,
+                            UnsupportedOperationException {
+                        super.setServerIcon(icon);
+                    }
+                });
     }
 }

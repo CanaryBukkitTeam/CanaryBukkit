@@ -85,8 +85,7 @@ public class CanaryWorld implements World {
         throw new NotImplementedException("createExplosion(double, double, double, float, boolean)");
     }
 
-    public boolean createExplosion(double x, double y, double z, float power, boolean setFire,
-            boolean breakBlocks) {
+    public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks) {
         throw new NotImplementedException("createExplosion(double, double, double, float, boolean, boolean)");
     }
 
@@ -167,8 +166,7 @@ public class CanaryWorld implements World {
         return BukkitUtils.getDifficulty(getWorldConfiguration().getDifficulty());
     }
 
-    public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome,
-            boolean includeBiomeTempRain) {
+    public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome, boolean includeBiomeTempRain) {
         throw new NotImplementedException("getEmptyChunkSnapshot(int, int, boolean, boolean)");
     }
 

@@ -18,14 +18,17 @@
 package lexteam.minecraft.canarybukkit.event;
 
 import java.util.HashSet;
+import java.util.IllegalFormatException;
 import java.util.Set;
 
+import lexteam.minecraft.canarybukkit.BukkitUtils;
 import lexteam.minecraft.canarybukkit.impl.CanaryLocation;
 import lexteam.minecraft.canarybukkit.impl.CanaryServer;
 import lexteam.minecraft.canarybukkit.impl.CanaryWorld;
 import lexteam.minecraft.canarybukkit.impl.block.CanaryBlock;
 import lexteam.minecraft.canarybukkit.impl.command.CanaryCommandSender;
 import lexteam.minecraft.canarybukkit.impl.entity.CanaryPlayer;
+import net.canarymod.Canary;
 import net.canarymod.api.entity.living.humanoid.Player;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.command.PlayerCommandHook;
@@ -39,6 +42,7 @@ import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.hook.player.TeleportHook;
 import net.canarymod.plugin.PluginListener;
 
+import org.bukkit.Location;
 import org.bukkit.event.enchantment.EnchantItemEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -74,9 +78,15 @@ public class CanaryPlayerListener implements PluginListener {
                     @Override
                     public void setCancelled(boolean cancelled) {
                         super.setCancelled(cancelled);
-                        if(cancelled) {
+                        if (cancelled) {
                             hook.setCanceled();
                         }
+                    }
+
+                    @Override
+                    public void setExpLevelCost(int level) {
+                        super.setExpLevelCost(level);
+                        // How can you do this in Canary?
                     }
                 });
         // TODO: Fill in.
@@ -85,11 +95,11 @@ public class CanaryPlayerListener implements PluginListener {
     @HookHandler
     public void onEnteringBed(final BedEnterHook hook) {
         server.getPluginManager().callEvent(
-                new PlayerBedEnterEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())){
+                new PlayerBedEnterEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())) {
                     @Override
                     public void setCancelled(boolean cancelled) {
                         super.setCancelled(cancelled);
-                        if(cancelled) {
+                        if (cancelled) {
                             hook.setCanceled();
                         }
                     }
@@ -109,13 +119,25 @@ public class CanaryPlayerListener implements PluginListener {
             recievers.add(new CanaryPlayer(p));
         }
         server.getPluginManager().callEvent(
-                new AsyncPlayerChatEvent(false, new CanaryPlayer(hook.getPlayer()), hook.getMessage(), recievers){
+                new AsyncPlayerChatEvent(false, new CanaryPlayer(hook.getPlayer()), hook.getMessage(), recievers) {
                     @Override
                     public void setCancelled(boolean cancelled) {
                         super.setCancelled(cancelled);
-                        if(cancelled) {
+                        if (cancelled) {
                             hook.setCanceled();
                         }
+                    }
+
+                    @Override
+                    public void setMessage(String message) {
+                        super.setMessage(message);
+                        hook.setMessage(message);
+                    }
+
+                    @Override
+                    public void setFormat(final String format) throws IllegalFormatException, NullPointerException {
+                        super.setFormat(format);
+                        hook.setFormat(format);
                     }
                 });
         // TODO: Fill in
@@ -125,19 +147,67 @@ public class CanaryPlayerListener implements PluginListener {
     public void onPlayerDeath(final PlayerDeathHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, hook.getPlayer().getExperience(), hook
-                        .getDeathMessage1().getFullText()));
+                        .getDeathMessage1().getFullText()) {
+                    @Override
+                    public void setDeathMessage(String deathMessage) {
+                        super.setDeathMessage(deathMessage);
+                        hook.setDeathMessage1(Canary.factory().getChatComponentFactory().newChatComponent(deathMessage));
+                    }
+
+                    @Override
+                    public void setNewExp(int exp) {
+                        super.setNewExp(exp);
+                        // How can you do this in Canary?
+                    }
+
+                    @Override
+                    public void setNewLevel(int level) {
+                        super.setNewLevel(level);
+                        // How can you do this in Canary?
+                    }
+
+                    @Override
+                    public void setNewTotalExp(int totalExp) {
+                        super.setNewTotalExp(totalExp);
+                        // How can you do this in Canary?
+                    }
+
+                    @Override
+                    public void setKeepLevel(boolean keepLevel) {
+                        super.setKeepLevel(keepLevel);
+                        // How can you do this in Canary?
+                    }
+
+                    @Override
+                    public void setKeepInventory(boolean keepInventory) {
+                        super.setKeepInventory(keepInventory);
+                        // How can you do this in Canary?
+                    }
+                });
         // TODO: Fill in and check.
     }
 
     @HookHandler
     public void onPlayerJoin(final ConnectionHook hook) {
-        server.getPluginManager().callEvent(new PlayerJoinEvent(new CanaryPlayer(hook.getPlayer()), hook.getMessage()));
+        server.getPluginManager().callEvent(new PlayerJoinEvent(new CanaryPlayer(hook.getPlayer()), hook.getMessage()) {
+            @Override
+            public void setJoinMessage(String joinMessage) {
+                super.setJoinMessage(joinMessage);
+                hook.setMessage(joinMessage);
+            }
+        });
     }
 
     @HookHandler
     public void onPlayerQuit(final DisconnectionHook hook) {
         server.getPluginManager().callEvent(
-                new PlayerQuitEvent(new CanaryPlayer(hook.getPlayer()), hook.getLeaveMessage()));
+                new PlayerQuitEvent(new CanaryPlayer(hook.getPlayer()), hook.getLeaveMessage()) {
+                    @Override
+                    public void setQuitMessage(String quitMessage) {
+                        super.setQuitMessage(quitMessage);
+                        hook.setLeaveMessage(quitMessage);
+                    }
+                });
     }
 
     @HookHandler
@@ -145,13 +215,26 @@ public class CanaryPlayerListener implements PluginListener {
         server.getPluginManager().callEvent(
                 new PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()), new CanaryLocation(hook.getPlayer()
                         .getLocation(), new CanaryWorld(hook.getDestination().getWorld())), new CanaryLocation(hook
-                        .getDestination(), new CanaryWorld(hook.getDestination().getWorld()))){
+                        .getDestination(), new CanaryWorld(hook.getDestination().getWorld())), BukkitUtils
+                        .getTeleportCause(hook.getTeleportReason())) {
                     @Override
                     public void setCancelled(boolean cancelled) {
                         super.setCancelled(cancelled);
-                        if(cancelled) {
+                        if (cancelled) {
                             hook.setCanceled();
                         }
+                    }
+
+                    @Override
+                    public void setFrom(Location from) {
+                        super.setFrom(from);
+                        // How can you do this in Canary?
+                    }
+
+                    @Override
+                    public void setTo(Location to) {
+                        super.setTo(to);
+                        // How can you do this in Canary?
                     }
                 });
     }

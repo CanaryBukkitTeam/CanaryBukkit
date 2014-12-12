@@ -110,8 +110,8 @@ public class CanaryServer implements Server {
 
         config = YamlConfiguration.loadConfiguration(Constants.configFile);
         config.options().copyDefaults(true);
-        config.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader()
-                .getResourceAsStream("config/config.yml")));
+        config.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader().getResourceAsStream(
+                "config/config.yml")));
         saveConfigFile(config, Constants.configFile);
     }
 
@@ -155,8 +155,7 @@ public class CanaryServer implements Server {
         throw new NotImplementedException("createInventory(InventoryHolder, int)");
     }
 
-    public Inventory createInventory(InventoryHolder owner, int size, String title)
-            throws IllegalArgumentException {
+    public Inventory createInventory(InventoryHolder owner, int size, String title) throws IllegalArgumentException {
         throw new NotImplementedException("createInventory(InventoryHolder, int, String)");
     }
 
@@ -192,7 +191,7 @@ public class CanaryServer implements Server {
 
     public void enablePlugins(PluginLoadOrder type) {
         if (type == PluginLoadOrder.STARTUP) {
-            //helpMap.clear();
+            // helpMap.clear();
         }
 
         for (Plugin plugin : pluginManager.getPlugins()) {
@@ -232,7 +231,7 @@ public class CanaryServer implements Server {
 
     public BanList getBanList(BanList.Type type) {
         Validate.notNull(type, "Type cannot be null");
-        
+
         return new CanaryBanList(Canary.bans(), type);
     }
 
@@ -292,11 +291,11 @@ public class CanaryServer implements Server {
 
     public Set<String> getIPBans() {
         Set<String> ipBans = new HashSet<String>();
-        
-        for(BanEntry entry : this.getBanList(Type.IP).getBanEntries()) {
+
+        for (BanEntry entry : this.getBanList(Type.IP).getBanEntries()) {
             ipBans.add(entry.getTarget());
         }
-        
+
         return ipBans;
     }
 
@@ -339,8 +338,7 @@ public class CanaryServer implements Server {
     }
 
     public String getName() {
-        return getImplementationName() + "_" + Canary.getSpecificationTitle() + "_"
-                + Canary.getImplementationTitle();
+        return getImplementationName() + "_" + Canary.getSpecificationTitle() + "_" + Canary.getImplementationTitle();
     }
 
     public OfflinePlayer getOfflinePlayer(String name) {
@@ -487,8 +485,7 @@ public class CanaryServer implements Server {
     }
 
     public String getVersion() {
-        return "canarybukkit_" + Canary.getImplementationVersion() + " (MC: " + server.getServerVersion()
-                + ")";
+        return "canarybukkit_" + Canary.getImplementationVersion() + " (MC: " + server.getServerVersion() + ")";
     }
 
     public int getViewDistance() {
@@ -557,14 +554,13 @@ public class CanaryServer implements Server {
                 try {
                     pluginManager.addPermission(perm);
                 } catch (IllegalArgumentException ex) {
-                    logman.warn("Plugin " + plugin.getDescription().getFullName()
-                            + " tried to register permission '" + perm.getName()
-                            + "' but it's already registered", ex);
+                    logman.warn("Plugin " + plugin.getDescription().getFullName() + " tried to register permission '"
+                            + perm.getName() + "' but it's already registered", ex);
                 }
             }
         } catch (Throwable ex) {
-            logman.warn(ex.getMessage() + " loading " + plugin.getDescription().getFullName()
-                    + " (Is it up to date?)", ex);
+            logman.warn(ex.getMessage() + " loading " + plugin.getDescription().getFullName() + " (Is it up to date?)",
+                    ex);
         }
     }
 

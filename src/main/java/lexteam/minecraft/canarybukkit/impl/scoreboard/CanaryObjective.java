@@ -32,7 +32,7 @@ public class CanaryObjective implements Objective {
     public CanaryObjective(net.canarymod.api.scoreboard.ScoreObjective objective) {
         this.objective = objective;
     }
-    
+
     public String getName() throws IllegalStateException {
         return objective.getProtocolName();
     }

@@ -29,7 +29,7 @@ public class CanaryScore implements Score {
     public CanaryScore(net.canarymod.api.scoreboard.Score score) {
         this.score = score;
     }
-    
+
     public OfflinePlayer getPlayer() {
         throw new NotImplementedException("getPlayer()");
     }

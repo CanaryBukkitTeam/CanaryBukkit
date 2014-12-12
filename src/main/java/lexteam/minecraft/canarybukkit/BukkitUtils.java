@@ -36,6 +36,7 @@ import org.bukkit.WorldType;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Ocelot.Type;
 import org.bukkit.entity.Villager.Profession;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -125,8 +126,7 @@ public class BukkitUtils {
         return WorldType.NORMAL;
     }
 
-    public static Profession getProfession(
-            net.canarymod.api.entity.living.humanoid.Villager.Profession profession) {
+    public static Profession getProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession profession) {
         Validate.notNull(profession);
         switch (profession) {
             case BLACKSMITH:
@@ -262,14 +262,37 @@ public class BukkitUtils {
         return null;
     }
 
-    public static PotionEffectType getPotionEffectType(
-            net.canarymod.api.potion.PotionEffectType potionEffectType) {
+    public static PotionEffectType getPotionEffectType(net.canarymod.api.potion.PotionEffectType potionEffectType) {
         return PotionEffectType.getByName(potionEffectType.name());
     }
 
     public static PotionEffect getPotionEffect(net.canarymod.api.potion.PotionEffect potionEffect) {
-        return new PotionEffect(getPotionEffectType(CanaryUtils.getPotionEffectType(potionEffect
-                .getPotionID())), potionEffect.getDuration(), potionEffect.getAmplifier(),
-                potionEffect.isAmbient());
+        return new PotionEffect(getPotionEffectType(CanaryUtils.getPotionEffectType(potionEffect.getPotionID())),
+                potionEffect.getDuration(), potionEffect.getAmplifier(), potionEffect.isAmbient());
+    }
+
+    public static TeleportCause getTeleportCause(net.canarymod.hook.player.TeleportHook.TeleportCause cause) {
+        switch (cause) {
+            case BED:
+                return TeleportCause.UNKNOWN;
+            case COMMAND:
+                return TeleportCause.COMMAND;
+            case MOUNT_CHANGE:
+                return TeleportCause.UNKNOWN;
+            case MOVEMENT:
+                return TeleportCause.UNKNOWN;
+            case PLUGIN:
+                return TeleportCause.PLUGIN;
+            case PORTAL:
+                return TeleportCause.NETHER_PORTAL;
+            case RESPAWN:
+                return TeleportCause.UNKNOWN;
+            case UNDEFINED:
+                return TeleportCause.UNKNOWN;
+            case WARP:
+                return TeleportCause.UNKNOWN;
+            default:
+                return TeleportCause.UNKNOWN;
+        }
     }
 }

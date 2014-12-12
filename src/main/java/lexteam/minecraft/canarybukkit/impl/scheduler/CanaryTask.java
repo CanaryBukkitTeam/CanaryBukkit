@@ -33,8 +33,8 @@ public class CanaryTask implements BukkitTask {
     private boolean repeat;
     private ServerTask serverTask;
 
-    public CanaryTask(final Plugin plugin, final Runnable task, final int id, final long delay,
-            final long period, final boolean isAsync) {
+    public CanaryTask(final Plugin plugin, final Runnable task, final int id, final long delay, final long period,
+            final boolean isAsync) {
         this.plugin = plugin;
         this.task = task;
         this.id = id;

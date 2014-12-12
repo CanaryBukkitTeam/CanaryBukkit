@@ -34,7 +34,7 @@ public class CanaryScoreboard implements Scoreboard {
     public CanaryScoreboard(net.canarymod.api.scoreboard.Scoreboard scoreboard) {
         this.scoreboard = scoreboard;
     }
-    
+
     public Objective registerNewObjective(String name, String criteria) throws IllegalArgumentException {
         throw new NotImplementedException("registerNewObjective(String, String)");
     }
@@ -49,7 +49,7 @@ public class CanaryScoreboard implements Scoreboard {
 
     public Set<Objective> getObjectives() {
         Set<Objective> objectives = new HashSet<Objective>();
-        for(net.canarymod.api.scoreboard.ScoreObjective objective : scoreboard.getScoreObjectives()) {
+        for (net.canarymod.api.scoreboard.ScoreObjective objective : scoreboard.getScoreObjectives()) {
             objectives.add(new CanaryObjective(objective));
         }
         return objectives;
@@ -85,7 +85,7 @@ public class CanaryScoreboard implements Scoreboard {
 
     public Set<Team> getTeams() {
         Set<Team> teams = new HashSet<Team>();
-        for(net.canarymod.api.scoreboard.Team team : scoreboard.getTeams()) {
+        for (net.canarymod.api.scoreboard.Team team : scoreboard.getTeams()) {
             teams.add(new CanaryTeam(team));
         }
         return teams;

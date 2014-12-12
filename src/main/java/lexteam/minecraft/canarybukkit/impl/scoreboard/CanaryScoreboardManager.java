@@ -27,7 +27,7 @@ public class CanaryScoreboardManager implements ScoreboardManager {
     public CanaryScoreboardManager(net.canarymod.api.scoreboard.ScoreboardManager scoreboardManager) {
         this.scoreboardManager = scoreboardManager;
     }
-    
+
     public Scoreboard getMainScoreboard() {
         return new CanaryScoreboard(scoreboardManager.getScoreboard());
     }

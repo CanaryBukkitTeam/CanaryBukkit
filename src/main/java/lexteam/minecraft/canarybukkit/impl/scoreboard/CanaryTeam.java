@@ -32,7 +32,7 @@ public class CanaryTeam implements Team {
         this.team = team;
         this.scoreboard = new CanaryScoreboard(team.getScoreboard());
     }
-    
+
     public String getName() throws IllegalStateException {
         return team.getProtocolName();
     }

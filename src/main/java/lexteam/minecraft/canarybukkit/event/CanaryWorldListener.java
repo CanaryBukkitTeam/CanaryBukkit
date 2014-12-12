@@ -20,26 +20,16 @@ package lexteam.minecraft.canarybukkit.event;
 import lexteam.minecraft.canarybukkit.impl.CanaryChunk;
 import lexteam.minecraft.canarybukkit.impl.CanaryServer;
 import lexteam.minecraft.canarybukkit.impl.CanaryWorld;
-import lexteam.minecraft.canarybukkit.impl.block.CanaryBlock;
 import lexteam.minecraft.canarybukkit.impl.entity.CanaryLightningStrike;
-import lexteam.minecraft.canarybukkit.impl.entity.CanaryPlayer;
 import net.canarymod.hook.HookHandler;
-import net.canarymod.hook.player.BlockDestroyHook;
-import net.canarymod.hook.player.BlockPlaceHook;
 import net.canarymod.hook.system.LoadWorldHook;
 import net.canarymod.hook.system.UnloadWorldHook;
-import net.canarymod.hook.world.BlockGrowHook;
 import net.canarymod.hook.world.ChunkLoadedHook;
 import net.canarymod.hook.world.ChunkUnloadHook;
-import net.canarymod.hook.world.LeafDecayHook;
 import net.canarymod.hook.world.LightningStrikeHook;
 import net.canarymod.hook.world.WeatherChangeHook;
 import net.canarymod.plugin.PluginListener;
 
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockGrowEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.block.LeavesDecayEvent;
 import org.bukkit.event.weather.LightningStrikeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
@@ -55,64 +45,19 @@ public class CanaryWorldListener implements PluginListener {
     }
 
     @HookHandler
-    public void blockDestroy(final BlockDestroyHook hook) {
-        server.getPluginManager().callEvent(
-                new BlockBreakEvent(new CanaryBlock(hook.getBlock()), new CanaryPlayer(hook.getPlayer())){
-                    @Override
-                    public void setCancelled(boolean cancelled) {
-                        super.setCancelled(cancelled);
-                        if(cancelled) {
-                            hook.setCanceled();
-                        }
-                    }
-                });
-    }
-
-    @HookHandler
-    public void blockPlace(final BlockPlaceHook hook) {
-        server.getPluginManager().callEvent(
-                new BlockPlaceEvent(new CanaryBlock(hook.getBlockPlaced()), null, new CanaryBlock(hook
-                        .getBlockClicked()), null, new CanaryPlayer(hook.getPlayer()), hook.isCanceled()){
-                    @Override
-                    public void setCancelled(boolean cancelled) {
-                        super.setCancelled(cancelled);
-                        if(cancelled) {
-                            hook.setCanceled();
-                        }
-                    }
-                });
-        // TODO: Fill in and check some of the arguments.
-    }
-
-    @HookHandler
-    public void onBlockGrowth(final BlockGrowHook hook) {
-        server.getPluginManager().callEvent(new BlockGrowEvent(new CanaryBlock(hook.getOriginal()), null){
-            @Override
-            public void setCancelled(boolean cancelled) {
-                super.setCancelled(cancelled);
-                if(cancelled) {
-                    hook.setCanceled();
-                }
-            }
-        });
-        // TODO: Fill in second argument
-    }
-
-    @HookHandler
     public void onChunkLoad(final ChunkLoadedHook hook) {
         server.getPluginManager().callEvent(
-                new ChunkLoadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld())), hook
-                        .isNew()));
+                new ChunkLoadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld())), hook.isNew()));
     }
 
     @HookHandler
     public void onChunkUnload(final ChunkUnloadHook hook) {
         server.getPluginManager().callEvent(
-                new ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld()))){
+                new ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld()))) {
                     @Override
                     public void setCancelled(boolean cancelled) {
                         super.setCancelled(cancelled);
-                        if(cancelled) {
+                        if (cancelled) {
                             hook.setCanceled();
                         }
                     }
@@ -123,14 +68,13 @@ public class CanaryWorldListener implements PluginListener {
     public void onLightningStrike(final LightningStrikeHook hook) {
         server.getPluginManager().callEvent(
                 new LightningStrikeEvent(new CanaryWorld(hook.getLightningBolt().getWorld()),
-                        new CanaryLightningStrike(hook.getLightningBolt())){
+                        new CanaryLightningStrike(hook.getLightningBolt())) {
                     @Override
                     public void setCancelled(boolean cancelled) {
                         super.setCancelled(cancelled);
                         /*
-                        if(cancelled) {
-                            hook.setCanceled(); LightningStrikeHook isn't a CancelableHook
-                        }
+                         * if(cancelled) { hook.setCanceled();
+                         * LightningStrikeHook isn't a CancelableHook }
                          */
                     }
                 });
@@ -138,25 +82,11 @@ public class CanaryWorldListener implements PluginListener {
 
     @HookHandler
     public void onWeatherChange(final WeatherChangeHook hook) {
-        server.getPluginManager().callEvent(
-                new WeatherChangeEvent(new CanaryWorld(hook.getWorld()), hook.turningOn()){
-                    @Override
-                    public void setCancelled(boolean cancelled) {
-                        super.setCancelled(cancelled);
-                        if(cancelled) {
-                            hook.setCanceled();
-                        }
-                    }
-                });
-    }
-    
-    @HookHandler
-    public void onLeafDecay(final LeafDecayHook hook) {
-        server.getPluginManager().callEvent(new LeavesDecayEvent(new CanaryBlock(hook.getBlock())){
+        server.getPluginManager().callEvent(new WeatherChangeEvent(new CanaryWorld(hook.getWorld()), hook.turningOn()) {
             @Override
             public void setCancelled(boolean cancelled) {
                 super.setCancelled(cancelled);
-                if(cancelled) {
+                if (cancelled) {
                     hook.setCanceled();
                 }
             }
@@ -170,14 +100,13 @@ public class CanaryWorldListener implements PluginListener {
 
     @HookHandler
     public void onWorldUnload(final UnloadWorldHook hook) {
-        server.getPluginManager().callEvent(new WorldUnloadEvent(new CanaryWorld(hook.getWorld())){
+        server.getPluginManager().callEvent(new WorldUnloadEvent(new CanaryWorld(hook.getWorld())) {
             @Override
             public void setCancelled(boolean cancelled) {
                 super.setCancelled(cancelled);
                 /*
-                if(cancelled) {
-                    hook.setCanceled(); UnloadWorldHook isn't a CancelableHook
-                }
+                 * if(cancelled) { hook.setCanceled(); UnloadWorldHook isn't a
+                 * CancelableHook }
                  */
             }
         });

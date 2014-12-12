@@ -55,8 +55,8 @@ public class CanaryBlock implements Block {
     }
 
     public Biome getBiome() {
-        return Biome.valueOf(getCanaryWorld().getBiome(getCanaryBlock().getX(), getCanaryBlock().getZ())
-                .getBiomeType().name());
+        return Biome.valueOf(getCanaryWorld().getBiome(getCanaryBlock().getX(), getCanaryBlock().getZ()).getBiomeType()
+                .name());
         // TODO: Check if that works
     }
 

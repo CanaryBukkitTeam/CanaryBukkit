@@ -90,8 +90,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         throw new NotImplementedException("decrementStatistic(Statistic)");
     }
 
-    public void decrementStatistic(Statistic statistic, EntityType entityType)
-            throws IllegalArgumentException {
+    public void decrementStatistic(Statistic statistic, EntityType entityType) throws IllegalArgumentException {
         throw new NotImplementedException("decrementStatistic(Statistic, EntityType)");
     }
 
@@ -107,8 +106,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         throw new NotImplementedException("decrementStatistic(Statistic, Material)");
     }
 
-    public void decrementStatistic(Statistic statistic, Material material, int amount)
-            throws IllegalArgumentException {
+    public void decrementStatistic(Statistic statistic, Material material, int amount) throws IllegalArgumentException {
         throw new NotImplementedException("decrementStatistic(Statistic, Material, int)");
     }
 
@@ -264,8 +262,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         throw new NotImplementedException("incrementStatistic(Statistic)");
     }
 
-    public void incrementStatistic(Statistic statistic, EntityType entityType)
-            throws IllegalArgumentException {
+    public void incrementStatistic(Statistic statistic, EntityType entityType) throws IllegalArgumentException {
         throw new NotImplementedException("incrementStatistic(Statistic, EntityType)");
     }
 
@@ -282,8 +279,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         throw new NotImplementedException("incrementStatistic(Statistic, Material)");
     }
 
-    public void incrementStatistic(Statistic statistic, Material material, int amount)
-            throws IllegalArgumentException {
+    public void incrementStatistic(Statistic statistic, Material material, int amount) throws IllegalArgumentException {
         throw new NotImplementedException("incrementStatistic(Statistic, Material, int)");
     }
 
@@ -549,8 +545,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         throw new NotImplementedException("setStatistic(Statistic, int)");
     }
 
-    public void setStatistic(Statistic statistic, Material material, int newValue)
-            throws IllegalArgumentException {
+    public void setStatistic(Statistic statistic, Material material, int newValue) throws IllegalArgumentException {
         throw new NotImplementedException("setStatistic(Statistic, Material, int)");
     }
 

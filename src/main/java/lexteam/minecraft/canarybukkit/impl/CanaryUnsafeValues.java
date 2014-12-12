@@ -49,7 +49,6 @@ public class CanaryUnsafeValues implements UnsafeValues {
     }
 
     public List<String> tabCompleteInternalStatisticOrAchievementName(String token, List<String> completions) {
-        throw new NotImplementedException(
-                "tabCompleteInternalStatisticOrAchievementName(String, List<String>)");
+        throw new NotImplementedException("tabCompleteInternalStatisticOrAchievementName(String, List<String>)");
     }
 }
