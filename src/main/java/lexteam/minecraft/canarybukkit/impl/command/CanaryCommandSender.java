@@ -23,6 +23,7 @@ import net.canarymod.Canary;
 import net.canarymod.chat.MessageReceiver;
 import net.canarymod.chat.ReceiverType;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
@@ -39,23 +40,23 @@ public class CanaryCommandSender implements CommandSender {
     }
 
     public PermissionAttachment addAttachment(Plugin plugin) {
-        return null;
+        throw new NotImplementedException("addAttachment(Plugin)");
     }
 
     public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
-        return null;
+        throw new NotImplementedException("addAttachment(Plugin, int)");
     }
 
     public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
-        return null;
+        throw new NotImplementedException("addAttachment(Plugin, String, boolean)");
     }
 
     public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
-        return null;
+        throw new NotImplementedException("addAttachment(Plugin, String, boolean, int)");
     }
 
     public Set<PermissionAttachmentInfo> getEffectivePermissions() {
-        return null;
+        throw new NotImplementedException("getEffectivePermissions()");
     }
 
     public String getName() {
@@ -79,7 +80,7 @@ public class CanaryCommandSender implements CommandSender {
     }
 
     public boolean isPermissionSet(Permission perm) {
-        return true;
+        return isPermissionSet(perm.getName());
     }
 
     public boolean isPermissionSet(String name) {
@@ -91,11 +92,11 @@ public class CanaryCommandSender implements CommandSender {
     }
 
     public void recalculatePermissions() {
-
+        throw new NotImplementedException("recalculatePermissions()");
     }
 
     public void removeAttachment(PermissionAttachment attachment) {
-
+        throw new NotImplementedException("removeAttachment(PermissionAttachment)");
     }
 
     public void sendMessage(String message) {

@@ -17,11 +17,16 @@
  */
 package lexteam.minecraft.canarybukkit.event;
 
+import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockGrowEvent;
+import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.LeavesDecayEvent;
 
+import lexteam.minecraft.canarybukkit.BukkitUtils;
 import lexteam.minecraft.canarybukkit.impl.CanaryServer;
 import lexteam.minecraft.canarybukkit.impl.block.CanaryBlock;
 import lexteam.minecraft.canarybukkit.impl.entity.CanaryPlayer;
@@ -29,6 +34,8 @@ import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.player.BlockDestroyHook;
 import net.canarymod.hook.player.BlockPlaceHook;
 import net.canarymod.hook.world.BlockGrowHook;
+import net.canarymod.hook.world.IgnitionHook;
+import net.canarymod.hook.world.IgnitionHook.IgnitionCause;
 import net.canarymod.hook.world.LeafDecayHook;
 import net.canarymod.plugin.PluginListener;
 
@@ -87,6 +94,41 @@ public class CanaryBlockListener implements PluginListener {
             }
         });
         // TODO: Fill in second argument
+    }
+
+    @HookHandler
+    public void onIgnition(final IgnitionHook hook) {
+        if (hook.getCause() == IgnitionCause.BURNT) {
+            server.getPluginManager().callEvent(new BlockBurnEvent(new CanaryBlock(hook.getBlock())) {
+                @Override
+                public void setCancelled(boolean cancelled) {
+                    super.setCancelled(cancelled);
+                    if (cancelled) {
+                        hook.setCanceled();
+                    }
+                }
+            });
+        } else {
+            Entity ignitingEntity = null;
+            Block ignitingBlock = null;
+            if (hook.getPlayer() != null) {
+                ignitingEntity = BukkitUtils.getEntity(hook.getPlayer());
+            }
+            if (hook.getClickedBlock() != null) {
+                ignitingBlock = new CanaryBlock(hook.getClickedBlock());
+            }
+            server.getPluginManager().callEvent(
+                    new BlockIgniteEvent(new CanaryBlock(hook.getBlock()), BukkitUtils.getIgniteCause(hook.getCause()),
+                            ignitingEntity, ignitingBlock) {
+                        @Override
+                        public void setCancelled(boolean cancelled) {
+                            super.setCancelled(cancelled);
+                            if (cancelled) {
+                                hook.setCanceled();
+                            }
+                        }
+                    });
+        }
     }
 
     @HookHandler

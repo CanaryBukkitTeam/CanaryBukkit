@@ -41,11 +41,11 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
     }
 
     public long getFirstPlayed() {
-        return 0;
+        throw new NotImplementedException("getFirstPlayed()");
     }
 
     public long getLastPlayed() {
-        return 0;
+        throw new NotImplementedException("getLastPlayed()");
     }
 
     public String getName() {
@@ -61,7 +61,7 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
     }
 
     public boolean hasPlayedBefore() {
-        return false;
+        throw new NotImplementedException("hasPlayedBefore()");
     }
 
     public boolean isBanned() {
@@ -85,7 +85,7 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
     }
 
     public void setBanned(boolean banned) {
-
+        throw new NotImplementedException("setBanned(boolean)");
     }
 
     public void setOp(boolean op) {

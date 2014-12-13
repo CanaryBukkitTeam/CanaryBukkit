@@ -318,7 +318,7 @@ public class CanaryServer implements Server {
     }
 
     public MapView getMap(short id) {
-        throw new NotImplementedException("getMap(short id)");
+        throw new NotImplementedException("getMap(short)");
     }
 
     public int getMaxPlayers() {
@@ -428,7 +428,7 @@ public class CanaryServer implements Server {
     }
 
     public List<Recipe> getRecipesFor(ItemStack result) {
-        throw new NotImplementedException("getRecipesFor(ItemStack result)");
+        throw new NotImplementedException("getRecipesFor(ItemStack)");
     }
 
     public BukkitScheduler getScheduler() {
@@ -615,7 +615,7 @@ public class CanaryServer implements Server {
         config = YamlConfiguration.loadConfiguration(Constants.configFile);
         // TODO: More reload stuff.
 
-        server.restart(true);
+        Canary.instance().reload();
     }
 
     public void reloadWhitelist() {

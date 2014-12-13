@@ -52,11 +52,11 @@ public class CanaryChunkSnapshot implements ChunkSnapshot {
     }
 
     public int getBlockSkyLight(int x, int y, int z) {
-        throw new org.apache.commons.lang3.NotImplementedException("");
+        throw new org.apache.commons.lang3.NotImplementedException("getBlockSkyLight(int, int, int)");
     }
 
     public int getBlockEmittedLight(int x, int y, int z) {
-        throw new org.apache.commons.lang3.NotImplementedException("");
+        throw new org.apache.commons.lang3.NotImplementedException("getBlockEmittedLight(int, int, int)");
     }
 
     public int getHighestBlockYAt(int x, int z) {
