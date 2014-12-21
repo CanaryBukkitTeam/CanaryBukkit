@@ -21,12 +21,14 @@ import lexteam.minecraft.canarybukkit.impl.CanaryChunk;
 import lexteam.minecraft.canarybukkit.impl.CanaryServer;
 import lexteam.minecraft.canarybukkit.impl.CanaryWorld;
 import lexteam.minecraft.canarybukkit.impl.entity.CanaryLightningStrike;
+import net.canarymod.api.world.blocks.Block;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.system.LoadWorldHook;
 import net.canarymod.hook.system.UnloadWorldHook;
 import net.canarymod.hook.world.ChunkLoadedHook;
 import net.canarymod.hook.world.ChunkUnloadHook;
 import net.canarymod.hook.world.LightningStrikeHook;
+import net.canarymod.hook.world.PortalCreateHook;
 import net.canarymod.hook.world.WeatherChangeHook;
 import net.canarymod.plugin.PluginListener;
 
@@ -34,6 +36,7 @@ import org.bukkit.event.weather.LightningStrikeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
+import org.bukkit.event.world.PortalCreateEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
 
@@ -108,6 +111,19 @@ public class CanaryWorldListener implements PluginListener {
                  * if(cancelled) { hook.setCanceled(); UnloadWorldHook isn't a
                  * CancelableHook }
                  */
+            }
+        });
+    }
+    
+    @HookHandler
+    public void onPortalCreation(final PortalCreateHook hook) {
+        server.getPluginManager().callEvent(new PortalCreateEvent(null, new CanaryWorld(null), null) {
+            @Override
+            public void setCancelled(boolean cancelled) {
+                super.setCancelled(cancelled);
+                if (cancelled) {
+                    hook.setCanceled();
+                }
             }
         });
     }

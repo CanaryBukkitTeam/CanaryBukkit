@@ -96,6 +96,7 @@ public class CanaryServer implements Server {
     private final CanaryHelpMap helpMap = new CanaryHelpMap(Canary.help());
     private Logman logman;
     private YamlConfiguration config;
+    private WarningState warnState = WarningState.DEFAULT;
     /**
      * An empty player array used for deprecated getOnlinePlayers.
      */
@@ -113,6 +114,10 @@ public class CanaryServer implements Server {
         config.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader().getResourceAsStream(
                 "config/config.yml")));
         saveConfigFile(config, Constants.configFile);
+    }
+    
+    public void loadConfig() {
+        
     }
 
     public boolean addRecipe(Recipe recipe) {
@@ -493,7 +498,7 @@ public class CanaryServer implements Server {
     }
 
     public WarningState getWarningState() {
-        throw new NotImplementedException("getWarningState()");
+        return warnState;
     }
 
     public int getWaterAnimalSpawnLimit() {
@@ -612,10 +617,7 @@ public class CanaryServer implements Server {
     }
 
     public void reload() {
-        config = YamlConfiguration.loadConfiguration(Constants.configFile);
-        // TODO: More reload stuff.
-
-        Canary.instance().reload();
+        loadConfig();
     }
 
     public void reloadWhitelist() {

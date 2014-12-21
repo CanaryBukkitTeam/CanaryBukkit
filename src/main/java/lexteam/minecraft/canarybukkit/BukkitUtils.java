@@ -25,7 +25,6 @@ import lexteam.minecraft.canarybukkit.impl.entity.CanaryHorse;
 import lexteam.minecraft.canarybukkit.impl.entity.CanaryPig;
 import lexteam.minecraft.canarybukkit.impl.entity.CanarySheep;
 import lexteam.minecraft.canarybukkit.impl.entity.CanaryWolf;
-
 import org.apache.commons.lang3.Validate;
 import org.bukkit.Art;
 import org.bukkit.Difficulty;
@@ -175,6 +174,7 @@ public class BukkitUtils {
     }
 
     public static Art getArt(net.canarymod.api.entity.hanging.Painting.ArtType art) {
+        Validate.notNull(art);
         switch (art) {
             case Alban:
                 return Art.ALBAN;
@@ -264,15 +264,18 @@ public class BukkitUtils {
     }
 
     public static PotionEffectType getPotionEffectType(net.canarymod.api.potion.PotionEffectType potionEffectType) {
+        Validate.notNull(potionEffectType);
         return PotionEffectType.getByName(potionEffectType.name());
     }
 
     public static PotionEffect getPotionEffect(net.canarymod.api.potion.PotionEffect potionEffect) {
+        Validate.notNull(potionEffect);
         return new PotionEffect(getPotionEffectType(CanaryUtils.getPotionEffectType(potionEffect.getPotionID())),
                 potionEffect.getDuration(), potionEffect.getAmplifier(), potionEffect.isAmbient());
     }
 
     public static TeleportCause getTeleportCause(net.canarymod.hook.player.TeleportHook.TeleportCause cause) {
+        Validate.notNull(cause);
         switch (cause) {
             case BED:
                 return TeleportCause.UNKNOWN;
@@ -298,6 +301,7 @@ public class BukkitUtils {
     }
 
     public static IgniteCause getIgniteCause(net.canarymod.hook.world.IgnitionHook.IgnitionCause cause) {
+        Validate.notNull(cause);
         switch (cause) {
             case FIREBALL_CLICK:
                 return IgniteCause.FIREBALL;
