@@ -36,11 +36,11 @@ public class CanaryBanEntry implements BanEntry {
     }
 
     public Date getCreated() {
-        throw new NotImplementedException("getCreated()");
+        return new Date(ban.getIssuedDate());
     }
 
     public void setCreated(Date created) {
-        throw new NotImplementedException("setCreated(Date)");
+        ban.setIssuedDate(created.getTime());
     }
 
     public String getSource() {
@@ -52,11 +52,11 @@ public class CanaryBanEntry implements BanEntry {
     }
 
     public Date getExpiration() {
-        return new Date(ban.getTimestamp());
+        return new Date(ban.getExpiration());
     }
 
     public void setExpiration(Date expiration) {
-        ban.setTimestamp(expiration.getTime());
+        ban.setExpiration(expiration.getTime());
     }
 
     public String getReason() {
