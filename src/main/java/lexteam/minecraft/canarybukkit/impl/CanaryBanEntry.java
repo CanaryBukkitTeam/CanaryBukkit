@@ -21,53 +21,62 @@ import java.util.Date;
 
 import net.canarymod.bansystem.Ban;
 
-import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.BanEntry;
 
 public class CanaryBanEntry implements BanEntry {
     private Ban ban;
+    private String target, source, reason;
+    private Date created, expires;
 
     public CanaryBanEntry(Ban ban) {
         this.ban = ban;
+        this.target = ban.getSubject();
+        this.created = new Date(ban.getIssuedDate());
+        this.source = ban.getBanningPlayer();
+        this.expires = new Date(ban.getExpiration());
+        this.reason = ban.getReason();
     }
 
     public String getTarget() {
-        return ban.getSubject();
+        return target;
     }
 
     public Date getCreated() {
-        return new Date(ban.getIssuedDate());
+        return created;
     }
 
     public void setCreated(Date created) {
-        ban.setIssuedDate(created.getTime());
+        this.created = created;
     }
 
     public String getSource() {
-        return ban.getBanningPlayer();
+        return source;
     }
 
     public void setSource(String source) {
-        ban.setBanningPlayer(source);
+        this.source = source;
     }
 
     public Date getExpiration() {
-        return new Date(ban.getExpiration());
+        return expires;
     }
 
     public void setExpiration(Date expiration) {
-        ban.setExpiration(expiration.getTime());
+        this.expires = expiration;
     }
 
     public String getReason() {
-        return ban.getReason();
+        return reason;
     }
 
     public void setReason(String reason) {
-        ban.setReason(reason);
+        this.reason = ban.getReason();
     }
 
     public void save() {
-        throw new NotImplementedException("save()");
+        ban.setIssuedDate(created.getTime());
+        ban.setBanningPlayer(source);
+        ban.setExpiration(expires.getTime());
+        ban.setReason(reason);
     }
 }
