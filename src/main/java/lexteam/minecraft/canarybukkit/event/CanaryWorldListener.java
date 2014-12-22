@@ -21,7 +21,6 @@ import lexteam.minecraft.canarybukkit.impl.CanaryChunk;
 import lexteam.minecraft.canarybukkit.impl.CanaryServer;
 import lexteam.minecraft.canarybukkit.impl.CanaryWorld;
 import lexteam.minecraft.canarybukkit.impl.entity.CanaryLightningStrike;
-import net.canarymod.api.world.blocks.Block;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.system.LoadWorldHook;
 import net.canarymod.hook.system.UnloadWorldHook;
@@ -31,6 +30,7 @@ import net.canarymod.hook.world.LightningStrikeHook;
 import net.canarymod.hook.world.PortalCreateHook;
 import net.canarymod.hook.world.WeatherChangeHook;
 import net.canarymod.plugin.PluginListener;
+import net.canarymod.plugin.Priority;
 
 import org.bukkit.event.weather.LightningStrikeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
@@ -47,13 +47,13 @@ public class CanaryWorldListener implements PluginListener {
         this.server = server;
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onChunkLoad(final ChunkLoadedHook hook) {
         server.getPluginManager().callEvent(
                 new ChunkLoadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld())), hook.isNew()));
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onChunkUnload(final ChunkUnloadHook hook) {
         server.getPluginManager().callEvent(
                 new ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld()))) {
@@ -67,7 +67,7 @@ public class CanaryWorldListener implements PluginListener {
                 });
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onLightningStrike(final LightningStrikeHook hook) {
         server.getPluginManager().callEvent(
                 new LightningStrikeEvent(new CanaryWorld(hook.getLightningBolt().getWorld()),
@@ -83,7 +83,7 @@ public class CanaryWorldListener implements PluginListener {
                 });
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onWeatherChange(final WeatherChangeHook hook) {
         server.getPluginManager().callEvent(new WeatherChangeEvent(new CanaryWorld(hook.getWorld()), hook.turningOn()) {
             @Override
@@ -96,12 +96,12 @@ public class CanaryWorldListener implements PluginListener {
         });
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onWorldLoad(final LoadWorldHook hook) {
         server.getPluginManager().callEvent(new WorldLoadEvent(new CanaryWorld(hook.getWorld())));
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onWorldUnload(final UnloadWorldHook hook) {
         server.getPluginManager().callEvent(new WorldUnloadEvent(new CanaryWorld(hook.getWorld())) {
             @Override
@@ -115,7 +115,7 @@ public class CanaryWorldListener implements PluginListener {
         });
     }
     
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onPortalCreation(final PortalCreateHook hook) {
         server.getPluginManager().callEvent(new PortalCreateEvent(null, new CanaryWorld(null), null) {
             @Override

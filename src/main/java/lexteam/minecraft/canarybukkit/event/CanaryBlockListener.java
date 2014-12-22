@@ -38,6 +38,7 @@ import net.canarymod.hook.world.IgnitionHook;
 import net.canarymod.hook.world.IgnitionHook.IgnitionCause;
 import net.canarymod.hook.world.LeafDecayHook;
 import net.canarymod.plugin.PluginListener;
+import net.canarymod.plugin.Priority;
 
 public class CanaryBlockListener implements PluginListener {
     private CanaryServer server;
@@ -46,7 +47,7 @@ public class CanaryBlockListener implements PluginListener {
         this.server = server;
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onBlockDestroy(final BlockDestroyHook hook) {
         server.getPluginManager().callEvent(
                 new BlockBreakEvent(new CanaryBlock(hook.getBlock()), new CanaryPlayer(hook.getPlayer())) {
@@ -60,7 +61,7 @@ public class CanaryBlockListener implements PluginListener {
                 });
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onBlockPlace(final BlockPlaceHook hook) {
         server.getPluginManager().callEvent(
                 new BlockPlaceEvent(new CanaryBlock(hook.getBlockPlaced()), null, new CanaryBlock(hook
@@ -82,7 +83,7 @@ public class CanaryBlockListener implements PluginListener {
         // TODO: Fill in and check some of the arguments.
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onBlockGrowth(final BlockGrowHook hook) {
         server.getPluginManager().callEvent(new BlockGrowEvent(new CanaryBlock(hook.getOriginal()), null) {
             @Override
@@ -96,7 +97,7 @@ public class CanaryBlockListener implements PluginListener {
         // TODO: Fill in second argument
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onIgnition(final IgnitionHook hook) {
         if (hook.getCause() == IgnitionCause.BURNT) {
             server.getPluginManager().callEvent(new BlockBurnEvent(new CanaryBlock(hook.getBlock())) {
@@ -131,7 +132,7 @@ public class CanaryBlockListener implements PluginListener {
         }
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onLeafDecay(final LeafDecayHook hook) {
         server.getPluginManager().callEvent(new LeavesDecayEvent(new CanaryBlock(hook.getBlock())) {
             @Override

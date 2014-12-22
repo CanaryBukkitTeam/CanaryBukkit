@@ -41,6 +41,7 @@ import net.canarymod.hook.player.EnchantHook;
 import net.canarymod.hook.player.PlayerDeathHook;
 import net.canarymod.hook.player.TeleportHook;
 import net.canarymod.plugin.PluginListener;
+import net.canarymod.plugin.Priority;
 
 import org.bukkit.Location;
 import org.bukkit.event.enchantment.EnchantItemEvent;
@@ -59,7 +60,7 @@ public class CanaryPlayerListener implements PluginListener {
         this.server = server;
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onCommand(PlayerCommandHook hook) {
         String commandLine = "";
         for (String s : hook.getCommand()) {
@@ -70,7 +71,7 @@ public class CanaryPlayerListener implements PluginListener {
         }
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onEnchant(final EnchantHook hook) {
         server.getPluginManager().callEvent(
                 new EnchantItemEvent(new CanaryPlayer(hook.getPlayer()), null, new CanaryBlock(hook
@@ -92,7 +93,7 @@ public class CanaryPlayerListener implements PluginListener {
         // TODO: Fill in.
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onEnteringBed(final BedEnterHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerBedEnterEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())) {
@@ -106,13 +107,13 @@ public class CanaryPlayerListener implements PluginListener {
                 });
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onExitingBed(final BedExitHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerBedLeaveEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())));
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onPlayerChat(final ChatHook hook) {
         Set<org.bukkit.entity.Player> recievers = new HashSet<org.bukkit.entity.Player>();
         for (Player p : hook.getReceiverList()) {
@@ -143,7 +144,7 @@ public class CanaryPlayerListener implements PluginListener {
         // TODO: Fill in
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onPlayerDeath(final PlayerDeathHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerDeathEvent(new CanaryPlayer(hook.getPlayer()), null, hook.getPlayer().getExperience(), hook
@@ -187,7 +188,7 @@ public class CanaryPlayerListener implements PluginListener {
         // TODO: Fill in and check.
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onPlayerJoin(final ConnectionHook hook) {
         server.getPluginManager().callEvent(new PlayerJoinEvent(new CanaryPlayer(hook.getPlayer()), hook.getMessage()) {
             @Override
@@ -198,7 +199,7 @@ public class CanaryPlayerListener implements PluginListener {
         });
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onPlayerQuit(final DisconnectionHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerQuitEvent(new CanaryPlayer(hook.getPlayer()), hook.getLeaveMessage()) {
@@ -210,7 +211,7 @@ public class CanaryPlayerListener implements PluginListener {
                 });
     }
 
-    @HookHandler
+    @HookHandler(priority = Priority.CRITICAL)
     public void onTeleportation(final TeleportHook hook) {
         server.getPluginManager().callEvent(
                 new PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()), new CanaryLocation(hook.getPlayer()
