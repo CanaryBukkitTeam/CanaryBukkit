@@ -49,6 +49,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBedLeaveEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -61,12 +62,28 @@ public class CanaryPlayerListener implements PluginListener {
     }
 
     @HookHandler(priority = Priority.CRITICAL)
-    public void onCommand(PlayerCommandHook hook) {
-        String commandLine = "";
+    public void onCommand(final PlayerCommandHook hook) {
+        String command = "";
         for (String s : hook.getCommand()) {
-            commandLine += s + " ";
+            command += s + " ";
         }
-        if (server.dispatchCommand(new CanaryCommandSender(hook.getPlayer()), commandLine)) {
+        server.getPluginManager().callEvent(
+                new PlayerCommandPreprocessEvent(new CanaryPlayer(hook.getPlayer()), command) {
+                    @Override
+                    public void setCancelled(boolean cancelled) {
+                        super.setCancelled(cancelled);
+                        if (cancelled) {
+                            hook.setCanceled();
+                        }
+                    }
+
+                    @Override
+                    public void setMessage(String msg) {
+                        super.setMessage(msg);
+                        // Set command
+                    }
+                });
+        if (server.dispatchCommand(new CanaryCommandSender(hook.getPlayer()), command)) {
             hook.setCanceled();
         }
     }

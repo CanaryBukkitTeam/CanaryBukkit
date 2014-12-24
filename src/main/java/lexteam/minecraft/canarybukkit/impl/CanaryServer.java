@@ -110,14 +110,14 @@ public class CanaryServer implements Server {
         Bukkit.setServer(this);
 
         config = YamlConfiguration.loadConfiguration(Constants.configFile);
-        config.options().copyDefaults(true);
         config.setDefaults(YamlConfiguration.loadConfiguration(getClass().getClassLoader().getResourceAsStream(
                 "config/config.yml")));
+        config.options().copyDefaults(true);
         saveConfigFile(config, Constants.configFile);
     }
-    
+
     public void loadConfig() {
-        
+        config = YamlConfiguration.loadConfiguration(Constants.configFile);
     }
 
     public boolean addRecipe(Recipe recipe) {

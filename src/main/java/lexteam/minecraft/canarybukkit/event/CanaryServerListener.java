@@ -25,6 +25,7 @@ import net.canarymod.hook.system.ServerListPingHook;
 import net.canarymod.plugin.PluginListener;
 import net.canarymod.plugin.Priority;
 
+import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.util.CachedServerIcon;
 
@@ -37,11 +38,18 @@ public class CanaryServerListener implements PluginListener {
 
     @HookHandler(priority = Priority.CRITICAL)
     public void onCommand(final ConsoleCommandHook hook) {
-        String commandLine = "";
+        String command = "";
         for (String s : hook.getCommand()) {
-            commandLine += s + " ";
+            command += s + " ";
         }
-        if (server.dispatchCommand(new CanaryCommandSender(hook.getCaller()), commandLine)) {
+        server.getPluginManager().callEvent(new ServerCommandEvent(new CanaryCommandSender(hook.getCaller()), command) {
+            @Override
+            public void setCommand(String msg) {
+                super.setCommand(msg);
+                // Set command
+            }
+        });
+        if (server.dispatchCommand(new CanaryCommandSender(hook.getCaller()), command)) {
             hook.setCanceled();
         }
     }

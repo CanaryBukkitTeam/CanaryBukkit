@@ -114,7 +114,7 @@ public class CanaryWorldListener implements PluginListener {
             }
         });
     }
-    
+
     @HookHandler(priority = Priority.CRITICAL)
     public void onPortalCreation(final PortalCreateHook hook) {
         server.getPluginManager().callEvent(new PortalCreateEvent(null, new CanaryWorld(null), null) {
