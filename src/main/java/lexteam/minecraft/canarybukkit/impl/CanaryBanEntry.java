@@ -70,7 +70,7 @@ public class CanaryBanEntry implements BanEntry {
     }
 
     public void setReason(String reason) {
-        this.reason = ban.getReason();
+        this.reason = reason;
     }
 
     public void save() {
