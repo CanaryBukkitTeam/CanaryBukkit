@@ -20,10 +20,11 @@ package lexteam.minecraft.canarybukkit.implementation.scheduler;
 import net.canarymod.tasks.ServerTask;
 
 public class BukkitServerTask extends ServerTask {
-    private CanaryTask task;
+
+    private final CanaryTask task;
 
     public BukkitServerTask(CanaryTask task) {
-        super(new BukkitTaskOwner(task.getOwner()), task.getDelay(), task.getRepeat());
+        super(new BukkitTaskOwner(task.getOwner()), task.getDelay(), task.getPeriod(), task.getRepeat());
         this.task = task;
     }
 
@@ -31,4 +32,5 @@ public class BukkitServerTask extends ServerTask {
     public void run() {
         task.run();
     }
+
 }

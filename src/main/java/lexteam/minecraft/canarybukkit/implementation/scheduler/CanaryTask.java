@@ -23,29 +23,37 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
 public class CanaryTask implements BukkitTask {
-    private Plugin plugin;
-    private Runnable task;
-    private int id;
-    private long delay;
-    private long period;
-    private boolean isAsync;
-    private boolean repeat;
-    private ServerTask serverTask;
+
+    private final Plugin plugin;
+    private final Runnable task;
+    private final int id;
+    private final long delay;
+    private final long period;
+    private final boolean isAsync;
+    private final boolean repeat;
+    private final ServerTask serverTask;
+    private boolean running = false;
 
     public CanaryTask(final Plugin plugin, final Runnable task, final int id, final long delay,
-            final long period, final boolean isAsync) {
+            final long period, final boolean isAsync, final boolean repeat) {
         this.plugin = plugin;
         this.task = task;
         this.id = id;
         this.delay = delay;
         this.period = period;
         this.isAsync = isAsync;
-        this.repeat = false;
+        this.repeat = repeat;
         this.serverTask = new BukkitServerTask(this);
     }
 
     public void run() {
-        task.run();
+        running = true;
+        try {
+            task.run();
+        }
+        finally {
+            running = false;
+        }
     }
 
     long getPeriod() {
@@ -65,6 +73,7 @@ public class CanaryTask implements BukkitTask {
     }
 
     public boolean isSync() {
+        // Truly all task are ran in the main thread by the Canary task system
         return !isAsync;
     }
 
@@ -79,4 +88,9 @@ public class CanaryTask implements BukkitTask {
     public ServerTask getServerTask() {
         return serverTask;
     }
+
+    public boolean isRunning() {
+        return running;
+    }
+
 }

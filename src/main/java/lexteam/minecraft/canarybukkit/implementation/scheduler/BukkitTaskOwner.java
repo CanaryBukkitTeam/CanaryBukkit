@@ -17,11 +17,25 @@
  */
 package lexteam.minecraft.canarybukkit.implementation.scheduler;
 
+import net.canarymod.tasks.TaskOwner;
 import org.bukkit.plugin.Plugin;
 
-import net.canarymod.tasks.TaskOwner;
-
 public class BukkitTaskOwner implements TaskOwner {
+
+    private final Plugin plugin;
+
     public BukkitTaskOwner(Plugin plugin) {
+        this.plugin = plugin;
     }
+
+    @Override
+    public boolean equals(Object object) {
+        return object instanceof BukkitTaskOwner && ((BukkitTaskOwner) object).plugin.equals(plugin);
+    }
+
+    @Override
+    public int hashCode() {
+        return plugin.hashCode();
+    }
+
 }
