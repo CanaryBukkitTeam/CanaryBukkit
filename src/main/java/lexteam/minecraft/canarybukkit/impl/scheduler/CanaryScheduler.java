@@ -122,7 +122,8 @@ public class CanaryScheduler implements BukkitScheduler {
 
     public List<BukkitWorker> getActiveWorkers() {
         // TODO talk to dark about maybe adding Async task handling to ServerTaskManager
-        return null;
+        // For now return a empty array list
+        return new ArrayList<BukkitWorker>();
     }
 
     public List<BukkitTask> getPendingTasks() {
