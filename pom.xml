@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>lexteam.minecraft</groupId>
     <artifactId>canarybukkit</artifactId>
 
     <name>CanaryBukkit</name>
-    <description>CanaryBukkit allows plugins created for the Bukkit API platform to be used on the CanaryMod server
+    <description>CanaryBukkit allows plugins created for the Bukkit API platform to be used on the CanaryLib server
         platform.
     </description>
-    <version>0.1</version>
+    <version>0.1-dev</version>
     <url>https://github.com/LexMinecraft/Canary-Bukkit</url>
     <inceptionYear>2014</inceptionYear>
 
@@ -34,12 +34,16 @@
             <id>repo1123</id>
             <url>http://repo.larry1123.net/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>Plugin Metrics</id>
+            <url>http://repo.mcstats.org/content/repositories/public</url>
+        </repository>
     </repositories>
-    
+
     <pluginRepositories>
         <pluginRepository>
-        	<id>bukkit</id>
-        	<url>http://repo.bukkit.org/content/groups/public</url>
+            <id>bukkit</id>
+            <url>http://repo.bukkit.org/content/groups/public</url>
         </pluginRepository>
     </pluginRepositories>
 
@@ -51,6 +55,10 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mcstats.canary</groupId>
+            <artifactId>metrics</artifactId>
         </dependency>
     </dependencies>
 
@@ -108,6 +116,16 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>2.3</version>
+                <configuration>
+                    <shadedArtifactAttached>true</shadedArtifactAttached>
+                    <shadedArtifactId>${project.name}</shadedArtifactId>
+                    <relocations>
+                        <relocation>
+                            <pattern>org.mcstats</pattern>
+                            <shadedPattern>lexteam.minecraft.canarybukkit.mcstats</shadedPattern>
+                        </relocation>
+                    </relocations>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -116,29 +134,25 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <shadedArtifactAttached>true</shadedArtifactAttached>
-                    <shadedArtifactId>${project.name}</shadedArtifactId>
-                </configuration>
             </plugin>
             <plugin>
-				<groupId>com.wolvereness</groupId>
-				<artifactId>overmapped</artifactId>
-				<version>0.0.2</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>map</goal>
-						</goals>
-						<configuration>
-							<maps>${basedir}/maps.yml</maps>
-							<input>${basedir}/target/${project.name}-${project.version}-shaded.jar</input>
-							<original>${basedir}/target/unmapped-${project.name}-${project.version}.jar</original>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+                <groupId>com.wolvereness</groupId>
+                <artifactId>overmapped</artifactId>
+                <version>0.0.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>map</goal>
+                        </goals>
+                        <configuration>
+                            <maps>${basedir}/maps.yml</maps>
+                            <input>${basedir}/target/${project.name}-${project.version}-shaded.jar</input>
+                            <original>${basedir}/target/unmapped-${project.name}-${project.version}.jar</original>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -176,7 +190,12 @@
                 <version>3.3.2</version>
                 <scope>provided</scope>
             </dependency>
+            <dependency>
+                <groupId>org.mcstats.canary</groupId>
+                <artifactId>metrics</artifactId>
+                <version>R8-SNAPSHOT</version>
+                <scope>compile</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
 </project>

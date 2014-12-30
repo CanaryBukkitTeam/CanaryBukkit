@@ -17,15 +17,14 @@
  */
 package lexteam.minecraft.canarybukkit;
 
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryArrow;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryChicken;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryCow;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryEgg;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryHorse;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryPig;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanarySheep;
-import lexteam.minecraft.canarybukkit.implementation.entity.CanaryWolf;
-
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryArrow;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryChicken;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryCow;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryEgg;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryHorse;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryPig;
+import lexteam.minecraft.canarybukkit.impl.entity.CanarySheep;
+import lexteam.minecraft.canarybukkit.impl.entity.CanaryWolf;
 import org.apache.commons.lang3.Validate;
 import org.bukkit.Art;
 import org.bukkit.Difficulty;
@@ -36,6 +35,8 @@ import org.bukkit.WorldType;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Ocelot.Type;
 import org.bukkit.entity.Villager.Profession;
+import org.bukkit.event.block.BlockIgniteEvent.IgniteCause;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -125,8 +126,7 @@ public class BukkitUtils {
         return WorldType.NORMAL;
     }
 
-    public static Profession getProfession(
-            net.canarymod.api.entity.living.humanoid.Villager.Profession profession) {
+    public static Profession getProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession profession) {
         Validate.notNull(profession);
         switch (profession) {
             case BLACKSMITH:
@@ -174,6 +174,7 @@ public class BukkitUtils {
     }
 
     public static Art getArt(net.canarymod.api.entity.hanging.Painting.ArtType art) {
+        Validate.notNull(art);
         switch (art) {
             case Alban:
                 return Art.ALBAN;
@@ -262,14 +263,61 @@ public class BukkitUtils {
         return null;
     }
 
-    public static PotionEffectType getPotionEffectType(
-            net.canarymod.api.potion.PotionEffectType potionEffectType) {
+    public static PotionEffectType getPotionEffectType(net.canarymod.api.potion.PotionEffectType potionEffectType) {
+        Validate.notNull(potionEffectType);
         return PotionEffectType.getByName(potionEffectType.name());
     }
 
     public static PotionEffect getPotionEffect(net.canarymod.api.potion.PotionEffect potionEffect) {
-        return new PotionEffect(getPotionEffectType(CanaryUtils.getPotionEffectType(potionEffect
-                .getPotionID())), potionEffect.getDuration(), potionEffect.getAmplifier(),
-                potionEffect.isAmbient());
+        Validate.notNull(potionEffect);
+        return new PotionEffect(getPotionEffectType(CanaryUtils.getPotionEffectType(potionEffect.getPotionID())),
+                potionEffect.getDuration(), potionEffect.getAmplifier(), potionEffect.isAmbient());
+    }
+
+    public static TeleportCause getTeleportCause(net.canarymod.hook.player.TeleportHook.TeleportCause cause) {
+        Validate.notNull(cause);
+        switch (cause) {
+            case BED:
+                return TeleportCause.UNKNOWN;
+            case COMMAND:
+                return TeleportCause.COMMAND;
+            case MOUNT_CHANGE:
+                return TeleportCause.UNKNOWN;
+            case MOVEMENT:
+                return TeleportCause.UNKNOWN;
+            case PLUGIN:
+                return TeleportCause.PLUGIN;
+            case PORTAL:
+                return TeleportCause.NETHER_PORTAL;
+            case RESPAWN:
+                return TeleportCause.UNKNOWN;
+            case UNDEFINED:
+                return TeleportCause.UNKNOWN;
+            case WARP:
+                return TeleportCause.UNKNOWN;
+            default:
+                return TeleportCause.UNKNOWN;
+        }
+    }
+
+    public static IgniteCause getIgniteCause(net.canarymod.hook.world.IgnitionHook.IgnitionCause cause) {
+        Validate.notNull(cause);
+        switch (cause) {
+            case FIREBALL_CLICK:
+                return IgniteCause.FIREBALL;
+            case FIREBALL_HIT:
+                return IgniteCause.FIREBALL;
+            case FIRE_SPREAD:
+                return IgniteCause.SPREAD;
+            case FLINT_AND_STEEL:
+                return IgniteCause.FLINT_AND_STEEL;
+            case LAVA:
+                return IgniteCause.LAVA;
+            case LIGHTNING_STRIKE:
+                return IgniteCause.LIGHTNING;
+            case UNDEFINED:
+            default:
+                return IgniteCause.EXPLOSION;
+        }
     }
 }

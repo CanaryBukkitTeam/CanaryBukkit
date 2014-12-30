@@ -33,7 +33,7 @@ public class Constants {
     public static final File configDir = new File(bukkitDir, "config");
     public static final File configFile = new File(configDir, "config.yml");
 
-    public static void checkFolders() {
+    public static void checkDirs() {
         File[] folders = new File[] { pluginsDir, configDir };
         for (File f : folders) {
             f.mkdirs();

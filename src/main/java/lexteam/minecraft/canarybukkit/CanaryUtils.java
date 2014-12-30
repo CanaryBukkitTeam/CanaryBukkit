@@ -296,6 +296,7 @@ public class CanaryUtils {
     }
 
     public static ArtType getArtType(org.bukkit.Art art) {
+        Validate.notNull(art);
         switch (art) {
             case ALBAN:
                 return ArtType.Alban;
@@ -355,18 +356,22 @@ public class CanaryUtils {
     }
 
     public static BlockType getBlockType(Material material) {
+        Validate.notNull(material);
         return BlockType.fromId(material.getId());
     }
 
     public static PotionEffectType getPotionEffectType(int id) {
+        Validate.notNull(id);
         return PotionEffectType.fromId(id);
     }
 
     public static PotionEffectType getPotionEffectType(org.bukkit.potion.PotionEffectType potionEffectType) {
+        Validate.notNull(potionEffectType);
         return PotionEffectType.fromName(potionEffectType.getName());
     }
 
     public static PotionEffect getPotionEffect(org.bukkit.potion.PotionEffect potionEffect) {
+        Validate.notNull(potionEffect);
         return Canary
                 .factory()
                 .getPotionFactory()
@@ -375,10 +380,12 @@ public class CanaryUtils {
     }
 
     public static World getWorld(org.bukkit.World world) {
+        Validate.notNull(world);
         return Canary.getServer().getWorld(world.getName());
     }
 
     public static Location getLocation(org.bukkit.Location location) {
+        Validate.notNull(location);
         return new Location(getWorld(location.getWorld()), location.getX(), location.getY(), location.getZ(),
                 location.getPitch(), location.getYaw());
     }
