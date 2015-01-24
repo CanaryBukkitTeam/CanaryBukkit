@@ -44,7 +44,7 @@ public class CanaryFirework extends CanaryEntity implements Firework {
     }
 
     @Override
-    protected net.canarymod.api.entity.FireworkRocket getEntity() {
-        return (net.canarymod.api.entity.FireworkRocket) super.getEntity();
+    protected net.canarymod.api.entity.FireworkRocket getHandle() {
+        return (net.canarymod.api.entity.FireworkRocket) super.getHandle();
     }
 }

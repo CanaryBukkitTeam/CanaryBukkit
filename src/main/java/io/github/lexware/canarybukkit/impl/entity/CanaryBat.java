@@ -30,15 +30,15 @@ public class CanaryBat extends CanaryAmbient implements Bat {
     }
 
     public boolean isAwake() {
-        return !getEntity().isHanging();
+        return !getHandle().isHanging();
     }
 
     public void setAwake(boolean awake) {
-        getEntity().setHanging(!awake);
+        getHandle().setHanging(!awake);
     }
 
     @Override
-    protected net.canarymod.api.entity.living.animal.Bat getEntity() {
-        return (net.canarymod.api.entity.living.animal.Bat) super.getEntity();
+    protected net.canarymod.api.entity.living.animal.Bat getHandle() {
+        return (net.canarymod.api.entity.living.animal.Bat) super.getHandle();
     }
 }

@@ -32,19 +32,19 @@ public class CanaryTNTPrimed extends CanaryExplosive implements TNTPrimed {
     }
 
     public void setFuseTicks(int fuseTicks) {
-        getEntity().setFuse(fuseTicks);
+        getHandle().setFuse(fuseTicks);
     }
 
     public int getFuseTicks() {
-        return getEntity().getFuse();
+        return getHandle().getFuse();
     }
 
     public org.bukkit.entity.Entity getSource() {
-        return BukkitUtils.getEntity(getEntity().getActivatedBy());
+        return BukkitUtils.getEntity(getHandle().getActivatedBy());
     }
 
     @Override
-    protected net.canarymod.api.entity.TNTPrimed getEntity() {
-        return (net.canarymod.api.entity.TNTPrimed) super.getEntity();
+    protected net.canarymod.api.entity.TNTPrimed getHandle() {
+        return (net.canarymod.api.entity.TNTPrimed) super.getHandle();
     }
 }

@@ -30,7 +30,7 @@ public class CanarySkeleton extends CanaryMonster implements Skeleton {
     }
 
     public SkeletonType getSkeletonType() {
-        if (getEntity().isWitherSkeleton()) {
+        if (getHandle().isWitherSkeleton()) {
             return SkeletonType.WITHER;
         } else {
             return SkeletonType.NORMAL;
@@ -40,15 +40,15 @@ public class CanarySkeleton extends CanaryMonster implements Skeleton {
     public void setSkeletonType(SkeletonType type) {
         switch (type) {
             case WITHER:
-                getEntity().setIsWitherSkeleton(true);
+                getHandle().setIsWitherSkeleton(true);
             case NORMAL:
             default:
-                getEntity().setIsWitherSkeleton(false);
+                getHandle().setIsWitherSkeleton(false);
         }
     }
 
     @Override
-    protected net.canarymod.api.entity.living.monster.Skeleton getEntity() {
-        return (net.canarymod.api.entity.living.monster.Skeleton) super.getEntity();
+    protected net.canarymod.api.entity.living.monster.Skeleton getHandle() {
+        return (net.canarymod.api.entity.living.monster.Skeleton) super.getHandle();
     }
 }

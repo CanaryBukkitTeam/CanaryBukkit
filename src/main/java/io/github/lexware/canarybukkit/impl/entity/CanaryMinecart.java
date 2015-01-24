@@ -74,7 +74,7 @@ public abstract class CanaryMinecart extends CanaryVehicle implements Minecart {
         throw new NotImplementedException("setDerailedVelocityMod(Vector)");
     }
 
-    protected net.canarymod.api.entity.vehicle.Minecart getEntity() {
-        return (net.canarymod.api.entity.vehicle.Minecart) super.getEntity();
+    protected net.canarymod.api.entity.vehicle.Minecart getHandle() {
+        return (net.canarymod.api.entity.vehicle.Minecart) super.getHandle();
     }
 }

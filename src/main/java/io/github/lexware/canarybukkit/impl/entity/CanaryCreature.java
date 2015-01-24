@@ -29,7 +29,7 @@ public abstract class CanaryCreature extends CanaryLivingEntity implements Creat
     }
 
     public LivingEntity getTarget() {
-        return (LivingEntity) BukkitUtils.getEntity(getEntity().getRevengeTarget());
+        return (LivingEntity) BukkitUtils.getEntity(getHandle().getRevengeTarget());
     }
 
     public void setTarget(LivingEntity target) {

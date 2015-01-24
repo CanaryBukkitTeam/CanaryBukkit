@@ -29,7 +29,7 @@ public class CanaryOcelot extends CanaryTameable implements Ocelot {
     }
 
     public Type getCatType() {
-        return BukkitUtils.getCatType(getEntity().getSkinType());
+        return BukkitUtils.getCatType(getHandle().getSkinType());
     }
 
     public EntityType getType() {
@@ -37,19 +37,19 @@ public class CanaryOcelot extends CanaryTameable implements Ocelot {
     }
 
     public boolean isSitting() {
-        return getEntity().isSitting();
+        return getHandle().isSitting();
     }
 
     public void setCatType(Type type) {
-        getEntity().setSkinType(CanaryUtils.getCatType(type));
+        getHandle().setSkinType(CanaryUtils.getCatType(type));
     }
 
     public void setSitting(boolean sitting) {
-        getEntity().setSitting(sitting);
+        getHandle().setSitting(sitting);
     }
 
     @Override
-    protected net.canarymod.api.entity.living.animal.Ocelot getEntity() {
-        return (net.canarymod.api.entity.living.animal.Ocelot) super.getEntity();
+    protected net.canarymod.api.entity.living.animal.Ocelot getHandle() {
+        return (net.canarymod.api.entity.living.animal.Ocelot) super.getHandle();
     }
 }

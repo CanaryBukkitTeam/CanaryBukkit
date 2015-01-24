@@ -32,7 +32,7 @@ public abstract class CanaryTameable extends CanaryAnimals implements Tameable, 
     }
 
     public boolean isTamed() {
-        return getEntity().isTamed();
+        return getHandle().isTamed();
     }
 
     public void setOwner(AnimalTamer tamer) {
@@ -40,11 +40,11 @@ public abstract class CanaryTameable extends CanaryAnimals implements Tameable, 
     }
 
     public void setTamed(boolean tame) {
-        getEntity().setTamed(tame);
+        getHandle().setTamed(tame);
     }
 
     @Override
-    protected net.canarymod.api.entity.living.animal.Tameable getEntity() {
-        return (net.canarymod.api.entity.living.animal.Tameable) super.getEntity();
+    protected net.canarymod.api.entity.living.animal.Tameable getHandle() {
+        return (net.canarymod.api.entity.living.animal.Tameable) super.getHandle();
     }
 }

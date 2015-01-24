@@ -63,7 +63,7 @@ public class CanaryBoat extends CanaryVehicle implements Boat {
     }
 
     @Override
-    protected net.canarymod.api.entity.vehicle.Boat getEntity() {
-        return (net.canarymod.api.entity.vehicle.Boat) super.getEntity();
+    protected net.canarymod.api.entity.vehicle.Boat getHandle() {
+        return (net.canarymod.api.entity.vehicle.Boat) super.getHandle();
     }
 }

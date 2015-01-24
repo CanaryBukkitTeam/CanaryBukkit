@@ -30,15 +30,15 @@ public class CanaryIronGolem extends CanaryGolem implements IronGolem {
     }
 
     public boolean isPlayerCreated() {
-        return getEntity().isPlayerCreated();
+        return getHandle().isPlayerCreated();
     }
 
     public void setPlayerCreated(boolean playerCreated) {
-        getEntity().setPlayerCreated(playerCreated);
+        getHandle().setPlayerCreated(playerCreated);
     }
 
     @Override
-    protected net.canarymod.api.entity.living.IronGolem getEntity() {
-        return (net.canarymod.api.entity.living.IronGolem) super.getEntity();
+    protected net.canarymod.api.entity.living.IronGolem getHandle() {
+        return (net.canarymod.api.entity.living.IronGolem) super.getHandle();
     }
 }

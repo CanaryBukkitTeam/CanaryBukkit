@@ -34,12 +34,12 @@ public class CanaryPainting extends CanaryHanging implements Painting {
     }
 
     public Art getArt() {
-        return BukkitUtils.getArt(getEntity().getArtType());
+        return BukkitUtils.getArt(getHandle().getArtType());
     }
 
     public boolean setArt(Art art) {
-        getEntity().setArtType(CanaryUtils.getArtType(art));
-        return getEntity().getArtType() == CanaryUtils.getArtType(art);
+        getHandle().setArtType(CanaryUtils.getArtType(art));
+        return getHandle().getArtType() == CanaryUtils.getArtType(art);
     }
 
     public boolean setArt(Art art, boolean force) {
@@ -47,7 +47,7 @@ public class CanaryPainting extends CanaryHanging implements Painting {
     }
 
     @Override
-    protected net.canarymod.api.entity.hanging.Painting getEntity() {
-        return (net.canarymod.api.entity.hanging.Painting) super.getEntity();
+    protected net.canarymod.api.entity.hanging.Painting getHandle() {
+        return (net.canarymod.api.entity.hanging.Painting) super.getHandle();
     }
 }

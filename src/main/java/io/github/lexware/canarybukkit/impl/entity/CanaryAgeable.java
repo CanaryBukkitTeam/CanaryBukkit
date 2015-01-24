@@ -72,7 +72,7 @@ public abstract class CanaryAgeable extends CanaryCreature implements Ageable {
     }
 
     @Override
-    protected net.canarymod.api.entity.living.LivingBase getEntity() {
-        return (net.canarymod.api.entity.living.LivingBase) super.getEntity();
+    protected net.canarymod.api.entity.living.LivingBase getHandle() {
+        return (net.canarymod.api.entity.living.LivingBase) super.getHandle();
     }
 }

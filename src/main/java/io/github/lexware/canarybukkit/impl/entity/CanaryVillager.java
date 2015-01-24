@@ -29,7 +29,7 @@ public class CanaryVillager extends CanaryAgeable implements Villager {
     }
 
     public Profession getProfession() {
-        return BukkitUtils.getProfession(getEntity().getProfession());
+        return BukkitUtils.getProfession(getHandle().getProfession());
     }
 
     public EntityType getType() {
@@ -37,11 +37,11 @@ public class CanaryVillager extends CanaryAgeable implements Villager {
     }
 
     public void setProfession(Profession profession) {
-        getEntity().setProfession(CanaryUtils.getProfession(profession));
+        getHandle().setProfession(CanaryUtils.getProfession(profession));
     }
 
     @Override
-    protected net.canarymod.api.entity.living.humanoid.Villager getEntity() {
-        return (net.canarymod.api.entity.living.humanoid.Villager) super.getEntity();
+    protected net.canarymod.api.entity.living.humanoid.Villager getHandle() {
+        return (net.canarymod.api.entity.living.humanoid.Villager) super.getHandle();
     }
 }

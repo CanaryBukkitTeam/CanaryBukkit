@@ -27,7 +27,7 @@ public class CanaryEnderman extends CanaryMonster implements Enderman {
     }
 
     public MaterialData getCarriedMaterial() {
-        return new MaterialData(getEntity().getCarriedBlockID());
+        return new MaterialData(getHandle().getCarriedBlockID());
     }
 
     public EntityType getType() {
@@ -35,11 +35,11 @@ public class CanaryEnderman extends CanaryMonster implements Enderman {
     }
 
     public void setCarriedMaterial(MaterialData material) {
-        getEntity().setCarriedBlockID((short) material.getItemTypeId());
+        getHandle().setCarriedBlockID((short) material.getItemTypeId());
         // TODO: Check
     }
 
-    protected net.canarymod.api.entity.living.monster.Enderman getEntity() {
-        return (net.canarymod.api.entity.living.monster.Enderman) super.getEntity();
+    protected net.canarymod.api.entity.living.monster.Enderman getHandle() {
+        return (net.canarymod.api.entity.living.monster.Enderman) super.getHandle();
     }
 }

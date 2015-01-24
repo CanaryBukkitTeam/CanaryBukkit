@@ -25,6 +25,7 @@ import io.github.lexware.canarybukkit.BukkitUtils;
 import io.github.lexware.canarybukkit.impl.CanaryLocation;
 import io.github.lexware.canarybukkit.impl.CanaryWorld;
 
+import io.github.lexware.canarybukkit.util.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;
@@ -38,23 +39,21 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
-public abstract class CanaryEntity implements Entity {
-    private net.canarymod.api.entity.Entity entity;
-
+public abstract class CanaryEntity extends Wrapper<net.canarymod.api.entity.Entity> implements Entity {
     public CanaryEntity(net.canarymod.api.entity.Entity entity) {
-        this.entity = entity;
+        super(entity);
     }
 
     public boolean eject() {
-        if (getEntity().isRidden()) {
-            getEntity().getRider().dismount();
+        if (getHandle().isRidden()) {
+            getHandle().getRider().dismount();
             return true;
         }
         return false;
     }
 
     public int getEntityId() {
-        return getEntity().getID();
+        return getHandle().getID();
     }
 
     public float getFallDistance() {
@@ -62,7 +61,7 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public int getFireTicks() {
-        return getEntity().getFireTicks();
+        return getHandle().getFireTicks();
     }
 
     public EntityDamageEvent getLastDamageCause() {
@@ -70,17 +69,17 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public Location getLocation() {
-        return new CanaryLocation(entity.getLocation(), entity.getWorld());
+        return new CanaryLocation(getHandle().getLocation(), getHandle().getWorld());
     }
 
     public Location getLocation(Location loc) {
         if (loc != null) {
             loc.setWorld(getWorld());
-            loc.setX(getEntity().getX());
-            loc.setY(getEntity().getY());
-            loc.setZ(getEntity().getZ());
-            loc.setPitch(getEntity().getPitch());
-            loc.setYaw(getEntity().getRotation());
+            loc.setX(getHandle().getX());
+            loc.setY(getHandle().getY());
+            loc.setZ(getHandle().getZ());
+            loc.setPitch(getHandle().getPitch());
+            loc.setYaw(getHandle().getRotation());
         }
         return loc;
     }
@@ -98,7 +97,7 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public Entity getPassenger() {
-        return BukkitUtils.getEntity(getEntity().getRider());
+        return BukkitUtils.getEntity(getHandle().getRider());
     }
 
     public Server getServer() {
@@ -110,27 +109,27 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public UUID getUniqueId() {
-        return getEntity().getUUID();
+        return getHandle().getUUID();
     }
 
     public Entity getVehicle() {
-        return BukkitUtils.getEntity(getEntity().getRiding());
+        return BukkitUtils.getEntity(getHandle().getRiding());
     }
 
     public Vector getVelocity() {
-        return new Vector(getEntity().getMotionX(), getEntity().getMotionY(), getEntity().getMotionZ());
+        return new Vector(getHandle().getMotionX(), getHandle().getMotionY(), getHandle().getMotionZ());
     }
 
     public World getWorld() {
-        return new CanaryWorld(getEntity().getWorld());
+        return new CanaryWorld(getHandle().getWorld());
     }
 
     public boolean hasMetadata(String metadataKey) {
-        return getEntity().getMetaData().containsKey(metadataKey);
+        return getHandle().getMetaData().containsKey(metadataKey);
     }
 
     public boolean isDead() {
-        return getEntity().isDead();
+        return getHandle().isDead();
     }
 
     public boolean isEmpty() {
@@ -138,20 +137,20 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public boolean isInsideVehicle() {
-        return getEntity().isRiding();
+        return getHandle().isRiding();
     }
 
     public boolean isOnGround() {
-        return getEntity().isOnGround();
+        return getHandle().isOnGround();
     }
 
     public boolean isValid() {
-        return !getEntity().isDead();
+        return !getHandle().isDead();
     }
 
     public boolean leaveVehicle() {
-        if (getEntity().isRiding()) {
-            getEntity().dismount();
+        if (getHandle().isRiding()) {
+            getHandle().dismount();
             return true;
         }
         return false;
@@ -162,7 +161,7 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public void remove() {
-        getEntity().destroy();
+        getHandle().destroy();
     }
 
     public void removeMetadata(String metadataKey, Plugin owningPlugin) {
@@ -174,7 +173,7 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public void setFireTicks(int ticks) {
-        getEntity().setFireTicks(ticks);
+        getHandle().setFireTicks(ticks);
     }
 
     public void setLastDamageCause(EntityDamageEvent event) {
@@ -182,7 +181,7 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
-        getEntity().getMetaData().put(metadataKey, newMetadataValue.asByte());
+        getHandle().getMetaData().put(metadataKey, newMetadataValue.asByte());
     }
 
     public boolean setPassenger(Entity passenger) {
@@ -194,9 +193,9 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public void setVelocity(Vector velocity) {
-        getEntity().setMotionX(velocity.getX());
-        getEntity().setMotionY(velocity.getY());
-        getEntity().setMotionZ(velocity.getZ());
+        getHandle().setMotionX(velocity.getX());
+        getHandle().setMotionY(velocity.getY());
+        getHandle().setMotionZ(velocity.getZ());
     }
 
     public boolean teleport(Entity destination) {
@@ -209,19 +208,15 @@ public abstract class CanaryEntity implements Entity {
     }
 
     public boolean teleport(Location location) {
-        getEntity().teleportTo(CanaryUtils.getLocation(location));
-        return getEntity().getX() == location.getX() && getEntity().getY() == location.getY()
-                && getEntity().getZ() == location.getZ();
+        getHandle().teleportTo(CanaryUtils.getLocation(location));
+        return getHandle().getX() == location.getX() && getHandle().getY() == location.getY()
+                && getHandle().getZ() == location.getZ();
     }
 
     public boolean teleport(Location location, PlayerTeleportEvent.TeleportCause cause) {
-        getEntity().teleportTo(CanaryUtils.getLocation(location));
+        getHandle().teleportTo(CanaryUtils.getLocation(location));
         // TODO: Investigate TeleportCause
         // In canary it seems that only Player gets a TeleportCause part
         return teleport(location);
-    }
-
-    protected net.canarymod.api.entity.Entity getEntity() {
-        return entity;
     }
 }

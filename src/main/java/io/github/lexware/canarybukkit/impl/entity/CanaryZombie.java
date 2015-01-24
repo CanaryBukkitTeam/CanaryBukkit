@@ -30,23 +30,23 @@ public class CanaryZombie extends CanaryAgeable implements Zombie {
     }
 
     public boolean isBaby() {
-        return getEntity().isChild();
+        return getHandle().isChild();
     }
 
     public boolean isVillager() {
-        return getEntity().isVillager();
+        return getHandle().isVillager();
     }
 
     public void setBaby(boolean flag) {
-        getEntity().setChild(flag);
+        getHandle().setChild(flag);
     }
 
     public void setVillager(boolean flag) {
-        getEntity().setVillager(flag);
+        getHandle().setVillager(flag);
     }
 
     @Override
-    protected net.canarymod.api.entity.living.monster.Zombie getEntity() {
-        return (net.canarymod.api.entity.living.monster.Zombie) super.getEntity();
+    protected net.canarymod.api.entity.living.monster.Zombie getHandle() {
+        return (net.canarymod.api.entity.living.monster.Zombie) super.getHandle();
     }
 }

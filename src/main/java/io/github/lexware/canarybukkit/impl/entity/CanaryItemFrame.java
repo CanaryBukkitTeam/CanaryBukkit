@@ -41,11 +41,11 @@ public class CanaryItemFrame extends CanaryHanging implements ItemFrame {
     }
 
     public Rotation getRotation() {
-        if (getEntity().getItemRotation() == 0) {
+        if (getHandle().getItemRotation() == 0) {
             return Rotation.NONE;
-        } else if (getEntity().getItemRotation() == 1) {
+        } else if (getHandle().getItemRotation() == 1) {
             return Rotation.CLOCKWISE;
-        } else if (getEntity().getItemRotation() == 2) {
+        } else if (getHandle().getItemRotation() == 2) {
             return Rotation.FLIPPED;
         } else {
             return Rotation.COUNTER_CLOCKWISE;
@@ -55,22 +55,22 @@ public class CanaryItemFrame extends CanaryHanging implements ItemFrame {
     public void setRotation(Rotation rotation) throws IllegalArgumentException {
         switch (rotation) {
             case CLOCKWISE:
-                getEntity().setItemRotation(0);
+                getHandle().setItemRotation(0);
                 break;
             case COUNTER_CLOCKWISE:
-                getEntity().setItemRotation(1);
+                getHandle().setItemRotation(1);
                 break;
             case FLIPPED:
-                getEntity().setItemRotation(2);
+                getHandle().setItemRotation(2);
                 break;
             case NONE:
-                getEntity().setItemRotation(3);
+                getHandle().setItemRotation(3);
                 break;
         }
     }
 
     @Override
-    protected net.canarymod.api.entity.hanging.ItemFrame getEntity() {
-        return (net.canarymod.api.entity.hanging.ItemFrame) super.getEntity();
+    protected net.canarymod.api.entity.hanging.ItemFrame getHandle() {
+        return (net.canarymod.api.entity.hanging.ItemFrame) super.getHandle();
     }
 }

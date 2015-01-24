@@ -30,7 +30,7 @@ public class CanaryWolf extends CanaryTameable implements Wolf {
     }
 
     public DyeColor getCollarColor() {
-        return BukkitUtils.getDyeColor(getEntity().getCollarColor());
+        return BukkitUtils.getDyeColor(getHandle().getCollarColor());
     }
 
     public EntityType getType() {
@@ -38,27 +38,27 @@ public class CanaryWolf extends CanaryTameable implements Wolf {
     }
 
     public boolean isAngry() {
-        return getEntity().isAngry();
+        return getHandle().isAngry();
     }
 
     public boolean isSitting() {
-        return getEntity().isSitting();
+        return getHandle().isSitting();
     }
 
     public void setAngry(boolean angry) {
-        getEntity().setAngry(angry);
+        getHandle().setAngry(angry);
     }
 
     public void setCollarColor(DyeColor color) {
-        getEntity().setCollarColor(CanaryUtils.getDyeColor(color));
+        getHandle().setCollarColor(CanaryUtils.getDyeColor(color));
     }
 
     public void setSitting(boolean sitting) {
-        getEntity().setSitting(sitting);
+        getHandle().setSitting(sitting);
     }
 
     @Override
-    protected net.canarymod.api.entity.living.animal.Wolf getEntity() {
-        return (net.canarymod.api.entity.living.animal.Wolf) super.getEntity();
+    protected net.canarymod.api.entity.living.animal.Wolf getHandle() {
+        return (net.canarymod.api.entity.living.animal.Wolf) super.getHandle();
     }
 }

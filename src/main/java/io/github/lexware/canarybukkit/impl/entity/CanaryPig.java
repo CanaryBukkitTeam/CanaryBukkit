@@ -30,15 +30,15 @@ public class CanaryPig extends CanaryAnimals implements Pig {
     }
 
     public boolean hasSaddle() {
-        return getEntity().isSaddled();
+        return getHandle().isSaddled();
     }
 
     public void setSaddle(boolean saddled) {
-        getEntity().setSaddled(saddled);
+        getHandle().setSaddled(saddled);
     }
 
     @Override
-    protected net.canarymod.api.entity.living.animal.Pig getEntity() {
-        return (net.canarymod.api.entity.living.animal.Pig) super.getEntity();
+    protected net.canarymod.api.entity.living.animal.Pig getHandle() {
+        return (net.canarymod.api.entity.living.animal.Pig) super.getHandle();
     }
 }

@@ -30,7 +30,7 @@ public class CanarySheep extends CanaryAnimals implements Sheep {
     }
 
     public DyeColor getColor() {
-        return BukkitUtils.getDyeColor(getEntity().getColor());
+        return BukkitUtils.getDyeColor(getHandle().getColor());
     }
 
     public EntityType getType() {
@@ -38,19 +38,19 @@ public class CanarySheep extends CanaryAnimals implements Sheep {
     }
 
     public boolean isSheared() {
-        return getEntity().isSheared();
+        return getHandle().isSheared();
     }
 
     public void setColor(DyeColor color) {
-        getEntity().setColor(CanaryUtils.getDyeColor(color));
+        getHandle().setColor(CanaryUtils.getDyeColor(color));
     }
 
     public void setSheared(boolean flag) {
-        getEntity().setSheared(flag);
+        getHandle().setSheared(flag);
     }
 
     @Override
-    protected net.canarymod.api.entity.living.animal.Sheep getEntity() {
-        return (net.canarymod.api.entity.living.animal.Sheep) super.getEntity();
+    protected net.canarymod.api.entity.living.animal.Sheep getHandle() {
+        return (net.canarymod.api.entity.living.animal.Sheep) super.getHandle();
     }
 }

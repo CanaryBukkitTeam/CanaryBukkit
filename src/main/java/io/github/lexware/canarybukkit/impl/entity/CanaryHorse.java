@@ -33,7 +33,7 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
     }
 
     public int getDomestication() {
-        return getEntity().getTemper(); // I think that is right
+        return getHandle().getTemper(); // I think that is right
     }
 
     public HorseInventory getInventory() {
@@ -65,11 +65,11 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
     }
 
     public boolean isCarryingChest() {
-        return getEntity().isChested();
+        return getHandle().isChested();
     }
 
     public boolean isTamed() {
-        return getEntity().isTamed();
+        return getHandle().isTamed();
     }
 
     public void setCarryingChest(boolean chest) {
@@ -81,7 +81,7 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
     }
 
     public void setDomestication(int level) {
-        getEntity().setTemper(level);
+        getHandle().setTemper(level);
     }
 
     public void setJumpStrength(double strength) {
@@ -101,7 +101,7 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
     }
 
     public void setTamed(boolean tame) {
-        getEntity().setTamed(tame);
+        getHandle().setTamed(tame);
     }
 
     public void setVariant(Variant variant) {
@@ -109,7 +109,7 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
     }
 
     @Override
-    protected net.canarymod.api.entity.living.animal.Horse getEntity() {
-        return (net.canarymod.api.entity.living.animal.Horse) super.getEntity();
+    protected net.canarymod.api.entity.living.animal.Horse getHandle() {
+        return (net.canarymod.api.entity.living.animal.Horse) super.getHandle();
     }
 }

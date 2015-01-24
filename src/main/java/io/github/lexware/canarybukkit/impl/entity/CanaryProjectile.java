@@ -55,7 +55,7 @@ public abstract class CanaryProjectile extends CanaryEntity implements Projectil
     }
 
     @Override
-    protected net.canarymod.api.entity.Projectile getEntity() {
-        return (net.canarymod.api.entity.Projectile) super.getEntity();
+    protected net.canarymod.api.entity.Projectile getHandle() {
+        return (net.canarymod.api.entity.Projectile) super.getHandle();
     }
 }

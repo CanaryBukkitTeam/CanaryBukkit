@@ -26,7 +26,7 @@ public class CanaryExperienceOrb extends CanaryEntity implements ExperienceOrb {
     }
 
     public int getExperience() {
-        return getEntity().getXPValue();
+        return getHandle().getXPValue();
     }
 
     public EntityType getType() {
@@ -34,12 +34,12 @@ public class CanaryExperienceOrb extends CanaryEntity implements ExperienceOrb {
     }
 
     public void setExperience(int value) {
-        getEntity().setXPValue((short) value);
+        getHandle().setXPValue((short) value);
         // TODO: can you cast short to a int
     }
 
     @Override
-    protected net.canarymod.api.entity.XPOrb getEntity() {
-        return (net.canarymod.api.entity.XPOrb) super.getEntity();
+    protected net.canarymod.api.entity.XPOrb getHandle() {
+        return (net.canarymod.api.entity.XPOrb) super.getHandle();
     }
 }

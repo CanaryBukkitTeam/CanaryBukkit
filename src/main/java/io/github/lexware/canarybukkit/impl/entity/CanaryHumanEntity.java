@@ -36,7 +36,7 @@ public abstract class CanaryHumanEntity extends CanaryLivingEntity implements Hu
     }
 
     public PlayerInventory getInventory() {
-        return new CanaryPlayerInventory(getEntity().getInventory(), this);
+        return new CanaryPlayerInventory(getHandle().getInventory(), this);
     }
 
     public PermissionAttachment addAttachment(Plugin plugin) {
@@ -64,7 +64,7 @@ public abstract class CanaryHumanEntity extends CanaryLivingEntity implements Hu
     }
 
     public String getName() {
-        return getEntity().getName();
+        return getHandle().getName();
     }
 
     public int getSleepTicks() {
@@ -80,7 +80,7 @@ public abstract class CanaryHumanEntity extends CanaryLivingEntity implements Hu
     }
 
     public boolean isBlocking() {
-        return getEntity().isBlocking();
+        return getHandle().isBlocking();
     }
 
     public boolean isPermissionSet(Permission perm) {
@@ -104,7 +104,7 @@ public abstract class CanaryHumanEntity extends CanaryLivingEntity implements Hu
     }
 
     @Override
-    protected net.canarymod.api.entity.living.humanoid.Human getEntity() {
-        return (net.canarymod.api.entity.living.humanoid.Human) super.getEntity();
+    protected net.canarymod.api.entity.living.humanoid.Human getHandle() {
+        return (net.canarymod.api.entity.living.humanoid.Human) super.getHandle();
     }
 }

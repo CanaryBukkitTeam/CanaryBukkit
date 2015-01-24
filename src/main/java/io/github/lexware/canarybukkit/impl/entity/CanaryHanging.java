@@ -43,7 +43,7 @@ public abstract class CanaryHanging extends CanaryEntity implements Hanging {
     }
 
     @Override
-    protected net.canarymod.api.entity.hanging.HangingEntity getEntity() {
-        return (net.canarymod.api.entity.hanging.HangingEntity) super.getEntity();
+    protected net.canarymod.api.entity.hanging.HangingEntity getHandle() {
+        return (net.canarymod.api.entity.hanging.HangingEntity) super.getHandle();
     }
 }

@@ -42,14 +42,14 @@ public abstract class CanaryExplosive extends CanaryEntity implements Explosive 
     }
 
     protected net.canarymod.api.entity.Explosive getExplosive() {
-        if (getEntity() instanceof net.canarymod.api.entity.Explosive) {
-            return (net.canarymod.api.entity.Explosive) getEntity();
+        if (getHandle() instanceof net.canarymod.api.entity.Explosive) {
+            return (net.canarymod.api.entity.Explosive) getHandle();
         }
         return null;
     }
 
     @Override
-    protected net.canarymod.api.entity.Entity getEntity() {
-        return super.getEntity();
+    protected net.canarymod.api.entity.Entity getHandle() {
+        return super.getHandle();
     }
 }

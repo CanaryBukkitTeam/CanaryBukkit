@@ -26,7 +26,7 @@ public class CanaryPigZombie extends CanaryZombie implements PigZombie {
     }
 
     public int getAnger() {
-        return getEntity().getAngerLevel();
+        return getHandle().getAngerLevel();
     }
 
     @Override
@@ -35,11 +35,11 @@ public class CanaryPigZombie extends CanaryZombie implements PigZombie {
     }
 
     public boolean isAngry() {
-        return getEntity().isAngry();
+        return getHandle().isAngry();
     }
 
     public void setAnger(int level) {
-        getEntity().setAngerLevel(level);
+        getHandle().setAngerLevel(level);
     }
 
     public void setAngry(boolean angry) {
@@ -47,7 +47,7 @@ public class CanaryPigZombie extends CanaryZombie implements PigZombie {
     }
 
     @Override
-    protected net.canarymod.api.entity.living.monster.PigZombie getEntity() {
-        return (net.canarymod.api.entity.living.monster.PigZombie) super.getEntity();
+    protected net.canarymod.api.entity.living.monster.PigZombie getHandle() {
+        return (net.canarymod.api.entity.living.monster.PigZombie) super.getHandle();
     }
 }

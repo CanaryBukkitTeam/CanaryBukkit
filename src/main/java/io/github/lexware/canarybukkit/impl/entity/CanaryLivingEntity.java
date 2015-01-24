@@ -56,7 +56,7 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public int _INVALID_getHealth() {
-        return Float.floatToIntBits(getEntity().getHealth());
+        return Float.floatToIntBits(getHandle().getHealth());
     }
 
     public int _INVALID_getLastDamage() {
@@ -64,7 +64,7 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public int _INVALID_getMaxHealth() {
-        return (int) Math.round(getEntity().getMaxHealth());
+        return (int) Math.round(getHandle().getMaxHealth());
     }
 
     public void _INVALID_setHealth(int health) {
@@ -76,11 +76,11 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public void _INVALID_setMaxHealth(int health) {
-        getEntity().setMaxHealth(health);
+        getHandle().setMaxHealth(health);
     }
 
     public boolean addPotionEffect(PotionEffect effect) {
-        getEntity().addPotionEffect(CanaryUtils.getPotionEffect(effect));
+        getHandle().addPotionEffect(CanaryUtils.getPotionEffect(effect));
         return true;
     }
 
@@ -97,7 +97,7 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public void damage(double amount) {
-        getEntity().dealDamage(DamageType.GENERIC, (float) amount);
+        getHandle().dealDamage(DamageType.GENERIC, (float) amount);
     }
 
     public void damage(double amount, Entity source) {
@@ -107,7 +107,7 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
 
     public Collection<PotionEffect> getActivePotionEffects() {
         ArrayList<PotionEffect> ret = new ArrayList<PotionEffect>();
-        for (net.canarymod.api.potion.PotionEffect potionEffect : getEntity().getAllActivePotionEffects()) {
+        for (net.canarymod.api.potion.PotionEffect potionEffect : getHandle().getAllActivePotionEffects()) {
             ret.add(BukkitUtils.getPotionEffect(potionEffect));
         }
         return ret;
@@ -118,7 +118,7 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public String getCustomName() {
-        return getEntity().getName();
+        return getHandle().getName();
     }
 
     public EntityEquipment getEquipment() {
@@ -126,7 +126,7 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public double getEyeHeight() {
-        return getEntity().getEyeHeight();
+        return getHandle().getEyeHeight();
     }
 
     public double getEyeHeight(boolean ignoreSneaking) {
@@ -138,11 +138,11 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public double getHealth() {
-        return getEntity().getHealth();
+        return getHandle().getHealth();
     }
 
     public Player getKiller() {
-        LivingBase temp = getEntity().getLastAssailant();
+        LivingBase temp = getHandle().getLastAssailant();
         if (temp != null && temp.isPlayer()) {
             return (new CanaryPlayer((net.canarymod.api.entity.living.humanoid.Player) temp));
         } else {
@@ -167,7 +167,7 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public double getMaxHealth() {
-        return getEntity().getMaxHealth();
+        return getHandle().getMaxHealth();
     }
 
     public int getMaximumAir() {
@@ -175,12 +175,12 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public int getMaximumNoDamageTicks() {
-        return getEntity().getInvulnerabilityTicks();
+        return getHandle().getInvulnerabilityTicks();
         // TODO check if that is what this means
     }
 
     public int getNoDamageTicks() {
-        return getEntity().getInvulnerabilityTicks();
+        return getHandle().getInvulnerabilityTicks();
     }
 
     public int getRemainingAir() {
@@ -220,7 +220,7 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public void removePotionEffect(PotionEffectType type) {
-        getEntity().removePotionEffect(CanaryUtils.getPotionEffectType(type));
+        getHandle().removePotionEffect(CanaryUtils.getPotionEffectType(type));
     }
 
     public void resetMaxHealth() {
@@ -240,7 +240,7 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public void setHealth(double health) {
-        getEntity().setHealth((float) health);
+        getHandle().setHealth((float) health);
     }
 
     public void setLastDamage(double damage) {
@@ -252,7 +252,7 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public void setMaxHealth(double health) {
-        getEntity().setMaxHealth(health);
+        getHandle().setMaxHealth(health);
     }
 
     public void setMaximumAir(int ticks) {
@@ -260,12 +260,12 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
     }
 
     public void setMaximumNoDamageTicks(int ticks) {
-        getEntity().setInvulnerabilityTicks(ticks);
+        getHandle().setInvulnerabilityTicks(ticks);
         // TODO check if that is what this means
     }
 
     public void setNoDamageTicks(int ticks) {
-        getEntity().setInvulnerabilityTicks(ticks);
+        getHandle().setInvulnerabilityTicks(ticks);
     }
 
     public void setRemainingAir(int ticks) {
@@ -288,7 +288,7 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
         throw new NotImplementedException("throwSnowball()");
     }
 
-    protected LivingBase getEntity() {
-        return (LivingBase) super.getEntity();
+    protected LivingBase getHandle() {
+        return (LivingBase) super.getHandle();
     }
 }

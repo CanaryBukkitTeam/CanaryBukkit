@@ -26,7 +26,7 @@ public class CanarySlime extends CanaryLivingEntity implements Slime {
     }
 
     public int getSize() {
-        return getEntity().getSize().getByte();
+        return getHandle().getSize().getByte();
     }
 
     public EntityType getType() {
@@ -34,11 +34,11 @@ public class CanarySlime extends CanaryLivingEntity implements Slime {
     }
 
     public void setSize(int size) {
-        getEntity().setSize(net.canarymod.api.entity.living.monster.Slime.Size.fromByte((byte) size));
+        getHandle().setSize(net.canarymod.api.entity.living.monster.Slime.Size.fromByte((byte) size));
     }
 
     @Override
-    protected net.canarymod.api.entity.living.monster.Slime getEntity() {
-        return (net.canarymod.api.entity.living.monster.Slime) super.getEntity();
+    protected net.canarymod.api.entity.living.monster.Slime getHandle() {
+        return (net.canarymod.api.entity.living.monster.Slime) super.getHandle();
     }
 }

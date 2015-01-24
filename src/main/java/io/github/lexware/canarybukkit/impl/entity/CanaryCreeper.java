@@ -30,15 +30,15 @@ public class CanaryCreeper extends CanaryMonster implements Creeper {
     }
 
     public boolean isPowered() {
-        return getEntity().isCharged();
+        return getHandle().isCharged();
     }
 
     public void setPowered(boolean value) {
-        getEntity().setCharged(value);
+        getHandle().setCharged(value);
     }
 
     @Override
-    protected net.canarymod.api.entity.living.monster.Creeper getEntity() {
-        return (net.canarymod.api.entity.living.monster.Creeper) super.getEntity();
+    protected net.canarymod.api.entity.living.monster.Creeper getHandle() {
+        return (net.canarymod.api.entity.living.monster.Creeper) super.getHandle();
     }
 }
