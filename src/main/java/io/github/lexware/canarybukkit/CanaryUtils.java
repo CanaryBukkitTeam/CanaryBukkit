@@ -17,6 +17,7 @@
  */
 package io.github.lexware.canarybukkit;
 
+import com.google.common.base.Preconditions;
 import net.canarymod.Canary;
 import net.canarymod.api.DyeColor;
 import net.canarymod.api.GameMode;
@@ -33,12 +34,11 @@ import net.canarymod.api.world.WorldType;
 import net.canarymod.api.world.blocks.BlockType;
 import net.canarymod.api.world.position.Location;
 
-import org.apache.commons.lang3.Validate;
 import org.bukkit.Material;
 
 public class CanaryUtils {
     public static Difficulty getDifficulty(org.bukkit.Difficulty difficulty) {
-        Validate.notNull(difficulty);
+        Preconditions.checkNotNull(difficulty);
         switch (difficulty) {
             case EASY:
                 return Difficulty.EASY;
@@ -53,7 +53,7 @@ public class CanaryUtils {
     }
 
     public static DyeColor getDyeColor(org.bukkit.DyeColor color) {
-        Validate.notNull(color);
+        Preconditions.checkNotNull(color);
         switch (color) {
             case BLACK:
                 return DyeColor.BLACK;
@@ -90,7 +90,7 @@ public class CanaryUtils {
     }
 
     public static GameMode getGameMode(org.bukkit.GameMode gm) {
-        Validate.notNull(gm);
+        Preconditions.checkNotNull(gm);
         switch (gm) {
             case ADVENTURE:
                 return GameMode.ADVENTURE;
@@ -103,7 +103,7 @@ public class CanaryUtils {
     }
 
     public static WorldType getWorldType(org.bukkit.WorldType type) {
-        Validate.notNull(type);
+        Preconditions.checkNotNull(type);
         switch (type) {
             case AMPLIFIED:
                 return WorldType.AMPLIFIED;
@@ -120,7 +120,7 @@ public class CanaryUtils {
     }
 
     public static Profession getProfession(org.bukkit.entity.Villager.Profession profession) {
-        Validate.notNull(profession);
+        Preconditions.checkNotNull(profession);
         switch (profession) {
             case BLACKSMITH:
                 return Profession.BLACKSMITH;
@@ -137,7 +137,7 @@ public class CanaryUtils {
     }
 
     public static SkinType getCatType(org.bukkit.entity.Ocelot.Type type) {
-        Validate.notNull(type);
+        Preconditions.checkNotNull(type);
         switch (type) {
             case BLACK_CAT:
                 return SkinType.TUXEDO;
@@ -152,7 +152,7 @@ public class CanaryUtils {
     }
 
     public static DimensionType getDimensionType(org.bukkit.World.Environment type) {
-        Validate.notNull(type);
+        Preconditions.checkNotNull(type);
         switch (type) {
             case NETHER:
                 return DimensionType.NETHER;
@@ -166,7 +166,7 @@ public class CanaryUtils {
     }
 
     public static BiomeType getBiome(org.bukkit.block.Biome biome) {
-        Validate.notNull(biome);
+        Preconditions.checkNotNull(biome);
         switch (biome) {
             case BEACH:
                 return BiomeType.BEACH;
@@ -296,7 +296,7 @@ public class CanaryUtils {
     }
 
     public static ArtType getArtType(org.bukkit.Art art) {
-        Validate.notNull(art);
+        Preconditions.checkNotNull(art);
         switch (art) {
             case ALBAN:
                 return ArtType.Alban;
@@ -356,22 +356,22 @@ public class CanaryUtils {
     }
 
     public static BlockType getBlockType(Material material) {
-        Validate.notNull(material);
+        Preconditions.checkNotNull(material);
         return BlockType.fromId(material.getId());
     }
 
     public static PotionEffectType getPotionEffectType(int id) {
-        Validate.notNull(id);
+        Preconditions.checkNotNull(id);
         return PotionEffectType.fromId(id);
     }
 
     public static PotionEffectType getPotionEffectType(org.bukkit.potion.PotionEffectType potionEffectType) {
-        Validate.notNull(potionEffectType);
+        Preconditions.checkNotNull(potionEffectType);
         return PotionEffectType.fromName(potionEffectType.getName());
     }
 
     public static PotionEffect getPotionEffect(org.bukkit.potion.PotionEffect potionEffect) {
-        Validate.notNull(potionEffect);
+        Preconditions.checkNotNull(potionEffect);
         return Canary
                 .factory()
                 .getPotionFactory()
@@ -380,12 +380,12 @@ public class CanaryUtils {
     }
 
     public static World getWorld(org.bukkit.World world) {
-        Validate.notNull(world);
+        Preconditions.checkNotNull(world);
         return Canary.getServer().getWorld(world.getName());
     }
 
     public static Location getLocation(org.bukkit.Location location) {
-        Validate.notNull(location);
+        Preconditions.checkNotNull(location);
         return new Location(getWorld(location.getWorld()), location.getX(), location.getY(), location.getZ(),
                 location.getPitch(), location.getYaw());
     }

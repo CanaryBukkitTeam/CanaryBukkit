@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 
+import io.github.lexware.canarybukkit.util.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
@@ -29,11 +30,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
-public class CanaryInventory implements Inventory {
-    private net.canarymod.api.inventory.Inventory inv;
-
+public class CanaryInventory extends Wrapper<net.canarymod.api.inventory.Inventory> implements Inventory {
     public CanaryInventory(net.canarymod.api.inventory.Inventory inv) {
-        this.inv = inv;
+        super(inv);
     }
 
     public HashMap<Integer, ItemStack> addItem(ItemStack... items) throws IllegalArgumentException {
@@ -53,7 +52,7 @@ public class CanaryInventory implements Inventory {
     }
 
     public void clear() {
-        getInventory().clearInventory();
+        getHandle().clearInventory();
     }
 
     public void clear(int index) {
@@ -61,27 +60,27 @@ public class CanaryInventory implements Inventory {
     }
 
     public boolean contains(int materialId) {
-        return getInventory().hasItem(materialId);
+        return getHandle().hasItem(materialId);
     }
 
     public boolean contains(int materialId, int amount) {
-        return getInventory().hasItemStack(materialId, amount);
+        return getHandle().hasItemStack(materialId, amount);
     }
 
     public boolean contains(ItemStack item) {
-        return getInventory().hasItem(item.getTypeId());
+        return getHandle().hasItem(item.getTypeId());
     }
 
     public boolean contains(ItemStack item, int amount) {
-        return getInventory().hasItemStack(item.getTypeId(), amount);
+        return getHandle().hasItemStack(item.getTypeId(), amount);
     }
 
     public boolean contains(Material material) throws IllegalArgumentException {
-        return getInventory().hasItem(material.getId());
+        return getHandle().hasItem(material.getId());
     }
 
     public boolean contains(Material material, int amount) throws IllegalArgumentException {
-        return getInventory().hasItemStack(material.getId(), amount);
+        return getHandle().hasItemStack(material.getId(), amount);
     }
 
     public boolean containsAtLeast(ItemStack item, int amount) {
@@ -117,23 +116,23 @@ public class CanaryInventory implements Inventory {
     }
 
     public int getMaxStackSize() {
-        return getInventory().getInventoryStackLimit();
+        return getHandle().getInventoryStackLimit();
     }
 
     public String getName() {
-        return getInventory().getInventoryName();
+        return getHandle().getInventoryName();
     }
 
     public int getSize() {
-        return getInventory().getSize();
+        return getHandle().getSize();
     }
 
     public String getTitle() {
-        return getInventory().getInventoryName();
+        return getHandle().getInventoryName();
     }
 
     public InventoryType getType() {
-        return InventoryType.valueOf(inv.getInventoryType().name());
+        return InventoryType.valueOf(getHandle().getInventoryType().name());
     }
 
     public List<HumanEntity> getViewers() {
@@ -149,15 +148,15 @@ public class CanaryInventory implements Inventory {
     }
 
     public void remove(int materialId) {
-        getInventory().removeItem(materialId);
+        getHandle().removeItem(materialId);
     }
 
     public void remove(ItemStack item) {
-        getInventory().removeItem(item.getTypeId());
+        getHandle().removeItem(item.getTypeId());
     }
 
     public void remove(Material material) throws IllegalArgumentException {
-        getInventory().removeItem(material.getId());
+        getHandle().removeItem(material.getId());
     }
 
     public HashMap<Integer, ItemStack> removeItem(ItemStack... items) throws IllegalArgumentException {
@@ -174,9 +173,5 @@ public class CanaryInventory implements Inventory {
 
     public void setMaxStackSize(int size) {
         throw new NotImplementedException("setMaxStackSize(int)");
-    }
-
-    protected net.canarymod.api.inventory.Inventory getInventory() {
-        return inv;
     }
 }

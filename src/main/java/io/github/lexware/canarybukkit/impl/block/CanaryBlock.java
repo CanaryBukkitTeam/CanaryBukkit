@@ -23,6 +23,7 @@ import java.util.List;
 import io.github.lexware.canarybukkit.CanaryUtils;
 import io.github.lexware.canarybukkit.impl.CanaryChunk;
 import io.github.lexware.canarybukkit.impl.CanaryWorld;
+import io.github.lexware.canarybukkit.util.Wrapper;
 import net.canarymod.api.world.BiomeType;
 
 import org.apache.commons.lang3.NotImplementedException;
@@ -39,11 +40,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 
-public class CanaryBlock implements Block {
-    private net.canarymod.api.world.blocks.Block block;
-
+public class CanaryBlock extends Wrapper<net.canarymod.api.world.blocks.Block> implements Block {
     public CanaryBlock(net.canarymod.api.world.blocks.Block block) {
-        this.block = block;
+        super(block);
     }
 
     public boolean breakNaturally() {
@@ -55,13 +54,13 @@ public class CanaryBlock implements Block {
     }
 
     public Biome getBiome() {
-        return Biome.valueOf(getCanaryWorld().getBiome(getCanaryBlock().getX(), getCanaryBlock().getZ()).getBiomeType()
+        return Biome.valueOf(getCanaryWorld().getBiome(getHandle().getX(), getHandle().getZ()).getBiomeType()
                 .name());
         // TODO: Check if that works
     }
 
     public int getBlockPower() {
-        return getCanaryWorld().getBlockPower(getCanaryBlock());
+        return getCanaryWorld().getBlockPower(getHandle());
     }
 
     public int getBlockPower(BlockFace face) {
@@ -73,7 +72,7 @@ public class CanaryBlock implements Block {
     }
 
     public byte getData() {
-        return (byte) getCanaryBlock().getData();
+        return (byte) getHandle().getData();
     }
 
     public Collection<ItemStack> getDrops() {
@@ -110,7 +109,7 @@ public class CanaryBlock implements Block {
     }
 
     public Location getLocation() {
-        return new Location(new CanaryWorld(block.getWorld()), block.getX(), block.getY(), block.getZ());
+        return new Location(new CanaryWorld(getHandle().getWorld()), getHandle().getX(), getHandle().getY(), getHandle().getZ());
     }
 
     public Location getLocation(Location loc) {
@@ -140,7 +139,7 @@ public class CanaryBlock implements Block {
     }
 
     public Block getRelative(int modX, int modY, int modZ) {
-        return new CanaryBlock(getCanaryBlock().getRelative(modX, modY, modZ));
+        return new CanaryBlock(getHandle().getRelative(modX, modY, modZ));
     }
 
     public BlockState getState() {
@@ -156,23 +155,23 @@ public class CanaryBlock implements Block {
     }
 
     public int getTypeId() {
-        return block.getTypeId();
+        return getHandle().getTypeId();
     }
 
     public World getWorld() {
-        return new CanaryWorld(block.getWorld());
+        return new CanaryWorld(getHandle().getWorld());
     }
 
     public int getX() {
-        return block.getX();
+        return getHandle().getX();
     }
 
     public int getY() {
-        return block.getY();
+        return getHandle().getY();
     }
 
     public int getZ() {
-        return block.getZ();
+        return getHandle().getZ();
     }
 
     public boolean hasMetadata(String metadataKey) {
@@ -188,15 +187,15 @@ public class CanaryBlock implements Block {
     }
 
     public boolean isBlockIndirectlyPowered() {
-        return getCanaryWorld().isBlockIndirectlyPowered(getCanaryBlock());
+        return getCanaryWorld().isBlockIndirectlyPowered(getHandle());
     }
 
     public boolean isBlockPowered() {
-        return getCanaryWorld().isBlockPowered(getCanaryBlock());
+        return getCanaryWorld().isBlockPowered(getHandle());
     }
 
     public boolean isEmpty() {
-        return getCanaryBlock().isAir();
+        return getHandle().isAir();
     }
 
     public boolean isLiquid() {
@@ -209,18 +208,18 @@ public class CanaryBlock implements Block {
     }
 
     public void setBiome(Biome bio) {
-        block.getWorld().setBiome(block.getX(), block.getZ(), BiomeType.valueOf(bio.name()));
+        getHandle().getWorld().setBiome(getHandle().getX(), getHandle().getZ(), BiomeType.valueOf(bio.name()));
         // TODO: Check if that works
     }
 
     public void setData(byte data) {
-        getCanaryBlock().setData(data);
+        getHandle().setData(data);
     }
 
     public void setData(byte data, boolean applyPhysics) {
         setData(data);
         if (applyPhysics)
-            getCanaryBlock().update();
+            getHandle().update();
     }
 
     public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
@@ -228,19 +227,19 @@ public class CanaryBlock implements Block {
     }
 
     public void setType(Material type) {
-        getCanaryBlock().setType(CanaryUtils.getBlockType(type));
+        getHandle().setType(CanaryUtils.getBlockType(type));
     }
 
     public boolean setTypeId(int type) {
-        boolean ret = getCanaryBlock().getTypeId() != type;
-        getCanaryBlock().setTypeId((short) type);
+        boolean ret = getHandle().getTypeId() != type;
+        getHandle().setTypeId((short) type);
         return ret;
     }
 
     public boolean setTypeId(int type, boolean applyPhysics) {
         boolean ret = setTypeId(type);
         if (applyPhysics)
-            getCanaryBlock().update();
+            getHandle().update();
         return ret;
     }
 
@@ -249,16 +248,12 @@ public class CanaryBlock implements Block {
         return setTypeId(type, applyPhysics);
     }
 
-    protected net.canarymod.api.world.blocks.Block getCanaryBlock() {
-        return block;
-    }
-
     protected net.canarymod.api.world.World getCanaryWorld() {
-        return block.getWorld();
+        return getHandle().getWorld();
     }
 
     public boolean equals(Object object) {
         return ((object instanceof CanaryBlock || object instanceof net.canarymod.api.world.blocks.Block) && object
-                .equals(getCanaryBlock()));
+                .equals(getHandle()));
     }
 }

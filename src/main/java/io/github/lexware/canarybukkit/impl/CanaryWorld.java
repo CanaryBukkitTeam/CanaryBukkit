@@ -28,6 +28,7 @@ import io.github.lexware.canarybukkit.CanaryUtils;
 import io.github.lexware.canarybukkit.impl.block.CanaryBlock;
 import io.github.lexware.canarybukkit.impl.entity.CanaryPlayer;
 import io.github.lexware.canarybukkit.BukkitUtils;
+import io.github.lexware.canarybukkit.util.Wrapper;
 import net.canarymod.config.Configuration;
 import net.canarymod.config.WorldConfiguration;
 
@@ -63,12 +64,11 @@ import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
 
-public class CanaryWorld implements World {
-    private net.canarymod.api.world.World world;
+public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implements World {
     private Server server;
 
     public CanaryWorld(net.canarymod.api.world.World world) {
-        this.world = world;
+        super(world);
         this.server = Bukkit.getServer();
     }
 
@@ -77,7 +77,7 @@ public class CanaryWorld implements World {
     }
 
     public boolean createExplosion(double x, double y, double z, float power) {
-        getWorld().makeExplosion(null, x, y, z, power, true);
+        getHandle().makeExplosion(null, x, y, z, power, true);
         return true;
     }
 
@@ -130,12 +130,12 @@ public class CanaryWorld implements World {
     }
 
     public Biome getBiome(int x, int z) {
-        return Biome.valueOf(getWorld().getBiome(x, z).getBiomeType().name());
+        return Biome.valueOf(getHandle().getBiome(x, z).getBiomeType().name());
         // TODO: Check if that works
     }
 
     public Block getBlockAt(int x, int y, int z) {
-        return new CanaryBlock(getWorld().getBlockAt(x, y, z));
+        return new CanaryBlock(getHandle().getBlockAt(x, y, z));
     }
 
     public Block getBlockAt(Location location) {
@@ -143,7 +143,7 @@ public class CanaryWorld implements World {
     }
 
     public int getBlockTypeIdAt(int x, int y, int z) {
-        return getWorld().getBlockAt(x, y, z).getTypeId();
+        return getHandle().getBlockAt(x, y, z).getTypeId();
     }
 
     public int getBlockTypeIdAt(Location location) {
@@ -155,7 +155,7 @@ public class CanaryWorld implements World {
     }
 
     public Chunk getChunkAt(int x, int z) {
-        return new CanaryChunk(getWorld().getChunk(x, z), this);
+        return new CanaryChunk(getHandle().getChunk(x, z), this);
     }
 
     public Chunk getChunkAt(Location location) {
@@ -172,7 +172,7 @@ public class CanaryWorld implements World {
 
     public List<Entity> getEntities() {
         List<Entity> entities = new ArrayList<Entity>();
-        for (net.canarymod.api.entity.Entity e : getWorld().getEntityLivingList()) {
+        for (net.canarymod.api.entity.Entity e : getHandle().getEntityLivingList()) {
             entities.add(BukkitUtils.getEntity(e));
         }
         return entities;
@@ -191,11 +191,11 @@ public class CanaryWorld implements World {
     }
 
     public Environment getEnvironment() {
-        return BukkitUtils.getEnvironment(getWorld().getType());
+        return BukkitUtils.getEnvironment(getHandle().getType());
     }
 
     public long getFullTime() {
-        return getWorld().getTotalTime();
+        return getHandle().getTotalTime();
     }
 
     public String[] getGameRules() {
@@ -211,7 +211,7 @@ public class CanaryWorld implements World {
     }
 
     public Block getHighestBlockAt(int x, int z) {
-        return new CanaryBlock(getWorld().getBlockAt(x, getWorld().getHighestBlockAt(x, z), z));
+        return new CanaryBlock(getHandle().getBlockAt(x, getHandle().getHighestBlockAt(x, z), z));
     }
 
     public Block getHighestBlockAt(Location location) {
@@ -219,7 +219,7 @@ public class CanaryWorld implements World {
     }
 
     public int getHighestBlockYAt(int x, int z) {
-        return getWorld().getHighestBlockAt(x, z);
+        return getHandle().getHighestBlockAt(x, z);
     }
 
     public int getHighestBlockYAt(Location location) {
@@ -227,7 +227,7 @@ public class CanaryWorld implements World {
     }
 
     public double getHumidity(int x, int z) {
-        return getWorld().getBiome(x, z).getRainfall();
+        return getHandle().getBiome(x, z).getRainfall();
     }
 
     public boolean getKeepSpawnInMemory() {
@@ -240,7 +240,7 @@ public class CanaryWorld implements World {
 
     public List<LivingEntity> getLivingEntities() {
         List<LivingEntity> entities = new ArrayList<LivingEntity>();
-        for (net.canarymod.api.entity.living.EntityLiving entity : getWorld().getEntityLivingList()) {
+        for (net.canarymod.api.entity.living.EntityLiving entity : getHandle().getEntityLivingList()) {
             entities.add((LivingEntity) BukkitUtils.getEntity(entity));
         }
         return entities;
@@ -248,14 +248,14 @@ public class CanaryWorld implements World {
 
     public Chunk[] getLoadedChunks() {
         List<Chunk> chunks = new ArrayList<Chunk>();
-        for (net.canarymod.api.world.Chunk chunk : getWorld().getLoadedChunks()) {
+        for (net.canarymod.api.world.Chunk chunk : getHandle().getLoadedChunks()) {
             chunks.add(new CanaryChunk(chunk, this));
         }
         return chunks.toArray(new Chunk[chunks.size()]);
     }
 
     public int getMaxHeight() {
-        return getWorld().getHeight();
+        return getHandle().getHeight();
     }
 
     public List<MetadataValue> getMetadata(String metadataKey) {
@@ -267,12 +267,12 @@ public class CanaryWorld implements World {
     }
 
     public String getName() {
-        return getWorld().getName();
+        return getHandle().getName();
     }
 
     public List<Player> getPlayers() {
         List<Player> players = new ArrayList<Player>();
-        for (net.canarymod.api.entity.living.humanoid.Player p : getWorld().getPlayerList()) {
+        for (net.canarymod.api.entity.living.humanoid.Player p : getHandle().getPlayerList()) {
             players.add(new CanaryPlayer(p));
         }
         return players;
@@ -291,19 +291,19 @@ public class CanaryWorld implements World {
     }
 
     public long getSeed() {
-        return getWorld().getWorldSeed();
+        return getHandle().getWorldSeed();
     }
 
     public Location getSpawnLocation() {
-        return new CanaryLocation(getWorld().getSpawnLocation(), this);
+        return new CanaryLocation(getHandle().getSpawnLocation(), this);
     }
 
     public double getTemperature(int x, int z) {
-        return getWorld().getBiome(x, z).getTemperature();
+        return getHandle().getBiome(x, z).getTemperature();
     }
 
     public int getThunderDuration() {
-        return getWorld().getThunderTicks();
+        return getHandle().getThunderTicks();
     }
 
     public long getTicksPerAnimalSpawns() {
@@ -315,7 +315,7 @@ public class CanaryWorld implements World {
     }
 
     public long getTime() {
-        return getWorld().getRelativeTime();
+        return getHandle().getRelativeTime();
     }
 
     public UUID getUID() {
@@ -327,7 +327,7 @@ public class CanaryWorld implements World {
     }
 
     public int getWeatherDuration() {
-        return getWorld().getRainTicks();
+        return getHandle().getRainTicks();
     }
 
     public File getWorldFolder() {
@@ -351,7 +351,7 @@ public class CanaryWorld implements World {
     }
 
     public boolean isChunkInUse(int x, int z) {
-        return getWorld().getChunk(x, z).hasEntities();
+        return getHandle().getChunk(x, z).hasEntities();
     }
 
     public boolean isChunkLoaded(Chunk chunk) {
@@ -416,7 +416,7 @@ public class CanaryWorld implements World {
     }
 
     public void save() {
-        getWorld().save();
+        getHandle().save();
     }
 
     public void sendPluginMessage(Plugin source, String channel, byte[] message) {
@@ -436,7 +436,7 @@ public class CanaryWorld implements World {
     }
 
     public void setBiome(int x, int z, Biome bio) {
-        getWorld().setBiome(x, z, CanaryUtils.getBiome(bio));
+        getHandle().setBiome(x, z, CanaryUtils.getBiome(bio));
     }
 
     public void setDifficulty(Difficulty difficulty) {
@@ -472,20 +472,20 @@ public class CanaryWorld implements World {
     }
 
     public boolean setSpawnLocation(int x, int y, int z) {
-        getWorld().setSpawnLocation(new net.canarymod.api.world.position.Location(x, y, z));
-        return (getWorld().getSpawnLocation() == new net.canarymod.api.world.position.Location(x, y, z));
+        getHandle().setSpawnLocation(new net.canarymod.api.world.position.Location(x, y, z));
+        return (getHandle().getSpawnLocation() == new net.canarymod.api.world.position.Location(x, y, z));
     }
 
     public void setStorm(boolean hasStorm) {
-        getWorld().setRaining(hasStorm);
+        getHandle().setRaining(hasStorm);
     }
 
     public void setThunderDuration(int duration) {
-        getWorld().setThunderTime(duration);
+        getHandle().setThunderTime(duration);
     }
 
     public void setThundering(boolean thundering) {
-        getWorld().setThundering(thundering);
+        getHandle().setThundering(thundering);
     }
 
     public void setTicksPerAnimalSpawns(int ticksPerAnimalSpawns) {
@@ -497,7 +497,7 @@ public class CanaryWorld implements World {
     }
 
     public void setTime(long time) {
-        getWorld().setTime(time);
+        getHandle().setTime(time);
     }
 
     public void setWaterAnimalSpawnLimit(int limit) {
@@ -505,7 +505,7 @@ public class CanaryWorld implements World {
     }
 
     public void setWeatherDuration(int duration) {
-        getWorld().setRainTime(duration);
+        getHandle().setRainTime(duration);
     }
 
     public <T extends Entity> T spawn(Location location, Class<T> clazz) throws IllegalArgumentException {
@@ -572,11 +572,7 @@ public class CanaryWorld implements World {
     }
 
     protected WorldConfiguration getWorldConfiguration() {
-        return Configuration.getWorldConfig(getWorld().getFqName());
-    }
-
-    protected net.canarymod.api.world.World getWorld() {
-        return world;
+        return Configuration.getWorldConfig(getHandle().getFqName());
     }
 
     protected Server getServer() {

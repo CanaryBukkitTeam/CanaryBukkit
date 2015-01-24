@@ -17,6 +17,7 @@
  */
 package io.github.lexware.canarybukkit;
 
+import com.google.common.base.Preconditions;
 import io.github.lexware.canarybukkit.impl.entity.CanaryArrow;
 import io.github.lexware.canarybukkit.impl.entity.CanaryChicken;
 import io.github.lexware.canarybukkit.impl.entity.CanaryCow;
@@ -25,7 +26,6 @@ import io.github.lexware.canarybukkit.impl.entity.CanaryHorse;
 import io.github.lexware.canarybukkit.impl.entity.CanaryPig;
 import io.github.lexware.canarybukkit.impl.entity.CanarySheep;
 import io.github.lexware.canarybukkit.impl.entity.CanaryWolf;
-import org.apache.commons.lang3.Validate;
 import org.bukkit.Art;
 import org.bukkit.Difficulty;
 import org.bukkit.DyeColor;
@@ -42,7 +42,7 @@ import org.bukkit.potion.PotionEffectType;
 
 public class BukkitUtils {
     public static Difficulty getDifficulty(net.canarymod.api.world.World.Difficulty difficulty) {
-        Validate.notNull(difficulty);
+        Preconditions.checkNotNull(difficulty);
         switch (difficulty) {
             case EASY:
                 return Difficulty.EASY;
@@ -57,7 +57,7 @@ public class BukkitUtils {
     }
 
     public static DyeColor getDyeColor(net.canarymod.api.DyeColor color) {
-        Validate.notNull(color);
+        Preconditions.checkNotNull(color);
         switch (color) {
             case BLACK:
                 return DyeColor.BLACK;
@@ -97,7 +97,7 @@ public class BukkitUtils {
     }
 
     public static GameMode getGameMode(net.canarymod.api.GameMode gm) {
-        Validate.notNull(gm);
+        Preconditions.checkNotNull(gm);
         switch (gm) {
             case ADVENTURE:
                 return GameMode.ADVENTURE;
@@ -110,7 +110,7 @@ public class BukkitUtils {
     }
 
     public static WorldType getWorldType(net.canarymod.api.world.WorldType type) {
-        Validate.notNull(type);
+        Preconditions.checkNotNull(type);
         if (type == net.canarymod.api.world.WorldType.AMPLIFIED) {
             return WorldType.AMPLIFIED;
         }
@@ -127,7 +127,7 @@ public class BukkitUtils {
     }
 
     public static Profession getProfession(net.canarymod.api.entity.living.humanoid.Villager.Profession profession) {
-        Validate.notNull(profession);
+        Preconditions.checkNotNull(profession);
         switch (profession) {
             case BLACKSMITH:
                 return Profession.BLACKSMITH;
@@ -146,7 +146,7 @@ public class BukkitUtils {
     }
 
     public static Type getCatType(net.canarymod.api.entity.living.animal.Ocelot.SkinType type) {
-        Validate.notNull(type);
+        Preconditions.checkNotNull(type);
         switch (type) {
             case GINGER:
                 return Type.RED_CAT;
@@ -161,7 +161,7 @@ public class BukkitUtils {
     }
 
     public static Environment getEnvironment(net.canarymod.api.world.DimensionType type) {
-        Validate.notNull(type);
+        Preconditions.checkNotNull(type);
         if (type == net.canarymod.api.world.DimensionType.NORMAL) {
             return Environment.NORMAL;
         } else if (type == net.canarymod.api.world.DimensionType.NETHER) {
@@ -174,7 +174,7 @@ public class BukkitUtils {
     }
 
     public static Art getArt(net.canarymod.api.entity.hanging.Painting.ArtType art) {
-        Validate.notNull(art);
+        Preconditions.checkNotNull(art);
         switch (art) {
             case Alban:
                 return Art.ALBAN;
@@ -234,7 +234,7 @@ public class BukkitUtils {
     }
 
     public static Entity getEntity(net.canarymod.api.entity.Entity cEntity) {
-        Validate.notNull(cEntity);
+        Preconditions.checkNotNull(cEntity);
         if (cEntity instanceof net.canarymod.api.entity.Projectile) {
             if (cEntity instanceof net.canarymod.api.entity.Arrow) {
                 return new CanaryArrow((net.canarymod.api.entity.Arrow) cEntity);
@@ -264,18 +264,18 @@ public class BukkitUtils {
     }
 
     public static PotionEffectType getPotionEffectType(net.canarymod.api.potion.PotionEffectType potionEffectType) {
-        Validate.notNull(potionEffectType);
+        Preconditions.checkNotNull(potionEffectType);
         return PotionEffectType.getByName(potionEffectType.name());
     }
 
     public static PotionEffect getPotionEffect(net.canarymod.api.potion.PotionEffect potionEffect) {
-        Validate.notNull(potionEffect);
+        Preconditions.checkNotNull(potionEffect);
         return new PotionEffect(getPotionEffectType(CanaryUtils.getPotionEffectType(potionEffect.getPotionID())),
                 potionEffect.getDuration(), potionEffect.getAmplifier(), potionEffect.isAmbient());
     }
 
     public static TeleportCause getTeleportCause(net.canarymod.hook.player.TeleportHook.TeleportCause cause) {
-        Validate.notNull(cause);
+        Preconditions.checkNotNull(cause);
         switch (cause) {
             case BED:
                 return TeleportCause.UNKNOWN;
@@ -301,7 +301,7 @@ public class BukkitUtils {
     }
 
     public static IgniteCause getIgniteCause(net.canarymod.hook.world.IgnitionHook.IgnitionCause cause) {
-        Validate.notNull(cause);
+        Preconditions.checkNotNull(cause);
         switch (cause) {
             case FIREBALL_CLICK:
                 return IgniteCause.FIREBALL;

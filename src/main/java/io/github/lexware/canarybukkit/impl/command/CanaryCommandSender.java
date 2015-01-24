@@ -19,6 +19,7 @@ package io.github.lexware.canarybukkit.impl.command;
 
 import java.util.Set;
 
+import io.github.lexware.canarybukkit.util.Wrapper;
 import net.canarymod.Canary;
 import net.canarymod.chat.MessageReceiver;
 import net.canarymod.chat.ReceiverType;
@@ -32,11 +33,9 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
-public class CanaryCommandSender implements CommandSender {
-    private MessageReceiver caller;
-
+public class CanaryCommandSender extends Wrapper<MessageReceiver> implements CommandSender {
     public CanaryCommandSender(MessageReceiver caller) {
-        this.caller = caller;
+        super(caller);
     }
 
     public PermissionAttachment addAttachment(Plugin plugin) {
@@ -60,7 +59,7 @@ public class CanaryCommandSender implements CommandSender {
     }
 
     public String getName() {
-        return caller.getName();
+        return getHandle().getName();
     }
 
     public Server getServer() {
@@ -68,15 +67,15 @@ public class CanaryCommandSender implements CommandSender {
     }
 
     public boolean hasPermission(Permission perm) {
-        return caller.hasPermission(perm.getName());
+        return getHandle().hasPermission(perm.getName());
     }
 
     public boolean hasPermission(String name) {
-        return caller.hasPermission(name);
+        return getHandle().hasPermission(name);
     }
 
     public boolean isOp() {
-        return Canary.ops().isOpped(caller.getName());
+        return Canary.ops().isOpped(getHandle().getName());
     }
 
     public boolean isPermissionSet(Permission perm) {
@@ -84,11 +83,11 @@ public class CanaryCommandSender implements CommandSender {
     }
 
     public boolean isPermissionSet(String name) {
-        return caller.hasPermission(name);
+        return getHandle().hasPermission(name);
     }
 
     public boolean isPlayer() {
-        return caller.getReceiverType() == ReceiverType.PLAYER;
+        return getHandle().getReceiverType() == ReceiverType.PLAYER;
     }
 
     public void recalculatePermissions() {
@@ -100,16 +99,16 @@ public class CanaryCommandSender implements CommandSender {
     }
 
     public void sendMessage(String message) {
-        caller.message(message);
+        getHandle().message(message);
     }
 
     public void sendMessage(String[] messages) {
         for (String msg : messages) {
-            caller.message(msg);
+            getHandle().message(msg);
         }
     }
 
     public void setOp(boolean value) {
-        Canary.ops().addPlayer(caller.getName());
+        Canary.ops().addPlayer(getHandle().getName());
     }
 }

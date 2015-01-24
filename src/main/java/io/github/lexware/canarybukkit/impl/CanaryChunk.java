@@ -22,6 +22,7 @@ import java.util.List;
 
 import io.github.lexware.canarybukkit.BukkitUtils;
 
+import io.github.lexware.canarybukkit.util.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;
@@ -30,13 +31,12 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 
-public class CanaryChunk implements Chunk {
-    private net.canarymod.api.world.Chunk chunk;
+public class CanaryChunk extends Wrapper<net.canarymod.api.world.Chunk> implements Chunk {
     private CanaryWorld world;
 
     public CanaryChunk(net.canarymod.api.world.Chunk chunk, CanaryWorld world) {
         // Why is that a CanaryWorld and not a canary api World?
-        this.chunk = chunk;
+        super(chunk);
         this.world = world;
     }
 
@@ -45,7 +45,7 @@ public class CanaryChunk implements Chunk {
     }
 
     public ChunkSnapshot getChunkSnapshot() {
-        return new CanaryChunkSnapshot(chunk, world);
+        return new CanaryChunkSnapshot(getHandle(), world);
     }
 
     public ChunkSnapshot getChunkSnapshot(boolean includeMaxblocky, boolean includeBiome, boolean includeBiomeTempRain) {
@@ -54,7 +54,7 @@ public class CanaryChunk implements Chunk {
 
     public Entity[] getEntities() {
         List<Entity> entities = new ArrayList<Entity>();
-        for (List<net.canarymod.api.entity.Entity> e : getChunk().getEntityLists()) {
+        for (List<net.canarymod.api.entity.Entity> e : getHandle().getEntityLists()) {
             for (net.canarymod.api.entity.Entity en : e) {
                 entities.add(BukkitUtils.getEntity(en));
             }
@@ -71,20 +71,20 @@ public class CanaryChunk implements Chunk {
     }
 
     public int getX() {
-        return getChunk().getX();
+        return getHandle().getX();
     }
 
     public int getZ() {
-        return getChunk().getZ();
+        return getHandle().getZ();
     }
 
     public boolean isLoaded() {
-        return getChunk().isLoaded();
+        return getHandle().isLoaded();
     }
 
     public boolean load() {
-        world.loadChunk(new CanaryChunk(getChunk(), world));
-        return getChunk().isLoaded();
+        world.loadChunk(new CanaryChunk(getHandle(), world));
+        return getHandle().isLoaded();
     }
 
     public boolean load(boolean generate) {
@@ -92,8 +92,8 @@ public class CanaryChunk implements Chunk {
     }
 
     public boolean unload() {
-        world.unloadChunk(new CanaryChunk(getChunk(), world));
-        return !getChunk().isLoaded();
+        world.unloadChunk(new CanaryChunk(getHandle(), world));
+        return !getHandle().isLoaded();
     }
 
     public boolean unload(boolean save) {
@@ -102,9 +102,5 @@ public class CanaryChunk implements Chunk {
 
     public boolean unload(boolean save, boolean safe) {
         return false;
-    }
-
-    protected net.canarymod.api.world.Chunk getChunk() {
-        return chunk;
     }
 }

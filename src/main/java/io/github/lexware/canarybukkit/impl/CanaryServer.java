@@ -31,17 +31,18 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.logging.Logger;
 
+import com.google.common.base.Preconditions;
 import io.github.lexware.canarybukkit.data.Constants;
 import io.github.lexware.canarybukkit.impl.entity.CanaryPlayer;
 import io.github.lexware.canarybukkit.impl.scheduler.CanaryScheduler;
 import io.github.lexware.canarybukkit.impl.util.CanaryCachedServerIcon;
 import io.github.lexware.canarybukkit.impl.help.CanaryHelpMap;
+import io.github.lexware.canarybukkit.util.Wrapper;
 import net.canarymod.Canary;
 import net.canarymod.config.Configuration;
 import net.canarymod.logger.Logman;
 
 import org.apache.commons.lang3.NotImplementedException;
-import org.apache.commons.lang3.Validate;
 import org.bukkit.BanEntry;
 import org.bukkit.BanList;
 import org.bukkit.BanList.Type;
@@ -85,8 +86,7 @@ import org.bukkit.util.permissions.DefaultPermissions;
 
 import com.avaje.ebean.config.ServerConfig;
 
-public class CanaryServer implements Server {
-    private net.canarymod.api.Server server;
+public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements Server {
     private String canaryBukkitVersion;
     private final SimpleCommandMap commandMap = new SimpleCommandMap(this);
     private PluginManager pluginManager = new SimplePluginManager(this, commandMap);
@@ -103,7 +103,7 @@ public class CanaryServer implements Server {
     private final Player[] EMPTY_PLAYER_ARRAY = new Player[0];
 
     public CanaryServer(net.canarymod.api.Server server, Logman logman, String canaryBukkitVersion) {
-        this.server = server;
+        super(server);
         this.logman = logman;
         this.canaryBukkitVersion = canaryBukkitVersion;
 
@@ -125,7 +125,7 @@ public class CanaryServer implements Server {
     }
 
     public void banIP(String address) {
-        Validate.notNull(address, "Address cannot be null.");
+        Preconditions.checkNotNull(address, "Address cannot be null.");
 
         this.getBanList(Type.IP).addBan(address, null, null, null);
     }
@@ -185,8 +185,8 @@ public class CanaryServer implements Server {
     }
 
     public boolean dispatchCommand(CommandSender sender, String commandLine) {
-        Validate.notNull(sender, "Sender cannot be null");
-        Validate.notNull(commandLine, "CommandLine cannot be null");
+        Preconditions.checkNotNull(sender, "Sender cannot be null");
+        Preconditions.checkNotNull(commandLine, "CommandLine cannot be null");
 
         if (commandLine.startsWith("/")) {
             commandLine = commandLine.substring(1);
@@ -214,7 +214,7 @@ public class CanaryServer implements Server {
 
     public boolean getAllowEnd() {
         // TODO MW support -.-
-        return Configuration.getWorldConfig(server.getDefaultWorldName()).isEndAllowed();
+        return Configuration.getWorldConfig(getHandle().getDefaultWorldName()).isEndAllowed();
     }
 
     public boolean getAllowFlight() {
@@ -223,7 +223,7 @@ public class CanaryServer implements Server {
 
     public boolean getAllowNether() {
         // TODO MW support -.-
-        return Configuration.getWorldConfig(server.getDefaultWorldName()).isNetherAllowed();
+        return Configuration.getWorldConfig(getHandle().getDefaultWorldName()).isNetherAllowed();
     }
 
     public int getAmbientSpawnLimit() {
@@ -235,7 +235,7 @@ public class CanaryServer implements Server {
     }
 
     public BanList getBanList(BanList.Type type) {
-        Validate.notNull(type, "Type cannot be null");
+        Preconditions.checkNotNull(type, "Type cannot be null");
 
         return new CanaryBanList(Canary.bans(), type);
     }
@@ -271,7 +271,7 @@ public class CanaryServer implements Server {
 
     public boolean getGenerateStructures() {
         // TODO MW support -.-
-        return Configuration.getWorldConfig(server.getDefaultWorldName()).generatesStructures();
+        return Configuration.getWorldConfig(getHandle().getDefaultWorldName()).generatesStructures();
     }
 
     public HelpMap getHelpMap() {
@@ -364,7 +364,7 @@ public class CanaryServer implements Server {
 
     public Collection<? extends Player> getOnlinePlayers() {
         ArrayList<Player> players = new ArrayList<Player>();
-        for (net.canarymod.api.entity.living.humanoid.Player player : server.getPlayerList()) {
+        for (net.canarymod.api.entity.living.humanoid.Player player : getHandle().getPlayerList()) {
             players.add(new CanaryPlayer(player));
         }
         return players;
@@ -380,7 +380,7 @@ public class CanaryServer implements Server {
 
     public Player getPlayer(String name) {
         // TODO: Look at difference between getPlayerExact and getPlayer.
-        Validate.notNull(name, "Name cannot be null");
+        Preconditions.checkNotNull(name, "Name cannot be null");
 
         String lname = name.toLowerCase();
         for (Player player : getOnlinePlayers()) {
@@ -392,7 +392,7 @@ public class CanaryServer implements Server {
     }
 
     public Player getPlayer(UUID id) {
-        Validate.notNull(id, "UUID cannot be null");
+        Preconditions.checkNotNull(id, "UUID cannot be null");
 
         for (Player player : getOnlinePlayers()) {
             if (player.getUniqueId().equals(id)) {
@@ -403,7 +403,7 @@ public class CanaryServer implements Server {
     }
 
     public Player getPlayerExact(String name) {
-        Validate.notNull(name, "Name cannot be null");
+        Preconditions.checkNotNull(name, "Name cannot be null");
 
         String lname = name.toLowerCase();
         for (Player player : getOnlinePlayers()) {
@@ -453,7 +453,7 @@ public class CanaryServer implements Server {
     }
 
     public String getServerName() {
-        return server.getName();
+        return getHandle().getName();
     }
 
     public ServicesManager getServicesManager() {
@@ -465,7 +465,7 @@ public class CanaryServer implements Server {
     }
 
     public int getSpawnRadius() {
-        return Configuration.getWorldConfig(server.getDefaultWorldName()).getSpawnProtectionSize();
+        return Configuration.getWorldConfig(getHandle().getDefaultWorldName()).getSpawnProtectionSize();
     }
 
     public int getTicksPerAnimalSpawns() {
@@ -490,7 +490,7 @@ public class CanaryServer implements Server {
     }
 
     public String getVersion() {
-        return "canarybukkit_" + Canary.getImplementationVersion() + " (MC: " + server.getServerVersion() + ")";
+        return "canarybukkit_" + Canary.getImplementationVersion() + " (MC: " + getHandle().getServerVersion() + ")";
     }
 
     public int getViewDistance() {
@@ -514,7 +514,7 @@ public class CanaryServer implements Server {
     }
 
     public World getWorld(String name) {
-        return new CanaryWorld(server.getWorld(name));
+        return new CanaryWorld(getHandle().getWorld(name));
     }
 
     public World getWorld(UUID uid) {
@@ -535,7 +535,7 @@ public class CanaryServer implements Server {
     }
 
     public String getWorldType() {
-        return server.getDefaultWorld().getType().getName();
+        return getHandle().getDefaultWorld().getType().getName();
     }
 
     public boolean hasWhitelist() {
@@ -594,7 +594,7 @@ public class CanaryServer implements Server {
     }
 
     public List<Player> matchPlayer(String partialName) {
-        Validate.notNull(partialName, "PartialName cannot be null");
+        Preconditions.checkNotNull(partialName, "PartialName cannot be null");
 
         List<Player> matchedPlayers = new ArrayList<Player>();
         for (Player player : this.getOnlinePlayers()) {
@@ -665,7 +665,7 @@ public class CanaryServer implements Server {
     }
 
     public void shutdown() {
-        server.initiateShutdown(config.getString("shutdown-message"));
+        getHandle().initiateShutdown(config.getString("shutdown-message"));
     }
 
     public void start() {

@@ -48,7 +48,7 @@ public class CanaryPlayerInventory extends CanaryInventory implements PlayerInve
     }
 
     public int getHeldItemSlot() {
-        return getInventory().getSelectedHotbarSlotId();
+        return getHandle().getSelectedHotbarSlotId();
     }
 
     public ItemStack getHelmet() {
@@ -96,7 +96,7 @@ public class CanaryPlayerInventory extends CanaryInventory implements PlayerInve
         throw new NotImplementedException("setLeggings(ItemStack)");
     }
 
-    protected net.canarymod.api.inventory.PlayerInventory getInventory() {
-        return (net.canarymod.api.inventory.PlayerInventory) super.getInventory();
+    protected net.canarymod.api.inventory.PlayerInventory getHandle() {
+        return (net.canarymod.api.inventory.PlayerInventory) super.getHandle();
     }
 }
