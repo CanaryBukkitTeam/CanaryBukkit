@@ -15,3 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import org.bukkit.entity.Cow;
+import org.bukkit.entity.EntityType;
+
+public class CanaryCow extends CanaryAnimals implements Cow {
+    public CanaryCow(net.canarymod.api.entity.living.animal.Cow entity) {
+        super(entity);
+    }
+
+    public EntityType getType() {
+        return EntityType.COW;
+    }
+}

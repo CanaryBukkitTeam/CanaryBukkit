@@ -15,3 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import org.bukkit.entity.Monster;
+
+public abstract class CanaryMonster extends CanaryCreature implements Monster {
+    public CanaryMonster(net.canarymod.api.entity.living.monster.EntityMob entity) {
+        super(entity);
+    }
+}

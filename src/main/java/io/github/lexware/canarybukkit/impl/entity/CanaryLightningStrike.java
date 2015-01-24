@@ -15,3 +15,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LightningStrike;
+
+public class CanaryLightningStrike extends CanaryEntity implements LightningStrike {
+    public CanaryLightningStrike(net.canarymod.api.entity.effect.LightningBolt entity) {
+        super(entity);
+    }
+
+    public boolean isEffect() {
+        return false;
+        // No lightning bolts are effects
+    }
+
+    public EntityType getType() {
+        return EntityType.LIGHTNING;
+    }
+}

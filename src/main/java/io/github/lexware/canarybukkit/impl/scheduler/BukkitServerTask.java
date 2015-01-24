@@ -15,3 +15,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.scheduler;
+
+import net.canarymod.tasks.ServerTask;
+
+public class BukkitServerTask extends ServerTask {
+
+    private final CanaryTask task;
+
+    public BukkitServerTask(CanaryTask task) {
+        super(new BukkitTaskOwner(task.getOwner()), task.getDelay(), task.getPeriod(), task.getRepeat());
+        this.task = task;
+    }
+
+    @Override
+    public void run() {
+        task.run();
+    }
+
+}

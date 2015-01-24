@@ -15,3 +15,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import org.bukkit.entity.Creeper;
+import org.bukkit.entity.EntityType;
+
+public class CanaryCreeper extends CanaryMonster implements Creeper {
+    public CanaryCreeper(net.canarymod.api.entity.living.monster.Creeper entity) {
+        super(entity);
+    }
+
+    public EntityType getType() {
+        return EntityType.CREEPER;
+    }
+
+    public boolean isPowered() {
+        return getEntity().isCharged();
+    }
+
+    public void setPowered(boolean value) {
+        getEntity().setCharged(value);
+    }
+
+    @Override
+    protected net.canarymod.api.entity.living.monster.Creeper getEntity() {
+        return (net.canarymod.api.entity.living.monster.Creeper) super.getEntity();
+    }
+}

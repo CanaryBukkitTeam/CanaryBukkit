@@ -15,3 +15,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.ExperienceOrb;
+
+public class CanaryExperienceOrb extends CanaryEntity implements ExperienceOrb {
+    public CanaryExperienceOrb(net.canarymod.api.entity.XPOrb entity) {
+        super(entity);
+    }
+
+    public int getExperience() {
+        return getEntity().getXPValue();
+    }
+
+    public EntityType getType() {
+        return EntityType.EXPERIENCE_ORB;
+    }
+
+    public void setExperience(int value) {
+        getEntity().setXPValue((short) value);
+        // TODO: can you cast short to a int
+    }
+
+    @Override
+    protected net.canarymod.api.entity.XPOrb getEntity() {
+        return (net.canarymod.api.entity.XPOrb) super.getEntity();
+    }
+}

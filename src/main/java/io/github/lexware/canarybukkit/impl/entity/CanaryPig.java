@@ -15,3 +15,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Pig;
+
+public class CanaryPig extends CanaryAnimals implements Pig {
+    public CanaryPig(net.canarymod.api.entity.living.animal.Pig entity) {
+        super(entity);
+    }
+
+    public EntityType getType() {
+        return EntityType.PIG;
+    }
+
+    public boolean hasSaddle() {
+        return getEntity().isSaddled();
+    }
+
+    public void setSaddle(boolean saddled) {
+        getEntity().setSaddled(saddled);
+    }
+
+    @Override
+    protected net.canarymod.api.entity.living.animal.Pig getEntity() {
+        return (net.canarymod.api.entity.living.animal.Pig) super.getEntity();
+    }
+}

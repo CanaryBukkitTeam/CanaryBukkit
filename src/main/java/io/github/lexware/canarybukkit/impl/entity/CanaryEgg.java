@@ -15,3 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import org.bukkit.entity.Egg;
+import org.bukkit.entity.EntityType;
+
+public class CanaryEgg extends CanaryProjectile implements Egg {
+    public CanaryEgg(net.canarymod.api.entity.throwable.ChickenEgg entity) {
+        super(entity);
+    }
+
+    public EntityType getType() {
+        return EntityType.EGG;
+    }
+}

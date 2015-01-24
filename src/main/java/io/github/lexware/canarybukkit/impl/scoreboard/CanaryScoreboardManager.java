@@ -15,3 +15,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.scoreboard;
+
+import org.apache.commons.lang3.NotImplementedException;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
+
+public class CanaryScoreboardManager implements ScoreboardManager {
+    private net.canarymod.api.scoreboard.ScoreboardManager scoreboardManager;
+
+    public CanaryScoreboardManager(net.canarymod.api.scoreboard.ScoreboardManager scoreboardManager) {
+        this.scoreboardManager = scoreboardManager;
+    }
+
+    public Scoreboard getMainScoreboard() {
+        return new CanaryScoreboard(scoreboardManager.getScoreboard());
+    }
+
+    public Scoreboard getNewScoreboard() {
+        throw new NotImplementedException("getNewScoreboard()");
+    }
+}

@@ -15,3 +15,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import org.bukkit.entity.Bat;
+import org.bukkit.entity.EntityType;
+
+public class CanaryBat extends CanaryAmbient implements Bat {
+    public CanaryBat(net.canarymod.api.entity.living.animal.Bat entity) {
+        super(entity);
+    }
+
+    public EntityType getType() {
+        return EntityType.BAT;
+    }
+
+    public boolean isAwake() {
+        return !getEntity().isHanging();
+    }
+
+    public void setAwake(boolean awake) {
+        getEntity().setHanging(!awake);
+    }
+
+    @Override
+    protected net.canarymod.api.entity.living.animal.Bat getEntity() {
+        return (net.canarymod.api.entity.living.animal.Bat) super.getEntity();
+    }
+}

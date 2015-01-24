@@ -15,3 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Ghast;
+
+public class CanaryGhast extends CanaryFlying implements Ghast {
+    public CanaryGhast(net.canarymod.api.entity.living.monster.Ghast entity) {
+        super(entity);
+    }
+
+    public EntityType getType() {
+        return EntityType.GHAST;
+    }
+}

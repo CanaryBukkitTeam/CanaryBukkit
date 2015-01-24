@@ -15,3 +15,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import io.github.lexware.canarybukkit.BukkitUtils;
+
+import org.apache.commons.lang3.NotImplementedException;
+import org.bukkit.entity.Creature;
+import org.bukkit.entity.LivingEntity;
+
+public abstract class CanaryCreature extends CanaryLivingEntity implements Creature {
+    public CanaryCreature(net.canarymod.api.entity.living.LivingBase entity) {
+        super(entity);
+    }
+
+    public LivingEntity getTarget() {
+        return (LivingEntity) BukkitUtils.getEntity(getEntity().getRevengeTarget());
+    }
+
+    public void setTarget(LivingEntity target) {
+        throw new NotImplementedException("setTarget(LivingEntity)");
+    }
+}

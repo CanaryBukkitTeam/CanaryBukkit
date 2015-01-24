@@ -15,3 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.scheduler;
+
+import net.canarymod.tasks.TaskOwner;
+import org.bukkit.plugin.Plugin;
+
+public class BukkitTaskOwner implements TaskOwner {
+
+    private final Plugin plugin;
+
+    public BukkitTaskOwner(Plugin plugin) {
+        this.plugin = plugin;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        return object instanceof BukkitTaskOwner && ((BukkitTaskOwner) object).plugin.equals(plugin);
+    }
+
+    @Override
+    public int hashCode() {
+        return plugin.hashCode();
+    }
+
+}

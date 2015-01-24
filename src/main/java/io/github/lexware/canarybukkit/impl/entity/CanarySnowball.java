@@ -15,3 +15,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Snowball;
+
+public class CanarySnowball extends CanaryProjectile implements Snowball {
+    public CanarySnowball(net.canarymod.api.entity.throwable.Snowball entity) {
+        super(entity);
+    }
+
+    public EntityType getType() {
+        return EntityType.SNOWBALL;
+    }
+}

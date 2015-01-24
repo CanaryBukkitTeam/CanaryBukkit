@@ -15,3 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import org.bukkit.entity.Animals;
+
+public abstract class CanaryAnimals extends CanaryAgeable implements Animals {
+    public CanaryAnimals(net.canarymod.api.entity.living.animal.EntityAnimal entity) {
+        super(entity);
+    }
+}

@@ -3,21 +3,45 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>lexteam.minecraft</groupId>
+    <groupId>io.github.lexware</groupId>
     <artifactId>canarybukkit</artifactId>
 
     <name>CanaryBukkit</name>
     <description>CanaryBukkit allows plugins created for the Bukkit API platform to be used on the CanaryLib server
         platform.
     </description>
-    <version>0.1-dev</version>
+    <version>1.0-SNAPSHOT</version>
     <url>https://github.com/LexMinecraft/Canary-Bukkit</url>
     <inceptionYear>2014</inceptionYear>
 
     <organization>
-        <name>Lexteam</name>
-        <url>https://github.com/Lexteam</url>
+        <name>CanaryBukkitTeam</name>
+        <url>https://bitbucket.org/canarybukkitteam</url>
     </organization>
+    
+    <developers>
+        <developer>
+            <id>jmansfield</id>
+            <name>Jamie Mansfield</name>
+            <email>malgm@lapis.blue</email>
+            <url>https://github.com/lexware</url>
+            <timezone>GMT/England</timezone>
+            <roles>
+                <role>Team member</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>1123</id>
+            <name>Larry1123</name>
+            <email>larry1123@larry1123.net</email>
+            <url>https://larry1123.net</url>
+            <roles>
+                <role>Team member</role>
+                <role>Developer</role>
+            </roles>
+        </developer>
+    </developers>
 
     <issueManagement>
         <system>GitHub</system>
@@ -81,12 +105,12 @@
                 </excludes>
             </resource>
         </resources>
-        <testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
+        <!--<testSourceDirectory>${basedir}/src/test/java</testSourceDirectory>
         <testResources>
             <testResource>
                 <directory>${basedir}/src/test/resources</directory>
             </testResource>
-        </testResources>
+        </testResources>--> <!-- We have no tests :| -->
         <finalName>${project.name}-${project.version}</finalName>
         <plugins>
             <plugin>

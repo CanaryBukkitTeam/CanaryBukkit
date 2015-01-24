@@ -15,3 +15,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.IronGolem;
+
+public class CanaryIronGolem extends CanaryGolem implements IronGolem {
+    public CanaryIronGolem(net.canarymod.api.entity.living.IronGolem entity) {
+        super(entity);
+    }
+
+    public EntityType getType() {
+        return EntityType.IRON_GOLEM;
+    }
+
+    public boolean isPlayerCreated() {
+        return getEntity().isPlayerCreated();
+    }
+
+    public void setPlayerCreated(boolean playerCreated) {
+        getEntity().setPlayerCreated(playerCreated);
+    }
+
+    @Override
+    protected net.canarymod.api.entity.living.IronGolem getEntity() {
+        return (net.canarymod.api.entity.living.IronGolem) super.getEntity();
+    }
+}

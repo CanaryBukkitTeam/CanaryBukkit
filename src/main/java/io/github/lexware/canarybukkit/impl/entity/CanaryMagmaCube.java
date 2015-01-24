@@ -15,3 +15,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
+package io.github.lexware.canarybukkit.impl.entity;
+
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.MagmaCube;
+
+public class CanaryMagmaCube extends CanarySlime implements MagmaCube {
+    public CanaryMagmaCube(net.canarymod.api.entity.living.monster.MagmaCube entity) {
+        super(entity);
+    }
+
+    @Override
+    public EntityType getType() {
+        return EntityType.MAGMA_CUBE;
+    }
+}
