@@ -28,8 +28,6 @@ import io.github.lexware.canarybukkit.impl.entity.CanarySheep;
 import io.github.lexware.canarybukkit.impl.entity.CanaryWolf;
 import org.bukkit.Art;
 import org.bukkit.Difficulty;
-import org.bukkit.DyeColor;
-import org.bukkit.GameMode;
 import org.bukkit.World.Environment;
 import org.bukkit.WorldType;
 import org.bukkit.entity.Entity;
@@ -53,59 +51,6 @@ public class BukkitUtils {
             case NORMAL:
             default:
                 return Difficulty.NORMAL;
-        }
-    }
-
-    public static DyeColor getDyeColor(net.canarymod.api.DyeColor color) {
-        Preconditions.checkNotNull(color);
-        switch (color) {
-            case BLACK:
-                return DyeColor.BLACK;
-            case BLUE:
-                return DyeColor.BLUE;
-            case BROWN:
-                return DyeColor.BROWN;
-            case CUSTOM:
-                return null; // TODO: Does Bukkit have custom DyeColor's?
-            case CYAN:
-                return DyeColor.CYAN;
-            case GREEN:
-                return DyeColor.GREEN;
-            case LIGHT_BLUE:
-                return DyeColor.LIGHT_BLUE;
-            case LIGHT_GRAY:
-            case GRAY:
-                return DyeColor.GRAY;
-            case LIME:
-                return DyeColor.LIME;
-            case MAGENTA:
-                return DyeColor.MAGENTA;
-            case ORANGE:
-                return DyeColor.ORANGE;
-            case PINK:
-                return DyeColor.PINK;
-            case PURPLE:
-                return DyeColor.PURPLE;
-            case RED:
-                return DyeColor.RED;
-            case YELLOW:
-                return DyeColor.YELLOW;
-            case WHITE:
-            default:
-                return DyeColor.WHITE;
-        }
-    }
-
-    public static GameMode getGameMode(net.canarymod.api.GameMode gm) {
-        Preconditions.checkNotNull(gm);
-        switch (gm) {
-            case ADVENTURE:
-                return GameMode.ADVENTURE;
-            case CREATIVE:
-                return GameMode.CREATIVE;
-            case SURVIVAL:
-            default:
-                return GameMode.SURVIVAL;
         }
     }
 

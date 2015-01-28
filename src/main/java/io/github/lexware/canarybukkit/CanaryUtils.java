@@ -19,8 +19,6 @@ package io.github.lexware.canarybukkit;
 
 import com.google.common.base.Preconditions;
 import net.canarymod.Canary;
-import net.canarymod.api.DyeColor;
-import net.canarymod.api.GameMode;
 import net.canarymod.api.entity.hanging.Painting.ArtType;
 import net.canarymod.api.entity.living.animal.Ocelot.SkinType;
 import net.canarymod.api.entity.living.humanoid.Villager.Profession;
@@ -49,56 +47,6 @@ public class CanaryUtils {
             case NORMAL:
             default:
                 return Difficulty.NORMAL;
-        }
-    }
-
-    public static DyeColor getDyeColor(org.bukkit.DyeColor color) {
-        Preconditions.checkNotNull(color);
-        switch (color) {
-            case BLACK:
-                return DyeColor.BLACK;
-            case BLUE:
-                return DyeColor.BLUE;
-            case BROWN:
-                return DyeColor.BROWN;
-            case CYAN:
-                return DyeColor.CYAN;
-            case GREEN:
-                return DyeColor.GREEN;
-            case LIGHT_BLUE:
-                return DyeColor.LIGHT_BLUE;
-            case GRAY:
-                return DyeColor.GRAY;
-            case LIME:
-                return DyeColor.LIME;
-            case MAGENTA:
-                return DyeColor.MAGENTA;
-            case ORANGE:
-                return DyeColor.ORANGE;
-            case PINK:
-                return DyeColor.PINK;
-            case PURPLE:
-                return DyeColor.PURPLE;
-            case RED:
-                return DyeColor.RED;
-            case YELLOW:
-                return DyeColor.YELLOW;
-            case WHITE:
-            default:
-                return DyeColor.WHITE;
-        }
-    }
-
-    public static GameMode getGameMode(org.bukkit.GameMode gm) {
-        Preconditions.checkNotNull(gm);
-        switch (gm) {
-            case ADVENTURE:
-                return GameMode.ADVENTURE;
-            case CREATIVE:
-                return GameMode.CREATIVE;
-            case SURVIVAL:
-            default:
-                return GameMode.SURVIVAL;
         }
     }
 

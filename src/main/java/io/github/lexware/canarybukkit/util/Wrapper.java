@@ -17,13 +17,13 @@
  */
 package io.github.lexware.canarybukkit.util;
 
-import org.apache.commons.lang3.Validate;
+import com.google.common.base.Preconditions;
 
 public class Wrapper<T> {
     private T handle;
     
     public Wrapper(T handle) {
-        this.handle = Validate.notNull(handle);
+        this.handle = Preconditions.checkNotNull(handle, "handle");
     }
     
     protected T getHandle() {

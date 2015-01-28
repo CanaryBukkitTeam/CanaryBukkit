@@ -17,8 +17,7 @@
  */
 package io.github.lexware.canarybukkit.impl.entity;
 
-import io.github.lexware.canarybukkit.CanaryUtils;
-import io.github.lexware.canarybukkit.BukkitUtils;
+import io.github.lexware.canarybukkit.util.converter.DyeColorConverter;
 
 import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;
@@ -30,7 +29,7 @@ public class CanarySheep extends CanaryAnimals implements Sheep {
     }
 
     public DyeColor getColor() {
-        return BukkitUtils.getDyeColor(getHandle().getColor());
+        return DyeColorConverter.of(getHandle().getColor());
     }
 
     public EntityType getType() {
@@ -42,7 +41,7 @@ public class CanarySheep extends CanaryAnimals implements Sheep {
     }
 
     public void setColor(DyeColor color) {
-        getHandle().setColor(CanaryUtils.getDyeColor(color));
+        getHandle().setColor(DyeColorConverter.of(color));
     }
 
     public void setSheared(boolean flag) {

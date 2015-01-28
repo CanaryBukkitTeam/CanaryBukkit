@@ -20,7 +20,6 @@ package io.github.lexware.canarybukkit.impl.scheduler;
 import net.canarymod.tasks.ServerTask;
 
 public class BukkitServerTask extends ServerTask {
-
     private final CanaryTask task;
 
     public BukkitServerTask(CanaryTask task) {
@@ -32,5 +31,4 @@ public class BukkitServerTask extends ServerTask {
     public void run() {
         task.run();
     }
-
 }

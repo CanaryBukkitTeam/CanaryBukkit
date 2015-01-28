@@ -20,9 +20,11 @@ package io.github.lexware.canarybukkit.impl.entity;
 import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.Set;
+
 import io.github.lexware.canarybukkit.BukkitUtils;
 import io.github.lexware.canarybukkit.CanaryUtils;
 import io.github.lexware.canarybukkit.impl.inventory.CanaryInventory;
+import io.github.lexware.canarybukkit.util.converter.GameModeConverter;
 import net.canarymod.Canary;
 
 import org.apache.commons.lang3.NotImplementedException;
@@ -155,7 +157,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     }
 
     public GameMode getGameMode() {
-        return BukkitUtils.getGameMode(getHandle().getMode());
+        return GameModeConverter.of(getHandle().getMode());
     }
 
     public double getHealthScale() {
@@ -478,7 +480,7 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
     }
 
     public void setGameMode(GameMode mode) {
-        getHandle().setMode(CanaryUtils.getGameMode(mode));
+        getHandle().setMode(GameModeConverter.of(mode));
     }
 
     public void setHealthScale(double scale) throws IllegalArgumentException {

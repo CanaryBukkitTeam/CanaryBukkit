@@ -17,8 +17,7 @@
  */
 package io.github.lexware.canarybukkit.impl.entity;
 
-import io.github.lexware.canarybukkit.CanaryUtils;
-import io.github.lexware.canarybukkit.BukkitUtils;
+import io.github.lexware.canarybukkit.util.converter.DyeColorConverter;
 
 import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;
@@ -30,7 +29,7 @@ public class CanaryWolf extends CanaryTameable implements Wolf {
     }
 
     public DyeColor getCollarColor() {
-        return BukkitUtils.getDyeColor(getHandle().getCollarColor());
+        return DyeColorConverter.of(getHandle().getCollarColor());
     }
 
     public EntityType getType() {
@@ -50,7 +49,7 @@ public class CanaryWolf extends CanaryTameable implements Wolf {
     }
 
     public void setCollarColor(DyeColor color) {
-        getHandle().setCollarColor(CanaryUtils.getDyeColor(color));
+        getHandle().setCollarColor(DyeColorConverter.of(color));
     }
 
     public void setSitting(boolean sitting) {

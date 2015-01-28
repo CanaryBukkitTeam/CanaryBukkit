@@ -20,6 +20,7 @@ package io.github.lexware.canarybukkit.data;
 import java.io.File;
 
 import net.canarymod.Canary;
+import net.canarymod.logger.Logman;
 
 public class Constants {
     // Canary
@@ -33,10 +34,14 @@ public class Constants {
     public static final File configDir = new File(bukkitDir, "config");
     public static final File configFile = new File(configDir, "config.yml");
 
-    public static void checkDirs() {
-        File[] folders = new File[] { pluginsDir, configDir };
-        for (File f : folders) {
-            f.mkdirs();
+    public static void createDirectories() {
+        File[] dirs = new File[] { 
+                bukkitDir, 
+                    pluginsDir, configDir }; // This must be in order
+        for (File dir : dirs) {
+            if (!dir.isDirectory() && !dir.mkdir()) {
+                Logman.getLogman("CanaryBukkit").warn("Could not create directory: " + dir);
+            }
         }
     }
 }

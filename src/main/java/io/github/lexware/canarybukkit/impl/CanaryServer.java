@@ -29,9 +29,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import com.google.common.base.Preconditions;
+
 import io.github.lexware.canarybukkit.data.Constants;
 import io.github.lexware.canarybukkit.impl.entity.CanaryPlayer;
 import io.github.lexware.canarybukkit.impl.scheduler.CanaryScheduler;
@@ -97,9 +99,6 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
     private Logman logman;
     private YamlConfiguration config;
     private WarningState warnState = WarningState.DEFAULT;
-    /**
-     * An empty player array used for deprecated getOnlinePlayers.
-     */
     private final Player[] EMPTY_PLAYER_ARRAY = new Player[0];
 
     public CanaryServer(net.canarymod.api.Server server, Logman logman, String canaryBukkitVersion) {
@@ -125,7 +124,7 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
     }
 
     public void banIP(String address) {
-        Preconditions.checkNotNull(address, "Address cannot be null.");
+        Preconditions.checkNotNull(address, "address");
 
         this.getBanList(Type.IP).addBan(address, null, null, null);
     }
@@ -185,20 +184,18 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
     }
 
     public boolean dispatchCommand(CommandSender sender, String commandLine) {
-        Preconditions.checkNotNull(sender, "Sender cannot be null");
-        Preconditions.checkNotNull(commandLine, "CommandLine cannot be null");
-
-        if (commandLine.startsWith("/")) {
-            commandLine = commandLine.substring(1);
-        }
+        Preconditions.checkNotNull(sender, "sender");
+        Preconditions.checkNotNull(commandLine, "commandLine");
+        
         return commandMap.dispatch(sender, commandLine);
     }
 
     public void enablePlugins(PluginLoadOrder type) {
         if (type == PluginLoadOrder.STARTUP) {
-            // helpMap.clear();
+            helpMap.clear();
         }
 
+        // Load all the plugins
         for (Plugin plugin : pluginManager.getPlugins()) {
             if (!plugin.isEnabled() && plugin.getDescription().getLoad() == type) {
                 loadPlugin(plugin);
@@ -235,7 +232,7 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
     }
 
     public BanList getBanList(BanList.Type type) {
-        Preconditions.checkNotNull(type, "Type cannot be null");
+        Preconditions.checkNotNull(type, "type");
 
         return new CanaryBanList(Canary.bans(), type);
     }
@@ -380,7 +377,7 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
 
     public Player getPlayer(String name) {
         // TODO: Look at difference between getPlayerExact and getPlayer.
-        Preconditions.checkNotNull(name, "Name cannot be null");
+        Preconditions.checkNotNull(name, "name");
 
         String lname = name.toLowerCase();
         for (Player player : getOnlinePlayers()) {
@@ -392,7 +389,7 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
     }
 
     public Player getPlayer(UUID id) {
-        Preconditions.checkNotNull(id, "UUID cannot be null");
+        Preconditions.checkNotNull(id, "id");
 
         for (Player player : getOnlinePlayers()) {
             if (player.getUniqueId().equals(id)) {
@@ -403,7 +400,7 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
     }
 
     public Player getPlayerExact(String name) {
-        Preconditions.checkNotNull(name, "Name cannot be null");
+        Preconditions.checkNotNull(name, "name");
 
         String lname = name.toLowerCase();
         for (Player player : getOnlinePlayers()) {
@@ -551,36 +548,43 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
     }
 
     private void loadPlugin(Plugin plugin) {
+        for (Permission perm : plugin.getDescription().getPermissions()) {
+            try {
+                pluginManager.addPermission(perm);
+            } catch (IllegalArgumentException ex) {
+                getLogger().log(Level.WARNING,
+                        "Plugin " + plugin.getDescription().getFullName()
+                                + " tried to register permission '" + perm.getName()
+                                + "' but it's already registered", ex);
+            }
+        }
+
         try {
             pluginManager.enablePlugin(plugin);
-
-            List<Permission> perms = plugin.getDescription().getPermissions();
-            for (Permission perm : perms) {
-                try {
-                    pluginManager.addPermission(perm);
-                } catch (IllegalArgumentException ex) {
-                    logman.warn("Plugin " + plugin.getDescription().getFullName() + " tried to register permission '"
-                            + perm.getName() + "' but it's already registered", ex);
-                }
-            }
         } catch (Throwable ex) {
-            logman.warn(ex.getMessage() + " loading " + plugin.getDescription().getFullName() + " (Is it up to date?)",
-                    ex);
+            getLogger().log(Level.SEVERE,
+                    ex.getMessage() + " loading " + plugin.getDescription().getFullName() +
+                    " (Is it up to date?)");
         }
     }
 
     public void loadPlugins() {
+        // Clear the command map
+        commandMap.clearCommands();
+
+        // Clear plugins and prepare to load
+        pluginManager.clearPlugins();
         pluginManager.registerInterface(JavaPluginLoader.class);
 
-        Plugin[] plugins = pluginManager.loadPlugins(Constants.pluginsDir);
-        for (Plugin plugin : plugins) {
+        // Call onLoad methods
+        for (Plugin plugin : pluginManager.loadPlugins(Constants.pluginsDir)) {
             try {
-                String message = String.format("Loading %s", plugin.getDescription().getFullName());
-                logman.info(message);
+                getLogger().info(String.format("Loading %s", plugin.getDescription().getFullName()));
                 plugin.onLoad();
-            } catch (Throwable ex) {
-                logman.warn(ex.getMessage() + " initializing " + plugin.getDescription().getFullName()
-                        + " (Is it up to date?)", ex);
+            } catch (Exception ex) {
+                getLogger().log(Level.SEVERE,
+                        ex.getMessage() + " initializing " + plugin.getDescription().getFullName() +
+                                " (Is it up to date?)", ex);
             }
         }
     }
@@ -594,7 +598,7 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
     }
 
     public List<Player> matchPlayer(String partialName) {
-        Preconditions.checkNotNull(partialName, "PartialName cannot be null");
+        Preconditions.checkNotNull(partialName, "partialName");
 
         List<Player> matchedPlayers = new ArrayList<Player>();
         for (Player player : this.getOnlinePlayers()) {

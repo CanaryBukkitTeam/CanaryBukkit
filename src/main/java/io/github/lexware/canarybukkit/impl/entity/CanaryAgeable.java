@@ -30,8 +30,8 @@ public abstract class CanaryAgeable extends CanaryCreature implements Ageable {
     }
 
     public int getAge() {
-        if (getEntity() instanceof net.canarymod.api.entity.living.Ageable) {
-            return ((net.canarymod.api.entity.living.Ageable) getEntity()).getGrowingAge();
+        if (getHandle() instanceof net.canarymod.api.entity.living.Ageable) {
+            return ((net.canarymod.api.entity.living.Ageable) getHandle()).getGrowingAge();
         } else {
             return 0;
         }
@@ -52,8 +52,8 @@ public abstract class CanaryAgeable extends CanaryCreature implements Ageable {
     }
 
     public void setAge(int age) {
-        if (getEntity() instanceof net.canarymod.api.entity.living.Ageable) {
-            ((net.canarymod.api.entity.living.Ageable) getEntity()).setGrowingAge(age);
+        if (getHandle() instanceof net.canarymod.api.entity.living.Ageable) {
+            ((net.canarymod.api.entity.living.Ageable) getHandle()).setGrowingAge(age);
         }
     }
 

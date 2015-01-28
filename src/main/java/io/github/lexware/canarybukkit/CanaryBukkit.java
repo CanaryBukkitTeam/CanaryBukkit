@@ -52,7 +52,7 @@ public final class CanaryBukkit extends Plugin {
         Canary.hooks().registerListener(new CanaryServerListener(server), this);
 
         // Create all the directories.
-        Constants.checkDirs();
+        Constants.createDirectories();
 
         // Start server
         server.start();
