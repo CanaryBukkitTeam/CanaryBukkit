@@ -50,6 +50,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <bukkit.version>1.8-R0.1-SNAPSHOT</bukkit.version>
         <main.class>${project.groupId}.${project.artifactId}.${project.name}</main.class>
     </properties>
 
@@ -57,6 +58,10 @@
         <repository>
             <id>repo1123</id>
             <url>http://repo.larry1123.net/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>lex-repo</id>
+            <url>http://lexware.github.io/Repo/</url>
         </repository>
         <repository>
             <id>Plugin Metrics</id>
@@ -191,7 +196,7 @@
             <dependency>
                 <groupId>org.bukkit</groupId>
                 <artifactId>bukkit</artifactId>
-                <version>1.7.10-C0.1-SNAPSHOT</version>
+                <version>${bukkit.version}</version>
                 <scope>compile</scope>
             </dependency>
             <dependency>
