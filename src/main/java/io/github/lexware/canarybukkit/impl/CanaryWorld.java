@@ -29,6 +29,7 @@ import io.github.lexware.canarybukkit.impl.block.CanaryBlock;
 import io.github.lexware.canarybukkit.impl.entity.CanaryPlayer;
 import io.github.lexware.canarybukkit.BukkitUtils;
 import io.github.lexware.canarybukkit.util.Wrapper;
+import io.github.lexware.canarybukkit.util.converter.WorldTypeConverter;
 import net.canarymod.config.Configuration;
 import net.canarymod.config.WorldConfiguration;
 
@@ -335,7 +336,7 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
     }
 
     public WorldType getWorldType() {
-        return BukkitUtils.getWorldType(getWorldConfiguration().getWorldType());
+        return WorldTypeConverter.of(getHandle().getWorldType());
     }
 
     public boolean hasMetadata(String metadataKey) {

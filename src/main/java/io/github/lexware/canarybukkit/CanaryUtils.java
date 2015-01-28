@@ -21,14 +21,12 @@ import com.google.common.base.Preconditions;
 import net.canarymod.Canary;
 import net.canarymod.api.entity.hanging.Painting.ArtType;
 import net.canarymod.api.entity.living.animal.Ocelot.SkinType;
-import net.canarymod.api.entity.living.humanoid.Villager.Profession;
 import net.canarymod.api.potion.PotionEffect;
 import net.canarymod.api.potion.PotionEffectType;
 import net.canarymod.api.world.BiomeType;
 import net.canarymod.api.world.DimensionType;
 import net.canarymod.api.world.World;
 import net.canarymod.api.world.World.Difficulty;
-import net.canarymod.api.world.WorldType;
 import net.canarymod.api.world.blocks.BlockType;
 import net.canarymod.api.world.position.Location;
 
@@ -47,40 +45,6 @@ public class CanaryUtils {
             case NORMAL:
             default:
                 return Difficulty.NORMAL;
-        }
-    }
-
-    public static WorldType getWorldType(org.bukkit.WorldType type) {
-        Preconditions.checkNotNull(type);
-        switch (type) {
-            case AMPLIFIED:
-                return WorldType.AMPLIFIED;
-            case FLAT:
-                return WorldType.SUPERFLAT;
-            case LARGE_BIOMES:
-                return WorldType.LARGEBIOMES;
-            case VERSION_1_1:
-                return WorldType.DEFAULT_1_1;
-            case NORMAL:
-            default:
-                return WorldType.DEFAULT;
-        }
-    }
-
-    public static Profession getProfession(org.bukkit.entity.Villager.Profession profession) {
-        Preconditions.checkNotNull(profession);
-        switch (profession) {
-            case BLACKSMITH:
-                return Profession.BLACKSMITH;
-            case BUTCHER:
-                return Profession.BUTCHER;
-            case LIBRARIAN:
-                return Profession.LIBRARIAN;
-            case PRIEST:
-                return Profession.PRIEST;
-            case FARMER:
-            default:
-                return Profession.FARMER;
         }
     }
 

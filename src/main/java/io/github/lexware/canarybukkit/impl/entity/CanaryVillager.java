@@ -17,8 +17,7 @@
  */
 package io.github.lexware.canarybukkit.impl.entity;
 
-import io.github.lexware.canarybukkit.CanaryUtils;
-import io.github.lexware.canarybukkit.BukkitUtils;
+import io.github.lexware.canarybukkit.util.converter.ProfessionConverter;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
@@ -29,7 +28,7 @@ public class CanaryVillager extends CanaryAgeable implements Villager {
     }
 
     public Profession getProfession() {
-        return BukkitUtils.getProfession(getHandle().getProfession());
+        return ProfessionConverter.of(getHandle().getProfession());
     }
 
     public EntityType getType() {
@@ -37,7 +36,7 @@ public class CanaryVillager extends CanaryAgeable implements Villager {
     }
 
     public void setProfession(Profession profession) {
-        getHandle().setProfession(CanaryUtils.getProfession(profession));
+        getHandle().setProfession(ProfessionConverter.of(profession));
     }
 
     @Override
