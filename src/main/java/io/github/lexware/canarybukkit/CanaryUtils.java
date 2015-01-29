@@ -19,64 +19,16 @@ package io.github.lexware.canarybukkit;
 
 import com.google.common.base.Preconditions;
 import net.canarymod.Canary;
-import net.canarymod.api.entity.hanging.Painting.ArtType;
-import net.canarymod.api.entity.living.animal.Ocelot.SkinType;
 import net.canarymod.api.potion.PotionEffect;
 import net.canarymod.api.potion.PotionEffectType;
 import net.canarymod.api.world.BiomeType;
-import net.canarymod.api.world.DimensionType;
 import net.canarymod.api.world.World;
-import net.canarymod.api.world.World.Difficulty;
 import net.canarymod.api.world.blocks.BlockType;
 import net.canarymod.api.world.position.Location;
 
 import org.bukkit.Material;
 
 public class CanaryUtils {
-    public static Difficulty getDifficulty(org.bukkit.Difficulty difficulty) {
-        Preconditions.checkNotNull(difficulty);
-        switch (difficulty) {
-            case EASY:
-                return Difficulty.EASY;
-            case HARD:
-                return Difficulty.HARD;
-            case PEACEFUL:
-                return Difficulty.PEACEFUL;
-            case NORMAL:
-            default:
-                return Difficulty.NORMAL;
-        }
-    }
-
-    public static SkinType getCatType(org.bukkit.entity.Ocelot.Type type) {
-        Preconditions.checkNotNull(type);
-        switch (type) {
-            case BLACK_CAT:
-                return SkinType.TUXEDO;
-            case RED_CAT:
-                return SkinType.GINGER;
-            case SIAMESE_CAT:
-                return SkinType.SIAMESE;
-            case WILD_OCELOT:
-            default:
-                return SkinType.UNTAME;
-        }
-    }
-
-    public static DimensionType getDimensionType(org.bukkit.World.Environment type) {
-        Preconditions.checkNotNull(type);
-        switch (type) {
-            case NETHER:
-                return DimensionType.NETHER;
-            case NORMAL:
-                return DimensionType.NORMAL;
-            case THE_END:
-                return DimensionType.END;
-            default:
-                return DimensionType.fromName(type.name());
-        }
-    }
-
     public static BiomeType getBiome(org.bukkit.block.Biome biome) {
         Preconditions.checkNotNull(biome);
         switch (biome) {
@@ -204,66 +156,6 @@ public class CanaryUtils {
                 return BiomeType.TAIGA; // TODO: check.
             default:
                 return BiomeType.PLAINS;
-        }
-    }
-
-    public static ArtType getArtType(org.bukkit.Art art) {
-        Preconditions.checkNotNull(art);
-        switch (art) {
-            case ALBAN:
-                return ArtType.Alban;
-            case AZTEC:
-                return ArtType.Aztec;
-            case AZTEC2:
-                return ArtType.Aztec2;
-            case BOMB:
-                return ArtType.Bomb;
-            case BURNINGSKULL:
-                return ArtType.BurningSkull;
-            case BUST:
-                return ArtType.Bust;
-            case COURBET:
-                return ArtType.Courbet;
-            case CREEBET:
-                return ArtType.Creebet;
-            case DONKEYKONG:
-                return ArtType.DonkeyKong;
-            case FIGHTERS:
-                return ArtType.Fighters;
-            case GRAHAM:
-                return ArtType.Graham;
-            case KEBAB:
-                return ArtType.Kebab;
-            case MATCH:
-                return ArtType.Match;
-            case PIGSCENE:
-                return ArtType.Pigscene;
-            case PLANT:
-                return ArtType.Plant;
-            case POINTER:
-                return ArtType.Pointer;
-            case POOL:
-                return ArtType.Pool;
-            case SEA:
-                return ArtType.Sea;
-            case SKELETON:
-                return ArtType.Skeleton;
-            case SKULL_AND_ROSES:
-                return ArtType.SkullAndRoses;
-            case STAGE:
-                return ArtType.Stage;
-            case SUNSET:
-                return ArtType.Sunset;
-            case VOID:
-                return ArtType.Void;
-            case WANDERER:
-                return ArtType.Wanderer;
-            case WASTELAND:
-                return ArtType.Wasteland;
-            case WITHER:
-                return ArtType.Wither;
-            default:
-                return ArtType.valueOf(art.name());
         }
     }
 

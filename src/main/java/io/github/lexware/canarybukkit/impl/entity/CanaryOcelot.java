@@ -17,9 +17,7 @@
  */
 package io.github.lexware.canarybukkit.impl.entity;
 
-import io.github.lexware.canarybukkit.BukkitUtils;
-import io.github.lexware.canarybukkit.CanaryUtils;
-
+import io.github.lexware.canarybukkit.util.converter.CatTypeConverter;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ocelot;
 
@@ -29,7 +27,7 @@ public class CanaryOcelot extends CanaryTameable implements Ocelot {
     }
 
     public Type getCatType() {
-        return BukkitUtils.getCatType(getHandle().getSkinType());
+        return CatTypeConverter.of(getHandle().getSkinType());
     }
 
     public EntityType getType() {
@@ -41,7 +39,7 @@ public class CanaryOcelot extends CanaryTameable implements Ocelot {
     }
 
     public void setCatType(Type type) {
-        getHandle().setSkinType(CanaryUtils.getCatType(type));
+        getHandle().setSkinType(CatTypeConverter.of(type));
     }
 
     public void setSitting(boolean sitting) {

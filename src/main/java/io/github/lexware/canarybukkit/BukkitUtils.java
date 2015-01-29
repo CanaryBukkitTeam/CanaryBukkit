@@ -26,120 +26,13 @@ import io.github.lexware.canarybukkit.impl.entity.CanaryHorse;
 import io.github.lexware.canarybukkit.impl.entity.CanaryPig;
 import io.github.lexware.canarybukkit.impl.entity.CanarySheep;
 import io.github.lexware.canarybukkit.impl.entity.CanaryWolf;
-import org.bukkit.Art;
-import org.bukkit.Difficulty;
-import org.bukkit.World.Environment;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Ocelot.Type;
 import org.bukkit.event.block.BlockIgniteEvent.IgniteCause;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 public class BukkitUtils {
-    public static Difficulty getDifficulty(net.canarymod.api.world.World.Difficulty difficulty) {
-        Preconditions.checkNotNull(difficulty);
-        switch (difficulty) {
-            case EASY:
-                return Difficulty.EASY;
-            case HARD:
-                return Difficulty.HARD;
-            case PEACEFUL:
-                return Difficulty.PEACEFUL;
-            case NORMAL:
-            default:
-                return Difficulty.NORMAL;
-        }
-    }
-
-    public static Type getCatType(net.canarymod.api.entity.living.animal.Ocelot.SkinType type) {
-        Preconditions.checkNotNull(type);
-        switch (type) {
-            case GINGER:
-                return Type.RED_CAT;
-            case SIAMESE:
-                return Type.SIAMESE_CAT;
-            case TUXEDO:
-                return Type.BLACK_CAT;
-            case UNTAME:
-            default:
-                return Type.WILD_OCELOT;
-        }
-    }
-
-    public static Environment getEnvironment(net.canarymod.api.world.DimensionType type) {
-        Preconditions.checkNotNull(type);
-        if (type == net.canarymod.api.world.DimensionType.NORMAL) {
-            return Environment.NORMAL;
-        } else if (type == net.canarymod.api.world.DimensionType.NETHER) {
-            return Environment.NETHER;
-        } else if (type == net.canarymod.api.world.DimensionType.NETHER) {
-            return Environment.NETHER;
-        } else {
-            return Environment.valueOf(type.getName());
-        }
-    }
-
-    public static Art getArt(net.canarymod.api.entity.hanging.Painting.ArtType art) {
-        Preconditions.checkNotNull(art);
-        switch (art) {
-            case Alban:
-                return Art.ALBAN;
-            case Aztec:
-                return Art.AZTEC;
-            case Aztec2:
-                return Art.AZTEC2;
-            case Bomb:
-                return Art.BOMB;
-            case BurningSkull:
-                return Art.BURNINGSKULL;
-            case Bust:
-                return Art.BUST;
-            case Courbet:
-                return Art.COURBET;
-            case Creebet:
-                return Art.CREEBET;
-            case DonkeyKong:
-                return Art.DONKEYKONG;
-            case Fighters:
-                return Art.FIGHTERS;
-            case Graham:
-                return Art.GRAHAM;
-            case Kebab:
-                return Art.KEBAB;
-            case Match:
-                return Art.MATCH;
-            case Pigscene:
-                return Art.PIGSCENE;
-            case Plant:
-                return Art.PLANT;
-            case Pointer:
-                return Art.POINTER;
-            case Pool:
-                return Art.POOL;
-            case Sea:
-                return Art.SEA;
-            case Skeleton:
-                return Art.SKELETON;
-            case SkullAndRoses:
-                return Art.SKULL_AND_ROSES;
-            case Stage:
-                return Art.STAGE;
-            case Sunset:
-                return Art.SUNSET;
-            case Void:
-                return Art.VOID;
-            case Wanderer:
-                return Art.WANDERER;
-            case Wasteland:
-                return Art.WASTELAND;
-            case Wither:
-                return Art.WITHER;
-            default:
-                return Art.valueOf(art.name());
-        }
-    }
-
     public static Entity getEntity(net.canarymod.api.entity.Entity cEntity) {
         Preconditions.checkNotNull(cEntity);
         if (cEntity instanceof net.canarymod.api.entity.Projectile) {

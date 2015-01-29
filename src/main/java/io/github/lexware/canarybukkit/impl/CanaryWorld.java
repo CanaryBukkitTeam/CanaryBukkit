@@ -29,24 +29,14 @@ import io.github.lexware.canarybukkit.impl.block.CanaryBlock;
 import io.github.lexware.canarybukkit.impl.entity.CanaryPlayer;
 import io.github.lexware.canarybukkit.BukkitUtils;
 import io.github.lexware.canarybukkit.util.Wrapper;
+import io.github.lexware.canarybukkit.util.converter.DifficultyConverter;
+import io.github.lexware.canarybukkit.util.converter.EnvironmentConverter;
 import io.github.lexware.canarybukkit.util.converter.WorldTypeConverter;
 import net.canarymod.config.Configuration;
 import net.canarymod.config.WorldConfiguration;
 
 import org.apache.commons.lang3.NotImplementedException;
-import org.bukkit.BlockChangeDelegate;
-import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.ChunkSnapshot;
-import org.bukkit.Difficulty;
-import org.bukkit.Effect;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Server;
-import org.bukkit.Sound;
-import org.bukkit.TreeType;
-import org.bukkit.World;
-import org.bukkit.WorldType;
+import org.bukkit.*;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
@@ -164,7 +154,7 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
     }
 
     public Difficulty getDifficulty() {
-        return BukkitUtils.getDifficulty(getWorldConfiguration().getDifficulty());
+        return DifficultyConverter.of(getWorldConfiguration().getDifficulty());
     }
 
     public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome, boolean includeBiomeTempRain) {
@@ -192,7 +182,7 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
     }
 
     public Environment getEnvironment() {
-        return BukkitUtils.getEnvironment(getHandle().getType());
+        return EnvironmentConverter.of(getHandle().getType());
     }
 
     public long getFullTime() {
@@ -365,6 +355,10 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
 
     public boolean isGameRule(String rule) {
         throw new NotImplementedException("isGameRule(String)");
+    }
+
+    public WorldBorder getWorldBorder() {
+        throw new NotImplementedException("getWorldBorder()");
     }
 
     public boolean isThundering() {

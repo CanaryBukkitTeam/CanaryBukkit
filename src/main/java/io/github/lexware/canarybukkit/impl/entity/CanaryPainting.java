@@ -17,9 +17,7 @@
  */
 package io.github.lexware.canarybukkit.impl.entity;
 
-import io.github.lexware.canarybukkit.CanaryUtils;
-import io.github.lexware.canarybukkit.BukkitUtils;
-
+import io.github.lexware.canarybukkit.util.converter.ArtConverter;
 import org.bukkit.Art;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Painting;
@@ -34,12 +32,12 @@ public class CanaryPainting extends CanaryHanging implements Painting {
     }
 
     public Art getArt() {
-        return BukkitUtils.getArt(getHandle().getArtType());
+        return ArtConverter.of(getHandle().getArtType());
     }
 
     public boolean setArt(Art art) {
-        getHandle().setArtType(CanaryUtils.getArtType(art));
-        return getHandle().getArtType() == CanaryUtils.getArtType(art);
+        getHandle().setArtType(ArtConverter.of(art));
+        return getHandle().getArtType() == ArtConverter.of(art);
     }
 
     public boolean setArt(Art art, boolean force) {
