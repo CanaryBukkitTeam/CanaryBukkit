@@ -28,6 +28,7 @@ public class GameModeConverter {
                     .put(GameMode.SURVIVAL, net.canarymod.api.GameMode.SURVIVAL)
                     .put(GameMode.CREATIVE, net.canarymod.api.GameMode.CREATIVE)
                     .put(GameMode.ADVENTURE, net.canarymod.api.GameMode.ADVENTURE)
+                    .put(GameMode.SPECTATOR, net.canarymod.api.GameMode.SPECTATOR)
                     .build();
 
     public static net.canarymod.api.GameMode of(GameMode gameMode) {

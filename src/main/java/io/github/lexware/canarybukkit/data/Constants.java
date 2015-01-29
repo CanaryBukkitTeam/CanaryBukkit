@@ -30,7 +30,7 @@ public class Constants {
     public static final File canaryDir = Canary.getWorkingDirectory();
     public static final File worldsDir = new File(canaryDir, "worlds");
     // Bukkit
-    protected static String bukkitVersion = "UNKNOWN";
+    private static String bukkitVersion = "UNKNOWN";
     // CanaryBukkit
     public static final File bukkitDir = new File(canaryDir, "bukkit");
     public static final File pluginsDir = new File(bukkitDir, "plugins");
@@ -56,6 +56,10 @@ public class Constants {
                 }
             }
         }
+    }
+    
+    public static String getBukkitVersion() {
+        return bukkitVersion;
     }
 
     public static void createDirectories() {

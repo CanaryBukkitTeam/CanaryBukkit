@@ -230,6 +230,12 @@ public class CanaryBlock extends Wrapper<net.canarymod.api.world.blocks.Block> i
         getHandle().setType(CanaryUtils.getBlockType(type));
     }
 
+    public void setType(Material type, boolean applyPhysics) {
+        setType(type);
+        if(applyPhysics)
+            getHandle().update();
+    }
+
     public boolean setTypeId(int type) {
         boolean ret = getHandle().getTypeId() != type;
         getHandle().setTypeId((short) type);

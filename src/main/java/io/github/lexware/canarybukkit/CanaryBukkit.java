@@ -73,7 +73,7 @@ public final class CanaryBukkit extends Plugin {
 
             metrics.start();
         } catch (IOException e) {
-            getLogman().warn("Failed to send statistics to Metrics");
+            getLogman().warn("Failed to send statistics to Metrics", e);
         }
 
         return true;

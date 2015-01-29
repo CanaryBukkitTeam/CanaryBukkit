@@ -34,6 +34,7 @@ import java.util.logging.Logger;
 
 import com.google.common.base.Preconditions;
 
+import io.github.canarybukkitteam.hawklib.logging.CanaryLogger;
 import io.github.lexware.canarybukkit.data.Constants;
 import io.github.lexware.canarybukkit.impl.entity.CanaryPlayer;
 import io.github.lexware.canarybukkit.impl.scheduler.CanaryScheduler;
@@ -89,22 +90,20 @@ import org.bukkit.util.permissions.DefaultPermissions;
 import com.avaje.ebean.config.ServerConfig;
 
 public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements Server {
-    private String canaryBukkitVersion;
+    private Logger logger;
     private final SimpleCommandMap commandMap = new SimpleCommandMap(this);
     private PluginManager pluginManager = new SimplePluginManager(this, commandMap);
     private final StandardMessenger messenger = new StandardMessenger();
     private final ServicesManager servicesManager = new SimpleServicesManager();
     private final BukkitScheduler scheduler = new CanaryScheduler();
     private final CanaryHelpMap helpMap = new CanaryHelpMap(Canary.help());
-    private Logman logman;
     private YamlConfiguration config;
     private WarningState warnState = WarningState.DEFAULT;
     private final Player[] EMPTY_PLAYER_ARRAY = new Player[0];
 
-    public CanaryServer(net.canarymod.api.Server server, Logman logman, String canaryBukkitVersion) {
+    public CanaryServer(net.canarymod.api.Server server, Logman logman) {
         super(server);
-        this.logman = logman;
-        this.canaryBukkitVersion = canaryBukkitVersion;
+        this.logger = new CanaryLogger(logman);
 
         Bukkit.setServer(this);
 
@@ -242,7 +241,7 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
     }
 
     public String getBukkitVersion() {
-        return Constants.bukkitVersion;
+        return Constants.getBukkitVersion();
     }
 
     public Player[] _INVALID_getOnlinePlayers() {
@@ -282,11 +281,7 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
     public String getImplementationName() {
         return "CanaryBukkit";
     }
-
-    public String getImplementationVersion() {
-        return canaryBukkitVersion;
-    }
-
+    
     public String getIp() {
         return Configuration.getServerConfig().getBindIp();
     }
@@ -315,8 +310,7 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
     }
 
     public Logger getLogger() {
-        // TODO
-        return Logger.getLogger("CanaryBukkit");
+        return logger;
     }
 
     public MapView getMap(short id) {
@@ -636,7 +630,7 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
         try {
             config.save(file);
         } catch (IOException ex) {
-            logman.warn("Could not save " + config, ex);
+            getLogger().log(Level.WARNING, "Could not save " + config, ex);
         }
     }
 

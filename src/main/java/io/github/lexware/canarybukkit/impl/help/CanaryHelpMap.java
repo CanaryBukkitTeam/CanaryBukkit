@@ -20,16 +20,18 @@ package io.github.lexware.canarybukkit.impl.help;
 import java.util.Collection;
 import java.util.List;
 
+import io.github.lexware.canarybukkit.util.Wrapper;
+import net.canarymod.help.HelpManager;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.help.HelpMap;
 import org.bukkit.help.HelpTopic;
 import org.bukkit.help.HelpTopicFactory;
 
-public class CanaryHelpMap implements HelpMap {
+public class CanaryHelpMap extends Wrapper<HelpManager> implements HelpMap {
     private net.canarymod.help.HelpManager helpManager;
 
-    public CanaryHelpMap(net.canarymod.help.HelpManager helpManager) {
-        this.helpManager = helpManager;
+    public CanaryHelpMap(HelpManager helpManager) {
+        super(helpManager);
     }
 
     public HelpTopic getHelpTopic(String topicName) {
@@ -54,9 +56,5 @@ public class CanaryHelpMap implements HelpMap {
 
     public List<String> getIgnoredPlugins() {
         throw new NotImplementedException("getIgnoredPlugins()");
-    }
-
-    protected net.canarymod.help.HelpManager getHelpManager() {
-        return helpManager;
     }
 }

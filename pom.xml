@@ -56,12 +56,12 @@
 
     <repositories>
         <repository>
-            <id>repo1123</id>
-            <url>http://repo.larry1123.net/content/groups/public/</url>
+            <id>vi-repo</id>
+            <url>http://repo.visualillusionsent.net/repository/public</url>
         </repository>
         <repository>
             <id>lex-repo</id>
-            <url>http://lexware.github.io/Repo/</url>
+            <url>http://lexware.github.io/Repo</url>
         </repository>
         <repository>
             <id>Plugin Metrics</id>
@@ -84,6 +84,10 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.github.canarybukkitteam</groupId>
+            <artifactId>hawklib</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mcstats.canary</groupId>
@@ -151,7 +155,11 @@
                     <relocations>
                         <relocation>
                             <pattern>org.mcstats</pattern>
-                            <shadedPattern>lexteam.minecraft.canarybukkit.mcstats</shadedPattern>
+                            <shadedPattern>${project.groupId}.${project.artifactId}.mcstats</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>io.github.canarybukkitteam</pattern>
+                            <shadedPattern>${project.groupId}.${project.artifactId}.hawk</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -218,6 +226,12 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>3.3.2</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.github.canarybukkitteam</groupId>
+                <artifactId>hawklib</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <scope>compile</scope>
             </dependency>
             <dependency>
                 <groupId>org.mcstats.canary</groupId>
