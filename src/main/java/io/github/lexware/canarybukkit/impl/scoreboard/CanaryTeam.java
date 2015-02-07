@@ -19,62 +19,71 @@ package io.github.lexware.canarybukkit.impl.scoreboard;
 
 import java.util.Set;
 
+import io.github.lexware.canarybukkit.util.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.scoreboard.NameTagVisibility;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
-public class CanaryTeam implements Team {
-    private net.canarymod.api.scoreboard.Team team;
+public class CanaryTeam extends Wrapper<net.canarymod.api.scoreboard.Team> implements Team {
     private CanaryScoreboard scoreboard;
 
     public CanaryTeam(net.canarymod.api.scoreboard.Team team) {
-        this.team = team;
+        super(team);
         this.scoreboard = new CanaryScoreboard(team.getScoreboard());
     }
 
     public String getName() throws IllegalStateException {
-        return team.getProtocolName();
+        return getHandle().getProtocolName();
     }
 
     public String getDisplayName() throws IllegalStateException {
-        return team.getDisplayName();
+        return getHandle().getDisplayName();
     }
 
     public void setDisplayName(String displayName) throws IllegalStateException, IllegalArgumentException {
-        team.setDisplayName(displayName);
+        getHandle().setDisplayName(displayName);
     }
 
     public String getPrefix() throws IllegalStateException {
-        return team.getPrefix();
+        return getHandle().getPrefix();
     }
 
     public void setPrefix(String prefix) throws IllegalStateException, IllegalArgumentException {
-        team.setPrefix(prefix);
+        getHandle().setPrefix(prefix);
     }
 
     public String getSuffix() throws IllegalStateException {
-        return team.getSuffix();
+        return getHandle().getSuffix();
     }
 
     public void setSuffix(String suffix) throws IllegalStateException, IllegalArgumentException {
-        team.setSuffix(suffix);
+        getHandle().setSuffix(suffix);
     }
 
     public boolean allowFriendlyFire() throws IllegalStateException {
-        return team.getAllowFriendlyFire();
+        return getHandle().getAllowFriendlyFire();
     }
 
     public void setAllowFriendlyFire(boolean enabled) throws IllegalStateException {
-        team.setAllowFriendlyFire(enabled);
+        getHandle().setAllowFriendlyFire(enabled);
     }
 
     public boolean canSeeFriendlyInvisibles() throws IllegalStateException {
-        return team.getSeeFriendlyInvisibles();
+        return getHandle().getSeeFriendlyInvisibles();
     }
 
     public void setCanSeeFriendlyInvisibles(boolean enabled) throws IllegalStateException {
-        team.setSeeFriendlyInvisibles(enabled);
+        getHandle().setSeeFriendlyInvisibles(enabled);
+    }
+
+    public NameTagVisibility getNameTagVisibility() throws IllegalArgumentException {
+        throw new NotImplementedException("getNameTagVisibility()");
+    }
+
+    public void setNameTagVisibility(NameTagVisibility nameTagVisibility) throws IllegalArgumentException {
+        throw new NotImplementedException("setNameTagVisibility(NameTagVisibility)");
     }
 
     public Set<OfflinePlayer> getPlayers() throws IllegalStateException {
@@ -82,7 +91,7 @@ public class CanaryTeam implements Team {
     }
 
     public int getSize() throws IllegalStateException {
-        return team.getPlayers().size();
+        return getHandle().getPlayers().size();
     }
 
     public Scoreboard getScoreboard() {

@@ -17,18 +17,18 @@
  */
 package io.github.lexware.canarybukkit.impl;
 
+import io.github.lexware.canarybukkit.util.Wrapper;
 import net.canarymod.bansystem.Ban;
 import org.bukkit.BanEntry;
 
 import java.util.Date;
 
-public class CanaryBanEntry implements BanEntry {
-    private Ban ban;
+public class CanaryBanEntry extends Wrapper<Ban> implements BanEntry {
     private String target, source, reason;
     private Date created, expires;
 
     public CanaryBanEntry(Ban ban) {
-        this.ban = ban;
+        super(ban);
         this.target = ban.getSubject();
         this.created = new Date(ban.getIssuedDate());
         this.source = ban.getBanningPlayer();
@@ -73,9 +73,9 @@ public class CanaryBanEntry implements BanEntry {
     }
 
     public void save() {
-        ban.setIssuedDate(created.getTime());
-        ban.setBanningPlayer(source);
-        ban.setExpiration(expires.getTime());
-        ban.setReason(reason);
+        getHandle().setIssuedDate(created.getTime());
+        getHandle().setBanningPlayer(source);
+        getHandle().setExpiration(expires.getTime());
+        getHandle().setReason(reason);
     }
 }
