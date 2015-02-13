@@ -23,7 +23,7 @@ import java.util.List;
 import io.github.lexware.canarybukkit.CanaryUtils;
 import io.github.lexware.canarybukkit.impl.CanaryChunk;
 import io.github.lexware.canarybukkit.impl.CanaryWorld;
-import io.github.lexware.canarybukkit.util.Wrapper;
+import io.github.lexware.unolib.Wrapper;
 import net.canarymod.api.world.BiomeType;
 
 import org.apache.commons.lang3.NotImplementedException;

@@ -24,7 +24,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
 public class CanaryTask implements BukkitTask {
-
     private final Plugin plugin;
     private final Runnable task;
     private final int id;
@@ -93,5 +92,4 @@ public class CanaryTask implements BukkitTask {
     public boolean isRunning() {
         return running;
     }
-
 }

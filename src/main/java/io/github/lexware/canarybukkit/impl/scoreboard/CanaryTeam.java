@@ -19,7 +19,7 @@ package io.github.lexware.canarybukkit.impl.scoreboard;
 
 import java.util.Set;
 
-import io.github.lexware.canarybukkit.util.Wrapper;
+import io.github.lexware.unolib.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.scoreboard.NameTagVisibility;

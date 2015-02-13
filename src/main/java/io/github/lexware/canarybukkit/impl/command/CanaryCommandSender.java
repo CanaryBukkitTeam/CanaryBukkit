@@ -19,7 +19,7 @@ package io.github.lexware.canarybukkit.impl.command;
 
 import java.util.Set;
 
-import io.github.lexware.canarybukkit.util.Wrapper;
+import io.github.lexware.unolib.Wrapper;
 import net.canarymod.Canary;
 import net.canarymod.chat.MessageReceiver;
 import net.canarymod.chat.ReceiverType;

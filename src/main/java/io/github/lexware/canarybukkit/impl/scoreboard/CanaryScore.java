@@ -17,17 +17,16 @@
  */
 package io.github.lexware.canarybukkit.impl.scoreboard;
 
+import io.github.lexware.unolib.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
-public class CanaryScore implements Score {
-    private net.canarymod.api.scoreboard.Score score;
-
+public class CanaryScore extends Wrapper<net.canarymod.api.scoreboard.Score> implements Score {
     public CanaryScore(net.canarymod.api.scoreboard.Score score) {
-        this.score = score;
+        super(score);
     }
 
     public OfflinePlayer getPlayer() {
@@ -35,22 +34,22 @@ public class CanaryScore implements Score {
     }
 
     public String getEntry() {
-        return score.getName();
+        return getHandle().getName();
     }
 
     public Objective getObjective() {
-        return new CanaryObjective(score.getScoreObjective());
+        return new CanaryObjective(getHandle().getScoreObjective());
     }
 
     public int getScore() throws IllegalStateException {
-        return score.getScore();
+        return getHandle().getScore();
     }
 
     public void setScore(int score) throws IllegalStateException {
-        this.score.setScore(score);
+        this.getHandle().setScore(score);
     }
 
     public Scoreboard getScoreboard() {
-        return new CanaryScoreboard(score.getScoreboard());
+        return new CanaryScoreboard(getHandle().getScoreboard());
     }
 }

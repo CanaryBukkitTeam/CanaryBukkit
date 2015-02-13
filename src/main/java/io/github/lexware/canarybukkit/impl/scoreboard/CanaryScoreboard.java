@@ -20,6 +20,7 @@ package io.github.lexware.canarybukkit.impl.scoreboard;
 import java.util.HashSet;
 import java.util.Set;
 
+import io.github.lexware.unolib.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.scoreboard.DisplaySlot;
@@ -28,11 +29,9 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
-public class CanaryScoreboard implements Scoreboard {
-    private net.canarymod.api.scoreboard.Scoreboard scoreboard;
-
+public class CanaryScoreboard extends Wrapper<net.canarymod.api.scoreboard.Scoreboard> implements Scoreboard {
     public CanaryScoreboard(net.canarymod.api.scoreboard.Scoreboard scoreboard) {
-        this.scoreboard = scoreboard;
+        super(scoreboard);
     }
 
     public Objective registerNewObjective(String name, String criteria) throws IllegalArgumentException {
@@ -40,7 +39,7 @@ public class CanaryScoreboard implements Scoreboard {
     }
 
     public Objective getObjective(String name) throws IllegalArgumentException {
-        return new CanaryObjective(scoreboard.getScoreObjective(name));
+        return new CanaryObjective(getHandle().getScoreObjective(name));
     }
 
     public Set<Objective> getObjectivesByCriteria(String criteria) throws IllegalArgumentException {
@@ -49,7 +48,7 @@ public class CanaryScoreboard implements Scoreboard {
 
     public Set<Objective> getObjectives() {
         Set<Objective> objectives = new HashSet<Objective>();
-        for (net.canarymod.api.scoreboard.ScoreObjective objective : scoreboard.getScoreObjectives()) {
+        for (net.canarymod.api.scoreboard.ScoreObjective objective : getHandle().getScoreObjectives()) {
             objectives.add(new CanaryObjective(objective));
         }
         return objectives;
@@ -80,19 +79,19 @@ public class CanaryScoreboard implements Scoreboard {
     }
 
     public Team getTeam(String teamName) throws IllegalArgumentException {
-        return new CanaryTeam(scoreboard.getTeam(teamName));
+        return new CanaryTeam(getHandle().getTeam(teamName));
     }
 
     public Set<Team> getTeams() {
         Set<Team> teams = new HashSet<Team>();
-        for (net.canarymod.api.scoreboard.Team team : scoreboard.getTeams()) {
+        for (net.canarymod.api.scoreboard.Team team : getHandle().getTeams()) {
             teams.add(new CanaryTeam(team));
         }
         return teams;
     }
 
     public Team registerNewTeam(String name) throws IllegalArgumentException {
-        return new CanaryTeam(scoreboard.addTeam(name));
+        return new CanaryTeam(getHandle().addTeam(name));
     }
 
     public Set<OfflinePlayer> getPlayers() {

@@ -25,7 +25,7 @@ import io.github.lexware.canarybukkit.BukkitUtils;
 import io.github.lexware.canarybukkit.impl.CanaryLocation;
 import io.github.lexware.canarybukkit.impl.CanaryWorld;
 
-import io.github.lexware.canarybukkit.util.Wrapper;
+import io.github.lexware.unolib.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Bukkit;
 import org.bukkit.EntityEffect;

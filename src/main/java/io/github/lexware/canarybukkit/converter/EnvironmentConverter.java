@@ -15,27 +15,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.lexware.canarybukkit.util.converter;
-
-import org.bukkit.GameMode;
+package io.github.lexware.canarybukkit.converter;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
+import net.canarymod.api.world.DimensionType;
+import org.bukkit.World;
 
-public class GameModeConverter {
-    private static BiMap<GameMode, net.canarymod.api.GameMode> map =
-            ImmutableBiMap.<GameMode, net.canarymod.api.GameMode>builder()
-                    .put(GameMode.SURVIVAL, net.canarymod.api.GameMode.SURVIVAL)
-                    .put(GameMode.CREATIVE, net.canarymod.api.GameMode.CREATIVE)
-                    .put(GameMode.ADVENTURE, net.canarymod.api.GameMode.ADVENTURE)
-                    .put(GameMode.SPECTATOR, net.canarymod.api.GameMode.SPECTATOR)
+public class EnvironmentConverter {
+    private static BiMap<World.Environment, DimensionType> map =
+            ImmutableBiMap.<World.Environment, DimensionType>builder()
+                    .put(World.Environment.NORMAL, DimensionType.NORMAL)
+                    .put(World.Environment.NETHER, DimensionType.NETHER)
+                    .put(World.Environment.THE_END, DimensionType.END)
                     .build();
 
-    public static net.canarymod.api.GameMode of(GameMode gameMode) {
-        return map.get(gameMode);
+    public static DimensionType of(World.Environment difficulty) {
+        return map.get(difficulty);
     }
 
-    public static GameMode of(net.canarymod.api.GameMode gameMode) {
-        return map.inverse().get(gameMode);
+    public static World.Environment of(DimensionType difficulty) {
+        return map.inverse().get(difficulty);
     }
 }

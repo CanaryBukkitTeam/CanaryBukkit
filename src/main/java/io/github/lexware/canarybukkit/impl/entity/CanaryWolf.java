@@ -17,7 +17,7 @@
  */
 package io.github.lexware.canarybukkit.impl.entity;
 
-import io.github.lexware.canarybukkit.util.converter.DyeColorConverter;
+import io.github.lexware.canarybukkit.converter.DyeColorConverter;
 
 import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;

@@ -15,26 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.lexware.canarybukkit.util.converter;
+package io.github.lexware.canarybukkit.converter;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
-import net.canarymod.api.world.DimensionType;
-import org.bukkit.World;
+import net.canarymod.api.world.World;
+import org.bukkit.Difficulty;
 
-public class EnvironmentConverter {
-    private static BiMap<World.Environment, DimensionType> map =
-            ImmutableBiMap.<World.Environment, DimensionType>builder()
-                    .put(World.Environment.NORMAL, DimensionType.NORMAL)
-                    .put(World.Environment.NETHER, DimensionType.NETHER)
-                    .put(World.Environment.THE_END, DimensionType.END)
+public class DifficultyConverter {
+    private static BiMap<Difficulty, World.Difficulty> map =
+            ImmutableBiMap.<Difficulty, World.Difficulty>builder()
+                    .put(Difficulty.EASY, World.Difficulty.EASY)
+                    .put(Difficulty.HARD, World.Difficulty.HARD)
+                    .put(Difficulty.PEACEFUL, World.Difficulty.PEACEFUL)
+                    .put(Difficulty.NORMAL, World.Difficulty.NORMAL)
                     .build();
 
-    public static DimensionType of(World.Environment difficulty) {
+    public static net.canarymod.api.world.World.Difficulty of(Difficulty difficulty) {
         return map.get(difficulty);
     }
 
-    public static World.Environment of(DimensionType difficulty) {
+    public static Difficulty of(net.canarymod.api.world.World.Difficulty difficulty) {
         return map.inverse().get(difficulty);
     }
 }

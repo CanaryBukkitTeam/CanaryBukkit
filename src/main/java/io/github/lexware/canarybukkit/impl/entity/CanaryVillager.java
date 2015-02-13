@@ -17,7 +17,7 @@
  */
 package io.github.lexware.canarybukkit.impl.entity;
 
-import io.github.lexware.canarybukkit.util.converter.ProfessionConverter;
+import io.github.lexware.canarybukkit.converter.ProfessionConverter;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;

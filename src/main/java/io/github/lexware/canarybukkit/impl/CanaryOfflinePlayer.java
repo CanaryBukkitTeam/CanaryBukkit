@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import io.github.lexware.canarybukkit.impl.entity.CanaryPlayer;
+import io.github.lexware.unolib.Wrapper;
 import net.canarymod.Canary;
 
 import org.apache.commons.lang3.NotImplementedException;
@@ -28,15 +29,13 @@ import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
-public class CanaryOfflinePlayer implements OfflinePlayer {
-    private net.canarymod.api.OfflinePlayer offlinePlayer;
-
+public class CanaryOfflinePlayer extends Wrapper<net.canarymod.api.OfflinePlayer> implements OfflinePlayer {
     public CanaryOfflinePlayer(net.canarymod.api.OfflinePlayer offlinePlayer) {
-        this.offlinePlayer = offlinePlayer;
+        super(offlinePlayer);
     }
 
     public Location getBedSpawnLocation() {
-        return new CanaryLocation(offlinePlayer.getHome(), offlinePlayer.getWorld());
+        return new CanaryLocation(getHandle().getHome(), getHandle().getWorld());
         // TODO: Is home the same as the bed?
     }
 
@@ -49,15 +48,15 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
     }
 
     public String getName() {
-        return offlinePlayer.getName();
+        return getHandle().getName();
     }
 
     public Player getPlayer() {
-        return new CanaryPlayer(Canary.getServer().getPlayer(offlinePlayer.getName()));
+        return new CanaryPlayer(Canary.getServer().getPlayer(getHandle().getName()));
     }
 
     public UUID getUniqueId() {
-        return offlinePlayer.getUUID();
+        return getHandle().getUUID();
     }
 
     public boolean hasPlayedBefore() {
@@ -69,15 +68,15 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
     }
 
     public boolean isOnline() {
-        return offlinePlayer.isOnline();
+        return getHandle().isOnline();
     }
 
     public boolean isOp() {
-        return Canary.ops().isOpped(offlinePlayer.getName());
+        return Canary.ops().isOpped(getHandle().getName());
     }
 
     public boolean isWhitelisted() {
-        return Canary.whitelist().isWhitelisted(offlinePlayer.getName());
+        return Canary.whitelist().isWhitelisted(getHandle().getName());
     }
 
     public Map<String, Object> serialize() {
@@ -89,7 +88,7 @@ public class CanaryOfflinePlayer implements OfflinePlayer {
     }
 
     public void setOp(boolean op) {
-        Canary.ops().addPlayer(offlinePlayer.getName());
+        Canary.ops().addPlayer(getHandle().getName());
     }
 
     public void setWhitelisted(boolean whitelisted) {

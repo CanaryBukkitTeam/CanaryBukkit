@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 
-import io.github.lexware.canarybukkit.util.Wrapper;
+import io.github.lexware.unolib.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;

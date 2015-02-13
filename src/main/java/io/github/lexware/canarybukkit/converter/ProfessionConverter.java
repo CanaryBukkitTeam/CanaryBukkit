@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.lexware.canarybukkit.util.converter;
+package io.github.lexware.canarybukkit.converter;
 
 import net.canarymod.api.entity.living.humanoid.Villager;
 

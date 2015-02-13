@@ -21,10 +21,8 @@ import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.Set;
 
-import io.github.lexware.canarybukkit.BukkitUtils;
-import io.github.lexware.canarybukkit.CanaryUtils;
 import io.github.lexware.canarybukkit.impl.inventory.CanaryInventory;
-import io.github.lexware.canarybukkit.util.converter.GameModeConverter;
+import io.github.lexware.canarybukkit.converter.GameModeConverter;
 import net.canarymod.Canary;
 
 import org.apache.commons.lang3.NotImplementedException;

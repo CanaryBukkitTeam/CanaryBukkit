@@ -40,7 +40,7 @@ import io.github.lexware.canarybukkit.impl.entity.CanaryPlayer;
 import io.github.lexware.canarybukkit.impl.scheduler.CanaryScheduler;
 import io.github.lexware.canarybukkit.impl.util.CanaryCachedServerIcon;
 import io.github.lexware.canarybukkit.impl.help.CanaryHelpMap;
-import io.github.lexware.canarybukkit.util.Wrapper;
+import io.github.lexware.unolib.Wrapper;
 import net.canarymod.Canary;
 import net.canarymod.config.Configuration;
 import net.canarymod.logger.Logman;

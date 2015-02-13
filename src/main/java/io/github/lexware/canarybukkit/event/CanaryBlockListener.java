@@ -18,6 +18,7 @@
 package io.github.lexware.canarybukkit.event;
 
 import io.github.lexware.canarybukkit.impl.entity.CanaryPlayer;
+import io.github.lexware.canarybukkit.converter.IgniteCauseConverter;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -124,7 +125,7 @@ public class CanaryBlockListener implements PluginListener {
             if (hook.getClickedBlock() != null) {
                 ignitingBlock = new CanaryBlock(hook.getClickedBlock());
             }
-            BlockIgniteEvent event = new BlockIgniteEvent(new CanaryBlock(hook.getBlock()), BukkitUtils.getIgniteCause(hook.getCause()),
+            BlockIgniteEvent event = new BlockIgniteEvent(new CanaryBlock(hook.getBlock()), IgniteCauseConverter.of(hook.getCause()),
                     ignitingEntity, ignitingBlock) {
                 @Override
                 public void setCancelled(boolean cancelled) {

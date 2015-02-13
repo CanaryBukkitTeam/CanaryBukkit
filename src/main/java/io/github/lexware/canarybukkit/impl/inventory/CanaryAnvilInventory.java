@@ -15,18 +15,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.lexware.canarybukkit.util;
+package io.github.lexware.canarybukkit.impl.inventory;
 
-import com.google.common.base.Preconditions;
+import org.bukkit.inventory.AnvilInventory;
 
-public class Wrapper<T> {
-    private T handle;
-    
-    public Wrapper(T handle) {
-        this.handle = Preconditions.checkNotNull(handle, "handle");
-    }
-    
-    protected T getHandle() {
-        return handle;
+public class CanaryAnvilInventory extends CanaryInventory implements AnvilInventory {
+    public CanaryAnvilInventory(net.canarymod.api.inventory.Inventory inv) {
+        super(inv);
     }
 }

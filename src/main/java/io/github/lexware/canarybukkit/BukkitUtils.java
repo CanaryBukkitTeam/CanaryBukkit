@@ -99,25 +99,4 @@ public class BukkitUtils {
                 return TeleportCause.UNKNOWN;
         }
     }
-
-    public static IgniteCause getIgniteCause(net.canarymod.hook.world.IgnitionHook.IgnitionCause cause) {
-        Preconditions.checkNotNull(cause);
-        switch (cause) {
-            case FIREBALL_CLICK:
-                return IgniteCause.FIREBALL;
-            case FIREBALL_HIT:
-                return IgniteCause.FIREBALL;
-            case FIRE_SPREAD:
-                return IgniteCause.SPREAD;
-            case FLINT_AND_STEEL:
-                return IgniteCause.FLINT_AND_STEEL;
-            case LAVA:
-                return IgniteCause.LAVA;
-            case LIGHTNING_STRIKE:
-                return IgniteCause.LIGHTNING;
-            case UNDEFINED:
-            default:
-                return IgniteCause.EXPLOSION;
-        }
-    }
 }

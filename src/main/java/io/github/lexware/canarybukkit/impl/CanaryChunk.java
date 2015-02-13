@@ -22,7 +22,7 @@ import java.util.List;
 
 import io.github.lexware.canarybukkit.BukkitUtils;
 
-import io.github.lexware.canarybukkit.util.Wrapper;
+import io.github.lexware.unolib.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;

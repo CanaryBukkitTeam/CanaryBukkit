@@ -17,7 +17,7 @@
  */
 package io.github.lexware.canarybukkit.impl.entity;
 
-import io.github.lexware.canarybukkit.util.converter.ArtConverter;
+import io.github.lexware.canarybukkit.converter.ArtConverter;
 import org.bukkit.Art;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Painting;

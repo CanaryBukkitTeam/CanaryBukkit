@@ -17,7 +17,7 @@
  */
 package io.github.lexware.canarybukkit.impl;
 
-import io.github.lexware.canarybukkit.util.Wrapper;
+import io.github.lexware.unolib.Wrapper;
 import net.canarymod.bansystem.Ban;
 import org.bukkit.BanEntry;
 

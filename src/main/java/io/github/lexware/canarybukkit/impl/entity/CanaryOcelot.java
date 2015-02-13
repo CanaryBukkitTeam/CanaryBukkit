@@ -17,7 +17,7 @@
  */
 package io.github.lexware.canarybukkit.impl.entity;
 
-import io.github.lexware.canarybukkit.util.converter.CatTypeConverter;
+import io.github.lexware.canarybukkit.converter.CatTypeConverter;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ocelot;
 

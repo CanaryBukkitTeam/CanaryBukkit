@@ -15,27 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package io.github.lexware.canarybukkit.util.converter;
+package io.github.lexware.canarybukkit.converter;
+
+import org.bukkit.GameMode;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
-import net.canarymod.api.world.World;
-import org.bukkit.Difficulty;
 
-public class DifficultyConverter {
-    private static BiMap<Difficulty, World.Difficulty> map =
-            ImmutableBiMap.<Difficulty, World.Difficulty>builder()
-                    .put(Difficulty.EASY, World.Difficulty.EASY)
-                    .put(Difficulty.HARD, World.Difficulty.HARD)
-                    .put(Difficulty.PEACEFUL, World.Difficulty.PEACEFUL)
-                    .put(Difficulty.NORMAL, World.Difficulty.NORMAL)
+public class GameModeConverter {
+    private static BiMap<GameMode, net.canarymod.api.GameMode> map =
+            ImmutableBiMap.<GameMode, net.canarymod.api.GameMode>builder()
+                    .put(GameMode.SURVIVAL, net.canarymod.api.GameMode.SURVIVAL)
+                    .put(GameMode.CREATIVE, net.canarymod.api.GameMode.CREATIVE)
+                    .put(GameMode.ADVENTURE, net.canarymod.api.GameMode.ADVENTURE)
+                    .put(GameMode.SPECTATOR, net.canarymod.api.GameMode.SPECTATOR)
                     .build();
 
-    public static net.canarymod.api.world.World.Difficulty of(Difficulty difficulty) {
-        return map.get(difficulty);
+    public static net.canarymod.api.GameMode of(GameMode gameMode) {
+        return map.get(gameMode);
     }
 
-    public static Difficulty of(net.canarymod.api.world.World.Difficulty difficulty) {
-        return map.inverse().get(difficulty);
+    public static GameMode of(net.canarymod.api.GameMode gameMode) {
+        return map.inverse().get(gameMode);
     }
 }

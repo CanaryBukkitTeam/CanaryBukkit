@@ -17,6 +17,7 @@
  */
 package io.github.lexware.canarybukkit.impl.scoreboard;
 
+import io.github.lexware.unolib.Wrapper;
 import net.canarymod.api.scoreboard.ScoreObjective;
 
 import org.apache.commons.lang3.NotImplementedException;
@@ -26,27 +27,25 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
-public class CanaryObjective implements Objective {
-    private ScoreObjective objective;
-
+public class CanaryObjective extends Wrapper<ScoreObjective> implements Objective {
     public CanaryObjective(net.canarymod.api.scoreboard.ScoreObjective objective) {
-        this.objective = objective;
+        super(objective);
     }
 
     public String getName() throws IllegalStateException {
-        return objective.getProtocolName();
+        return getHandle().getProtocolName();
     }
 
     public String getDisplayName() throws IllegalStateException {
-        return objective.getDisplayName();
+        return getHandle().getDisplayName();
     }
 
     public void setDisplayName(String displayName) throws IllegalStateException, IllegalArgumentException {
-        objective.setDisplayName(displayName);
+        getHandle().setDisplayName(displayName);
     }
 
     public String getCriteria() throws IllegalStateException {
-        return objective.getScoreObjectiveCriteria().getProtocolName();
+        return getHandle().getScoreObjectiveCriteria().getProtocolName();
     }
 
     public boolean isModifiable() throws IllegalStateException {
@@ -54,7 +53,7 @@ public class CanaryObjective implements Objective {
     }
 
     public Scoreboard getScoreboard() {
-        return new CanaryScoreboard(objective.getScoreboard());
+        return new CanaryScoreboard(getHandle().getScoreboard());
     }
 
     public void unregister() throws IllegalStateException {

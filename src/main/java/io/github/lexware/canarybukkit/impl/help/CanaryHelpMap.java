@@ -20,7 +20,7 @@ package io.github.lexware.canarybukkit.impl.help;
 import java.util.Collection;
 import java.util.List;
 
-import io.github.lexware.canarybukkit.util.Wrapper;
+import io.github.lexware.unolib.Wrapper;
 import net.canarymod.help.HelpManager;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.help.HelpMap;
