@@ -61,67 +61,70 @@ public class CanaryPlayerListener implements PluginListener {
         this.server = server;
     }
 
-    @HookHandler(priority = Priority.CRITICAL)
+    @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onCommand(final PlayerCommandHook hook) {
         String command = "";
         for (String s : hook.getCommand()) {
             command += s + " ";
         }
-        server.getPluginManager().callEvent(
-                new PlayerCommandPreprocessEvent(new CanaryPlayer(hook.getPlayer()), command) {
-                    @Override
-                    public void setCancelled(boolean cancelled) {
-                        super.setCancelled(cancelled);
-                        if (cancelled) {
-                            hook.setCanceled();
-                        }
-                    }
+        PlayerCommandPreprocessEvent event = new PlayerCommandPreprocessEvent(new CanaryPlayer(hook.getPlayer()), command) {
+            @Override
+            public void setCancelled(boolean cancelled) {
+                super.setCancelled(cancelled);
+                if (cancelled) {
+                    hook.setCanceled();
+                }
+            }
 
-                    @Override
-                    public void setMessage(String msg) {
-                        super.setMessage(msg);
-                        // Set command
-                    }
-                });
+            @Override
+            public void setMessage(String msg) {
+                super.setMessage(msg);
+                // Set command
+            }
+        };
+        event.setCancelled(hook.isCanceled());
+        server.getPluginManager().callEvent(event);
         if (server.dispatchCommand(new CanaryCommandSender(hook.getPlayer()), command)) {
             hook.setCanceled();
         }
     }
 
-    @HookHandler(priority = Priority.CRITICAL)
+    @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onEnchant(final EnchantHook hook) {
-        server.getPluginManager().callEvent(
-                new EnchantItemEvent(new CanaryPlayer(hook.getPlayer()), null, new CanaryBlock(hook
-                        .getEnchantmentTable().getBlock()), null, 0, null, 0) {
-                    @Override
-                    public void setCancelled(boolean cancelled) {
-                        super.setCancelled(cancelled);
-                        if (cancelled) {
-                            hook.setCanceled();
-                        }
-                    }
+        EnchantItemEvent event = new EnchantItemEvent(new CanaryPlayer(hook.getPlayer()), null, new CanaryBlock(hook
+                .getEnchantmentTable().getBlock()), null, 0, null, 0) {
+            @Override
+            public void setCancelled(boolean cancelled) {
+                super.setCancelled(cancelled);
+                if (cancelled) {
+                    hook.setCanceled();
+                }
+            }
 
-                    @Override
-                    public void setExpLevelCost(int level) {
-                        super.setExpLevelCost(level);
-                        // How can you do this in Canary?
-                    }
-                });
+            @Override
+            public void setExpLevelCost(int level) {
+                super.setExpLevelCost(level);
+                // How can you do this in Canary?
+            }
+        };
+        event.setCancelled(hook.isCanceled());
+        server.getPluginManager().callEvent(event);
         // TODO: Fill in.
     }
 
-    @HookHandler(priority = Priority.CRITICAL)
+    @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onEnteringBed(final BedEnterHook hook) {
-        server.getPluginManager().callEvent(
-                new PlayerBedEnterEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())) {
-                    @Override
-                    public void setCancelled(boolean cancelled) {
-                        super.setCancelled(cancelled);
-                        if (cancelled) {
-                            hook.setCanceled();
-                        }
-                    }
-                });
+        PlayerBedEnterEvent event = new PlayerBedEnterEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())) {
+            @Override
+            public void setCancelled(boolean cancelled) {
+                super.setCancelled(cancelled);
+                if (cancelled) {
+                    hook.setCanceled();
+                }
+            }
+        };
+        event.setCancelled(hook.isCanceled());
+        server.getPluginManager().callEvent(event);
     }
 
     @HookHandler(priority = Priority.CRITICAL)
@@ -130,34 +133,35 @@ public class CanaryPlayerListener implements PluginListener {
                 new PlayerBedLeaveEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())));
     }
 
-    @HookHandler(priority = Priority.CRITICAL)
+    @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onPlayerChat(final ChatHook hook) {
         Set<org.bukkit.entity.Player> recievers = new HashSet<org.bukkit.entity.Player>();
         for (Player p : hook.getReceiverList()) {
             recievers.add(new CanaryPlayer(p));
         }
-        server.getPluginManager().callEvent(
-                new AsyncPlayerChatEvent(false, new CanaryPlayer(hook.getPlayer()), hook.getMessage(), recievers) {
-                    @Override
-                    public void setCancelled(boolean cancelled) {
-                        super.setCancelled(cancelled);
-                        if (cancelled) {
-                            hook.setCanceled();
-                        }
-                    }
+        AsyncPlayerChatEvent event = new AsyncPlayerChatEvent(false, new CanaryPlayer(hook.getPlayer()), hook.getMessage(), recievers) {
+            @Override
+            public void setCancelled(boolean cancelled) {
+                super.setCancelled(cancelled);
+                if (cancelled) {
+                    hook.setCanceled();
+                }
+            }
 
-                    @Override
-                    public void setMessage(String message) {
-                        super.setMessage(message);
-                        hook.setMessage(message);
-                    }
+            @Override
+            public void setMessage(String message) {
+                super.setMessage(message);
+                hook.setMessage(message);
+            }
 
-                    @Override
-                    public void setFormat(final String format) throws IllegalFormatException, NullPointerException {
-                        super.setFormat(format);
-                        hook.setFormat(format);
-                    }
-                });
+            @Override
+            public void setFormat(final String format) throws IllegalFormatException, NullPointerException {
+                super.setFormat(format);
+                hook.setFormat(format);
+            }
+        };
+        event.setCancelled(hook.isCanceled());
+        server.getPluginManager().callEvent(event);
         // TODO: Fill in
     }
 
@@ -228,32 +232,33 @@ public class CanaryPlayerListener implements PluginListener {
                 });
     }
 
-    @HookHandler(priority = Priority.CRITICAL)
+    @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onTeleportation(final TeleportHook hook) {
-        server.getPluginManager().callEvent(
-                new PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()), new CanaryLocation(hook.getPlayer()
-                        .getLocation(), new CanaryWorld(hook.getDestination().getWorld())), new CanaryLocation(hook
-                        .getDestination(), new CanaryWorld(hook.getDestination().getWorld())), BukkitUtils
-                        .getTeleportCause(hook.getTeleportReason())) {
-                    @Override
-                    public void setCancelled(boolean cancelled) {
-                        super.setCancelled(cancelled);
-                        if (cancelled) {
-                            hook.setCanceled();
-                        }
-                    }
+        PlayerTeleportEvent event = new PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()), new CanaryLocation(hook.getPlayer()
+                .getLocation(), new CanaryWorld(hook.getDestination().getWorld())), new CanaryLocation(hook
+                .getDestination(), new CanaryWorld(hook.getDestination().getWorld())), BukkitUtils
+                .getTeleportCause(hook.getTeleportReason())) {
+            @Override
+            public void setCancelled(boolean cancelled) {
+                super.setCancelled(cancelled);
+                if (cancelled) {
+                    hook.setCanceled();
+                }
+            }
 
-                    @Override
-                    public void setFrom(Location from) {
-                        super.setFrom(from);
-                        // How can you do this in Canary?
-                    }
+            @Override
+            public void setFrom(Location from) {
+                super.setFrom(from);
+                // How can you do this in Canary?
+            }
 
-                    @Override
-                    public void setTo(Location to) {
-                        super.setTo(to);
-                        // How can you do this in Canary?
-                    }
-                });
+            @Override
+            public void setTo(Location to) {
+                super.setTo(to);
+                // How can you do this in Canary?
+            }
+        };
+        event.setCancelled(hook.isCanceled());
+        server.getPluginManager().callEvent(event);
     }
 }

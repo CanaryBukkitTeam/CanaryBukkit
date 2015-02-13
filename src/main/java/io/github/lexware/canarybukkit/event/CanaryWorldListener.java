@@ -53,18 +53,19 @@ public class CanaryWorldListener implements PluginListener {
                 new ChunkLoadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld())), hook.isNew()));
     }
 
-    @HookHandler(priority = Priority.CRITICAL)
+    @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onChunkUnload(final ChunkUnloadHook hook) {
-        server.getPluginManager().callEvent(
-                new ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld()))) {
-                    @Override
-                    public void setCancelled(boolean cancelled) {
-                        super.setCancelled(cancelled);
-                        if (cancelled) {
-                            hook.setCanceled();
-                        }
-                    }
-                });
+        ChunkUnloadEvent event = new ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld()))) {
+            @Override
+            public void setCancelled(boolean cancelled) {
+                super.setCancelled(cancelled);
+                if (cancelled) {
+                    hook.setCanceled();
+                }
+            }
+        };
+        event.setCancelled(hook.isCanceled());
+        server.getPluginManager().callEvent(event);
     }
 
     @HookHandler(priority = Priority.CRITICAL)
@@ -75,17 +76,14 @@ public class CanaryWorldListener implements PluginListener {
                     @Override
                     public void setCancelled(boolean cancelled) {
                         super.setCancelled(cancelled);
-                        /*
-                         * if(cancelled) { hook.setCanceled();
-                         * LightningStrikeHook isn't a CancelableHook }
-                         */
+                        //LightningStrikeHook isn't a CancelableHook :(
                     }
                 });
     }
 
-    @HookHandler(priority = Priority.CRITICAL)
+    @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onWeatherChange(final WeatherChangeHook hook) {
-        server.getPluginManager().callEvent(new WeatherChangeEvent(new CanaryWorld(hook.getWorld()), hook.turningOn()) {
+        WeatherChangeEvent event = new WeatherChangeEvent(new CanaryWorld(hook.getWorld()), hook.turningOn()) {
             @Override
             public void setCancelled(boolean cancelled) {
                 super.setCancelled(cancelled);
@@ -93,7 +91,9 @@ public class CanaryWorldListener implements PluginListener {
                     hook.setCanceled();
                 }
             }
-        });
+        };
+        event.setCancelled(hook.isCanceled());
+        server.getPluginManager().callEvent(event);
     }
 
     @HookHandler(priority = Priority.CRITICAL)
@@ -107,17 +107,14 @@ public class CanaryWorldListener implements PluginListener {
             @Override
             public void setCancelled(boolean cancelled) {
                 super.setCancelled(cancelled);
-                /*
-                 * if(cancelled) { hook.setCanceled(); UnloadWorldHook isn't a
-                 * CancelableHook }
-                 */
+                //UnloadWorldHook isn't a CancelableHook :(
             }
         });
     }
 
-    @HookHandler(priority = Priority.CRITICAL)
+    @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onPortalCreation(final PortalCreateHook hook) {
-        server.getPluginManager().callEvent(new PortalCreateEvent(null, new CanaryWorld(null), null) {
+        PortalCreateEvent event = new PortalCreateEvent(null, new CanaryWorld(null), null) {
             @Override
             public void setCancelled(boolean cancelled) {
                 super.setCancelled(cancelled);
@@ -125,6 +122,8 @@ public class CanaryWorldListener implements PluginListener {
                     hook.setCanceled();
                 }
             }
-        });
+        };
+        event.setCancelled(hook.isCanceled());
+        server.getPluginManager().callEvent(event);
     }
 }
