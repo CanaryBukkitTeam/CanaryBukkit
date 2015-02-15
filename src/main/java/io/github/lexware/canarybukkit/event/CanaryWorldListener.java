@@ -55,17 +55,12 @@ public class CanaryWorldListener implements PluginListener {
 
     @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onChunkUnload(final ChunkUnloadHook hook) {
-        ChunkUnloadEvent event = new ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld()))) {
-            @Override
-            public void setCancelled(boolean cancelled) {
-                super.setCancelled(cancelled);
-                if (cancelled) {
-                    hook.setCanceled();
-                }
-            }
-        };
+        ChunkUnloadEvent event = new ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld())));
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
+        if (event.isCancelled()) {
+            hook.setCanceled();
+        }
     }
 
     @HookHandler(priority = Priority.CRITICAL)
@@ -83,17 +78,12 @@ public class CanaryWorldListener implements PluginListener {
 
     @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onWeatherChange(final WeatherChangeHook hook) {
-        WeatherChangeEvent event = new WeatherChangeEvent(new CanaryWorld(hook.getWorld()), hook.turningOn()) {
-            @Override
-            public void setCancelled(boolean cancelled) {
-                super.setCancelled(cancelled);
-                if (cancelled) {
-                    hook.setCanceled();
-                }
-            }
-        };
+        WeatherChangeEvent event = new WeatherChangeEvent(new CanaryWorld(hook.getWorld()), hook.turningOn());
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
+        if (event.isCancelled()) {
+            hook.setCanceled();
+        }
     }
 
     @HookHandler(priority = Priority.CRITICAL)
@@ -114,16 +104,11 @@ public class CanaryWorldListener implements PluginListener {
 
     @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onPortalCreation(final PortalCreateHook hook) {
-        PortalCreateEvent event = new PortalCreateEvent(null, new CanaryWorld(null), null) {
-            @Override
-            public void setCancelled(boolean cancelled) {
-                super.setCancelled(cancelled);
-                if (cancelled) {
-                    hook.setCanceled();
-                }
-            }
-        };
+        PortalCreateEvent event = new PortalCreateEvent(null, new CanaryWorld(null), null);
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
+        if (event.isCancelled()) {
+            hook.setCanceled();
+        }
     }
 }

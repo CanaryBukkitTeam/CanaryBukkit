@@ -50,31 +50,18 @@ public class CanaryBlockListener implements PluginListener {
 
     @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onBlockDestroy(final BlockDestroyHook hook) {
-        BlockBreakEvent event = new BlockBreakEvent(new CanaryBlock(hook.getBlock()), new CanaryPlayer(hook.getPlayer())) {
-            @Override
-            public void setCancelled(boolean cancelled) {
-                super.setCancelled(cancelled);
-                if (cancelled) {
-                    hook.setCanceled();
-                }
-            }
-        };
+        BlockBreakEvent event = new BlockBreakEvent(new CanaryBlock(hook.getBlock()), new CanaryPlayer(hook.getPlayer()));
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
+        if (event.isCancelled()) {
+            hook.setCanceled();
+        }
     }
 
     @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onBlockPlace(final BlockPlaceHook hook) {
         BlockPlaceEvent event = new BlockPlaceEvent(new CanaryBlock(hook.getBlockPlaced()), null, new CanaryBlock(hook
                 .getBlockClicked()), null, new CanaryPlayer(hook.getPlayer()), true) {
-            @Override
-            public void setCancelled(boolean cancelled) {
-                super.setCancelled(cancelled);
-                if (cancelled) {
-                    hook.setCanceled();
-                }
-            }
-
             @Override
             public void setBuild(boolean canBuild) {
                 super.setBuild(canBuild);
@@ -83,39 +70,32 @@ public class CanaryBlockListener implements PluginListener {
         };
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
+        if (event.isCancelled()) {
+            hook.setCanceled();
+        }
         // TODO: Fill in and check some of the arguments.
     }
 
     @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onBlockGrowth(final BlockGrowHook hook) {
-        BlockGrowEvent event = new BlockGrowEvent(new CanaryBlock(hook.getOriginal()), null) {
-            @Override
-            public void setCancelled(boolean cancelled) {
-                super.setCancelled(cancelled);
-                if (cancelled) {
-                    hook.setCanceled();
-                }
-            }
-        };
+        BlockGrowEvent event = new BlockGrowEvent(new CanaryBlock(hook.getOriginal()), null);
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
+        if (event.isCancelled()) {
+            hook.setCanceled();
+        }
         // TODO: Fill in second argument
     }
 
     @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onIgnition(final IgnitionHook hook) {
         if (hook.getCause() == IgnitionCause.BURNT) {
-            BlockBurnEvent event = new BlockBurnEvent(new CanaryBlock(hook.getBlock())) {
-                @Override
-                public void setCancelled(boolean cancelled) {
-                    super.setCancelled(cancelled);
-                    if (cancelled) {
-                        hook.setCanceled();
-                    }
-                }
-            };
+            BlockBurnEvent event = new BlockBurnEvent(new CanaryBlock(hook.getBlock()));
             event.setCancelled(hook.isCanceled());
             server.getPluginManager().callEvent(event);
+            if (event.isCancelled()) {
+                hook.setCanceled();
+            }
         } else {
             Entity ignitingEntity = null;
             Block ignitingBlock = null;
@@ -126,32 +106,22 @@ public class CanaryBlockListener implements PluginListener {
                 ignitingBlock = new CanaryBlock(hook.getClickedBlock());
             }
             BlockIgniteEvent event = new BlockIgniteEvent(new CanaryBlock(hook.getBlock()), IgniteCauseConverter.of(hook.getCause()),
-                    ignitingEntity, ignitingBlock) {
-                @Override
-                public void setCancelled(boolean cancelled) {
-                    super.setCancelled(cancelled);
-                    if (cancelled) {
-                        hook.setCanceled();
-                    }
-                }
-            };
+                    ignitingEntity, ignitingBlock);
             event.setCancelled(hook.isCanceled());
             server.getPluginManager().callEvent(event);
+            if (event.isCancelled()) {
+                hook.setCanceled();
+            }
         }
     }
 
     @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onLeafDecay(final LeafDecayHook hook) {
-        LeavesDecayEvent event = new LeavesDecayEvent(new CanaryBlock(hook.getBlock())) {
-            @Override
-            public void setCancelled(boolean cancelled) {
-                super.setCancelled(cancelled);
-                if (cancelled) {
-                    hook.setCanceled();
-                }
-            }
-        };
+        LeavesDecayEvent event = new LeavesDecayEvent(new CanaryBlock(hook.getBlock()));
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
+        if (event.isCancelled()) {
+            hook.setCanceled();
+        }
     }
 }

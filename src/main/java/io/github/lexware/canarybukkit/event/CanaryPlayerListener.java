@@ -69,14 +69,6 @@ public class CanaryPlayerListener implements PluginListener {
         }
         PlayerCommandPreprocessEvent event = new PlayerCommandPreprocessEvent(new CanaryPlayer(hook.getPlayer()), command) {
             @Override
-            public void setCancelled(boolean cancelled) {
-                super.setCancelled(cancelled);
-                if (cancelled) {
-                    hook.setCanceled();
-                }
-            }
-
-            @Override
             public void setMessage(String msg) {
                 super.setMessage(msg);
                 // Set command
@@ -84,8 +76,11 @@ public class CanaryPlayerListener implements PluginListener {
         };
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
-        if (server.dispatchCommand(new CanaryCommandSender(hook.getPlayer()), command)) {
+        if (event.isCancelled()) {
             hook.setCanceled();
+        }
+        if (server.dispatchCommand(new CanaryCommandSender(hook.getPlayer()), command)) {
+            hook.setCanceled(); //TODO: is this the best possible way?
         }
     }
 
@@ -94,14 +89,6 @@ public class CanaryPlayerListener implements PluginListener {
         EnchantItemEvent event = new EnchantItemEvent(new CanaryPlayer(hook.getPlayer()), null, new CanaryBlock(hook
                 .getEnchantmentTable().getBlock()), null, 0, null, 0) {
             @Override
-            public void setCancelled(boolean cancelled) {
-                super.setCancelled(cancelled);
-                if (cancelled) {
-                    hook.setCanceled();
-                }
-            }
-
-            @Override
             public void setExpLevelCost(int level) {
                 super.setExpLevelCost(level);
                 // How can you do this in Canary?
@@ -109,22 +96,20 @@ public class CanaryPlayerListener implements PluginListener {
         };
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
+        if (event.isCancelled()) {
+            hook.setCanceled();
+        }
         // TODO: Fill in.
     }
 
     @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onEnteringBed(final BedEnterHook hook) {
-        PlayerBedEnterEvent event = new PlayerBedEnterEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed())) {
-            @Override
-            public void setCancelled(boolean cancelled) {
-                super.setCancelled(cancelled);
-                if (cancelled) {
-                    hook.setCanceled();
-                }
-            }
-        };
+        PlayerBedEnterEvent event = new PlayerBedEnterEvent(new CanaryPlayer(hook.getPlayer()), new CanaryBlock(hook.getBed()));
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
+        if (event.isCancelled()) {
+            hook.setCanceled();
+        }
     }
 
     @HookHandler(priority = Priority.CRITICAL)
@@ -141,14 +126,6 @@ public class CanaryPlayerListener implements PluginListener {
         }
         AsyncPlayerChatEvent event = new AsyncPlayerChatEvent(false, new CanaryPlayer(hook.getPlayer()), hook.getMessage(), recievers) {
             @Override
-            public void setCancelled(boolean cancelled) {
-                super.setCancelled(cancelled);
-                if (cancelled) {
-                    hook.setCanceled();
-                }
-            }
-
-            @Override
             public void setMessage(String message) {
                 super.setMessage(message);
                 hook.setMessage(message);
@@ -162,6 +139,9 @@ public class CanaryPlayerListener implements PluginListener {
         };
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
+        if (event.isCancelled()) {
+            hook.setCanceled();
+        }
         // TODO: Fill in
     }
 
@@ -239,14 +219,6 @@ public class CanaryPlayerListener implements PluginListener {
                 .getDestination(), new CanaryWorld(hook.getDestination().getWorld())), BukkitUtils
                 .getTeleportCause(hook.getTeleportReason())) {
             @Override
-            public void setCancelled(boolean cancelled) {
-                super.setCancelled(cancelled);
-                if (cancelled) {
-                    hook.setCanceled();
-                }
-            }
-
-            @Override
             public void setFrom(Location from) {
                 super.setFrom(from);
                 // How can you do this in Canary?
@@ -260,5 +232,8 @@ public class CanaryPlayerListener implements PluginListener {
         };
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
+        if (event.isCancelled()) {
+            hook.setCanceled();
+        }
     }
 }
