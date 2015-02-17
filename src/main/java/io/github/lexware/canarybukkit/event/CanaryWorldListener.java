@@ -104,7 +104,7 @@ public class CanaryWorldListener implements PluginListener {
 
     @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onPortalCreation(final PortalCreateHook hook) {
-        PortalCreateEvent event = new PortalCreateEvent(null, new CanaryWorld(null), null);
+        PortalCreateEvent event = new PortalCreateEvent(null, new CanaryWorld(hook.getWorld()), null);
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
         if (event.isCancelled()) {
