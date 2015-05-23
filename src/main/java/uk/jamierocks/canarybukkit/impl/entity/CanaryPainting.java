@@ -17,7 +17,7 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import uk.jamierocks.canarybukkit.converter.ArtConverter;
+import uk.jamierocks.canarybukkit.util.converter.ArtConverter;
 import org.bukkit.Art;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Painting;

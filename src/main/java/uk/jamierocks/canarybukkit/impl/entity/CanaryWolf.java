@@ -17,7 +17,7 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import uk.jamierocks.canarybukkit.converter.DyeColorConverter;
+import uk.jamierocks.canarybukkit.util.converter.DyeColorConverter;
 
 import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;

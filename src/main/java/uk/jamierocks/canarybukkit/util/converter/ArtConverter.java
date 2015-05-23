@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package uk.jamierocks.canarybukkit.converter;
+package uk.jamierocks.canarybukkit.util.converter;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;

@@ -17,7 +17,7 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import uk.jamierocks.canarybukkit.converter.CatTypeConverter;
+import uk.jamierocks.canarybukkit.util.converter.CatTypeConverter;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ocelot;
 

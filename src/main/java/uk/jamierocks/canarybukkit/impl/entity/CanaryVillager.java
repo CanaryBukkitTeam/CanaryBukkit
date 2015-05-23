@@ -17,7 +17,7 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import uk.jamierocks.canarybukkit.converter.ProfessionConverter;
+import uk.jamierocks.canarybukkit.util.converter.ProfessionConverter;
 
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;

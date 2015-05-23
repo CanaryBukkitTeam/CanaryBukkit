@@ -15,29 +15,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package uk.jamierocks.canarybukkit.converter;
+package uk.jamierocks.canarybukkit.util.converter;
 
-import net.canarymod.api.entity.living.humanoid.Villager;
-
-import org.bukkit.entity.Villager.Profession;
+import org.bukkit.GameMode;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
 
-public class ProfessionConverter {
-    private static BiMap<Profession, Villager.Profession> map =
-            ImmutableBiMap.<Profession, Villager.Profession>builder()
-                    .put(Profession.BLACKSMITH, Villager.Profession.BLACKSMITH)
-                    .put(Profession.BUTCHER, Villager.Profession.BUTCHER)
-                    .put(Profession.FARMER, Villager.Profession.FARMER)
-                    .put(Profession.LIBRARIAN, Villager.Profession.LIBRARIAN)
+public class GameModeConverter {
+    private static BiMap<GameMode, net.canarymod.api.GameMode> map =
+            ImmutableBiMap.<GameMode, net.canarymod.api.GameMode>builder()
+                    .put(GameMode.SURVIVAL, net.canarymod.api.GameMode.SURVIVAL)
+                    .put(GameMode.CREATIVE, net.canarymod.api.GameMode.CREATIVE)
+                    .put(GameMode.ADVENTURE, net.canarymod.api.GameMode.ADVENTURE)
+                    .put(GameMode.SPECTATOR, net.canarymod.api.GameMode.SPECTATOR)
                     .build();
 
-    public static Villager.Profession of(Profession profession) {
-        return map.get(profession);
+    public static net.canarymod.api.GameMode of(GameMode gameMode) {
+        return map.get(gameMode);
     }
 
-    public static Profession of(Villager.Profession profession) {
-        return map.inverse().get(profession);
+    public static GameMode of(net.canarymod.api.GameMode gameMode) {
+        return map.inverse().get(gameMode);
     }
 }

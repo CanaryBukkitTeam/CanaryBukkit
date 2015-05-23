@@ -18,7 +18,7 @@
 package uk.jamierocks.canarybukkit.event;
 
 import uk.jamierocks.canarybukkit.impl.entity.CanaryPlayer;
-import uk.jamierocks.canarybukkit.converter.IgniteCauseConverter;
+import uk.jamierocks.canarybukkit.util.converter.IgniteCauseConverter;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.block.BlockBreakEvent;

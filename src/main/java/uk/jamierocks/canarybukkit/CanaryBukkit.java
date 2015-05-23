@@ -19,7 +19,7 @@ package uk.jamierocks.canarybukkit;
 
 import java.io.IOException;
 
-import uk.jamierocks.canarybukkit.data.Constants;
+import uk.jamierocks.canarybukkit.util.data.Constants;
 import uk.jamierocks.canarybukkit.event.CanaryBlockListener;
 import uk.jamierocks.canarybukkit.event.CanaryPlayerListener;
 import uk.jamierocks.canarybukkit.event.CanaryServerListener;
@@ -29,8 +29,7 @@ import net.canarymod.Canary;
 import net.canarymod.plugin.Plugin;
 
 import org.bukkit.Bukkit;
-import org.mcstats.Metrics;
-import org.mcstats.Metrics.Graph;
+import uk.jamierocks.canarybukkit.util.metrics.Metrics;
 
 public final class CanaryBukkit extends Plugin {
     private CanaryServer server;
@@ -43,7 +42,7 @@ public final class CanaryBukkit extends Plugin {
     @Override
     public boolean enable() {
         if (Bukkit.getServer() == null) {
-            server = new CanaryServer(Canary.getServer(), getLogman(), getVersion());
+            server = new CanaryServer(Canary.getServer(), getLogman());
         }
         // Enable Listener
         Canary.hooks().registerListener(new CanaryPlayerListener(server), this);
@@ -61,7 +60,7 @@ public final class CanaryBukkit extends Plugin {
         try {
             Metrics metrics = new Metrics(this);
 
-            Graph plugins = metrics.createGraph("Plugins");
+            Metrics.Graph plugins = metrics.createGraph("Plugins");
             for (org.bukkit.plugin.Plugin plugin : server.getPluginManager().getPlugins()) {
                 plugins.addPlotter(new Metrics.Plotter(plugin.getName()) {
                     @Override

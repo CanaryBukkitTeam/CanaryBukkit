@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Set;
 
 import uk.jamierocks.canarybukkit.impl.inventory.CanaryInventory;
-import uk.jamierocks.canarybukkit.converter.GameModeConverter;
+import uk.jamierocks.canarybukkit.util.converter.GameModeConverter;
 import net.canarymod.Canary;
 
 import org.apache.commons.lang3.NotImplementedException;

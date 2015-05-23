@@ -35,7 +35,7 @@ import java.util.logging.Logger;
 import com.google.common.base.Preconditions;
 
 import io.github.canarybukkitteam.hawklib.logging.CanaryLogger;
-import uk.jamierocks.canarybukkit.data.Constants;
+import uk.jamierocks.canarybukkit.util.data.Constants;
 import uk.jamierocks.canarybukkit.impl.entity.CanaryPlayer;
 import uk.jamierocks.canarybukkit.impl.scheduler.CanaryScheduler;
 import uk.jamierocks.canarybukkit.impl.util.CanaryCachedServerIcon;

@@ -15,26 +15,29 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package uk.jamierocks.canarybukkit.converter;
+package uk.jamierocks.canarybukkit.util.converter;
+
+import net.canarymod.api.entity.living.humanoid.Villager;
+
+import org.bukkit.entity.Villager.Profession;
 
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
-import net.canarymod.api.world.DimensionType;
-import org.bukkit.World;
 
-public class EnvironmentConverter {
-    private static BiMap<World.Environment, DimensionType> map =
-            ImmutableBiMap.<World.Environment, DimensionType>builder()
-                    .put(World.Environment.NORMAL, DimensionType.NORMAL)
-                    .put(World.Environment.NETHER, DimensionType.NETHER)
-                    .put(World.Environment.THE_END, DimensionType.END)
+public class ProfessionConverter {
+    private static BiMap<Profession, Villager.Profession> map =
+            ImmutableBiMap.<Profession, Villager.Profession>builder()
+                    .put(Profession.BLACKSMITH, Villager.Profession.BLACKSMITH)
+                    .put(Profession.BUTCHER, Villager.Profession.BUTCHER)
+                    .put(Profession.FARMER, Villager.Profession.FARMER)
+                    .put(Profession.LIBRARIAN, Villager.Profession.LIBRARIAN)
                     .build();
 
-    public static DimensionType of(World.Environment difficulty) {
-        return map.get(difficulty);
+    public static Villager.Profession of(Profession profession) {
+        return map.get(profession);
     }
 
-    public static World.Environment of(DimensionType difficulty) {
-        return map.inverse().get(difficulty);
+    public static Profession of(Villager.Profession profession) {
+        return map.inverse().get(profession);
     }
 }
