@@ -55,10 +55,10 @@ public class ArtConverter {
                     .build();
 
     public static Painting.ArtType of(Art artType) {
-        return map.get(artType);
+        return ArtConverter.map.get(artType);
     }
 
     public static Art of(Painting.ArtType art) {
-        return map.inverse().get(art);
+        return ArtConverter.map.inverse().get(art);
     }
 }

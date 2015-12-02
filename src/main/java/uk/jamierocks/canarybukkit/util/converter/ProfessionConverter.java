@@ -33,10 +33,10 @@ public class ProfessionConverter {
                     .build();
 
     public static Villager.Profession of(Profession profession) {
-        return map.get(profession);
+        return ProfessionConverter.map.get(profession);
     }
 
     public static Profession of(Villager.Profession profession) {
-        return map.inverse().get(profession);
+        return ProfessionConverter.map.inverse().get(profession);
     }
 }

@@ -32,46 +32,57 @@ public class CanaryObjective extends Wrapper<ScoreObjective> implements Objectiv
         super(objective);
     }
 
+    @Override
     public String getName() throws IllegalStateException {
-        return getHandle().getProtocolName();
+        return this.getHandle().getProtocolName();
     }
 
+    @Override
     public String getDisplayName() throws IllegalStateException {
-        return getHandle().getDisplayName();
+        return this.getHandle().getDisplayName();
     }
 
+    @Override
     public void setDisplayName(String displayName) throws IllegalStateException, IllegalArgumentException {
-        getHandle().setDisplayName(displayName);
+        this.getHandle().setDisplayName(displayName);
     }
 
+    @Override
     public String getCriteria() throws IllegalStateException {
-        return getHandle().getScoreObjectiveCriteria().getProtocolName();
+        return this.getHandle().getScoreObjectiveCriteria().getProtocolName();
     }
 
+    @Override
     public boolean isModifiable() throws IllegalStateException {
         throw new NotImplementedException("isModifiable()");
     }
 
+    @Override
     public Scoreboard getScoreboard() {
-        return new CanaryScoreboard(getHandle().getScoreboard());
+        return new CanaryScoreboard(this.getHandle().getScoreboard());
     }
 
+    @Override
     public void unregister() throws IllegalStateException {
         throw new NotImplementedException("unregister()");
     }
 
+    @Override
     public DisplaySlot getDisplaySlot() throws IllegalStateException {
         throw new NotImplementedException("getDisplaySlot()");
     }
 
+    @Override
     public void setDisplaySlot(DisplaySlot slot) throws IllegalStateException {
         throw new NotImplementedException("setDisplaySlot(DisplaySlot)");
     }
 
+    @Override
     public Score getScore(OfflinePlayer player) throws IllegalArgumentException, IllegalStateException {
         throw new NotImplementedException("getScore(OfflinePlayer)");
     }
 
+    @Override
     public Score getScore(String entry) throws IllegalArgumentException, IllegalStateException {
         throw new NotImplementedException("getScore(String)");
     }

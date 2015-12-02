@@ -73,30 +73,4 @@ public class BukkitUtils {
         return new PotionEffect(getPotionEffectType(CanaryUtils.getPotionEffectType(potionEffect.getPotionID())),
                 potionEffect.getDuration(), potionEffect.getAmplifier(), potionEffect.isAmbient());
     }
-
-    public static TeleportCause getTeleportCause(net.canarymod.hook.player.TeleportHook.TeleportCause cause) {
-        Preconditions.checkNotNull(cause);
-        switch (cause) {
-            case BED:
-                return TeleportCause.UNKNOWN;
-            case COMMAND:
-                return TeleportCause.COMMAND;
-            case MOUNT_CHANGE:
-                return TeleportCause.UNKNOWN;
-            case MOVEMENT:
-                return TeleportCause.UNKNOWN;
-            case PLUGIN:
-                return TeleportCause.PLUGIN;
-            case PORTAL:
-                return TeleportCause.NETHER_PORTAL;
-            case RESPAWN:
-                return TeleportCause.UNKNOWN;
-            case UNDEFINED:
-                return TeleportCause.UNKNOWN;
-            case WARP:
-                return TeleportCause.UNKNOWN;
-            default:
-                return TeleportCause.UNKNOWN;
-        }
-    }
 }

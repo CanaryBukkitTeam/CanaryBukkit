@@ -33,10 +33,10 @@ public class WorldTypeConverter {
                     .build();
 
     public static net.canarymod.api.world.WorldType of(WorldType worldType) {
-        return map.get(worldType);
+        return WorldTypeConverter.map.get(worldType);
     }
 
     public static WorldType of(net.canarymod.api.world.WorldType worldType) {
-        return map.inverse().get(worldType);
+        return WorldTypeConverter.map.inverse().get(worldType);
     }
 }

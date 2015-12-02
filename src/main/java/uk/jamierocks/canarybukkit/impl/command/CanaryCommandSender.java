@@ -20,7 +20,6 @@ package uk.jamierocks.canarybukkit.impl.command;
 import io.github.lexware.unolib.Wrapper;
 import net.canarymod.Canary;
 import net.canarymod.chat.MessageReceiver;
-import net.canarymod.chat.ReceiverType;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -38,77 +37,90 @@ public class CanaryCommandSender extends Wrapper<MessageReceiver> implements Com
         super(caller);
     }
 
+    @Override
     public PermissionAttachment addAttachment(Plugin plugin) {
         throw new NotImplementedException("addAttachment(Plugin)");
     }
 
+    @Override
     public PermissionAttachment addAttachment(Plugin plugin, int ticks) {
         throw new NotImplementedException("addAttachment(Plugin, int)");
     }
 
+    @Override
     public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value) {
         throw new NotImplementedException("addAttachment(Plugin, String, boolean)");
     }
 
+    @Override
     public PermissionAttachment addAttachment(Plugin plugin, String name, boolean value, int ticks) {
         throw new NotImplementedException("addAttachment(Plugin, String, boolean, int)");
     }
 
+    @Override
     public Set<PermissionAttachmentInfo> getEffectivePermissions() {
         throw new NotImplementedException("getEffectivePermissions()");
     }
 
+    @Override
     public String getName() {
-        return getHandle().getName();
+        return this.getHandle().getName();
     }
 
+    @Override
     public Server getServer() {
         return Bukkit.getServer();
     }
 
+    @Override
     public boolean hasPermission(Permission perm) {
-        return getHandle().hasPermission(perm.getName());
+        return this.getHandle().hasPermission(perm.getName());
     }
 
+    @Override
     public boolean hasPermission(String name) {
-        return getHandle().hasPermission(name);
+        return this.getHandle().hasPermission(name);
     }
 
+    @Override
     public boolean isOp() {
-        return Canary.ops().isOpped(getHandle().getName());
+        return Canary.ops().isOpped(this.getHandle().getName());
     }
 
+    @Override
     public void setOp(boolean value) {
-        Canary.ops().addPlayer(getHandle().getName());
+        Canary.ops().addPlayer(this.getHandle().getName());
     }
 
+    @Override
     public boolean isPermissionSet(Permission perm) {
-        return isPermissionSet(perm.getName());
+        return this.isPermissionSet(perm.getName());
     }
 
+    @Override
     public boolean isPermissionSet(String name) {
-        return getHandle().hasPermission(name);
+        return this.getHandle().hasPermission(name);
     }
 
-    public boolean isPlayer() {
-        return getHandle().getReceiverType() == ReceiverType.PLAYER;
-    }
-
+    @Override
     public void recalculatePermissions() {
         throw new NotImplementedException("recalculatePermissions()");
     }
 
+    @Override
     public void removeAttachment(PermissionAttachment attachment) {
         throw new NotImplementedException("removeAttachment(PermissionAttachment)");
     }
 
+    @Override
     public void sendMessage(String message) {
-        getHandle().message(message);
+        this.getHandle().message(message);
     }
 
+    @Override
     public void sendMessage(String[] messages) {
         for (String msg : messages) {
-            getHandle().message(msg);
+            this.getHandle().message(msg);
         }
     }
 }

@@ -33,10 +33,10 @@ public class DifficultyConverter {
                     .build();
 
     public static net.canarymod.api.world.World.Difficulty of(Difficulty difficulty) {
-        return map.get(difficulty);
+        return DifficultyConverter.map.get(difficulty);
     }
 
     public static Difficulty of(net.canarymod.api.world.World.Difficulty difficulty) {
-        return map.inverse().get(difficulty);
+        return DifficultyConverter.map.inverse().get(difficulty);
     }
 }

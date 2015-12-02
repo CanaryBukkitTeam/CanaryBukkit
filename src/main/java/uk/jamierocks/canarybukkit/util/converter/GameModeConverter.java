@@ -32,10 +32,10 @@ public class GameModeConverter {
                     .build();
 
     public static net.canarymod.api.GameMode of(GameMode gameMode) {
-        return map.get(gameMode);
+        return GameModeConverter.map.get(gameMode);
     }
 
     public static GameMode of(net.canarymod.api.GameMode gameMode) {
-        return map.inverse().get(gameMode);
+        return GameModeConverter.map.inverse().get(gameMode);
     }
 }

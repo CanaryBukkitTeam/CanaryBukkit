@@ -42,10 +42,10 @@ public class DyeColorConverter {
                     .build();
 
     public static net.canarymod.api.DyeColor of(DyeColor dyeColor) {
-        return map.get(dyeColor);
+        return DyeColorConverter.map.get(dyeColor);
     }
 
     public static DyeColor of(net.canarymod.api.DyeColor dyeColor) {
-        return map.inverse().get(dyeColor);
+        return DyeColorConverter.map.inverse().get(dyeColor);
     }
 }

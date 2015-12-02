@@ -48,6 +48,7 @@ import uk.jamierocks.canarybukkit.impl.CanaryWorld;
 import uk.jamierocks.canarybukkit.impl.block.CanaryBlock;
 import uk.jamierocks.canarybukkit.impl.command.CanaryCommandSender;
 import uk.jamierocks.canarybukkit.impl.entity.CanaryPlayer;
+import uk.jamierocks.canarybukkit.util.converter.TeleportCauseConverter;
 
 import java.util.HashSet;
 import java.util.IllegalFormatException;
@@ -221,8 +222,8 @@ public class CanaryPlayerListener implements PluginListener {
         PlayerTeleportEvent event =
                 new PlayerTeleportEvent(new CanaryPlayer(hook.getPlayer()), new CanaryLocation(hook.getPlayer()
                         .getLocation(), new CanaryWorld(hook.getDestination().getWorld())), new CanaryLocation(hook
-                        .getDestination(), new CanaryWorld(hook.getDestination().getWorld())), BukkitUtils
-                        .getTeleportCause(hook.getTeleportReason())) {
+                        .getDestination(), new CanaryWorld(hook.getDestination().getWorld())),
+                        TeleportCauseConverter.of(hook.getTeleportReason())) {
                     @Override
                     public void setFrom(Location from) {
                         super.setFrom(from);

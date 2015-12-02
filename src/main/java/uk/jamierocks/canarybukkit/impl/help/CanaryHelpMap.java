@@ -29,32 +29,36 @@ import java.util.List;
 
 public class CanaryHelpMap extends Wrapper<HelpManager> implements HelpMap {
 
-    private net.canarymod.help.HelpManager helpManager;
-
     public CanaryHelpMap(HelpManager helpManager) {
         super(helpManager);
     }
 
+    @Override
     public HelpTopic getHelpTopic(String topicName) {
         throw new NotImplementedException("getHelpTopic(String)");
     }
 
+    @Override
     public Collection<HelpTopic> getHelpTopics() {
         throw new NotImplementedException("getHelpTopics()");
     }
 
+    @Override
     public void addTopic(HelpTopic topic) {
         throw new NotImplementedException("addTopic(HelpTopic)");
     }
 
+    @Override
     public void clear() {
         throw new NotImplementedException("clear()");
     }
 
+    @Override
     public void registerHelpTopicFactory(Class<?> commandClass, HelpTopicFactory<?> factory) {
         throw new NotImplementedException("registerHelpTopicFactory(Class<?>, HelpTopicFactory<?>");
     }
 
+    @Override
     public List<String> getIgnoredPlugins() {
         throw new NotImplementedException("getIgnoredPlugins()");
     }

@@ -32,10 +32,10 @@ public class CatTypeConverter {
                     .build();
 
     public static net.canarymod.api.entity.living.animal.Ocelot.SkinType of(Ocelot.Type type) {
-        return map.get(type);
+        return CatTypeConverter.map.get(type);
     }
 
     public static Ocelot.Type of(net.canarymod.api.entity.living.animal.Ocelot.SkinType skinType) {
-        return map.inverse().get(skinType);
+        return CatTypeConverter.map.inverse().get(skinType);
     }
 }

@@ -30,27 +30,33 @@ public class CanaryScore extends Wrapper<net.canarymod.api.scoreboard.Score> imp
         super(score);
     }
 
+    @Override
     public OfflinePlayer getPlayer() {
         throw new NotImplementedException("getPlayer()");
     }
 
+    @Override
     public String getEntry() {
-        return getHandle().getName();
+        return this.getHandle().getName();
     }
 
+    @Override
     public Objective getObjective() {
-        return new CanaryObjective(getHandle().getScoreObjective());
+        return new CanaryObjective(this.getHandle().getScoreObjective());
     }
 
+    @Override
     public int getScore() throws IllegalStateException {
-        return getHandle().getScore();
+        return this.getHandle().getScore();
     }
 
+    @Override
     public void setScore(int score) throws IllegalStateException {
         this.getHandle().setScore(score);
     }
 
+    @Override
     public Scoreboard getScoreboard() {
-        return new CanaryScoreboard(getHandle().getScoreboard());
+        return new CanaryScoreboard(this.getHandle().getScoreboard());
     }
 }

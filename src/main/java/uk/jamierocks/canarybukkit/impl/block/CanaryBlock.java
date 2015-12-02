@@ -45,225 +45,274 @@ public class CanaryBlock extends Wrapper<net.canarymod.api.world.blocks.Block> i
         super(block);
     }
 
+    @Override
     public boolean breakNaturally() {
         throw new NotImplementedException("breakNaturally()");
     }
 
+    @Override
     public boolean breakNaturally(ItemStack tool) {
         throw new NotImplementedException("breakNaturally(ItemStack)");
     }
 
+    @Override
     public Biome getBiome() {
-        return Biome.valueOf(getCanaryWorld().getBiome(getHandle().getX(), getHandle().getZ()).getBiomeType()
+        return Biome.valueOf(getCanaryWorld().getBiome(this.getHandle().getX(), this.getHandle().getZ()).getBiomeType()
                 .name());
         // TODO: Check if that works
     }
 
+    @Override
     public void setBiome(Biome bio) {
-        getHandle().getWorld().setBiome(getHandle().getX(), getHandle().getZ(), BiomeType.valueOf(bio.name()));
+        getHandle().getWorld().setBiome(this.getHandle().getX(),
+                this.getHandle().getZ(), BiomeType.valueOf(bio.name()));
         // TODO: Check if that works
     }
 
+    @Override
     public int getBlockPower() {
-        return getCanaryWorld().getBlockPower(getHandle());
+        return this.getCanaryWorld().getBlockPower(getHandle());
     }
 
+    @Override
     public int getBlockPower(BlockFace face) {
         throw new NotImplementedException("getBlockPower(BlockFace)");
     }
 
+    @Override
     public Chunk getChunk() {
-        return new CanaryChunk(getCanaryWorld().getChunk(getX(), getZ()), new CanaryWorld(getCanaryWorld()));
+        return new CanaryChunk(this.getCanaryWorld().getChunk(this.getX(), this.getZ()),
+                new CanaryWorld(this.getCanaryWorld()));
     }
 
+    @Override
     public byte getData() {
-        return (byte) getHandle().getData();
+        return (byte) this.getHandle().getData();
     }
 
+    @Override
     public void setData(byte data) {
-        getHandle().setData(data);
+        this.getHandle().setData(data);
     }
 
+    @Override
     public Collection<ItemStack> getDrops() {
         throw new NotImplementedException("getDrops()");
     }
 
+    @Override
     public Collection<ItemStack> getDrops(ItemStack tool) {
         throw new NotImplementedException("getDrops(ItemStack)");
     }
 
+    @Override
     public BlockFace getFace(Block block) {
         for (BlockFace blockFace : BlockFace.values()) {
-            if (getRelative(blockFace).equals(block)) {
+            if (this.getRelative(blockFace).equals(block)) {
                 return blockFace;
             }
         }
         return null;
     }
 
+    @Override
     public double getHumidity() {
-        return getCanaryWorld().getBiome(getX(), getZ()).getRainfall();
+        return this.getCanaryWorld().getBiome(this.getX(), this.getZ()).getRainfall();
     }
 
+    @Override
     public byte getLightFromBlocks() {
         throw new NotImplementedException("getLightFromBlocks()");
     }
 
+    @Override
     public byte getLightFromSky() {
         throw new NotImplementedException("getLightFromSky()");
     }
 
+    @Override
     public byte getLightLevel() {
-        return (byte) getCanaryWorld().getLightLevelAt(getX(), getY(), getZ());
+        return (byte) this.getCanaryWorld().getLightLevelAt(this.getX(), this.getY(), this.getZ());
     }
 
+    @Override
     public Location getLocation() {
-        return new Location(new CanaryWorld(getHandle().getWorld()), getHandle().getX(), getHandle().getY(),
-                getHandle().getZ());
+        return new Location(new CanaryWorld(this.getHandle().getWorld()), this.getHandle().getX(),
+                this.getHandle().getY(), this.getHandle().getZ());
     }
 
+    @Override
     public Location getLocation(Location loc) {
         if (loc != null) {
-            loc.setWorld(getWorld());
-            loc.setX(getX());
-            loc.setY(getY());
-            loc.setZ(getX());
+            loc.setWorld(this.getWorld());
+            loc.setX(this.getX());
+            loc.setY(this.getY());
+            loc.setZ(this.getX());
         }
         return loc;
     }
 
+    @Override
     public List<MetadataValue> getMetadata(String metadataKey) {
         throw new NotImplementedException("getMetadata(String)");
     }
 
+    @Override
     public PistonMoveReaction getPistonMoveReaction() {
         throw new NotImplementedException("getPistonMoveReaction()");
     }
 
+    @Override
     public Block getRelative(BlockFace face) {
-        return getRelative(face, 1);
+        return this.getRelative(face, 1);
     }
 
+    @Override
     public Block getRelative(BlockFace face, int distance) {
-        return getRelative(face.getModX() * distance, face.getModY() * distance, face.getModZ() * distance);
+        return this.getRelative(face.getModX() * distance, face.getModY() * distance, face.getModZ() * distance);
     }
 
+    @Override
     public Block getRelative(int modX, int modY, int modZ) {
-        return new CanaryBlock(getHandle().getRelative(modX, modY, modZ));
+        return new CanaryBlock(this.getHandle().getRelative(modX, modY, modZ));
     }
 
+    @Override
     public BlockState getState() {
         throw new NotImplementedException("getState()");
     }
 
+    @Override
     public double getTemperature() {
-        return getCanaryWorld().getBiome(getX(), getZ()).getTemperature();
+        return this.getCanaryWorld().getBiome(this.getX(), this.getZ()).getTemperature();
     }
 
+    @Override
     public Material getType() {
-        return Material.getMaterial(getTypeId());
+        return Material.getMaterial(this.getTypeId());
     }
 
+    @Override
     public void setType(Material type) {
-        getHandle().setType(CanaryUtils.getBlockType(type));
+        this.getHandle().setType(CanaryUtils.getBlockType(type));
     }
 
+    @Override
     public int getTypeId() {
-        return getHandle().getTypeId();
+        return this.getHandle().getTypeId();
     }
 
+    @Override
     public World getWorld() {
-        return new CanaryWorld(getHandle().getWorld());
+        return new CanaryWorld(this.getHandle().getWorld());
     }
 
+    @Override
     public int getX() {
-        return getHandle().getX();
+        return this.getHandle().getX();
     }
 
+    @Override
     public int getY() {
-        return getHandle().getY();
+        return this.getHandle().getY();
     }
 
+    @Override
     public int getZ() {
-        return getHandle().getZ();
+        return this.getHandle().getZ();
     }
 
+    @Override
     public boolean hasMetadata(String metadataKey) {
         throw new NotImplementedException("hasMetadata(String)");
     }
 
+    @Override
     public boolean isBlockFaceIndirectlyPowered(BlockFace face) {
         throw new NotImplementedException("isBlockFaceIndirectlyPowered(BlockFace)");
     }
 
+    @Override
     public boolean isBlockFacePowered(BlockFace face) {
         throw new NotImplementedException("isBlockFacePowered(BlockFace)");
     }
 
+    @Override
     public boolean isBlockIndirectlyPowered() {
-        return getCanaryWorld().isBlockIndirectlyPowered(getHandle());
+        return this.getCanaryWorld().isBlockIndirectlyPowered(this.getHandle());
     }
 
+    @Override
     public boolean isBlockPowered() {
-        return getCanaryWorld().isBlockPowered(getHandle());
+        return this.getCanaryWorld().isBlockPowered(this.getHandle());
     }
 
+    @Override
     public boolean isEmpty() {
-        return getHandle().isAir();
+        return this.getHandle().isAir();
     }
 
+    @Override
     public boolean isLiquid() {
-        return (getType() == Material.WATER) || (getType() == Material.STATIONARY_WATER)
-                || (getType() == Material.LAVA) || (getType() == Material.STATIONARY_LAVA);
+        return (this.getType() == Material.WATER) || (this.getType() == Material.STATIONARY_WATER)
+                || (this.getType() == Material.LAVA) || (this.getType() == Material.STATIONARY_LAVA);
     }
 
+    @Override
     public void removeMetadata(String metadataKey, Plugin owningPlugin) {
         throw new NotImplementedException("removeMetadata(String, Plugin)");
     }
 
+    @Override
     public void setData(byte data, boolean applyPhysics) {
-        setData(data);
+        this.setData(data);
         if (applyPhysics) {
-            getHandle().update();
+            this.getHandle().update();
         }
     }
 
+    @Override
     public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
         throw new NotImplementedException("setMetadata(String, MetadataValue)");
     }
 
+    @Override
     public void setType(Material type, boolean applyPhysics) {
-        setType(type);
+        this.setType(type);
         if (applyPhysics) {
-            getHandle().update();
+            this.getHandle().update();
         }
     }
 
+    @Override
     public boolean setTypeId(int type) {
-        boolean ret = getHandle().getTypeId() != type;
-        getHandle().setTypeId((short) type);
+        boolean ret = this.getHandle().getTypeId() != type;
+        this.getHandle().setTypeId((short) type);
         return ret;
     }
 
+    @Override
     public boolean setTypeId(int type, boolean applyPhysics) {
-        boolean ret = setTypeId(type);
+        boolean ret = this.setTypeId(type);
         if (applyPhysics) {
-            getHandle().update();
+            this.getHandle().update();
         }
         return ret;
     }
 
+    @Override
     public boolean setTypeIdAndData(int type, byte data, boolean applyPhysics) {
-        setData(data);
-        return setTypeId(type, applyPhysics);
+        this.setData(data);
+        return this.setTypeId(type, applyPhysics);
     }
 
     protected net.canarymod.api.world.World getCanaryWorld() {
-        return getHandle().getWorld();
+        return this.getHandle().getWorld();
     }
 
+    @Override
     public boolean equals(Object object) {
-        return ((object instanceof CanaryBlock || object instanceof net.canarymod.api.world.blocks.Block) && object
-                .equals(getHandle()));
+        return ((object instanceof CanaryBlock || object instanceof net.canarymod.api.world.blocks.Block)
+                && object.equals(this.getHandle()));
     }
 }

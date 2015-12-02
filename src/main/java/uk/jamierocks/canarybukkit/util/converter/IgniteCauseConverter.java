@@ -35,10 +35,10 @@ public class IgniteCauseConverter {
                     .build();
 
     public static IgnitionHook.IgnitionCause of(BlockIgniteEvent.IgniteCause gameMode) {
-        return map.inverse().get(gameMode);
+        return IgniteCauseConverter.map.inverse().get(gameMode);
     }
 
     public static BlockIgniteEvent.IgniteCause of(IgnitionHook.IgnitionCause gameMode) {
-        return map.get(gameMode);
+        return IgniteCauseConverter.map.get(gameMode);
     }
 }

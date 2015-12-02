@@ -32,10 +32,10 @@ public class EnvironmentConverter {
                     .build();
 
     public static DimensionType of(World.Environment difficulty) {
-        return map.get(difficulty);
+        return EnvironmentConverter.map.get(difficulty);
     }
 
     public static World.Environment of(DimensionType difficulty) {
-        return map.inverse().get(difficulty);
+        return EnvironmentConverter.map.inverse().get(difficulty);
     }
 }
