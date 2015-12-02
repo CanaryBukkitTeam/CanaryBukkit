@@ -23,6 +23,7 @@ import org.bukkit.entity.Firework;
 import org.bukkit.inventory.meta.FireworkMeta;
 
 public class CanaryFirework extends CanaryEntity implements Firework {
+
     public CanaryFirework(net.canarymod.api.entity.FireworkRocket entity) {
         super(entity);
     }

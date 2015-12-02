@@ -21,6 +21,7 @@ import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.Explosive;
 
 public abstract class CanaryExplosive extends CanaryEntity implements Explosive {
+
     public CanaryExplosive(net.canarymod.api.entity.Entity entity) {
         super(entity);
     }

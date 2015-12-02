@@ -21,6 +21,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Silverfish;
 
 public class CanarySilverfish extends CanaryMonster implements Silverfish {
+
     public CanarySilverfish(net.canarymod.api.entity.living.monster.Silverfish entity) {
         super(entity);
     }

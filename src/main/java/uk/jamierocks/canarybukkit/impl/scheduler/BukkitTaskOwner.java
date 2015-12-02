@@ -21,6 +21,7 @@ import net.canarymod.tasks.TaskOwner;
 import org.bukkit.plugin.Plugin;
 
 public class BukkitTaskOwner implements TaskOwner {
+
     private final Plugin plugin;
 
     public BukkitTaskOwner(Plugin plugin) {

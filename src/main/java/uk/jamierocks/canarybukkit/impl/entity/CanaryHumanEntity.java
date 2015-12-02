@@ -17,10 +17,6 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import java.util.Set;
-
-import uk.jamierocks.canarybukkit.impl.inventory.CanaryPlayerInventory;
-
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.inventory.InventoryView;
@@ -29,8 +25,12 @@ import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
+import uk.jamierocks.canarybukkit.impl.inventory.CanaryPlayerInventory;
+
+import java.util.Set;
 
 public abstract class CanaryHumanEntity extends CanaryLivingEntity implements HumanEntity {
+
     public CanaryHumanEntity(net.canarymod.api.entity.living.humanoid.Human entity) {
         super(entity);
     }

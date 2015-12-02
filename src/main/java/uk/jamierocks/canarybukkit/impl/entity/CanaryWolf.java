@@ -17,19 +17,23 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import uk.jamierocks.canarybukkit.util.converter.DyeColorConverter;
-
 import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Wolf;
+import uk.jamierocks.canarybukkit.util.converter.DyeColorConverter;
 
 public class CanaryWolf extends CanaryTameable implements Wolf {
+
     public CanaryWolf(net.canarymod.api.entity.living.animal.Wolf entity) {
         super(entity);
     }
 
     public DyeColor getCollarColor() {
         return DyeColorConverter.of(getHandle().getCollarColor());
+    }
+
+    public void setCollarColor(DyeColor color) {
+        getHandle().setCollarColor(DyeColorConverter.of(color));
     }
 
     public EntityType getType() {
@@ -40,16 +44,12 @@ public class CanaryWolf extends CanaryTameable implements Wolf {
         return getHandle().isAngry();
     }
 
-    public boolean isSitting() {
-        return getHandle().isSitting();
-    }
-
     public void setAngry(boolean angry) {
         getHandle().setAngry(angry);
     }
 
-    public void setCollarColor(DyeColor color) {
-        getHandle().setCollarColor(DyeColorConverter.of(color));
+    public boolean isSitting() {
+        return getHandle().isSitting();
     }
 
     public void setSitting(boolean sitting) {

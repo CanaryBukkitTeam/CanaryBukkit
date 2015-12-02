@@ -23,6 +23,7 @@ import net.canarymod.hook.world.IgnitionHook;
 import org.bukkit.event.block.BlockIgniteEvent;
 
 public class IgniteCauseConverter {
+
     private static BiMap<IgnitionHook.IgnitionCause, BlockIgniteEvent.IgniteCause> map =
             ImmutableBiMap.<IgnitionHook.IgnitionCause, BlockIgniteEvent.IgniteCause>builder()
                     .put(IgnitionHook.IgnitionCause.FIREBALL_CLICK, BlockIgniteEvent.IgniteCause.FIREBALL)

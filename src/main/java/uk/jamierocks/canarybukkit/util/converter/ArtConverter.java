@@ -23,6 +23,7 @@ import net.canarymod.api.entity.hanging.Painting;
 import org.bukkit.Art;
 
 public class ArtConverter {
+
     private static BiMap<Art, Painting.ArtType> map =
             ImmutableBiMap.<Art, Painting.ArtType>builder()
                     .put(Art.KEBAB, Painting.ArtType.Kebab)

@@ -18,12 +18,12 @@
 package uk.jamierocks.canarybukkit.impl.scheduler;
 
 import net.canarymod.tasks.ServerTask;
-
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
 public class CanaryTask implements BukkitTask {
+
     private final Plugin plugin;
     private final Runnable task;
     private final int id;
@@ -50,8 +50,7 @@ public class CanaryTask implements BukkitTask {
         running = true;
         try {
             task.run();
-        }
-        finally {
+        } finally {
             running = false;
         }
     }

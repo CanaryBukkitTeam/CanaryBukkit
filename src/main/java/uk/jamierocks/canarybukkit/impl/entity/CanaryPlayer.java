@@ -17,14 +17,7 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import java.net.InetSocketAddress;
-import java.util.Map;
-import java.util.Set;
-
-import uk.jamierocks.canarybukkit.impl.inventory.CanaryInventory;
-import uk.jamierocks.canarybukkit.util.converter.GameModeConverter;
 import net.canarymod.Canary;
-
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Achievement;
 import org.bukkit.Bukkit;
@@ -47,8 +40,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scoreboard.Scoreboard;
+import uk.jamierocks.canarybukkit.impl.inventory.CanaryInventory;
+import uk.jamierocks.canarybukkit.util.converter.GameModeConverter;
+
+import java.net.InetSocketAddress;
+import java.util.Map;
+import java.util.Set;
 
 public class CanaryPlayer extends CanaryHumanEntity implements Player {
+
     public CanaryPlayer(net.canarymod.api.entity.living.humanoid.Player entity) {
         super(entity);
     }
@@ -118,16 +118,32 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         return getHandle().getCapabilities().mayFly();
     }
 
+    public void setAllowFlight(boolean flight) {
+        getHandle().getCapabilities().setMayFly(flight);
+    }
+
     public Location getBedSpawnLocation() {
         throw new NotImplementedException("getBedSpawnLocation()");
+    }
+
+    public void setBedSpawnLocation(Location location) {
+        throw new NotImplementedException("setBedSpawnLocation(Location)");
     }
 
     public Location getCompassTarget() {
         throw new NotImplementedException("getCompassTarget()");
     }
 
+    public void setCompassTarget(Location loc) {
+        throw new NotImplementedException("setCompassTarget(Location)");
+    }
+
     public String getDisplayName() {
         return getHandle().getDisplayName();
+    }
+
+    public void setDisplayName(String name) {
+        getHandle().setDisplayName(name);
     }
 
     public Inventory getEnderChest() {
@@ -138,8 +154,16 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         return getHandle().getExhaustionLevel();
     }
 
+    public void setExhaustion(float value) {
+        throw new NotImplementedException("setExhaustion(float)");
+    }
+
     public float getExp() {
         return getHandle().getExperience();
+    }
+
+    public void setExp(float exp) {
+        throw new NotImplementedException("setExp(float)");
     }
 
     public long getFirstPlayed() {
@@ -150,24 +174,48 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         return getHandle().getCapabilities().getFlySpeed();
     }
 
+    public void setFlySpeed(float value) throws IllegalArgumentException {
+        getHandle().getCapabilities().setFlySpeed(value);
+    }
+
     public int getFoodLevel() {
         throw new NotImplementedException("getFoodLevel()");
+    }
+
+    public void setFoodLevel(int value) {
+        throw new NotImplementedException("setFoodLevel(int)");
     }
 
     public GameMode getGameMode() {
         return GameModeConverter.of(getHandle().getMode());
     }
 
+    public void setGameMode(GameMode mode) {
+        getHandle().setMode(GameModeConverter.of(mode));
+    }
+
     public double getHealthScale() {
         throw new NotImplementedException("getHealthScale()");
+    }
+
+    public void setHealthScale(double scale) throws IllegalArgumentException {
+        throw new NotImplementedException("setHealthScale(double)");
     }
 
     public ItemStack getItemInHand() {
         throw new NotImplementedException("getItemInHand()");
     }
 
+    public void setItemInHand(ItemStack item) {
+        throw new NotImplementedException("setItemInHand(ItemStack)");
+    }
+
     public ItemStack getItemOnCursor() {
         throw new NotImplementedException("getItemOnCursor()");
+    }
+
+    public void setItemOnCursor(ItemStack item) {
+        throw new NotImplementedException("setItemOnCursor(ItemStack)");
     }
 
     public long getLastPlayed() {
@@ -176,6 +224,10 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
 
     public int getLevel() {
         return getHandle().getLevel();
+    }
+
+    public void setLevel(int level) {
+        getHandle().setLevel(level);
     }
 
     public Set<String> getListeningPluginChannels() {
@@ -194,6 +246,10 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         throw new NotImplementedException("getPlayerListName()");
     }
 
+    public void setPlayerListName(String name) {
+        throw new NotImplementedException("setPlayerListName(String)");
+    }
+
     public long getPlayerTime() {
         throw new NotImplementedException("getPlayerTime()");
     }
@@ -206,12 +262,24 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         throw new NotImplementedException("getPlayerWeather()");
     }
 
+    public void setPlayerWeather(WeatherType type) {
+        throw new NotImplementedException("setPlayerWeather(WeatherType)");
+    }
+
     public float getSaturation() {
         throw new NotImplementedException("getSaturation()");
     }
 
+    public void setSaturation(float value) {
+        throw new NotImplementedException("setSaturation(float)");
+    }
+
     public Scoreboard getScoreboard() {
         throw new NotImplementedException("getScoreboard()");
+    }
+
+    public void setScoreboard(Scoreboard scoreboard) throws IllegalArgumentException, IllegalStateException {
+        throw new NotImplementedException("setScoreboard(Scoreboard)");
     }
 
     public int getStatistic(Statistic statistic) throws IllegalArgumentException {
@@ -230,12 +298,20 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         return getHandle().getExperience();
     }
 
+    public void setTotalExperience(int exp) {
+        getHandle().setExperience(exp);
+    }
+
     public EntityType getType() {
         return EntityType.PLAYER;
     }
 
     public float getWalkSpeed() {
         return getHandle().getCapabilities().getWalkSpeed();
+    }
+
+    public void setWalkSpeed(float value) throws IllegalArgumentException {
+        getHandle().getCapabilities().setWalkSpeed(value);
     }
 
     public void giveExp(int amount) {
@@ -287,6 +363,10 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         return Canary.bans().isBanned(getHandle().getUUID().toString());
     }
 
+    public void setBanned(boolean banned) {
+        Canary.bans().issueBan(getHandle(), "The Ban Hammer Has Spoken!");
+    }
+
     public boolean isConversing() {
         throw new NotImplementedException("isConversing()");
     }
@@ -295,8 +375,16 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         return getHandle().getCapabilities().isFlying();
     }
 
+    public void setFlying(boolean value) {
+        getHandle().getCapabilities().setFlying(value);
+    }
+
     public boolean isHealthScaled() {
         throw new NotImplementedException("isHealthScaled()");
+    }
+
+    public void setHealthScaled(boolean scale) {
+        throw new NotImplementedException("setHealthScaled(boolean)");
     }
 
     public boolean isOnline() {
@@ -311,16 +399,32 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         throw new NotImplementedException("isSleepingIgnored()");
     }
 
+    public void setSleepingIgnored(boolean isSleeping) {
+        throw new NotImplementedException("setSleepingIgnored(boolean)");
+    }
+
     public boolean isSneaking() {
         return getHandle().isSneaking();
+    }
+
+    public void setSneaking(boolean sneak) {
+        getHandle().setSneaking(sneak);
     }
 
     public boolean isSprinting() {
         return getHandle().isSprinting();
     }
 
+    public void setSprinting(boolean sprinting) {
+        getHandle().setSprinting(sprinting);
+    }
+
     public boolean isWhitelisted() {
         return Canary.whitelist().isWhitelisted(getHandle().getUUID().toString());
+    }
+
+    public void setWhitelisted(boolean value) {
+        Canary.whitelist().addPlayer(getName());
     }
 
     public void kickPlayer(String message) {
@@ -433,108 +537,16 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
         throw new NotImplementedException("serialize()");
     }
 
-    public void setAllowFlight(boolean flight) {
-        getHandle().getCapabilities().setMayFly(flight);
-    }
-
-    public void setBanned(boolean banned) {
-        Canary.bans().issueBan(getHandle(), "The Ban Hammer Has Spoken!");
-    }
-
-    public void setBedSpawnLocation(Location location) {
-        throw new NotImplementedException("setBedSpawnLocation(Location)");
-    }
-
     public void setBedSpawnLocation(Location location, boolean force) {
         throw new NotImplementedException("setBedSpawnLocation(Location, boolean)");
-    }
-
-    public void setCompassTarget(Location loc) {
-        throw new NotImplementedException("setCompassTarget(Location)");
-    }
-
-    public void setDisplayName(String name) {
-        getHandle().setDisplayName(name);
-    }
-
-    public void setExhaustion(float value) {
-        throw new NotImplementedException("setExhaustion(float)");
-    }
-
-    public void setExp(float exp) {
-        throw new NotImplementedException("setExp(float)");
-    }
-
-    public void setFlying(boolean value) {
-        getHandle().getCapabilities().setFlying(value);
-    }
-
-    public void setFlySpeed(float value) throws IllegalArgumentException {
-        getHandle().getCapabilities().setFlySpeed(value);
-    }
-
-    public void setFoodLevel(int value) {
-        throw new NotImplementedException("setFoodLevel(int)");
-    }
-
-    public void setGameMode(GameMode mode) {
-        getHandle().setMode(GameModeConverter.of(mode));
-    }
-
-    public void setHealthScale(double scale) throws IllegalArgumentException {
-        throw new NotImplementedException("setHealthScale(double)");
-    }
-
-    public void setHealthScaled(boolean scale) {
-        throw new NotImplementedException("setHealthScaled(boolean)");
-    }
-
-    public void setItemInHand(ItemStack item) {
-        throw new NotImplementedException("setItemInHand(ItemStack)");
-    }
-
-    public void setItemOnCursor(ItemStack item) {
-        throw new NotImplementedException("setItemOnCursor(ItemStack)");
-    }
-
-    public void setLevel(int level) {
-        getHandle().setLevel(level);
-    }
-
-    public void setPlayerListName(String name) {
-        throw new NotImplementedException("setPlayerListName(String)");
     }
 
     public void setPlayerTime(long time, boolean relative) {
         throw new NotImplementedException("setPlayerTime(long, boolean)");
     }
 
-    public void setPlayerWeather(WeatherType type) {
-        throw new NotImplementedException("setPlayerWeather(WeatherType)");
-    }
-
     public void setResourcePack(String url) {
         throw new NotImplementedException("setResourcePack(String)");
-    }
-
-    public void setSaturation(float value) {
-        throw new NotImplementedException("setSaturation(float)");
-    }
-
-    public void setScoreboard(Scoreboard scoreboard) throws IllegalArgumentException, IllegalStateException {
-        throw new NotImplementedException("setScoreboard(Scoreboard)");
-    }
-
-    public void setSleepingIgnored(boolean isSleeping) {
-        throw new NotImplementedException("setSleepingIgnored(boolean)");
-    }
-
-    public void setSneaking(boolean sneak) {
-        getHandle().setSneaking(sneak);
-    }
-
-    public void setSprinting(boolean sprinting) {
-        getHandle().setSprinting(sprinting);
     }
 
     public void setStatistic(Statistic statistic, EntityType entityType, int newValue) {
@@ -551,18 +563,6 @@ public class CanaryPlayer extends CanaryHumanEntity implements Player {
 
     public void setTexturePack(String url) {
         throw new NotImplementedException("setTexturePack(String)");
-    }
-
-    public void setTotalExperience(int exp) {
-        getHandle().setExperience(exp);
-    }
-
-    public void setWalkSpeed(float value) throws IllegalArgumentException {
-        getHandle().getCapabilities().setWalkSpeed(value);
-    }
-
-    public void setWhitelisted(boolean value) {
-        Canary.whitelist().addPlayer(getName());
     }
 
     public void showPlayer(Player player) {

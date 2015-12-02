@@ -17,19 +17,19 @@
  */
 package uk.jamierocks.canarybukkit.impl;
 
-import java.util.Map;
-import java.util.UUID;
-
-import uk.jamierocks.canarybukkit.impl.entity.CanaryPlayer;
 import io.github.lexware.unolib.Wrapper;
 import net.canarymod.Canary;
-
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import uk.jamierocks.canarybukkit.impl.entity.CanaryPlayer;
+
+import java.util.Map;
+import java.util.UUID;
 
 public class CanaryOfflinePlayer extends Wrapper<net.canarymod.api.OfflinePlayer> implements OfflinePlayer {
+
     public CanaryOfflinePlayer(net.canarymod.api.OfflinePlayer offlinePlayer) {
         super(offlinePlayer);
     }
@@ -67,6 +67,10 @@ public class CanaryOfflinePlayer extends Wrapper<net.canarymod.api.OfflinePlayer
         return Canary.bans().isBanned(getName());
     }
 
+    public void setBanned(boolean banned) {
+        throw new NotImplementedException("setBanned(boolean)");
+    }
+
     public boolean isOnline() {
         return getHandle().isOnline();
     }
@@ -75,26 +79,23 @@ public class CanaryOfflinePlayer extends Wrapper<net.canarymod.api.OfflinePlayer
         return Canary.ops().isOpped(getHandle().getName());
     }
 
-    public boolean isWhitelisted() {
-        return Canary.whitelist().isWhitelisted(getHandle().getName());
-    }
-
-    public Map<String, Object> serialize() {
-        throw new NotImplementedException("serialize()");
-    }
-
-    public void setBanned(boolean banned) {
-        throw new NotImplementedException("setBanned(boolean)");
-    }
-
     public void setOp(boolean op) {
         Canary.ops().addPlayer(getHandle().getName());
     }
 
+    public boolean isWhitelisted() {
+        return Canary.whitelist().isWhitelisted(getHandle().getName());
+    }
+
     public void setWhitelisted(boolean whitelisted) {
-        if (whitelisted)
+        if (whitelisted) {
             Canary.whitelist().addPlayer(getName());
-        else
+        } else {
             Canary.whitelist().removePlayer(getName());
+        }
+    }
+
+    public Map<String, Object> serialize() {
+        throw new NotImplementedException("serialize()");
     }
 }

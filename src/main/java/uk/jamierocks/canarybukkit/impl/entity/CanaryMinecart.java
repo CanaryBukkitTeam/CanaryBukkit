@@ -22,6 +22,7 @@ import org.bukkit.entity.Minecart;
 import org.bukkit.util.Vector;
 
 public abstract class CanaryMinecart extends CanaryVehicle implements Minecart {
+
     public CanaryMinecart(net.canarymod.api.entity.vehicle.Minecart entity) {
         super(entity);
     }
@@ -30,16 +31,16 @@ public abstract class CanaryMinecart extends CanaryVehicle implements Minecart {
         throw new NotImplementedException("_INVALID_setDamage(int)");
     }
 
-    public void setDamage(double damage) {
-        throw new NotImplementedException("setDamage(double)");
-    }
-
     public int _INVALID_getDamage() {
         throw new NotImplementedException("_INVALID_getDamage()");
     }
 
     public double getDamage() {
         throw new NotImplementedException("getDamage()");
+    }
+
+    public void setDamage(double damage) {
+        throw new NotImplementedException("setDamage(double)");
     }
 
     public double getMaxSpeed() {

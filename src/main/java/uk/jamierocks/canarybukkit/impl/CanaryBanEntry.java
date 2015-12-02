@@ -24,6 +24,7 @@ import org.bukkit.BanEntry;
 import java.util.Date;
 
 public class CanaryBanEntry extends Wrapper<Ban> implements BanEntry {
+
     private String target, source, reason;
     private Date created, expires;
 

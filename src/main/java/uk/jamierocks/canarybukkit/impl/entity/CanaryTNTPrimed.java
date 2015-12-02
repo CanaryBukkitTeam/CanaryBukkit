@@ -17,12 +17,12 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import uk.jamierocks.canarybukkit.BukkitUtils;
-
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.TNTPrimed;
+import uk.jamierocks.canarybukkit.BukkitUtils;
 
 public class CanaryTNTPrimed extends CanaryExplosive implements TNTPrimed {
+
     public CanaryTNTPrimed(net.canarymod.api.entity.TNTPrimed entity) {
         super(entity);
     }
@@ -31,12 +31,12 @@ public class CanaryTNTPrimed extends CanaryExplosive implements TNTPrimed {
         return EntityType.PRIMED_TNT;
     }
 
-    public void setFuseTicks(int fuseTicks) {
-        getHandle().setFuse(fuseTicks);
-    }
-
     public int getFuseTicks() {
         return getHandle().getFuse();
+    }
+
+    public void setFuseTicks(int fuseTicks) {
+        getHandle().setFuse(fuseTicks);
     }
 
     public org.bukkit.entity.Entity getSource() {

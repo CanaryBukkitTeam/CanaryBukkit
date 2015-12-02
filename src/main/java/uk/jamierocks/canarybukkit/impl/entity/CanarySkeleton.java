@@ -21,6 +21,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Skeleton;
 
 public class CanarySkeleton extends CanaryMonster implements Skeleton {
+
     public CanarySkeleton(net.canarymod.api.entity.living.monster.Skeleton entity) {
         super(entity);
     }

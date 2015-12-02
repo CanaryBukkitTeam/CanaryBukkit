@@ -21,6 +21,7 @@ import org.bukkit.entity.Bat;
 import org.bukkit.entity.EntityType;
 
 public class CanaryBat extends CanaryAmbient implements Bat {
+
     public CanaryBat(net.canarymod.api.entity.living.animal.Bat entity) {
         super(entity);
     }

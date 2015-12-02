@@ -23,6 +23,7 @@ import net.canarymod.api.world.DimensionType;
 import org.bukkit.World;
 
 public class EnvironmentConverter {
+
     private static BiMap<World.Environment, DimensionType> map =
             ImmutableBiMap.<World.Environment, DimensionType>builder()
                     .put(World.Environment.NORMAL, DimensionType.NORMAL)

@@ -17,14 +17,6 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import java.util.List;
-import java.util.UUID;
-
-import uk.jamierocks.canarybukkit.CanaryUtils;
-import uk.jamierocks.canarybukkit.BukkitUtils;
-import uk.jamierocks.canarybukkit.impl.CanaryLocation;
-import uk.jamierocks.canarybukkit.impl.CanaryWorld;
-
 import io.github.lexware.unolib.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Bukkit;
@@ -38,8 +30,16 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
+import uk.jamierocks.canarybukkit.BukkitUtils;
+import uk.jamierocks.canarybukkit.CanaryUtils;
+import uk.jamierocks.canarybukkit.impl.CanaryLocation;
+import uk.jamierocks.canarybukkit.impl.CanaryWorld;
+
+import java.util.List;
+import java.util.UUID;
 
 public abstract class CanaryEntity extends Wrapper<net.canarymod.api.entity.Entity> implements Entity {
+
     public CanaryEntity(net.canarymod.api.entity.Entity entity) {
         super(entity);
     }
@@ -60,12 +60,24 @@ public abstract class CanaryEntity extends Wrapper<net.canarymod.api.entity.Enti
         throw new NotImplementedException("getFallDistance()");
     }
 
+    public void setFallDistance(float distance) {
+        throw new NotImplementedException("setFallDistance(float)");
+    }
+
     public int getFireTicks() {
         return getHandle().getFireTicks();
     }
 
+    public void setFireTicks(int ticks) {
+        getHandle().setFireTicks(ticks);
+    }
+
     public EntityDamageEvent getLastDamageCause() {
         throw new NotImplementedException("getLastDamageCause()");
+    }
+
+    public void setLastDamageCause(EntityDamageEvent event) {
+        throw new NotImplementedException("setLastDamageCause(EntityDamageEvent)");
     }
 
     public Location getLocation() {
@@ -108,6 +120,10 @@ public abstract class CanaryEntity extends Wrapper<net.canarymod.api.entity.Enti
         throw new NotImplementedException("getTicksLived()");
     }
 
+    public void setTicksLived(int value) {
+        throw new NotImplementedException("setTicksLived(int)");
+    }
+
     public UUID getUniqueId() {
         return getHandle().getUUID();
     }
@@ -118,6 +134,12 @@ public abstract class CanaryEntity extends Wrapper<net.canarymod.api.entity.Enti
 
     public Vector getVelocity() {
         return new Vector(getHandle().getMotionX(), getHandle().getMotionY(), getHandle().getMotionZ());
+    }
+
+    public void setVelocity(Vector velocity) {
+        getHandle().setMotionX(velocity.getX());
+        getHandle().setMotionY(velocity.getY());
+        getHandle().setMotionZ(velocity.getZ());
     }
 
     public World getWorld() {
@@ -168,34 +190,12 @@ public abstract class CanaryEntity extends Wrapper<net.canarymod.api.entity.Enti
         throw new NotImplementedException("removeMetadata(String, Plugin)");
     }
 
-    public void setFallDistance(float distance) {
-        throw new NotImplementedException("setFallDistance(float)");
-    }
-
-    public void setFireTicks(int ticks) {
-        getHandle().setFireTicks(ticks);
-    }
-
-    public void setLastDamageCause(EntityDamageEvent event) {
-        throw new NotImplementedException("setLastDamageCause(EntityDamageEvent)");
-    }
-
     public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
         getHandle().getMetaData().put(metadataKey, newMetadataValue.asByte());
     }
 
     public boolean setPassenger(Entity passenger) {
         return false;
-    }
-
-    public void setTicksLived(int value) {
-        throw new NotImplementedException("setTicksLived(int)");
-    }
-
-    public void setVelocity(Vector velocity) {
-        getHandle().setMotionX(velocity.getX());
-        getHandle().setMotionY(velocity.getY());
-        getHandle().setMotionZ(velocity.getZ());
     }
 
     public boolean teleport(Entity destination) {

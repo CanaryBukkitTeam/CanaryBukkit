@@ -17,34 +17,13 @@
  */
 package uk.jamierocks.canarybukkit.impl;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import com.avaje.ebean.config.ServerConfig;
 import com.google.common.base.Preconditions;
-
 import io.github.canarybukkitteam.hawklib.logging.CanaryLogger;
-import uk.jamierocks.canarybukkit.util.data.Constants;
-import uk.jamierocks.canarybukkit.impl.entity.CanaryPlayer;
-import uk.jamierocks.canarybukkit.impl.scheduler.CanaryScheduler;
-import uk.jamierocks.canarybukkit.impl.util.CanaryCachedServerIcon;
-import uk.jamierocks.canarybukkit.impl.help.CanaryHelpMap;
 import io.github.lexware.unolib.Wrapper;
 import net.canarymod.Canary;
 import net.canarymod.config.Configuration;
 import net.canarymod.logger.Logman;
-
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.BanEntry;
 import org.bukkit.BanList;
@@ -86,20 +65,39 @@ import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
 import org.bukkit.util.permissions.DefaultPermissions;
+import uk.jamierocks.canarybukkit.impl.entity.CanaryPlayer;
+import uk.jamierocks.canarybukkit.impl.help.CanaryHelpMap;
+import uk.jamierocks.canarybukkit.impl.scheduler.CanaryScheduler;
+import uk.jamierocks.canarybukkit.impl.util.CanaryCachedServerIcon;
+import uk.jamierocks.canarybukkit.util.data.Constants;
 
-import com.avaje.ebean.config.ServerConfig;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements Server {
-    private Logger logger;
+
     private final SimpleCommandMap commandMap = new SimpleCommandMap(this);
-    private PluginManager pluginManager = new SimplePluginManager(this, commandMap);
     private final StandardMessenger messenger = new StandardMessenger();
     private final ServicesManager servicesManager = new SimpleServicesManager();
     private final BukkitScheduler scheduler = new CanaryScheduler();
     private final CanaryHelpMap helpMap = new CanaryHelpMap(Canary.help());
+    private final Player[] EMPTY_PLAYER_ARRAY = new Player[0];
+    private Logger logger;
+    private PluginManager pluginManager = new SimplePluginManager(this, commandMap);
     private YamlConfiguration config;
     private WarningState warnState = WarningState.DEFAULT;
-    private final Player[] EMPTY_PLAYER_ARRAY = new Player[0];
 
     public CanaryServer(net.canarymod.api.Server server, Logman logman) {
         super(server);
@@ -185,7 +183,7 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
     public boolean dispatchCommand(CommandSender sender, String commandLine) {
         Preconditions.checkNotNull(sender, "sender");
         Preconditions.checkNotNull(commandLine, "commandLine");
-        
+
         return commandMap.dispatch(sender, commandLine);
     }
 
@@ -265,6 +263,10 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
         throw new NotImplementedException("getDefaultGameMode()");
     }
 
+    public void setDefaultGameMode(GameMode mode) {
+        throw new NotImplementedException("setDefaultGameMode(GameMode)");
+    }
+
     public boolean getGenerateStructures() {
         // TODO MW support -.-
         return Configuration.getWorldConfig(getHandle().getDefaultWorldName()).generatesStructures();
@@ -278,10 +280,14 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
         return Configuration.getServerConfig().getPlayerIdleTimeout();
     }
 
+    public void setIdleTimeout(int threshold) {
+        Configuration.getServerConfig().setPlayerIdleTimeout(threshold);
+    }
+
     public String getImplementationName() {
         return "CanaryBukkit";
     }
-    
+
     public String getIp() {
         return Configuration.getServerConfig().getBindIp();
     }
@@ -459,6 +465,10 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
         return Configuration.getWorldConfig(getHandle().getDefaultWorldName()).getSpawnProtectionSize();
     }
 
+    public void setSpawnRadius(int value) {
+        throw new NotImplementedException("setSpawnRadius(int)");
+    }
+
     public int getTicksPerAnimalSpawns() {
         throw new NotImplementedException("getTicksPerAnimalSpawns()");
     }
@@ -558,7 +568,7 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
         } catch (Throwable ex) {
             getLogger().log(Level.SEVERE,
                     ex.getMessage() + " loading " + plugin.getDescription().getFullName() +
-                    " (Is it up to date?)");
+                            " (Is it up to date?)");
         }
     }
 
@@ -644,18 +654,6 @@ public class CanaryServer extends Wrapper<net.canarymod.api.Server> implements S
         for (Player player : getOnlinePlayers()) {
             player.sendPluginMessage(source, channel, message);
         }
-    }
-
-    public void setDefaultGameMode(GameMode mode) {
-        throw new NotImplementedException("setDefaultGameMode(GameMode)");
-    }
-
-    public void setIdleTimeout(int threshold) {
-        Configuration.getServerConfig().setPlayerIdleTimeout(threshold);
-    }
-
-    public void setSpawnRadius(int value) {
-        throw new NotImplementedException("setSpawnRadius(int)");
     }
 
     public void setWhitelist(boolean value) {

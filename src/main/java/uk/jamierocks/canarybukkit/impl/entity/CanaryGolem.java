@@ -20,6 +20,7 @@ package uk.jamierocks.canarybukkit.impl.entity;
 import org.bukkit.entity.Golem;
 
 public abstract class CanaryGolem extends CanaryCreature implements Golem {
+
     public CanaryGolem(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);
     }

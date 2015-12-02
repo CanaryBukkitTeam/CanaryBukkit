@@ -20,6 +20,7 @@ package uk.jamierocks.canarybukkit.impl.entity;
 import org.bukkit.entity.Animals;
 
 public abstract class CanaryAnimals extends CanaryAgeable implements Animals {
+
     public CanaryAnimals(net.canarymod.api.entity.living.animal.EntityAnimal entity) {
         super(entity);
     }

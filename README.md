@@ -1,4 +1,4 @@
-CanaryBukkit [![Build Status](https://travis-ci.org/CanaryBukkitTeam/CanaryBukkit.svg)](https://travis-ci.org/CanaryBukkitTeam/CanaryBukkit) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/CanaryBukkitTeam/CanaryBukkit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+CanaryBukkit [![Build Status](https://travis-ci.org/CanaryBukkitTeam/CanaryBukkit.svg)](https://travis-ci.org/CanaryBukkitTeam/CanaryBukkit)
 =======================
 
 ### What is it?

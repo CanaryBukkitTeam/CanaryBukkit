@@ -17,19 +17,19 @@
  */
 package uk.jamierocks.canarybukkit.event;
 
-import uk.jamierocks.canarybukkit.impl.command.CanaryCommandSender;
-import uk.jamierocks.canarybukkit.impl.CanaryServer;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.command.ConsoleCommandHook;
 import net.canarymod.hook.system.ServerListPingHook;
 import net.canarymod.plugin.PluginListener;
 import net.canarymod.plugin.Priority;
-
 import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.util.CachedServerIcon;
+import uk.jamierocks.canarybukkit.impl.CanaryServer;
+import uk.jamierocks.canarybukkit.impl.command.CanaryCommandSender;
 
 public class CanaryServerListener implements PluginListener {
+
     private CanaryServer server;
 
     public CanaryServerListener(CanaryServer server) {

@@ -17,9 +17,6 @@
  */
 package uk.jamierocks.canarybukkit.impl.help;
 
-import java.util.Collection;
-import java.util.List;
-
 import io.github.lexware.unolib.Wrapper;
 import net.canarymod.help.HelpManager;
 import org.apache.commons.lang3.NotImplementedException;
@@ -27,7 +24,11 @@ import org.bukkit.help.HelpMap;
 import org.bukkit.help.HelpTopic;
 import org.bukkit.help.HelpTopicFactory;
 
+import java.util.Collection;
+import java.util.List;
+
 public class CanaryHelpMap extends Wrapper<HelpManager> implements HelpMap {
+
     private net.canarymod.help.HelpManager helpManager;
 
     public CanaryHelpMap(HelpManager helpManager) {

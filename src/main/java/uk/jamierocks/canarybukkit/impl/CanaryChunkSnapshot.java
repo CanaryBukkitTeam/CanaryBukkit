@@ -21,9 +21,10 @@ import org.bukkit.ChunkSnapshot;
 import org.bukkit.block.Biome;
 
 public class CanaryChunkSnapshot implements ChunkSnapshot {
+
+    private final long snapshotTime;
     private net.canarymod.api.world.Chunk chunk;
     private CanaryWorld world;
-    private final long snapshotTime;
 
     public CanaryChunkSnapshot(net.canarymod.api.world.Chunk chunk, CanaryWorld world) {
         this.chunk = chunk;

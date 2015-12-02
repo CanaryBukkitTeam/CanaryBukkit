@@ -17,11 +17,12 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import uk.jamierocks.canarybukkit.util.converter.CatTypeConverter;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ocelot;
+import uk.jamierocks.canarybukkit.util.converter.CatTypeConverter;
 
 public class CanaryOcelot extends CanaryTameable implements Ocelot {
+
     public CanaryOcelot(net.canarymod.api.entity.living.animal.Ocelot entity) {
         super(entity);
     }
@@ -30,16 +31,16 @@ public class CanaryOcelot extends CanaryTameable implements Ocelot {
         return CatTypeConverter.of(getHandle().getSkinType());
     }
 
+    public void setCatType(Type type) {
+        getHandle().setSkinType(CatTypeConverter.of(type));
+    }
+
     public EntityType getType() {
         return EntityType.OCELOT;
     }
 
     public boolean isSitting() {
         return getHandle().isSitting();
-    }
-
-    public void setCatType(Type type) {
-        getHandle().setSkinType(CatTypeConverter.of(type));
     }
 
     public void setSitting(boolean sitting) {

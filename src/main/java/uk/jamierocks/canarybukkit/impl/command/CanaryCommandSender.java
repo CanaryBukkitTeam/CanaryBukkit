@@ -17,13 +17,10 @@
  */
 package uk.jamierocks.canarybukkit.impl.command;
 
-import java.util.Set;
-
 import io.github.lexware.unolib.Wrapper;
 import net.canarymod.Canary;
 import net.canarymod.chat.MessageReceiver;
 import net.canarymod.chat.ReceiverType;
-
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -33,7 +30,10 @@ import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.permissions.PermissionAttachmentInfo;
 import org.bukkit.plugin.Plugin;
 
+import java.util.Set;
+
 public class CanaryCommandSender extends Wrapper<MessageReceiver> implements CommandSender {
+
     public CanaryCommandSender(MessageReceiver caller) {
         super(caller);
     }
@@ -78,6 +78,10 @@ public class CanaryCommandSender extends Wrapper<MessageReceiver> implements Com
         return Canary.ops().isOpped(getHandle().getName());
     }
 
+    public void setOp(boolean value) {
+        Canary.ops().addPlayer(getHandle().getName());
+    }
+
     public boolean isPermissionSet(Permission perm) {
         return isPermissionSet(perm.getName());
     }
@@ -106,9 +110,5 @@ public class CanaryCommandSender extends Wrapper<MessageReceiver> implements Com
         for (String msg : messages) {
             getHandle().message(msg);
         }
-    }
-
-    public void setOp(boolean value) {
-        Canary.ops().addPlayer(getHandle().getName());
     }
 }

@@ -17,29 +17,23 @@
  */
 package uk.jamierocks.canarybukkit.impl;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-
-import uk.jamierocks.canarybukkit.CanaryUtils;
-import uk.jamierocks.canarybukkit.impl.block.CanaryBlock;
-import uk.jamierocks.canarybukkit.impl.entity.CanaryPlayer;
-import uk.jamierocks.canarybukkit.BukkitUtils;
-import uk.jamierocks.canarybukkit.util.converter.DifficultyConverter;
-import uk.jamierocks.canarybukkit.util.converter.EnvironmentConverter;
-import uk.jamierocks.canarybukkit.util.converter.WorldTypeConverter;
 import io.github.lexware.unolib.Wrapper;
 import net.canarymod.config.Configuration;
 import net.canarymod.config.WorldConfiguration;
-
 import org.apache.commons.lang3.NotImplementedException;
-import org.bukkit.*;
+import org.bukkit.BlockChangeDelegate;
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.ChunkSnapshot;
+import org.bukkit.Difficulty;
+import org.bukkit.Effect;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Server;
+import org.bukkit.Sound;
 import org.bukkit.TreeType;
 import org.bukkit.World;
+import org.bukkit.WorldBorder;
 import org.bukkit.WorldType;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
@@ -58,8 +52,23 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.Vector;
+import uk.jamierocks.canarybukkit.BukkitUtils;
+import uk.jamierocks.canarybukkit.CanaryUtils;
+import uk.jamierocks.canarybukkit.impl.block.CanaryBlock;
+import uk.jamierocks.canarybukkit.impl.entity.CanaryPlayer;
+import uk.jamierocks.canarybukkit.util.converter.DifficultyConverter;
+import uk.jamierocks.canarybukkit.util.converter.EnvironmentConverter;
+import uk.jamierocks.canarybukkit.util.converter.WorldTypeConverter;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implements World {
+
     private Server server;
 
     public CanaryWorld(net.canarymod.api.world.World world) {
@@ -120,8 +129,16 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
         throw new NotImplementedException("getAmbientSpawnLimit()");
     }
 
+    public void setAmbientSpawnLimit(int limit) {
+        throw new NotImplementedException("setAmbientSpawnLimit(int)");
+    }
+
     public int getAnimalSpawnLimit() {
         throw new NotImplementedException("getAnimalSpawnLimit()");
+    }
+
+    public void setAnimalSpawnLimit(int limit) {
+        throw new NotImplementedException("setAnimalSpawnLimit(int)");
     }
 
     public Biome getBiome(int x, int z) {
@@ -161,6 +178,10 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
         return DifficultyConverter.of(getWorldConfiguration().getDifficulty());
     }
 
+    public void setDifficulty(Difficulty difficulty) {
+        throw new NotImplementedException("setDifficulty(Difficulty)");
+    }
+
     public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome, boolean includeBiomeTempRain) {
         throw new NotImplementedException("getEmptyChunkSnapshot(int, int, boolean, boolean)");
     }
@@ -191,6 +212,10 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
 
     public long getFullTime() {
         return getHandle().getTotalTime();
+    }
+
+    public void setFullTime(long time) {
+        throw new NotImplementedException("setFullTime(long)");
     }
 
     public String[] getGameRules() {
@@ -229,6 +254,10 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
         throw new NotImplementedException("getKeepSpawnInMemory()");
     }
 
+    public void setKeepSpawnInMemory(boolean keepLoaded) {
+        throw new NotImplementedException("setKeepSpawnInMemory(boolean)");
+    }
+
     public Set<String> getListeningPluginChannels() {
         throw new NotImplementedException("getListeningPluginChannels()");
     }
@@ -261,6 +290,10 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
         throw new NotImplementedException("getMonsterSpawnLimit()");
     }
 
+    public void setMonsterSpawnLimit(int limit) {
+        throw new NotImplementedException("setMonsterSpawnLimit(int)");
+    }
+
     public String getName() {
         return getHandle().getName();
     }
@@ -279,6 +312,10 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
 
     public boolean getPVP() {
         return getWorldConfiguration().isPvpEnabled();
+    }
+
+    public void setPVP(boolean pvp) {
+        getWorldConfiguration().getFile().setBoolean("pvp", pvp);
     }
 
     public int getSeaLevel() {
@@ -301,16 +338,32 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
         return getHandle().getThunderTicks();
     }
 
+    public void setThunderDuration(int duration) {
+        getHandle().setThunderTime(duration);
+    }
+
     public long getTicksPerAnimalSpawns() {
         throw new NotImplementedException("getTicksPerAnimalSpawns()");
+    }
+
+    public void setTicksPerAnimalSpawns(int ticksPerAnimalSpawns) {
+        throw new NotImplementedException("setTicksPerAnimalSpawns(int)");
     }
 
     public long getTicksPerMonsterSpawns() {
         throw new NotImplementedException("getTicksPerMonsterSpawns()");
     }
 
+    public void setTicksPerMonsterSpawns(int ticksPerMonsterSpawns) {
+        throw new NotImplementedException("setTicksPerMonsterSpawns(int)");
+    }
+
     public long getTime() {
         return getHandle().getRelativeTime();
+    }
+
+    public void setTime(long time) {
+        getHandle().setTime(time);
     }
 
     public UUID getUID() {
@@ -321,8 +374,16 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
         throw new NotImplementedException("getWaterAnimalSpawnLimit()");
     }
 
+    public void setWaterAnimalSpawnLimit(int limit) {
+        throw new NotImplementedException("setWaterAnimalSpawnLimit(int)");
+    }
+
     public int getWeatherDuration() {
         return getHandle().getRainTicks();
+    }
+
+    public void setWeatherDuration(int duration) {
+        getHandle().setRainTime(duration);
     }
 
     public File getWorldFolder() {
@@ -343,6 +404,10 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
 
     public boolean isAutoSave() {
         throw new NotImplementedException("isAutoSave()");
+    }
+
+    public void setAutoSave(boolean value) {
+        throw new NotImplementedException("setAutoSave(boolean)");
     }
 
     public boolean isChunkInUse(int x, int z) {
@@ -367,6 +432,10 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
 
     public boolean isThundering() {
         throw new NotImplementedException("isThundering()");
+    }
+
+    public void setThundering(boolean thundering) {
+        getHandle().setThundering(thundering);
     }
 
     public void loadChunk(Chunk chunk) {
@@ -422,48 +491,16 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
         getServer().sendPluginMessage(source, channel, message);
     }
 
-    public void setAmbientSpawnLimit(int limit) {
-        throw new NotImplementedException("setAmbientSpawnLimit(int)");
-    }
-
-    public void setAnimalSpawnLimit(int limit) {
-        throw new NotImplementedException("setAnimalSpawnLimit(int)");
-    }
-
-    public void setAutoSave(boolean value) {
-        throw new NotImplementedException("setAutoSave(boolean)");
-    }
-
     public void setBiome(int x, int z, Biome bio) {
         getHandle().setBiome(x, z, CanaryUtils.getBiome(bio));
-    }
-
-    public void setDifficulty(Difficulty difficulty) {
-        throw new NotImplementedException("setDifficulty(Difficulty)");
-    }
-
-    public void setFullTime(long time) {
-        throw new NotImplementedException("setFullTime(long)");
     }
 
     public boolean setGameRuleValue(String rule, String value) {
         throw new NotImplementedException("setGameRuleValue(String, String)");
     }
 
-    public void setKeepSpawnInMemory(boolean keepLoaded) {
-        throw new NotImplementedException("setKeepSpawnInMemory(boolean)");
-    }
-
     public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
         throw new NotImplementedException("setMetadata(String, MetadataValue)");
-    }
-
-    public void setMonsterSpawnLimit(int limit) {
-        throw new NotImplementedException("setMonsterSpawnLimit(int)");
-    }
-
-    public void setPVP(boolean pvp) {
-        getWorldConfiguration().getFile().setBoolean("pvp", pvp);
     }
 
     public void setSpawnFlags(boolean allowMonsters, boolean allowAnimals) {
@@ -477,34 +514,6 @@ public class CanaryWorld extends Wrapper<net.canarymod.api.world.World> implemen
 
     public void setStorm(boolean hasStorm) {
         getHandle().setRaining(hasStorm);
-    }
-
-    public void setThunderDuration(int duration) {
-        getHandle().setThunderTime(duration);
-    }
-
-    public void setThundering(boolean thundering) {
-        getHandle().setThundering(thundering);
-    }
-
-    public void setTicksPerAnimalSpawns(int ticksPerAnimalSpawns) {
-        throw new NotImplementedException("setTicksPerAnimalSpawns(int)");
-    }
-
-    public void setTicksPerMonsterSpawns(int ticksPerMonsterSpawns) {
-        throw new NotImplementedException("setTicksPerMonsterSpawns(int)");
-    }
-
-    public void setTime(long time) {
-        getHandle().setTime(time);
-    }
-
-    public void setWaterAnimalSpawnLimit(int limit) {
-        throw new NotImplementedException("setWaterAnimalSpawnLimit(int)");
-    }
-
-    public void setWeatherDuration(int duration) {
-        getHandle().setRainTime(duration);
     }
 
     public <T extends Entity> T spawn(Location location, Class<T> clazz) throws IllegalArgumentException {

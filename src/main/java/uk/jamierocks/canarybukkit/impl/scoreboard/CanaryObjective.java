@@ -19,7 +19,6 @@ package uk.jamierocks.canarybukkit.impl.scoreboard;
 
 import io.github.lexware.unolib.Wrapper;
 import net.canarymod.api.scoreboard.ScoreObjective;
-
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.scoreboard.DisplaySlot;
@@ -28,6 +27,7 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
 public class CanaryObjective extends Wrapper<ScoreObjective> implements Objective {
+
     public CanaryObjective(net.canarymod.api.scoreboard.ScoreObjective objective) {
         super(objective);
     }

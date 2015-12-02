@@ -23,6 +23,7 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.projectiles.ProjectileSource;
 
 public abstract class CanaryProjectile extends CanaryEntity implements Projectile {
+
     private boolean doesBounce;
 
     public CanaryProjectile(net.canarymod.api.entity.Projectile entity) {

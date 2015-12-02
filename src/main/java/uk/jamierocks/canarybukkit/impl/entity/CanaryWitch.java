@@ -21,6 +21,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Witch;
 
 public class CanaryWitch extends CanaryMonster implements Witch {
+
     public CanaryWitch(net.canarymod.api.entity.living.monster.Witch entity) {
         super(entity);
     }

@@ -22,6 +22,7 @@ import org.bukkit.entity.Boat;
 import org.bukkit.entity.EntityType;
 
 public class CanaryBoat extends CanaryVehicle implements Boat {
+
     public CanaryBoat(net.canarymod.api.entity.vehicle.Boat entity) {
         super(entity);
     }

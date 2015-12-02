@@ -22,7 +22,9 @@ import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
-public class CanaryScoreboardManager extends Wrapper<net.canarymod.api.scoreboard.ScoreboardManager> implements ScoreboardManager {
+public class CanaryScoreboardManager extends Wrapper<net.canarymod.api.scoreboard.ScoreboardManager>
+        implements ScoreboardManager {
+
     public CanaryScoreboardManager(net.canarymod.api.scoreboard.ScoreboardManager scoreboardManager) {
         super(scoreboardManager);
     }

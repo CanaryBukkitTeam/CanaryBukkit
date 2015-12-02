@@ -17,36 +17,38 @@
  */
 package uk.jamierocks.canarybukkit.util.data;
 
+import net.canarymod.Canary;
+import net.canarymod.logger.Logman;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import net.canarymod.Canary;
-import net.canarymod.logger.Logman;
-
 public class Constants {
+
     // Canary
     public static final File canaryDir = Canary.getWorkingDirectory();
     public static final File worldsDir = new File(canaryDir, "worlds");
-    // Bukkit
-    private static String bukkitVersion = "UNKNOWN";
     // CanaryBukkit
     public static final File bukkitDir = new File(canaryDir, "bukkit");
     public static final File pluginsDir = new File(bukkitDir, "plugins");
     public static final File configDir = new File(bukkitDir, "config");
     public static final File configFile = new File(configDir, "config.yml");
-    
+    // Bukkit
+    private static String bukkitVersion = "UNKNOWN";
+
     static {
         Properties versionProp = new Properties();
         InputStream versionIn = ClassLoader.getSystemResourceAsStream("version.properties");
         if (versionIn != null) {
             try {
                 versionProp.load(versionIn);
-                
+
                 bukkitVersion = versionProp.getProperty("bukkitVersion", "UNKNOWN");
-                if(bukkitVersion.equalsIgnoreCase("${bukkit.version}")) 
+                if (bukkitVersion.equalsIgnoreCase("${bukkit.version}")) {
                     bukkitVersion = "UNKNOWN";
+                }
             } catch (IOException e) {
                 Logman.getLogman("CanaryBukkit").warn("Could not fetch the Bukkit version.", e);
             } finally {
@@ -57,15 +59,15 @@ public class Constants {
             }
         }
     }
-    
+
     public static String getBukkitVersion() {
         return bukkitVersion;
     }
 
     public static void createDirectories() {
-        File[] dirs = new File[] { 
-                bukkitDir, 
-                    pluginsDir, configDir }; // This must be in order
+        File[] dirs = new File[]{
+                bukkitDir,
+                pluginsDir, configDir}; // This must be in order
         for (File dir : dirs) {
             if (!dir.isDirectory() && !dir.mkdir()) {
                 Logman.getLogman("CanaryBukkit").warn("Could not create directory: " + dir);

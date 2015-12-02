@@ -21,6 +21,7 @@ import org.bukkit.entity.EnderCrystal;
 import org.bukkit.entity.EntityType;
 
 public class CanaryEnderCrystal extends CanaryEntity implements EnderCrystal {
+
     public CanaryEnderCrystal(net.canarymod.api.entity.EnderCrystal entity) {
         super(entity);
     }

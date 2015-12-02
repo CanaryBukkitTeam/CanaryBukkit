@@ -17,10 +17,6 @@
  */
 package uk.jamierocks.canarybukkit.event;
 
-import uk.jamierocks.canarybukkit.impl.CanaryChunk;
-import uk.jamierocks.canarybukkit.impl.CanaryServer;
-import uk.jamierocks.canarybukkit.impl.entity.CanaryLightningStrike;
-import uk.jamierocks.canarybukkit.impl.CanaryWorld;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.system.LoadWorldHook;
 import net.canarymod.hook.system.UnloadWorldHook;
@@ -31,7 +27,6 @@ import net.canarymod.hook.world.PortalCreateHook;
 import net.canarymod.hook.world.WeatherChangeHook;
 import net.canarymod.plugin.PluginListener;
 import net.canarymod.plugin.Priority;
-
 import org.bukkit.event.weather.LightningStrikeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
@@ -39,8 +34,13 @@ import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.event.world.PortalCreateEvent;
 import org.bukkit.event.world.WorldLoadEvent;
 import org.bukkit.event.world.WorldUnloadEvent;
+import uk.jamierocks.canarybukkit.impl.CanaryChunk;
+import uk.jamierocks.canarybukkit.impl.CanaryServer;
+import uk.jamierocks.canarybukkit.impl.CanaryWorld;
+import uk.jamierocks.canarybukkit.impl.entity.CanaryLightningStrike;
 
 public class CanaryWorldListener implements PluginListener {
+
     private CanaryServer server;
 
     public CanaryWorldListener(CanaryServer server) {
@@ -55,7 +55,8 @@ public class CanaryWorldListener implements PluginListener {
 
     @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onChunkUnload(final ChunkUnloadHook hook) {
-        ChunkUnloadEvent event = new ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld())));
+        ChunkUnloadEvent event =
+                new ChunkUnloadEvent(new CanaryChunk(hook.getChunk(), new CanaryWorld(hook.getWorld())));
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
         if (event.isCancelled()) {

@@ -17,15 +17,8 @@
  */
 package uk.jamierocks.canarybukkit.impl.block;
 
-import java.util.Collection;
-import java.util.List;
-
-import uk.jamierocks.canarybukkit.CanaryUtils;
-import uk.jamierocks.canarybukkit.impl.CanaryChunk;
-import uk.jamierocks.canarybukkit.impl.CanaryWorld;
 import io.github.lexware.unolib.Wrapper;
 import net.canarymod.api.world.BiomeType;
-
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -39,8 +32,15 @@ import org.bukkit.block.PistonMoveReaction;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
+import uk.jamierocks.canarybukkit.CanaryUtils;
+import uk.jamierocks.canarybukkit.impl.CanaryChunk;
+import uk.jamierocks.canarybukkit.impl.CanaryWorld;
+
+import java.util.Collection;
+import java.util.List;
 
 public class CanaryBlock extends Wrapper<net.canarymod.api.world.blocks.Block> implements Block {
+
     public CanaryBlock(net.canarymod.api.world.blocks.Block block) {
         super(block);
     }
@@ -59,6 +59,11 @@ public class CanaryBlock extends Wrapper<net.canarymod.api.world.blocks.Block> i
         // TODO: Check if that works
     }
 
+    public void setBiome(Biome bio) {
+        getHandle().getWorld().setBiome(getHandle().getX(), getHandle().getZ(), BiomeType.valueOf(bio.name()));
+        // TODO: Check if that works
+    }
+
     public int getBlockPower() {
         return getCanaryWorld().getBlockPower(getHandle());
     }
@@ -73,6 +78,10 @@ public class CanaryBlock extends Wrapper<net.canarymod.api.world.blocks.Block> i
 
     public byte getData() {
         return (byte) getHandle().getData();
+    }
+
+    public void setData(byte data) {
+        getHandle().setData(data);
     }
 
     public Collection<ItemStack> getDrops() {
@@ -109,7 +118,8 @@ public class CanaryBlock extends Wrapper<net.canarymod.api.world.blocks.Block> i
     }
 
     public Location getLocation() {
-        return new Location(new CanaryWorld(getHandle().getWorld()), getHandle().getX(), getHandle().getY(), getHandle().getZ());
+        return new Location(new CanaryWorld(getHandle().getWorld()), getHandle().getX(), getHandle().getY(),
+                getHandle().getZ());
     }
 
     public Location getLocation(Location loc) {
@@ -152,6 +162,10 @@ public class CanaryBlock extends Wrapper<net.canarymod.api.world.blocks.Block> i
 
     public Material getType() {
         return Material.getMaterial(getTypeId());
+    }
+
+    public void setType(Material type) {
+        getHandle().setType(CanaryUtils.getBlockType(type));
     }
 
     public int getTypeId() {
@@ -207,33 +221,22 @@ public class CanaryBlock extends Wrapper<net.canarymod.api.world.blocks.Block> i
         throw new NotImplementedException("removeMetadata(String, Plugin)");
     }
 
-    public void setBiome(Biome bio) {
-        getHandle().getWorld().setBiome(getHandle().getX(), getHandle().getZ(), BiomeType.valueOf(bio.name()));
-        // TODO: Check if that works
-    }
-
-    public void setData(byte data) {
-        getHandle().setData(data);
-    }
-
     public void setData(byte data, boolean applyPhysics) {
         setData(data);
-        if (applyPhysics)
+        if (applyPhysics) {
             getHandle().update();
+        }
     }
 
     public void setMetadata(String metadataKey, MetadataValue newMetadataValue) {
         throw new NotImplementedException("setMetadata(String, MetadataValue)");
     }
 
-    public void setType(Material type) {
-        getHandle().setType(CanaryUtils.getBlockType(type));
-    }
-
     public void setType(Material type, boolean applyPhysics) {
         setType(type);
-        if(applyPhysics)
+        if (applyPhysics) {
             getHandle().update();
+        }
     }
 
     public boolean setTypeId(int type) {
@@ -244,8 +247,9 @@ public class CanaryBlock extends Wrapper<net.canarymod.api.world.blocks.Block> i
 
     public boolean setTypeId(int type, boolean applyPhysics) {
         boolean ret = setTypeId(type);
-        if (applyPhysics)
+        if (applyPhysics) {
             getHandle().update();
+        }
         return ret;
     }
 

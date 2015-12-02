@@ -20,6 +20,7 @@ package uk.jamierocks.canarybukkit.impl.inventory;
 import org.bukkit.inventory.AnvilInventory;
 
 public class CanaryAnvilInventory extends CanaryInventory implements AnvilInventory {
+
     public CanaryAnvilInventory(net.canarymod.api.inventory.Inventory inv) {
         super(inv);
     }

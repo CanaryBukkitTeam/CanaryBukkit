@@ -21,6 +21,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LightningStrike;
 
 public class CanaryLightningStrike extends CanaryEntity implements LightningStrike {
+
     public CanaryLightningStrike(net.canarymod.api.entity.effect.LightningBolt entity) {
         super(entity);
     }

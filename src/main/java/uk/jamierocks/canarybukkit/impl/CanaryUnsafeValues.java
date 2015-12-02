@@ -17,8 +17,6 @@
  */
 package uk.jamierocks.canarybukkit.impl;
 
-import java.util.List;
-
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Achievement;
 import org.bukkit.Material;
@@ -26,8 +24,11 @@ import org.bukkit.Statistic;
 import org.bukkit.UnsafeValues;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.List;
+
 @SuppressWarnings("deprecation")
 public class CanaryUnsafeValues implements UnsafeValues {
+
     public Achievement getAchievementFromInternalName(String name) {
         throw new NotImplementedException("getAchievementFromInternalName(String)");
     }

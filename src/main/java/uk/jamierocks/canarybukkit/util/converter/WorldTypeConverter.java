@@ -17,12 +17,12 @@
  */
 package uk.jamierocks.canarybukkit.util.converter;
 
-import org.bukkit.WorldType;
-
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
+import org.bukkit.WorldType;
 
 public class WorldTypeConverter {
+
     private static BiMap<WorldType, net.canarymod.api.world.WorldType> map =
             ImmutableBiMap.<WorldType, net.canarymod.api.world.WorldType>builder()
                     .put(WorldType.NORMAL, net.canarymod.api.world.WorldType.DEFAULT)

@@ -17,12 +17,12 @@
  */
 package uk.jamierocks.canarybukkit.util.converter;
 
-import org.bukkit.DyeColor;
-
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
+import org.bukkit.DyeColor;
 
 public class DyeColorConverter {
+
     private static BiMap<DyeColor, net.canarymod.api.DyeColor> map =
             ImmutableBiMap.<DyeColor, net.canarymod.api.DyeColor>builder()
                     .put(DyeColor.BLACK, net.canarymod.api.DyeColor.BLACK)

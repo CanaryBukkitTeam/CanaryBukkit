@@ -20,6 +20,7 @@ package uk.jamierocks.canarybukkit.impl.entity;
 import org.bukkit.entity.Flying;
 
 public abstract class CanaryFlying extends CanaryLivingEntity implements Flying {
+
     public CanaryFlying(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);
     }

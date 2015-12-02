@@ -17,9 +17,6 @@
  */
 package uk.jamierocks.canarybukkit.impl.scoreboard;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import io.github.lexware.unolib.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.OfflinePlayer;
@@ -29,7 +26,11 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class CanaryScoreboard extends Wrapper<net.canarymod.api.scoreboard.Scoreboard> implements Scoreboard {
+
     public CanaryScoreboard(net.canarymod.api.scoreboard.Scoreboard scoreboard) {
         super(scoreboard);
     }

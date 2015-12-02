@@ -21,12 +21,17 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.PigZombie;
 
 public class CanaryPigZombie extends CanaryZombie implements PigZombie {
+
     public CanaryPigZombie(net.canarymod.api.entity.living.monster.PigZombie entity) {
         super(entity);
     }
 
     public int getAnger() {
         return getHandle().getAngerLevel();
+    }
+
+    public void setAnger(int level) {
+        getHandle().setAngerLevel(level);
     }
 
     @Override
@@ -36,10 +41,6 @@ public class CanaryPigZombie extends CanaryZombie implements PigZombie {
 
     public boolean isAngry() {
         return getHandle().isAngry();
-    }
-
-    public void setAnger(int level) {
-        getHandle().setAngerLevel(level);
     }
 
     public void setAngry(boolean angry) {

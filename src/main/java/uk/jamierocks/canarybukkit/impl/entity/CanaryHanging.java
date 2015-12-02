@@ -22,6 +22,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Hanging;
 
 public abstract class CanaryHanging extends CanaryEntity implements Hanging {
+
     public CanaryHanging(net.canarymod.api.entity.hanging.HangingEntity entity) {
         super(entity);
     }

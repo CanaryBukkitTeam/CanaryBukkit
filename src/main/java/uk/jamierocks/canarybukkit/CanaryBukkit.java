@@ -17,21 +17,21 @@
  */
 package uk.jamierocks.canarybukkit;
 
-import java.io.IOException;
-
-import uk.jamierocks.canarybukkit.util.data.Constants;
+import net.canarymod.Canary;
+import net.canarymod.plugin.Plugin;
+import org.bukkit.Bukkit;
 import uk.jamierocks.canarybukkit.event.CanaryBlockListener;
 import uk.jamierocks.canarybukkit.event.CanaryPlayerListener;
 import uk.jamierocks.canarybukkit.event.CanaryServerListener;
-import uk.jamierocks.canarybukkit.impl.CanaryServer;
 import uk.jamierocks.canarybukkit.event.CanaryWorldListener;
-import net.canarymod.Canary;
-import net.canarymod.plugin.Plugin;
-
-import org.bukkit.Bukkit;
+import uk.jamierocks.canarybukkit.impl.CanaryServer;
+import uk.jamierocks.canarybukkit.util.data.Constants;
 import uk.jamierocks.canarybukkit.util.metrics.Metrics;
 
+import java.io.IOException;
+
 public final class CanaryBukkit extends Plugin {
+
     private CanaryServer server;
 
     @Override

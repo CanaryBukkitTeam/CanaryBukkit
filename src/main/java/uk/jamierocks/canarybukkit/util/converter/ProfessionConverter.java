@@ -17,14 +17,13 @@
  */
 package uk.jamierocks.canarybukkit.util.converter;
 
-import net.canarymod.api.entity.living.humanoid.Villager;
-
-import org.bukkit.entity.Villager.Profession;
-
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
+import net.canarymod.api.entity.living.humanoid.Villager;
+import org.bukkit.entity.Villager.Profession;
 
 public class ProfessionConverter {
+
     private static BiMap<Profession, Villager.Profession> map =
             ImmutableBiMap.<Profession, Villager.Profession>builder()
                     .put(Profession.BLACKSMITH, Villager.Profession.BLACKSMITH)

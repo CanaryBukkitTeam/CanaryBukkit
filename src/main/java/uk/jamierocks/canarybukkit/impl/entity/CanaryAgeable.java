@@ -21,6 +21,7 @@ import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.entity.Ageable;
 
 public abstract class CanaryAgeable extends CanaryCreature implements Ageable {
+
     public CanaryAgeable(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);
     }
@@ -37,8 +38,18 @@ public abstract class CanaryAgeable extends CanaryCreature implements Ageable {
         }
     }
 
+    public void setAge(int age) {
+        if (getHandle() instanceof net.canarymod.api.entity.living.Ageable) {
+            ((net.canarymod.api.entity.living.Ageable) getHandle()).setGrowingAge(age);
+        }
+    }
+
     public boolean getAgeLock() {
         return false;
+    }
+
+    public void setAgeLock(boolean lock) {
+        throw new NotImplementedException("setAgeLock(boolean)");
     }
 
     public boolean isAdult() {
@@ -49,16 +60,6 @@ public abstract class CanaryAgeable extends CanaryCreature implements Ageable {
         if (!isAdult()) {
             setAge(0);
         }
-    }
-
-    public void setAge(int age) {
-        if (getHandle() instanceof net.canarymod.api.entity.living.Ageable) {
-            ((net.canarymod.api.entity.living.Ageable) getHandle()).setGrowingAge(age);
-        }
-    }
-
-    public void setAgeLock(boolean lock) {
-        throw new NotImplementedException("setAgeLock(boolean)");
     }
 
     public void setBaby() {

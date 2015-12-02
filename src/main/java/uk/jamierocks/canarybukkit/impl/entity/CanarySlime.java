@@ -21,6 +21,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Slime;
 
 public class CanarySlime extends CanaryLivingEntity implements Slime {
+
     public CanarySlime(net.canarymod.api.entity.living.monster.Slime entity) {
         super(entity);
     }
@@ -29,12 +30,12 @@ public class CanarySlime extends CanaryLivingEntity implements Slime {
         return getHandle().getSize().getByte();
     }
 
-    public EntityType getType() {
-        return EntityType.SLIME;
-    }
-
     public void setSize(int size) {
         getHandle().setSize(net.canarymod.api.entity.living.monster.Slime.Size.fromByte((byte) size));
+    }
+
+    public EntityType getType() {
+        return EntityType.SLIME;
     }
 
     @Override

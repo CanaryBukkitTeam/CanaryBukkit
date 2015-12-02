@@ -18,7 +18,6 @@
 package uk.jamierocks.canarybukkit.impl.scheduler;
 
 import net.canarymod.tasks.ServerTaskManager;
-
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -35,6 +34,7 @@ import java.util.concurrent.Future;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CanaryScheduler implements BukkitScheduler {
+
     private final AtomicInteger ids = new AtomicInteger(1);
     private final ConcurrentHashMap<Integer, CanaryTask> tasks = new ConcurrentHashMap<Integer, CanaryTask>();
 

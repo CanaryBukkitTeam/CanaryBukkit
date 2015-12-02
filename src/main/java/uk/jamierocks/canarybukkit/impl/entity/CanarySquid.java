@@ -21,6 +21,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Squid;
 
 public class CanarySquid extends CanaryWaterMob implements Squid {
+
     public CanarySquid(net.canarymod.api.entity.living.animal.Squid entity) {
         super(entity);
     }

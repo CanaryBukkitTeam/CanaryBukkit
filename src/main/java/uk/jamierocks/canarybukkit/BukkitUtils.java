@@ -18,6 +18,10 @@
 package uk.jamierocks.canarybukkit;
 
 import com.google.common.base.Preconditions;
+import org.bukkit.entity.Entity;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import uk.jamierocks.canarybukkit.impl.entity.CanaryArrow;
 import uk.jamierocks.canarybukkit.impl.entity.CanaryChicken;
 import uk.jamierocks.canarybukkit.impl.entity.CanaryCow;
@@ -26,12 +30,9 @@ import uk.jamierocks.canarybukkit.impl.entity.CanaryHorse;
 import uk.jamierocks.canarybukkit.impl.entity.CanaryPig;
 import uk.jamierocks.canarybukkit.impl.entity.CanarySheep;
 import uk.jamierocks.canarybukkit.impl.entity.CanaryWolf;
-import org.bukkit.entity.Entity;
-import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 
 public class BukkitUtils {
+
     public static Entity getEntity(net.canarymod.api.entity.Entity cEntity) {
         Preconditions.checkNotNull(cEntity);
         if (cEntity instanceof net.canarymod.api.entity.Projectile) {

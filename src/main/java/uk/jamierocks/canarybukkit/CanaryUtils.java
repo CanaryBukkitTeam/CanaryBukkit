@@ -25,10 +25,10 @@ import net.canarymod.api.world.BiomeType;
 import net.canarymod.api.world.World;
 import net.canarymod.api.world.blocks.BlockType;
 import net.canarymod.api.world.position.Location;
-
 import org.bukkit.Material;
 
 public class CanaryUtils {
+
     public static BiomeType getBiome(org.bukkit.block.Biome biome) {
         Preconditions.checkNotNull(biome);
         switch (biome) {

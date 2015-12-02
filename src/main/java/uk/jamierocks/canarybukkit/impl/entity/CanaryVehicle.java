@@ -20,6 +20,7 @@ package uk.jamierocks.canarybukkit.impl.entity;
 import org.bukkit.entity.Vehicle;
 
 public abstract class CanaryVehicle extends CanaryEntity implements Vehicle {
+
     public CanaryVehicle(net.canarymod.api.entity.vehicle.Vehicle entity) {
         super(entity);
     }

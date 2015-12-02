@@ -22,6 +22,7 @@ import com.google.common.collect.ImmutableBiMap;
 import org.bukkit.entity.Ocelot;
 
 public class CatTypeConverter {
+
     private static BiMap<Ocelot.Type, net.canarymod.api.entity.living.animal.Ocelot.SkinType> map =
             ImmutableBiMap.<Ocelot.Type, net.canarymod.api.entity.living.animal.Ocelot.SkinType>builder()
                     .put(Ocelot.Type.RED_CAT, net.canarymod.api.entity.living.animal.Ocelot.SkinType.GINGER)

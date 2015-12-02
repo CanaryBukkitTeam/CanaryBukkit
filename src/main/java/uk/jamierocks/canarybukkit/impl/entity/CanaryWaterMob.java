@@ -20,6 +20,7 @@ package uk.jamierocks.canarybukkit.impl.entity;
 import org.bukkit.entity.WaterMob;
 
 public abstract class CanaryWaterMob extends CanaryCreature implements WaterMob {
+
     public CanaryWaterMob(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);
     }

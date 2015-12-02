@@ -25,6 +25,7 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
 public class CanaryScore extends Wrapper<net.canarymod.api.scoreboard.Score> implements Score {
+
     public CanaryScore(net.canarymod.api.scoreboard.Score score) {
         super(score);
     }

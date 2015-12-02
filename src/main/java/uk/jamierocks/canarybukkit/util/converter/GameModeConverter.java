@@ -17,12 +17,12 @@
  */
 package uk.jamierocks.canarybukkit.util.converter;
 
-import org.bukkit.GameMode;
-
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
+import org.bukkit.GameMode;
 
 public class GameModeConverter {
+
     private static BiMap<GameMode, net.canarymod.api.GameMode> map =
             ImmutableBiMap.<GameMode, net.canarymod.api.GameMode>builder()
                     .put(GameMode.SURVIVAL, net.canarymod.api.GameMode.SURVIVAL)

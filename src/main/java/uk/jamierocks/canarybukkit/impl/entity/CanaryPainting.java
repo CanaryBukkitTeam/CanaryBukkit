@@ -17,12 +17,13 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import uk.jamierocks.canarybukkit.util.converter.ArtConverter;
 import org.bukkit.Art;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Painting;
+import uk.jamierocks.canarybukkit.util.converter.ArtConverter;
 
 public class CanaryPainting extends CanaryHanging implements Painting {
+
     public CanaryPainting(net.canarymod.api.entity.hanging.Painting entity) {
         super(entity);
     }

@@ -17,8 +17,6 @@
  */
 package uk.jamierocks.canarybukkit.impl.scoreboard;
 
-import java.util.Set;
-
 import io.github.lexware.unolib.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.OfflinePlayer;
@@ -26,7 +24,10 @@ import org.bukkit.scoreboard.NameTagVisibility;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import java.util.Set;
+
 public class CanaryTeam extends Wrapper<net.canarymod.api.scoreboard.Team> implements Team {
+
     private CanaryScoreboard scoreboard;
 
     public CanaryTeam(net.canarymod.api.scoreboard.Team team) {

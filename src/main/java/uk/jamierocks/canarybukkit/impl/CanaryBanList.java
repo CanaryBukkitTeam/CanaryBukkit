@@ -17,18 +17,18 @@
  */
 package uk.jamierocks.canarybukkit.impl;
 
+import net.canarymod.Canary;
+import net.canarymod.bansystem.Ban;
+import net.canarymod.bansystem.BanManager;
+import org.bukkit.BanEntry;
+import org.bukkit.BanList;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import net.canarymod.Canary;
-import net.canarymod.bansystem.Ban;
-import net.canarymod.bansystem.BanManager;
-
-import org.bukkit.BanEntry;
-import org.bukkit.BanList;
-
 public class CanaryBanList implements BanList {
+
     private BanManager banManager;
     private boolean isIpBan;
 

@@ -17,13 +17,13 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import uk.jamierocks.canarybukkit.util.converter.DyeColorConverter;
-
 import org.bukkit.DyeColor;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Sheep;
+import uk.jamierocks.canarybukkit.util.converter.DyeColorConverter;
 
 public class CanarySheep extends CanaryAnimals implements Sheep {
+
     public CanarySheep(net.canarymod.api.entity.living.animal.Sheep entity) {
         super(entity);
     }
@@ -32,16 +32,16 @@ public class CanarySheep extends CanaryAnimals implements Sheep {
         return DyeColorConverter.of(getHandle().getColor());
     }
 
+    public void setColor(DyeColor color) {
+        getHandle().setColor(DyeColorConverter.of(color));
+    }
+
     public EntityType getType() {
         return EntityType.SHEEP;
     }
 
     public boolean isSheared() {
         return getHandle().isSheared();
-    }
-
-    public void setColor(DyeColor color) {
-        getHandle().setColor(DyeColorConverter.of(color));
     }
 
     public void setSheared(boolean flag) {

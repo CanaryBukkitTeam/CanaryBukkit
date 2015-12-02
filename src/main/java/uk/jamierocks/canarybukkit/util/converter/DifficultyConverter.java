@@ -23,6 +23,7 @@ import net.canarymod.api.world.World;
 import org.bukkit.Difficulty;
 
 public class DifficultyConverter {
+
     private static BiMap<Difficulty, World.Difficulty> map =
             ImmutableBiMap.<Difficulty, World.Difficulty>builder()
                     .put(Difficulty.EASY, World.Difficulty.EASY)

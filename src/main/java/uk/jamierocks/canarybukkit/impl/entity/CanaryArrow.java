@@ -21,12 +21,17 @@ import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 
 public class CanaryArrow extends CanaryProjectile implements Arrow {
+
     public CanaryArrow(net.canarymod.api.entity.Arrow arrow) {
         super(arrow);
     }
 
     public int getKnockbackStrength() {
         return getHandle().getKnockbackStrength();
+    }
+
+    public void setKnockbackStrength(int knockbackStrength) {
+        getHandle().setKnockbackStrenth(knockbackStrength);
     }
 
     public EntityType getType() {
@@ -39,10 +44,6 @@ public class CanaryArrow extends CanaryProjectile implements Arrow {
 
     public void setCritical(boolean critical) {
         getHandle().setIsCritical(critical);
-    }
-
-    public void setKnockbackStrength(int knockbackStrength) {
-        getHandle().setKnockbackStrenth(knockbackStrength);
     }
 
     @Override

@@ -17,20 +17,6 @@
  */
 package uk.jamierocks.canarybukkit.event;
 
-import uk.jamierocks.canarybukkit.impl.entity.CanaryPlayer;
-import uk.jamierocks.canarybukkit.util.converter.IgniteCauseConverter;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
-import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockBurnEvent;
-import org.bukkit.event.block.BlockGrowEvent;
-import org.bukkit.event.block.BlockIgniteEvent;
-import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.block.LeavesDecayEvent;
-
-import uk.jamierocks.canarybukkit.BukkitUtils;
-import uk.jamierocks.canarybukkit.impl.CanaryServer;
-import uk.jamierocks.canarybukkit.impl.block.CanaryBlock;
 import net.canarymod.hook.HookHandler;
 import net.canarymod.hook.player.BlockDestroyHook;
 import net.canarymod.hook.player.BlockPlaceHook;
@@ -40,8 +26,22 @@ import net.canarymod.hook.world.IgnitionHook.IgnitionCause;
 import net.canarymod.hook.world.LeafDecayHook;
 import net.canarymod.plugin.PluginListener;
 import net.canarymod.plugin.Priority;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockBurnEvent;
+import org.bukkit.event.block.BlockGrowEvent;
+import org.bukkit.event.block.BlockIgniteEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.LeavesDecayEvent;
+import uk.jamierocks.canarybukkit.BukkitUtils;
+import uk.jamierocks.canarybukkit.impl.CanaryServer;
+import uk.jamierocks.canarybukkit.impl.block.CanaryBlock;
+import uk.jamierocks.canarybukkit.impl.entity.CanaryPlayer;
+import uk.jamierocks.canarybukkit.util.converter.IgniteCauseConverter;
 
 public class CanaryBlockListener implements PluginListener {
+
     private CanaryServer server;
 
     public CanaryBlockListener(CanaryServer server) {
@@ -50,7 +50,8 @@ public class CanaryBlockListener implements PluginListener {
 
     @HookHandler(priority = Priority.CRITICAL, ignoreCanceled = true)
     public void onBlockDestroy(final BlockDestroyHook hook) {
-        BlockBreakEvent event = new BlockBreakEvent(new CanaryBlock(hook.getBlock()), new CanaryPlayer(hook.getPlayer()));
+        BlockBreakEvent event =
+                new BlockBreakEvent(new CanaryBlock(hook.getBlock()), new CanaryPlayer(hook.getPlayer()));
         event.setCancelled(hook.isCanceled());
         server.getPluginManager().callEvent(event);
         if (event.isCancelled()) {

@@ -17,16 +17,8 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-
-import uk.jamierocks.canarybukkit.CanaryUtils;
-import uk.jamierocks.canarybukkit.BukkitUtils;
 import net.canarymod.api.DamageType;
 import net.canarymod.api.entity.living.LivingBase;
-
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -41,8 +33,16 @@ import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
+import uk.jamierocks.canarybukkit.BukkitUtils;
+import uk.jamierocks.canarybukkit.CanaryUtils;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 
 public abstract class CanaryLivingEntity extends CanaryEntity implements LivingEntity {
+
     public CanaryLivingEntity(net.canarymod.api.entity.living.LivingBase entity) {
         super(entity);
     }
@@ -117,8 +117,16 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
         throw new NotImplementedException("getCanPickupItems()");
     }
 
+    public void setCanPickupItems(boolean pickup) {
+        throw new NotImplementedException("setCanPickupItems(boolean)");
+    }
+
     public String getCustomName() {
         return getHandle().getName();
+    }
+
+    public void setCustomName(String name) {
+        throw new NotImplementedException("setCustomName(String)");
     }
 
     public EntityEquipment getEquipment() {
@@ -141,6 +149,10 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
         return getHandle().getHealth();
     }
 
+    public void setHealth(double health) {
+        getHandle().setHealth((float) health);
+    }
+
     public Player getKiller() {
         LivingBase temp = getHandle().getLastAssailant();
         if (temp != null && temp.isPlayer()) {
@@ -152,6 +164,10 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
 
     public double getLastDamage() {
         throw new NotImplementedException("getLastDamage()");
+    }
+
+    public void setLastDamage(double damage) {
+        throw new NotImplementedException("setLastDamage(double)");
     }
 
     public List<Block> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance) {
@@ -170,8 +186,16 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
         return getHandle().getMaxHealth();
     }
 
+    public void setMaxHealth(double health) {
+        getHandle().setMaxHealth(health);
+    }
+
     public int getMaximumAir() {
         throw new NotImplementedException("getMaximumAir()");
+    }
+
+    public void setMaximumAir(int ticks) {
+        throw new NotImplementedException("setMaximumAir(int)");
     }
 
     public int getMaximumNoDamageTicks() {
@@ -179,16 +203,33 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
         // TODO check if that is what this means
     }
 
+    public void setMaximumNoDamageTicks(int ticks) {
+        getHandle().setInvulnerabilityTicks(ticks);
+        // TODO check if that is what this means
+    }
+
     public int getNoDamageTicks() {
         return getHandle().getInvulnerabilityTicks();
+    }
+
+    public void setNoDamageTicks(int ticks) {
+        getHandle().setInvulnerabilityTicks(ticks);
     }
 
     public int getRemainingAir() {
         throw new NotImplementedException("getRemainingAir()");
     }
 
+    public void setRemainingAir(int ticks) {
+        throw new NotImplementedException("setRemainingAir(int)");
+    }
+
     public boolean getRemoveWhenFarAway() {
         throw new NotImplementedException("getRemoveWhenFarAway()");
+    }
+
+    public void setRemoveWhenFarAway(boolean remove) {
+        throw new NotImplementedException("setRemoveWhenFarAway(boolean)");
     }
 
     public Block getTargetBlock(HashSet<Byte> transparent, int maxDistance) {
@@ -205,6 +246,10 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
 
     public boolean isCustomNameVisible() {
         throw new NotImplementedException("isCustomNameVisible()");
+    }
+
+    public void setCustomNameVisible(boolean flag) {
+        throw new NotImplementedException("setCustomNameVisible(boolean)");
     }
 
     public boolean isLeashed() {
@@ -227,53 +272,8 @@ public abstract class CanaryLivingEntity extends CanaryEntity implements LivingE
         throw new NotImplementedException("resetMaxHealth()");
     }
 
-    public void setCanPickupItems(boolean pickup) {
-        throw new NotImplementedException("setCanPickupItems(boolean)");
-    }
-
-    public void setCustomName(String name) {
-        throw new NotImplementedException("setCustomName(String)");
-    }
-
-    public void setCustomNameVisible(boolean flag) {
-        throw new NotImplementedException("setCustomNameVisible(boolean)");
-    }
-
-    public void setHealth(double health) {
-        getHandle().setHealth((float) health);
-    }
-
-    public void setLastDamage(double damage) {
-        throw new NotImplementedException("setLastDamage(double)");
-    }
-
     public boolean setLeashHolder(Entity holder) {
         throw new NotImplementedException("setLeashHolder(Entity)");
-    }
-
-    public void setMaxHealth(double health) {
-        getHandle().setMaxHealth(health);
-    }
-
-    public void setMaximumAir(int ticks) {
-        throw new NotImplementedException("setMaximumAir(int)");
-    }
-
-    public void setMaximumNoDamageTicks(int ticks) {
-        getHandle().setInvulnerabilityTicks(ticks);
-        // TODO check if that is what this means
-    }
-
-    public void setNoDamageTicks(int ticks) {
-        getHandle().setInvulnerabilityTicks(ticks);
-    }
-
-    public void setRemainingAir(int ticks) {
-        throw new NotImplementedException("setRemainingAir(int)");
-    }
-
-    public void setRemoveWhenFarAway(boolean remove) {
-        throw new NotImplementedException("setRemoveWhenFarAway(boolean)");
     }
 
     public Arrow shootArrow() {

@@ -21,6 +21,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.MagmaCube;
 
 public class CanaryMagmaCube extends CanarySlime implements MagmaCube {
+
     public CanaryMagmaCube(net.canarymod.api.entity.living.monster.MagmaCube entity) {
         super(entity);
     }

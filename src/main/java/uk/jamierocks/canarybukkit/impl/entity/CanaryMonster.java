@@ -20,6 +20,7 @@ package uk.jamierocks.canarybukkit.impl.entity;
 import org.bukkit.entity.Monster;
 
 public abstract class CanaryMonster extends CanaryCreature implements Monster {
+
     public CanaryMonster(net.canarymod.api.entity.living.monster.EntityMob entity) {
         super(entity);
     }

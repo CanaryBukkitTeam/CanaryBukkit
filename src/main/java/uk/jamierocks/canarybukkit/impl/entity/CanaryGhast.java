@@ -21,6 +21,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Ghast;
 
 public class CanaryGhast extends CanaryFlying implements Ghast {
+
     public CanaryGhast(net.canarymod.api.entity.living.monster.Ghast entity) {
         super(entity);
     }

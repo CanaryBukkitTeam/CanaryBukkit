@@ -21,6 +21,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Pig;
 
 public class CanaryPig extends CanaryAnimals implements Pig {
+
     public CanaryPig(net.canarymod.api.entity.living.animal.Pig entity) {
         super(entity);
     }

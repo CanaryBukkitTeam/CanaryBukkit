@@ -17,10 +17,6 @@
  */
 package uk.jamierocks.canarybukkit.impl.inventory;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.ListIterator;
-
 import io.github.lexware.unolib.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Material;
@@ -30,7 +26,12 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.ListIterator;
+
 public class CanaryInventory extends Wrapper<net.canarymod.api.inventory.Inventory> implements Inventory {
+
     public CanaryInventory(net.canarymod.api.inventory.Inventory inv) {
         super(inv);
     }
@@ -107,6 +108,10 @@ public class CanaryInventory extends Wrapper<net.canarymod.api.inventory.Invento
         return new ItemStack[0];
     }
 
+    public void setContents(ItemStack[] items) throws IllegalArgumentException {
+        throw new NotImplementedException("ItemStack[]");
+    }
+
     public InventoryHolder getHolder() {
         throw new NotImplementedException("getHolder()");
     }
@@ -117,6 +122,10 @@ public class CanaryInventory extends Wrapper<net.canarymod.api.inventory.Invento
 
     public int getMaxStackSize() {
         return getHandle().getInventoryStackLimit();
+    }
+
+    public void setMaxStackSize(int size) {
+        throw new NotImplementedException("setMaxStackSize(int)");
     }
 
     public String getName() {
@@ -163,15 +172,7 @@ public class CanaryInventory extends Wrapper<net.canarymod.api.inventory.Invento
         throw new NotImplementedException("removeItem(ItemStack...)");
     }
 
-    public void setContents(ItemStack[] items) throws IllegalArgumentException {
-        throw new NotImplementedException("ItemStack[]");
-    }
-
     public void setItem(int index, ItemStack item) {
         throw new NotImplementedException("setItem(int, ItemStack)");
-    }
-
-    public void setMaxStackSize(int size) {
-        throw new NotImplementedException("setMaxStackSize(int)");
     }
 }

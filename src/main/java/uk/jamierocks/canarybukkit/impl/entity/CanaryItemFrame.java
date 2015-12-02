@@ -24,6 +24,7 @@ import org.bukkit.entity.ItemFrame;
 import org.bukkit.inventory.ItemStack;
 
 public class CanaryItemFrame extends CanaryHanging implements ItemFrame {
+
     public CanaryItemFrame(net.canarymod.api.entity.hanging.ItemFrame entity) {
         super(entity);
     }

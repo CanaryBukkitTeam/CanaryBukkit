@@ -24,6 +24,7 @@ import org.bukkit.entity.Horse;
 import org.bukkit.inventory.HorseInventory;
 
 public class CanaryHorse extends CanaryAnimals implements Horse {
+
     public CanaryHorse(net.canarymod.api.entity.living.animal.Horse entity) {
         super(entity);
     }
@@ -32,8 +33,16 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
         throw new NotImplementedException("getColor()");
     }
 
+    public void setColor(Color color) {
+        throw new NotImplementedException("setColor(Color)");
+    }
+
     public int getDomestication() {
         return getHandle().getTemper(); // I think that is right
+    }
+
+    public void setDomestication(int level) {
+        getHandle().setTemper(level);
     }
 
     public HorseInventory getInventory() {
@@ -44,16 +53,32 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
         throw new NotImplementedException("getJumpStrength()");
     }
 
+    public void setJumpStrength(double strength) {
+        throw new NotImplementedException("setJumpStrength(double)");
+    }
+
     public int getMaxDomestication() {
         throw new NotImplementedException("getMaxDomestication()");
+    }
+
+    public void setMaxDomestication(int level) {
+        throw new NotImplementedException("setMaxDomestication(int)");
     }
 
     public AnimalTamer getOwner() {
         throw new NotImplementedException("getOwner()");
     }
 
+    public void setOwner(AnimalTamer tamer) {
+        throw new NotImplementedException("setOwner(AnimalTamer)");
+    }
+
     public Style getStyle() {
         throw new NotImplementedException("getStyle()");
+    }
+
+    public void setStyle(Style style) {
+        throw new NotImplementedException("setStyle(Style)");
     }
 
     public EntityType getType() {
@@ -64,48 +89,24 @@ public class CanaryHorse extends CanaryAnimals implements Horse {
         throw new NotImplementedException("getVariant()");
     }
 
-    public boolean isCarryingChest() {
-        return getHandle().isChested();
+    public void setVariant(Variant variant) {
+        throw new NotImplementedException("setVariant(Variant)");
     }
 
-    public boolean isTamed() {
-        return getHandle().isTamed();
+    public boolean isCarryingChest() {
+        return getHandle().isChested();
     }
 
     public void setCarryingChest(boolean chest) {
         throw new NotImplementedException("setCarryingChest(boolean)");
     }
 
-    public void setColor(Color color) {
-        throw new NotImplementedException("setColor(Color)");
-    }
-
-    public void setDomestication(int level) {
-        getHandle().setTemper(level);
-    }
-
-    public void setJumpStrength(double strength) {
-        throw new NotImplementedException("setJumpStrength(double)");
-    }
-
-    public void setMaxDomestication(int level) {
-        throw new NotImplementedException("setMaxDomestication(int)");
-    }
-
-    public void setOwner(AnimalTamer tamer) {
-        throw new NotImplementedException("setOwner(AnimalTamer)");
-    }
-
-    public void setStyle(Style style) {
-        throw new NotImplementedException("setStyle(Style)");
+    public boolean isTamed() {
+        return getHandle().isTamed();
     }
 
     public void setTamed(boolean tame) {
         getHandle().setTamed(tame);
-    }
-
-    public void setVariant(Variant variant) {
-        throw new NotImplementedException("setVariant(Variant)");
     }
 
     @Override

@@ -21,6 +21,7 @@ import org.bukkit.entity.CaveSpider;
 import org.bukkit.entity.EntityType;
 
 public class CanaryCaveSpider extends CanaryAgeable implements CaveSpider {
+
     public CanaryCaveSpider(net.canarymod.api.entity.living.monster.CaveSpider entity) {
         super(entity);
     }

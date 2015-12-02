@@ -17,12 +17,12 @@
  */
 package uk.jamierocks.canarybukkit.impl.entity;
 
-import uk.jamierocks.canarybukkit.util.converter.ProfessionConverter;
-
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Villager;
+import uk.jamierocks.canarybukkit.util.converter.ProfessionConverter;
 
 public class CanaryVillager extends CanaryAgeable implements Villager {
+
     public CanaryVillager(net.canarymod.api.entity.living.humanoid.Villager entity) {
         super(entity);
     }
@@ -31,12 +31,12 @@ public class CanaryVillager extends CanaryAgeable implements Villager {
         return ProfessionConverter.of(getHandle().getProfession());
     }
 
-    public EntityType getType() {
-        return EntityType.VILLAGER;
-    }
-
     public void setProfession(Profession profession) {
         getHandle().setProfession(ProfessionConverter.of(profession));
+    }
+
+    public EntityType getType() {
+        return EntityType.VILLAGER;
     }
 
     @Override
