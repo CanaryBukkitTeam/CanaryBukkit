@@ -1,4 +1,4 @@
-/**
+/*
  * This file is part of CanaryBukkit, a Bukkit implementation for CanaryLib.
  * Copyright (C) 2014-2015 CanaryBukkitTeam
  *
