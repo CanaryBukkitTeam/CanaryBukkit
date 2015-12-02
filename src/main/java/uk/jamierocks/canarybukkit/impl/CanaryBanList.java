@@ -17,6 +17,7 @@
  */
 package uk.jamierocks.canarybukkit.impl;
 
+import com.google.common.collect.Sets;
 import net.canarymod.Canary;
 import net.canarymod.bansystem.Ban;
 import net.canarymod.bansystem.BanManager;
@@ -37,9 +38,10 @@ public class CanaryBanList implements BanList {
         this.isIpBan = type == Type.IP;
     }
 
+    @Override
     public BanEntry getBanEntry(String target) {
         BanEntry entry = null;
-        for (Ban ban : banManager.getAllBans()) {
+        for (Ban ban : this.banManager.getAllBans()) {
             if (ban.getSubject().equalsIgnoreCase(target) && (ban.isIpBan() == isIpBan)) {
                 entry = new CanaryBanEntry(ban);
             }
@@ -47,28 +49,32 @@ public class CanaryBanList implements BanList {
         return entry;
     }
 
+    @Override
     public BanEntry addBan(String target, String reason, Date expires, String source) {
-        Ban ban = new Ban(Canary.getServer().getPlayer(target), reason, isIpBan);
+        Ban ban = new Ban(Canary.getServer().getPlayer(target), reason, this.isIpBan);
         ban.setBanningPlayer(source);
-        banManager.issueBan(ban);
-        return getBanEntry(target);
+        this.banManager.issueBan(ban);
+        return this.getBanEntry(target);
     }
 
+    @Override
     public Set<BanEntry> getBanEntries() {
-        Set<BanEntry> bans = new HashSet<BanEntry>();
-        for (Ban ban : banManager.getAllBans()) {
-            if (ban.isIpBan() == isIpBan) {
+        Set<BanEntry> bans = Sets.newHashSet();
+        for (Ban ban : this.banManager.getAllBans()) {
+            if (ban.isIpBan() == this.isIpBan) {
                 bans.add(new CanaryBanEntry(ban));
             }
         }
         return bans;
     }
 
+    @Override
     public boolean isBanned(String target) {
-        return banManager.isBanned(target);
+        return this.banManager.isBanned(target);
     }
 
+    @Override
     public void pardon(String target) {
-        banManager.unban(target);
+        this.banManager.unban(target);
     }
 }

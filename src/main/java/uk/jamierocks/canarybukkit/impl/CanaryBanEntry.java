@@ -25,8 +25,11 @@ import java.util.Date;
 
 public class CanaryBanEntry extends Wrapper<Ban> implements BanEntry {
 
-    private String target, source, reason;
-    private Date created, expires;
+    private String target;
+    private String source;
+    private String reason;
+    private Date created;
+    private Date expires;
 
     public CanaryBanEntry(Ban ban) {
         super(ban);
@@ -37,46 +40,56 @@ public class CanaryBanEntry extends Wrapper<Ban> implements BanEntry {
         this.reason = ban.getReason();
     }
 
+    @Override
     public String getTarget() {
-        return target;
+        return this.target;
     }
 
+    @Override
     public Date getCreated() {
-        return created;
+        return this.created;
     }
 
+    @Override
     public void setCreated(Date created) {
         this.created = created;
     }
 
+    @Override
     public String getSource() {
-        return source;
+        return this.source;
     }
 
+    @Override
     public void setSource(String source) {
         this.source = source;
     }
 
+    @Override
     public Date getExpiration() {
-        return expires;
+        return this.expires;
     }
 
+    @Override
     public void setExpiration(Date expiration) {
         this.expires = expiration;
     }
 
+    @Override
     public String getReason() {
-        return reason;
+        return this.reason;
     }
 
+    @Override
     public void setReason(String reason) {
         this.reason = reason;
     }
 
+    @Override
     public void save() {
-        getHandle().setIssuedDate(created.getTime());
-        getHandle().setBanningPlayer(source);
-        getHandle().setExpiration(expires.getTime());
-        getHandle().setReason(reason);
+        this.getHandle().setIssuedDate(this.created.getTime());
+        this.getHandle().setBanningPlayer(this.source);
+        this.getHandle().setExpiration(this.expires.getTime());
+        this.getHandle().setReason(this.reason);
     }
 }
