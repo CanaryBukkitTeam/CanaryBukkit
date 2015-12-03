@@ -29,72 +29,85 @@ public class CanaryChunkSnapshot implements ChunkSnapshot {
     public CanaryChunkSnapshot(net.canarymod.api.world.Chunk chunk, CanaryWorld world) {
         this.chunk = chunk;
         this.world = world;
-        snapshotTime = world.getFullTime();
+        this.snapshotTime = world.getFullTime();
     }
 
+    @Override
     public int getX() {
-        return getChunk().getX();
+        return this.getChunk().getX();
     }
 
+    @Override
     public int getZ() {
-        return getChunk().getZ();
+        return this.getChunk().getZ();
     }
 
+    @Override
     public String getWorldName() {
-        return getWorld().getName();
+        return this.getWorld().getName();
     }
 
+    @Override
     public int getBlockTypeId(int x, int y, int z) {
-        return getWorld().getBlockTypeIdAt(x, y, z);
+        return this.getWorld().getBlockTypeIdAt(x, y, z);
     }
 
+    @Override
     public int getBlockData(int x, int y, int z) {
-        return getWorld().getBlockAt(x, y, z).getData();
+        return this.getWorld().getBlockAt(x, y, z).getData();
     }
 
+    @Override
     public int getBlockSkyLight(int x, int y, int z) {
         throw new org.apache.commons.lang3.NotImplementedException("getBlockSkyLight(int, int, int)");
     }
 
+    @Override
     public int getBlockEmittedLight(int x, int y, int z) {
         throw new org.apache.commons.lang3.NotImplementedException("getBlockEmittedLight(int, int, int)");
     }
 
+    @Override
     public int getHighestBlockYAt(int x, int z) {
-        return getWorld().getHighestBlockYAt(x, z);
+        return this.getWorld().getHighestBlockYAt(x, z);
     }
 
+    @Override
     public Biome getBiome(int x, int z) {
-        return Biome.valueOf(getChunk().getBiome(x, z).getBiomeType().name());
+        return Biome.valueOf(this.getChunk().getBiome(x, z).getBiomeType().name());
         // TODO: Check if that works
     }
 
+    @Override
     public double getRawBiomeTemperature(int x, int z) {
-        return getChunk().getBiome(x, z).getTemperature();
+        return this.getChunk().getBiome(x, z).getTemperature();
     }
 
+    @Override
     public double getRawBiomeRainfall(int x, int z) {
-        return getChunk().getBiome(x, z).getRainfall();
+        return this.getChunk().getBiome(x, z).getRainfall();
     }
 
+    @Override
     public long getCaptureFullTime() {
-        return getSnapshotTime();
+        return this.getSnapshotTime();
     }
 
+    @Override
     public boolean isSectionEmpty(int sy) {
-        return !getChunk().hasEntities();
+        return !this.getChunk().hasEntities();
         // TODO likely not fully right
     }
 
     protected net.canarymod.api.world.Chunk getChunk() {
-        return chunk;
+        return this.chunk;
     }
 
     protected CanaryWorld getWorld() {
-        return world;
+        return this.world;
     }
 
     protected long getSnapshotTime() {
-        return snapshotTime;
+        return this.snapshotTime;
     }
 }

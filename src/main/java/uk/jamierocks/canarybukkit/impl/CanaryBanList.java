@@ -25,7 +25,6 @@ import org.bukkit.BanEntry;
 import org.bukkit.BanList;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 public class CanaryBanList implements BanList {

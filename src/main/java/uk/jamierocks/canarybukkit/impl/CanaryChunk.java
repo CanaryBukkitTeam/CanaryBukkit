@@ -17,6 +17,7 @@
  */
 package uk.jamierocks.canarybukkit.impl;
 
+import com.google.common.collect.Lists;
 import io.github.lexware.unolib.Wrapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.bukkit.Chunk;
@@ -27,7 +28,6 @@ import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 import uk.jamierocks.canarybukkit.BukkitUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CanaryChunk extends Wrapper<net.canarymod.api.world.Chunk> implements Chunk {
@@ -40,22 +40,26 @@ public class CanaryChunk extends Wrapper<net.canarymod.api.world.Chunk> implemen
         this.world = world;
     }
 
+    @Override
     public Block getBlock(int x, int y, int z) {
-        return world.getBlockAt(x, y, z);
+        return this.world.getBlockAt(x, y, z);
     }
 
+    @Override
     public ChunkSnapshot getChunkSnapshot() {
-        return new CanaryChunkSnapshot(getHandle(), world);
+        return new CanaryChunkSnapshot(this.getHandle(), this.world);
     }
 
+    @Override
     public ChunkSnapshot getChunkSnapshot(boolean includeMaxblocky, boolean includeBiome,
             boolean includeBiomeTempRain) {
         throw new NotImplementedException("getChunkSnapshot(boolean, boolean, boolean)");
     }
 
+    @Override
     public Entity[] getEntities() {
-        List<Entity> entities = new ArrayList<Entity>();
-        for (List<net.canarymod.api.entity.Entity> e : getHandle().getEntityLists()) {
+        List<Entity> entities = Lists.newArrayList();
+        for (List<net.canarymod.api.entity.Entity> e : this.getHandle().getEntityLists()) {
             for (net.canarymod.api.entity.Entity en : e) {
                 entities.add(BukkitUtils.getEntity(en));
             }
@@ -63,44 +67,54 @@ public class CanaryChunk extends Wrapper<net.canarymod.api.world.Chunk> implemen
         return entities.toArray(new Entity[entities.size()]);
     }
 
+    @Override
     public BlockState[] getTileEntities() {
         return new BlockState[0];
     }
 
+    @Override
     public World getWorld() {
-        return world;
+        return this.world;
     }
 
+    @Override
     public int getX() {
-        return getHandle().getX();
+        return this.getHandle().getX();
     }
 
+    @Override
     public int getZ() {
-        return getHandle().getZ();
+        return this.getHandle().getZ();
     }
 
+    @Override
     public boolean isLoaded() {
-        return getHandle().isLoaded();
+        return this.getHandle().isLoaded();
     }
 
+    @Override
     public boolean load() {
-        world.loadChunk(new CanaryChunk(getHandle(), world));
-        return getHandle().isLoaded();
+        this.world.loadChunk(new CanaryChunk(this.getHandle(), this.world));
+        return this.getHandle().isLoaded();
     }
 
+    @Override
     public boolean load(boolean generate) {
         return false;
     }
 
+    @Override
     public boolean unload() {
-        world.unloadChunk(new CanaryChunk(getHandle(), world));
-        return !getHandle().isLoaded();
+        this.world.unloadChunk(new CanaryChunk(this.getHandle(), this.world));
+        return !this.getHandle().isLoaded();
     }
 
+    @Override
     public boolean unload(boolean save) {
         return false;
     }
 
+    @Override
     public boolean unload(boolean save, boolean safe) {
         return false;
     }

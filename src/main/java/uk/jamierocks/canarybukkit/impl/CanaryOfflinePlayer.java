@@ -34,67 +34,82 @@ public class CanaryOfflinePlayer extends Wrapper<net.canarymod.api.OfflinePlayer
         super(offlinePlayer);
     }
 
+    @Override
     public Location getBedSpawnLocation() {
-        return new CanaryLocation(getHandle().getHome(), getHandle().getWorld());
+        return new CanaryLocation(this.getHandle().getHome(), this.getHandle().getWorld());
         // TODO: Is home the same as the bed?
     }
 
+    @Override
     public long getFirstPlayed() {
         throw new NotImplementedException("getFirstPlayed()");
     }
 
+    @Override
     public long getLastPlayed() {
         throw new NotImplementedException("getLastPlayed()");
     }
 
+    @Override
     public String getName() {
-        return getHandle().getName();
+        return this.getHandle().getName();
     }
 
+    @Override
     public Player getPlayer() {
-        return new CanaryPlayer(Canary.getServer().getPlayer(getHandle().getName()));
+        return new CanaryPlayer(Canary.getServer().getPlayer(this.getHandle().getName()));
     }
 
+    @Override
     public UUID getUniqueId() {
-        return getHandle().getUUID();
+        return this.getHandle().getUUID();
     }
 
+    @Override
     public boolean hasPlayedBefore() {
         throw new NotImplementedException("hasPlayedBefore()");
     }
 
+    @Override
     public boolean isBanned() {
-        return Canary.bans().isBanned(getName());
+        return Canary.bans().isBanned(this.getName());
     }
 
+    @Override
     public void setBanned(boolean banned) {
         throw new NotImplementedException("setBanned(boolean)");
     }
 
+    @Override
     public boolean isOnline() {
-        return getHandle().isOnline();
+        return this.getHandle().isOnline();
     }
 
+    @Override
     public boolean isOp() {
-        return Canary.ops().isOpped(getHandle().getName());
+        return Canary.ops().isOpped(this.getHandle().getName());
     }
 
+    @Override
     public void setOp(boolean op) {
-        Canary.ops().addPlayer(getHandle().getName());
+        Canary.ops().addPlayer(this.getHandle().getName());
     }
 
+    @Override
     public boolean isWhitelisted() {
-        return Canary.whitelist().isWhitelisted(getHandle().getName());
+        return Canary.whitelist().isWhitelisted(this.getHandle().getName());
     }
 
+    @Override
     public void setWhitelisted(boolean whitelisted) {
         if (whitelisted) {
-            Canary.whitelist().addPlayer(getName());
+            Canary.whitelist().addPlayer(this.getName());
         } else {
-            Canary.whitelist().removePlayer(getName());
+            Canary.whitelist().removePlayer(this.getName());
         }
     }
 
+    @Override
     public Map<String, Object> serialize() {
         throw new NotImplementedException("serialize()");
     }
